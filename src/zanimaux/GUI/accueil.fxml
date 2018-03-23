@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hidePane" prefHeight="628.0" prefWidth="776.0" style="-fx-background-color: #FFFFFF;" styleClass="rich-blue" stylesheets="@style/menuButton.css" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.AccueilController">
+<AnchorPane fx:id="anchorP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hidePane" prefHeight="628.0" prefWidth="776.0" style="-fx-background-color: #FFFFFF;" styleClass="rich-blue" stylesheets="@style/menuButton.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.AccueilController">
    <children>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #37502D8E; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -49,37 +49,37 @@
             </Button>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
                <image>
-                  <Image url="@Image/home.png" />
+                  <Image url="@../Image/home.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
                <image>
-                  <Image url="@Image/valise.png" />
+                  <Image url="@../Image/valise.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0">
                <image>
-                  <Image url="@Image/storeIcon.png" />
+                  <Image url="@../Image/storeIcon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="440.0">
                <image>
-                  <Image url="@Image/eventIcon.png" />
+                  <Image url="@../Image/event.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="39.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="500.0">
                <image>
-                  <Image url="@Image/annonce.png" />
+                  <Image url="@../Image/annonce.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="38.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="380.0">
                <image>
-                  <Image url="@Image/shelter.png" />
+                  <Image url="@../Image/shelter.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="40.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="320.0">
                <image>
-                  <Image url="@Image/petsitter.png" />
+                  <Image url="@../Image/petsitter.png" />
                </image>
             </ImageView>
             <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="49.0">
@@ -91,7 +91,7 @@
                   </Label>
                   <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Image/logo.png" />
+                        <Image url="@../Image/logo.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="63.0" layoutY="-8.0" opacity="0.82" prefHeight="48.0" prefWidth="33.0" text="Z" textFill="#314528">
@@ -109,7 +109,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Image/panier.png" />
+                        <Image url="@../Image/panier.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -118,14 +118,14 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Image/favoris.png" />
+                        <Image url="@../Image/favoris.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
             <ImageView fitHeight="28.0" fitWidth="38.0" layoutX="495.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0">
                <image>
-                  <Image url="@Image/account.png" />
+                  <Image url="@../Image/account.png" />
                </image>
             </ImageView>
             <Button fx:id="userName" layoutX="348.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#showPane" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="userName" textFill="WHITE" AnchorPane.rightAnchor="24.0">
@@ -135,7 +135,7 @@
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Image/fleche.png" />
+                        <Image url="@../Image/fleche.png" />
                      </image>
                   </ImageView>
                </graphic>

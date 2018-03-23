@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -34,6 +35,8 @@ public class AccueilController implements Initializable {
     private Button btn1;
     @FXML
     private Button magasin;
+    @FXML
+    private VBox vbox1;
 
     /**
      * Initializes the controller class.

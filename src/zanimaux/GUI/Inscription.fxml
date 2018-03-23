@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="563.0" fitWidth="853.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
          <image>
-            <Image url="@Image/animaux.jpg" />
+            <Image url="@../Image/animaux.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="200.0" layoutY="19.0" opacity="0.74" prefHeight="523.0" prefWidth="465.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;" AnchorPane.topAnchor="19.0">
@@ -38,7 +38,7 @@
             </Button>
             <ImageView fitHeight="53.0" fitWidth="66.0" layoutX="208.0" layoutY="17.0" opacity="0.77" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Image/person_add.png" />
+                  <Image url="@../Image/person_add.png" />
                </image>
             </ImageView>
             <TextField id="tel" layoutX="14.0" layoutY="114.0" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" text="Nom d'utlisateur" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0" />

@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="501.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.InscriptionController">
+<AnchorPane id="AnchorPane" prefHeight="563.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.InscriptionController">
    <children>
-      <ImageView fitHeight="563.0" fitWidth="853.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
+      <ImageView fitHeight="563.0" fitWidth="855.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
          <image>
-            <Image url="@../Image/animaux.jpg" />
+            <Image url="@../Image/pp.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="200.0" layoutY="19.0" opacity="0.74" prefHeight="523.0" prefWidth="465.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;" AnchorPane.topAnchor="19.0">

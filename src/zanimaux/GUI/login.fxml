@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="407.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.LoginController">
    <children>
       <ImageView fitHeight="425.0" fitWidth="646.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../Image/animaux.jpg" />
+            <Image url="@../Image/pp.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="207.0" layoutY="63.0" opacity="0.74" prefHeight="282.0" prefWidth="233.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;">
@@ -44,7 +44,7 @@
    
          </children>
       </AnchorPane>
-      <Button layoutX="529.0" layoutY="18.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="S'inscrire" AnchorPane.bottomAnchor="372.0">
+      <Button layoutX="26.0" layoutY="31.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="S'inscrire" AnchorPane.bottomAnchor="362.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

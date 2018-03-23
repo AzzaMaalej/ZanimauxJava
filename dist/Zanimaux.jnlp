@@ -8,13 +8,13 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Zanimaux.jar" size="3639168" download="eager" />
-    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
-    <jar href="lib\fontawesomefx-glyphsbrowser-1.3.0.jar" size="68461" download="eager" />
+    <jar href="Zanimaux.jar" size="3652596" download="eager" />
+    <jar href="lib/fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib/fontawesomefx-glyphsbrowser-1.3.0.jar" size="68461" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Zanimaux" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="zanimaux.Zanimaux"  name="Zanimaux" />
+  <jfx:javafx-desc  width="800" height="600" main-class="zanimaux.GUI.Zanimaux"  name="Zanimaux" />
   <update check="always"/>
 </jnlp>

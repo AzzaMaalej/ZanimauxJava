@@ -32,6 +32,8 @@ public class AccueilController implements Initializable {
     private Button btn11;
     @FXML
     private Button btn1;
+    @FXML
+    private Button magasin;
 
     /**
      * Initializes the controller class.
@@ -43,6 +45,7 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void showPane(MouseEvent event) {
+        pane.setVisible(true);
     }
 
     @FXML
@@ -51,6 +54,12 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void hidePane(MouseEvent event) {
+         pane.setVisible(false);
+
+    }
+
+    @FXML
+    private void onClickAction(ActionEvent event) {
     }
     
 }

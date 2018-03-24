@@ -41,7 +41,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="1.0" layoutY="457.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
+            <Button fx:id="eventButton" layoutX="1.0" layoutY="457.0" mnemonicParsing="false" onMouseClicked="#showEventForm" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -164,7 +164,7 @@
       </Pane>
       <VBox layoutX="246.0" layoutY="51.0" prefHeight="577.0" prefWidth="530.0">
          <children>
-            <AnchorPane prefHeight="584.0" prefWidth="530.0" style="-fx-background-color: #B8C6C4;">
+            <AnchorPane id="AnchorEvt" fx:id="AnchorPaneEvent" prefHeight="584.0" prefWidth="530.0" style="-fx-background-color: #B8C6C4;" visible="false">
                <children>
                   <TextField alignment="TOP_CENTER" layoutX="75.0" layoutY="37.0" prefHeight="32.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Lieu">
                      <font>
@@ -197,6 +197,7 @@
                      </font>
                   </TextField>
                   <Label layoutX="77.0" layoutY="423.0" text="Nombre de place  :" />
+                  <Button layoutX="189.0" layoutY="538.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: green;" text="Créer" />
                </children>
             </AnchorPane>
          </children></VBox>

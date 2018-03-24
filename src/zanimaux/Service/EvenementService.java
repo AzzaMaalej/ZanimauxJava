@@ -21,7 +21,7 @@ public class EvenementService {
     
      public boolean ajouterEvenement(Evenement e)
     {
-       String requete = "INSERT INTO Evenement (cinUser,lieu,dateDebut, dateFin, type, titre, description,imageEvt,nbPlace) VALUES (?,?,?,?,?,?,?,?,?) ";
+       String requete = "INSERT INTO Evenement (cinUser,lieu,dateDebut, dateFin, type, titre, description,nbPlace,imageEvt) VALUES (?,?,?,?,?,?,?,?,?) ";
        
        try {
             PreparedStatement pst = con.prepareStatement(requete);
@@ -31,8 +31,9 @@ public class EvenementService {
             pst.setDate(4,e.getDateFin());
             pst.setString(5,e.getTitre());
             pst.setString(6,e.getDescription());
-            pst.setString(7,null);
-            pst.setInt(8,e.getNbPlace());
+            pst.setInt(7,e.getNbPlace());
+            pst.setString(8,null);
+            
             pst.executeUpdate();
             System.out.println("ajouté avec succés");
         } catch (SQLException ex) {

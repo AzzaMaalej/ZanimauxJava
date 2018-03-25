@@ -135,7 +135,7 @@ public class InscriptionController implements Initializable {
             r = 5;
         }
         if((r!=1)&&(r!=2)&&(r!=3)&&(r!=4)&&(r!=5)){
-            roleLabel.setText("* vous devez choirir votre role");
+            roleLabel.setText("* vous devez choisir votre rôle");
             saisie = false;
         }
 

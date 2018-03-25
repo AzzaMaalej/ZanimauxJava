@@ -36,16 +36,7 @@ public class Zanimaux extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        try {
-//            User u=new User("1234567","azza3","asdaz@hotmail.fr","esprit","PROPRIETAIRE_REFUGE","maalej","azza",123456,"asd","assd",1234);
-//            
-//            
-//            Userservice su= new Userservice();
-//            su.ajouterUser(u);
-//            System.out.println("user ajouté");
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Zanimaux.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
          launch(args);
             
     }

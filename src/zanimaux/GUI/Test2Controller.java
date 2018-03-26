@@ -11,9 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -21,39 +19,43 @@ import javafx.scene.layout.Pane;
  *
  * @author macbookpro
  */
-public class AccueilController implements Initializable {
+public class Test2Controller implements Initializable {
 
     @FXML
+    private Button button;
+    @FXML
+    private Button evenement;
+    @FXML
     private Button userName;
+    @FXML
+    private Pane pane;
     @FXML
     private Button btn11;
     @FXML
     private Button btn1;
-    @FXML
-    private Pane pane;
-    @FXML
-    private AnchorPane anchorP;
-
- 
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-
+        // TODO
     }    
 
     @FXML
-    private void showPane(MouseEvent event) {
-        pane.setVisible(true);
+    private void handleButtonAction(ActionEvent event) {
     }
 
     @FXML
-    private void hidePane(MouseEvent event) {
-        pane.setVisible(false);
+    private void onClickEvenementAction(ActionEvent event) {
     }
- 
+
+    @FXML
+    private void showPane(MouseEvent event) {
+    }
+
+    @FXML
+    private void connexionAction(ActionEvent event) {
+    }
     
 }

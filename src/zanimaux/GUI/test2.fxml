@@ -158,6 +158,6 @@
             </Button>
          </children>
       </Pane>
-      <AnchorPane fx:id="anchorEvent" layoutX="277.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane fx:id="anchorEvent" layoutX="277.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="251.0" AnchorPane.topAnchor="50.0" />
    </children>
 </AnchorPane>

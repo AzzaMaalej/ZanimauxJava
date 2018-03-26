@@ -15,7 +15,7 @@ public class Produit {
     }
     
     private int idProduit;
-    private Magasin idMagasin;
+    private int idMagasin;
     private String libelle;
     private String photoProduit;
     private String marque;
@@ -29,13 +29,7 @@ public class Produit {
         return idProduit;
     }
 
-    public Magasin getIdMagasin() {
-        return idMagasin;
-    }
 
-    public void setIdMagasin(Magasin idMagasin) {
-        this.idMagasin = idMagasin;
-    }
 
     public String getLibelle() {
         return libelle;
@@ -101,16 +95,7 @@ public class Produit {
         this.prix = prix;
     }
 
-    public Produit(int idProduit, Magasin idMagasin, String libelle, String photoProduit, String type, double prix) {
-        this.idProduit = idProduit;
-        this.idMagasin = idMagasin;
-        this.libelle = libelle;
-        this.photoProduit = photoProduit;
-        this.type = type;
-        this.prix = prix;
-    }
-
-    public Produit(int idProduit, Magasin idMagasin, String libelle, String photoProduit, String marque, String type, String description, int nbFoisVendu, int quantite, double prix) {
+    public Produit(int idProduit, int idMagasin, String libelle, String photoProduit, String marque, String type, String description, int nbFoisVendu, int quantite, double prix) {
         this.idProduit = idProduit;
         this.idMagasin = idMagasin;
         this.libelle = libelle;
@@ -122,6 +107,20 @@ public class Produit {
         this.quantite = quantite;
         this.prix = prix;
     }
+
+    public int getIdMagasin() {
+        return idMagasin;
+    }
+
+    public void setIdMagasin(int idMagasin) {
+        this.idMagasin = idMagasin;
+    }
+
+    public void setIdProduit(int idProduit) {
+        this.idProduit = idProduit;
+    }
+
+  
 
     @Override
     public String toString() {

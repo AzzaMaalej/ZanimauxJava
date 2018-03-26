@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -19,7 +20,7 @@ import javafx.scene.layout.Pane;
  *
  * @author macbookpro
  */
-public class Test2Controller implements Initializable {
+public class magasinController implements Initializable {
 
     @FXML
     private Button button;
@@ -33,6 +34,8 @@ public class Test2Controller implements Initializable {
     private Button btn11;
     @FXML
     private Button btn1;
+    @FXML
+    private AnchorPane anchorEvent;
 
     /**
      * Initializes the controller class.
@@ -57,5 +60,5 @@ public class Test2Controller implements Initializable {
     @FXML
     private void connexionAction(ActionEvent event) {
     }
-    
+ 
 }

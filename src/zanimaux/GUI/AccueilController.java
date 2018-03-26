@@ -51,10 +51,6 @@ public class AccueilController implements Initializable {
     }
 
     @FXML
-    private void connexionAction(ActionEvent event) {
-    }
-
-    @FXML
     private void hidePane(MouseEvent event) {
         pane.setVisible(false);
     }

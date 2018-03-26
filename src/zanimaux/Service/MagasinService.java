@@ -71,25 +71,22 @@ public class MagasinService {
     
     public Magasin rechercheMagasin(int i)
     { 
-        
+
         Magasin listForm = new Magasin();
         try {  
-            String requete = "select * from magasin WHERE id='"+i+"'";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(requete); 
-            System.out.println(rs.next());
+            String requete = "SELECT * FROM Magasin WHERE `idMagasin`="+i;
+
+           
+            ResultSet rs = ste.executeQuery(requete);
+
              while(rs.next()){
-                 listForm.setIdMagasin(i);
                  listForm.setNumRC(rs.getString("numRC"));
                  listForm.setNomMagasin(rs.getString("nomMagasin"));
                  listForm.setAdresseMagasin(rs.getString("adresseMagasin"));
                  listForm.setCodePostaleMagasin(rs.getInt("codePostaleMagasin"));
                  listForm.setPhotoMagasin(rs.getString("photoMagasin"));
-                 listForm.setCinProprietaireMagasin((User)rs.getObject("cinProprietaireMagasin"));
-                 listForm.setBestSellerMagasin((Produit)rs.getObject("bestSellerMagasin"));
-
-        
-              
+                 listForm.setCinProprietaireMagasin(rs.getString("cinProprietaireMagasin"));
+                 listForm.setBestSellerMagasin(rs.getInt("bestSellerMagasin"));              
             }
              
         } catch (SQLException ex) {
@@ -98,6 +95,19 @@ public class MagasinService {
         return listForm;
     
     }
+      public ResultSet rechercheMagasin()
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM Magasin";
+            rs = ste.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur rechercheMagasin()");
+        }
+        return rs ;
+    
+    }
+    
     public void supprimerMagasin(int id)
          {
                 

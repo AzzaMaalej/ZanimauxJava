@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import zanimaux.Service.Userservice;
-import zanimaux.entities.User;
+import zanimaux.entities.User; 
 
 /**
  *
@@ -35,6 +35,7 @@ public class Zanimaux extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+       
         //stage.setResizable(false);
         stage.show();
     }
@@ -43,7 +44,7 @@ public class Zanimaux extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
+       /* try {
             User u=new User("1234567","azza3","asdaz@hotmail.fr","esprit","PROPRIETAIRE_REFUGE","maalej","azza",123456,"asd","assd",1234);
             
             
@@ -53,7 +54,8 @@ public class Zanimaux extends Application {
         } catch (SQLException ex) {
             Logger.getLogger(Zanimaux.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+         */
+       launch(args);
     }
     
 }

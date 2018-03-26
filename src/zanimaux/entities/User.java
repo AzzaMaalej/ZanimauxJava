@@ -27,6 +27,9 @@ public class User {
     private int codePostale;
     private String roles;
 
+    public User() {
+    }
+
     public String getRoles() {
         return roles;
     }

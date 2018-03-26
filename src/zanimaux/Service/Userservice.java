@@ -5,7 +5,7 @@
  */
 package zanimaux.Service;
 
-import zanimaux.entities.BCrypt;
+import zanimaux.util.BCrypt;
 import zanimaux.entities.User;
 import zanimaux.Technique.DataSource;
 import java.sql.Connection;

@@ -15,13 +15,22 @@ public class Magasin {
     private String numRC;
     private String nomMagasin;
     private String adresseMagasin;
+    private String villeMagasin;
+
+    public String getVilleMagasin() {
+        return villeMagasin;
+    }
+
+    public void setVilleMagasin(String villeMagasin) {
+        this.villeMagasin = villeMagasin;
+    }
     private int codePostaleMagasin;
     private String photoMagasin;
-    private User cinProprietaireMagasin;
-    private Produit bestSellerMagasin;
+    private String cinProprietaireMagasin;
+    private int bestSellerMagasin;
 
     public Magasin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     public int getIdMagasin() {
@@ -67,19 +76,20 @@ public class Magasin {
         this.photoMagasin = photoMagasin;
     }
 
-    public User getCinProprietaireMagasin() {
+    public String getCinProprietaireMagasin() {
         return cinProprietaireMagasin;
     }
 
-    public void setCinProprietaireMagasin(User cinProprietaireMagasin) {
+    public void setCinProprietaireMagasin(String cinProprietaireMagasin) {
         this.cinProprietaireMagasin = cinProprietaireMagasin;
     }
 
-    public Produit getBestSellerMagasin() {
+
+    public int getBestSellerMagasin() {
         return bestSellerMagasin;
     }
 
-    public void setBestSellerMagasin(Produit bestSellerMagasin) {
+    public void setBestSellerMagasin(int bestSellerMagasin) {
         this.bestSellerMagasin = bestSellerMagasin;
     }
 
@@ -120,7 +130,7 @@ public class Magasin {
         this.codePostaleMagasin = codePostaleMagasin;
     }
 
-    public Magasin(int idMagasin, String numRC, String nomMagasin, String adresseMagasin, int codePostaleMagasin, String photoMagasin, User cinProprietaireMagasin, Produit bestSellerMagasin) {
+    public Magasin(int idMagasin, String numRC, String nomMagasin, String adresseMagasin, int codePostaleMagasin, String photoMagasin, String cinProprietaireMagasin, int bestSellerMagasin) {
         this.idMagasin = idMagasin;
         this.numRC = numRC;
         this.nomMagasin = nomMagasin;
@@ -131,13 +141,16 @@ public class Magasin {
         this.bestSellerMagasin = bestSellerMagasin;
     }
 
-    public void setIdMagasin(int idMagasin) {
+    public Magasin(int idMagasin, String numRC, String nomMagasin, int codePostaleMagasin, String photoMagasin, int bestSellerMagasin) {
         this.idMagasin = idMagasin;
+        this.numRC = numRC;
+        this.nomMagasin = nomMagasin;
+        this.codePostaleMagasin = codePostaleMagasin;
+        this.photoMagasin = photoMagasin;
+        this.bestSellerMagasin = bestSellerMagasin;
     }
 
-
-
-
-
-   
+    public void setIdMagasin(int idMagasin) {
+        this.idMagasin = idMagasin;
+    }   
 }

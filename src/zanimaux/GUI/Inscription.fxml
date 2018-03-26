@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="563.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.InscriptionController">
+<AnchorPane id="AnchorPane" prefHeight="563.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.InscriptionController">
    <children>
       <ImageView fitHeight="563.0" fitWidth="855.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
          <image>
@@ -19,19 +19,19 @@
       </ImageView>
       <AnchorPane layoutX="200.0" layoutY="19.0" opacity="0.74" prefHeight="523.0" prefWidth="465.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;" AnchorPane.topAnchor="19.0">
          <children>
-            <TextField id="nom" layoutX="15.0" layoutY="51.0" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Nom" AnchorPane.bottomAnchor="438.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="51.0" />
-            <TextField id="prenom" layoutX="308.0" layoutY="52.0" prefHeight="32.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Prénom" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="52.0">
+            <TextField id="nom" fx:id="nomId" layoutX="15.0" layoutY="51.0" prefHeight="30.0" prefWidth="150.0" promptText="Nom" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" AnchorPane.bottomAnchor="438.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="51.0" />
+            <TextField id="prenom" fx:id="prenomId" layoutX="308.0" layoutY="52.0" prefHeight="32.0" prefWidth="150.0" promptText="Prénom" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="52.0">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></TextField>
-            <TextField id="tel" layoutX="308.0" layoutY="200.0" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" text="Téléphone" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="200.0" />
-            <TextField id="adresse" layoutX="16.0" layoutY="282.0" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Adresse" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="250.0" />
-            <TextField id="ville" layoutX="309.0" layoutY="250.0" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" text="Ville" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="250.0" />
-            <TextField id="codePostale" layoutX="16.0" layoutY="336.0" prefHeight="32.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Code Postale " AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="300.0">
+            <TextField id="tel" fx:id="telId" layoutX="308.0" layoutY="200.0" prefHeight="30.0" prefWidth="150.0" promptText="Téléphone" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="200.0" />
+            <TextField id="adresse" fx:id="adresseId" layoutX="16.0" layoutY="282.0" prefHeight="30.0" prefWidth="150.0" promptText="Adresse" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="250.0" />
+            <TextField id="ville" fx:id="villeId" layoutX="309.0" layoutY="250.0" prefHeight="30.0" prefWidth="150.0" promptText="Ville" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="250.0" />
+            <TextField id="codePostale" fx:id="codePostaleId" layoutX="16.0" layoutY="336.0" prefHeight="32.0" prefWidth="150.0" promptText="Code Postale " style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="300.0">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font></TextField>
-            <Button layoutX="163.0" layoutY="423.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="151.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 10; -fx-text-fill: white;" text="S'inscrire">
+            <Button id="btn_inscription" fx:id="btnInscrit" layoutX="163.0" layoutY="423.0" mnemonicParsing="false" onAction="#valider" prefHeight="29.0" prefWidth="151.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 10; -fx-text-fill: white;" text="S'inscrire">
                <font>
                   <Font name="Comic Sans MS Bold" size="15.0" />
                </font>
@@ -41,20 +41,31 @@
                   <Image url="@../Image/person_add.png" />
                </image>
             </ImageView>
-            <TextField id="tel" layoutX="14.0" layoutY="114.0" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" text="Nom d'utlisateur" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0" />
-            <TextField id="tel" layoutX="309.0" layoutY="108.0" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" text="Email" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0" />
-            <PasswordField layoutX="12.0" layoutY="150.0" prefHeight="30.0" prefWidth="150.0" promptText="Mot De Passe" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="150.0" />
-            <PasswordField layoutX="308.0" layoutY="168.0" prefHeight="30.0" prefWidth="150.0" promptText="Confirmer mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="150.0" />
-            <TextField id="tel" layoutX="14.0" layoutY="224.0" prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" text="Cin" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="200.0" />
-            <MenuButton layoutX="301.0" layoutY="303.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Role" AnchorPane.rightAnchor="14.0">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Client" />
-                <MenuItem mnemonicParsing="false" text="Magasinier" />
-                 <MenuItem mnemonicParsing="false" text="Vétérinaire" />
-                  <MenuItem mnemonicParsing="false" text="Proprietaire De Refuge" />
-                   <MenuItem mnemonicParsing="false" text="Pet-Sitter" />
-              </items>
-            </MenuButton>
+            <TextField id="username" fx:id="usernameId" layoutX="14.0" layoutY="114.0" prefHeight="30.0" prefWidth="150.0" promptText="Nom d'utlisateur" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0" />
+            <TextField id="tel" fx:id="emailId" layoutX="309.0" layoutY="108.0" prefHeight="30.0" prefWidth="150.0" promptText="Email" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="100.0" />
+            <PasswordField id="pwd" fx:id="pwdId" layoutX="12.0" layoutY="150.0" prefHeight="30.0" prefWidth="150.0" promptText="Mot De Passe" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="150.0" />
+            <PasswordField id="confpwd" fx:id="confpwdId" layoutX="308.0" layoutY="168.0" prefHeight="30.0" prefWidth="150.0" promptText="Confirmer mot de passe" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="150.0" />
+            <TextField id="cin" fx:id="cinId" layoutX="14.0" layoutY="224.0" prefHeight="30.0" prefWidth="150.0" promptText="Cin" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="200.0" />
+            <ChoiceBox fx:id="roleId" layoutX="296.0" layoutY="303.0" prefWidth="150.0" />
+            <Label layoutX="232.0" layoutY="307.0" text="Vous êtes:">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="nomLabel" layoutX="25.0" layoutY="85.0" textFill="RED" />
+            <Label fx:id="usernameLabel" layoutX="11.0" layoutY="130.0" textFill="RED" />
+            <Label fx:id="prenomLabel" layoutX="300.0" layoutY="85.0" textFill="RED" />
+            <Label fx:id="emailLabel" layoutX="300.0" layoutY="130.0" textFill="RED" />
+            <Label fx:id="pwdLabel" layoutX="14.0" layoutY="180.0" textFill="RED" />
+            <Label fx:id="confpwdLabel" layoutX="300.0" layoutY="180.0" textFill="RED" />
+            <Label fx:id="cinLabel" layoutX="14.0" layoutY="230.0" textFill="RED" />
+            <Label fx:id="telLabel" layoutX="300.0" layoutY="230.0" textFill="RED" />
+            <Label fx:id="adresseLabel" layoutX="11.0" layoutY="280.0" textFill="RED" />
+            <Label fx:id="villeLabel" layoutX="300.0" layoutY="280.0" textFill="RED" />
+            <Label fx:id="codePostaleLabel" layoutX="14.0" layoutY="332.0" textFill="RED" />
+            <Label fx:id="roleLabel" layoutX="296.0" layoutY="332.0" textFill="RED" />
+                
+           
          </children>
       </AnchorPane>
    </children>

@@ -48,8 +48,8 @@ public class User {
         this.adresse = adresse;
         this.ville = ville;
         this.codePostale = codePostale;
-        if (roles=="PROPRIETAIRE_REFUGE")
-        {this.roles= "a:1:{i:0;s:24:\"ROLE_"+roles+"\";}";}
+        this.roles=roles;
+        
         this.password= password;
     }
    

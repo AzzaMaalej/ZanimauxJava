@@ -80,7 +80,7 @@ public class TestController implements Initializable {
         
          ScrollPane sp = new ScrollPane();
     
-         sp.setPrefSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+         sp.setPrefSize(500, 500);
          sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
          sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
         VBox vb = new VBox();
@@ -147,7 +147,7 @@ public class TestController implements Initializable {
           a.getChildren().setAll(sp);
          
       stage.setScene(scene);
-      stage.setTitle("aaaaa");
+      stage.setTitle("NOS MAGASINS");
       stage.show();
         } catch (IOException ex) {
            Logger.getLogger(TestController.class.getName()).log(Level.SEVERE, null, ex);

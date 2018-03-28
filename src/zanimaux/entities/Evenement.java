@@ -6,6 +6,7 @@
 package zanimaux.entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -37,6 +38,26 @@ public class Evenement {
         this.imageEvt = imageEvt;
         this.nbPlace = nbPlace;
     }
+
+    public Evenement(String lieu, Date dateDebut, Date dateFin, String type, String titre, String description, int nbPlace) {
+        this.lieu = lieu;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
+        this.nbPlace = nbPlace;
+    }
+
+    public Evenement() {
+    }
+
+    public Evenement(String text, java.util.Date dated, java.util.Date datef, String text0, String text1, String text2, int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
+    
 
     public int getIdEvt() {
         return idEvt;

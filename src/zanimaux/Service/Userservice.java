@@ -15,7 +15,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+<<<<<<< HEAD
 import javafx.scene.control.Label;
+=======
+>>>>>>> 9a0ab3d5ffd1fddd7c0171870aa685558f25d120
 
 /**
  *
@@ -105,6 +108,7 @@ public class Userservice {
         pre.setInt(14, g.getCodePostale());
         pre.executeUpdate();   
     }
+<<<<<<< HEAD
 //     public User GetUserByUsername (String e, Label l) {
 //        try {
 //            String req = "SELECT * FROM user where username=?  ";
@@ -184,4 +188,41 @@ public class Userservice {
         }
         
     }
+=======
+    public User UserByCin(String i)
+    { 
+
+        User listForm = new User();
+        try {  
+            String requete = "SELECT * FROM fos_user WHERE cin='"+i+"' ";
+
+           
+            ResultSet rs = st.executeQuery(requete);
+
+             while(rs.next()){
+                 listForm.setCin(i);
+                 listForm.setUsername(rs.getString("username"));
+                 listForm.setUsername_canonical(rs.getString("username_canonical"));
+                 listForm.setEmail(rs.getString("email"));
+                 listForm.setEmail_canonical(rs.getString("email_canonical"));
+                 listForm.setEnabled(rs.getInt("enabled"));
+                 listForm.setPassword(rs.getString("password"));
+                 listForm.setRoles(rs.getString("roles"));
+                 
+                 listForm.setNom(rs.getString("nom"));
+                 listForm.setPrenom(rs.getString("prenom"));
+                 listForm.setTelephone(rs.getInt("telephone"));
+                 listForm.setAdresse(rs.getString("adresse"));
+                 listForm.setVille(rs.getString("ville"));
+                 listForm.setCodePostale(rs.getInt("codePostale"));
+            }
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listForm;
+    
+    }        
+
+>>>>>>> 9a0ab3d5ffd1fddd7c0171870aa685558f25d120
 }

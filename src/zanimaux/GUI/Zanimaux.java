@@ -30,10 +30,14 @@ public class Zanimaux extends Application {
     @Override
     public void start(Stage stage) throws IOException {
     
+<<<<<<< HEAD
     //Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         //Parent root = FXMLLoader.load(getClass().getResource("ajoutCabinet.fxml"));
 
+=======
+    Parent root = FXMLLoader.load(getClass().getResource("ajoutCabinet.fxml"));
+>>>>>>> 9a0ab3d5ffd1fddd7c0171870aa685558f25d120
         
         Scene scene = new Scene(root);
         

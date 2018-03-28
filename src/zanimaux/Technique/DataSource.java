@@ -20,14 +20,14 @@ import java.util.logging.Logger;
 public class DataSource {
     private static DataSource data;
     private Connection con;
-    public String user="root";
-    public String password="root";
-    public String url="jdbc:mysql://localhost:8889/Zanimaux";
+    public String login="root";
+    public String password="";
+    public String url="jdbc:mysql://localhost:3306/basez";
     
     private DataSource(){
        
         try {
-            con = DriverManager.getConnection(url,user,password);
+            con = DriverManager.getConnection(url,login,password);
         } catch (SQLException ex) {
             Logger.getLogger(DataSource.class.getName()).log(Level.SEVERE, null, ex);
         }

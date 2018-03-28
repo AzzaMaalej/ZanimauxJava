@@ -133,6 +133,20 @@ public class User {
         return telephone;
     }
 
+    public User(String cin, String username, String email, String password, String nom, String prenom, int telephone, String adresse, String ville, int codePostale, String roles) {
+        this.cin = cin;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.adresse = adresse;
+        this.ville = ville;
+        this.codePostale = codePostale;
+        this.roles = roles;
+    }
+
     public void setTelephone(int telephone) {
         this.telephone = telephone;
     }
@@ -189,6 +203,9 @@ public class User {
 
     public void setCodePostale(int codePostale) {
         this.codePostale = codePostale;
+    }
+
+    public User() {
     }
     
 

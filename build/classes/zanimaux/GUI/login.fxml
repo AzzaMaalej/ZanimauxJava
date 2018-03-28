@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="425.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/8.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.LoginController">
    <children>
       <ImageView fitHeight="425.0" fitWidth="646.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -18,7 +19,7 @@
       </ImageView>
       <AnchorPane layoutX="207.0" layoutY="63.0" opacity="0.74" prefHeight="282.0" prefWidth="233.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;">
          <children>
-            <Button fx:id="btn1" layoutX="53.0" layoutY="213.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="32.0" prefWidth="127.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: white;" text="S'authentifier" textFill="#1c4a26">
+            <Button fx:id="cx" layoutX="53.0" layoutY="213.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="32.0" prefWidth="127.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: white;" text="S'authentifier" textFill="#1c4a26">
                <font>
                   <Font name="Comic Sans MS" size="15.0" />
                </font>
@@ -39,12 +40,14 @@
                   <Image url="@../Image/lock.png" />
                </image>
             </ImageView>
-            <TextField alignment="CENTER" layoutX="41.0" layoutY="92.0" style="-fx-border-width: 0px 0px 3px 0px; -fx-border-color: #FFFFFFFF; -fx-background-color: transparent;" text="Nom d'utilisateur" />
-            <PasswordField alignment="CENTER" layoutX="41.0" layoutY="154.0" promptText="Mot de passe" style="-fx-border-width: 0px 0px 3px 0px 0px 0px 3px 0px; -fx-border-color: #FFFFFF; -fx-background-color: transparent; -fx-text-fill: black;" />
+            <TextField fx:id="cin" alignment="CENTER" layoutX="41.0" layoutY="92.0" style="-fx-border-width: 0px 0px 3px 0px; -fx-border-color: #FFFFFFFF; -fx-background-color: transparent;" text="CIN" />
+            <PasswordField fx:id="pass" alignment="CENTER" layoutX="41.0" layoutY="154.0" promptText="Mot de passe" style="-fx-border-width: 0px 0px 3px 0px 0px 0px 3px 0px; -fx-border-color: #FFFFFF; -fx-background-color: transparent; -fx-text-fill: black;" />
+            <Label id="lb" fx:id="lb" layoutX="95.0" layoutY="124.0" text="Label" visible="false" />
+            
    
          </children>
       </AnchorPane>
-      <Button layoutX="26.0" layoutY="31.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="S'inscrire" AnchorPane.bottomAnchor="362.0">
+      <Button layoutX="26.0" layoutY="31.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="S'inscrire" AnchorPane.bottomAnchor="362.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

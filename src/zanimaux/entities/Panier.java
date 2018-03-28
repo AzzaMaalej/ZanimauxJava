@@ -11,8 +11,8 @@ package zanimaux.entities;
  */
 public class Panier {
     private String cin;
-    private float somme;
-    private float sommeCommande;
+    private double somme;
+    private double sommeCommande;
 
     public String getCin() {
         return cin;
@@ -22,19 +22,23 @@ public class Panier {
         this.cin = cin;
     }
 
-    public float getSomme() {
+    
+    public Panier() {
+    }
+
+    public double getSomme() {
         return somme;
     }
 
-    public void setSomme(float somme) {
+    public void setSomme(double somme) {
         this.somme = somme;
     }
 
-    public float getSommeCommande() {
+    public double getSommeCommande() {
         return sommeCommande;
     }
 
-    public void setSommeCommande(float sommeCommande) {
+    public void setSommeCommande(double sommeCommande) {
         this.sommeCommande = sommeCommande;
     }
 

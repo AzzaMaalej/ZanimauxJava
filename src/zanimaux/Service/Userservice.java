@@ -15,12 +15,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+<<<<<<< HEAD
+import javafx.scene.control.Label;
+=======
+>>>>>>> 9a0ab3d5ffd1fddd7c0171870aa685558f25d120
 
 /**
  *
  * @author Azza
  */
 public class Userservice {
+    
      private static int workload = 13;
 
 	/**
@@ -61,13 +66,23 @@ public class Userservice {
 	}
 
     
-      public Connection con= DataSource.getInstance().getCon();
+     // public Connection con= DataSource.getInstance().getCon();
+        public Connection con;
 
-    public Statement st;
+   // public Statement st;
+  //  private static Userservice instance;
 
     public Userservice() throws SQLException{
-         st=con.createStatement();
+        // st=con.createStatement();
+        con = DataSource.getInstance().getCon();
     }
+//    public static Userservice getInstance() throws SQLException
+//    {
+//        if (instance == null) {
+//            instance = new Userservice();
+//        }
+//        return instance; 
+//    }
     
     public User findUserById(int id){
         return null;
@@ -75,6 +90,7 @@ public class Userservice {
     public void ajouterUser(User g) throws SQLException {
        String req="INSERT INTO fos_user (cin,username,username_canonical, email ,email_canonical ,enabled ,password,roles, nom,prenom , telephone, adresse, ville,codePostale) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pre= con.prepareStatement(req);
+        
         pre.setString(1, g.getCin());
         pre.setString(2, g.getUsername());
         pre.setString(3, g.getUsername_canonical());
@@ -92,6 +108,87 @@ public class Userservice {
         pre.setInt(14, g.getCodePostale());
         pre.executeUpdate();   
     }
+<<<<<<< HEAD
+//     public User GetUserByUsername (String e, Label l) {
+//        try {
+//            String req = "SELECT * FROM user where username=?  ";
+//            PreparedStatement ste = con.prepareStatement(req);
+//            ste.setString(1, e);
+//
+//            ResultSet result = ste.executeQuery();
+//            while (result.next()) {
+//
+//                User u = new User(
+//                        result.getString("cin"),
+//                        result.getString("username"),
+//                         result.getString("email"),
+//                        result.getString("password"),
+//                        result.getString("nom"),
+//                        result.getString("prenom"),
+//                        result.getInt("telephone"),
+//                        result.getString("adresse"),
+//                        result.getString("ville"),
+//                        result.getInt("codePostale"),
+//                        result.getString("roles")
+//                        
+//                );
+//                return u;
+//            }
+//
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//            l.setText("verifier votre information ");
+//
+//        }
+//        return null;
+//
+//    }
+      public User login(String cin){
+        User user = new User();
+        try {
+            String requete = "SELECT * FROM fos_user WHERE cin='"+cin+"'";
+             PreparedStatement ste = con.prepareStatement(requete);
+        
+
+           ResultSet rs = ste.executeQuery();
+         
+            int count = 0;
+            while(rs.next()){
+                count ++;
+                user.setCin(rs.getString(1));
+                user.setUsername(rs.getString(2));
+                user.setUsername_canonical(rs.getString(3));
+                user.setEmail(rs.getString(4));
+                user.setEmail_canonical(rs.getString(5));
+                user.setEnabled(rs.getInt(6));
+                user.setPassword(rs.getString(8));
+                user.setRoles(rs.getString(12));
+                user.setNom(rs.getString(13));
+                user.setPrenom(rs.getString(14));
+                
+                
+                user.setTelephone(rs.getInt(15));
+                
+                user.setAdresse(rs.getString(16));
+                user.setVille(rs.getString(17));
+                user.setCodePostale(rs.getInt(18));
+                
+                
+                
+            }
+            System.out.println(count);
+            if(count == 0){
+                return null;
+            }else{
+                return user;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Userservice.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+    }
+=======
     public User UserByCin(String i)
     { 
 
@@ -127,4 +224,5 @@ public class Userservice {
     
     }        
 
+>>>>>>> 9a0ab3d5ffd1fddd7c0171870aa685558f25d120
 }

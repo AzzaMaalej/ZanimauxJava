@@ -43,11 +43,11 @@ public class AccueilController implements Initializable {
     private Button btn11;
     @FXML
     private Button btn1;
-    @FXML
-    private Button magasin;
     private AnchorPane AnchorPaneEvent;
     @FXML
-    private Button eventButton;
+    private Button evenement;
+    @FXML
+    private AnchorPane anchorEvent;
 
     /**
      * Initializes the controller class.
@@ -72,16 +72,8 @@ public class AccueilController implements Initializable {
 
     }
 
-    @FXML
-    private void onClickAction(ActionEvent event) {
-    }
-
-   /* private void showEventForm(MouseEvent event) {
-        AnchorPaneEvent.setVisible(true);
-    }*/
 
 
-    @FXML
     private void showEventAdd(ActionEvent event) throws IOException {
       
         Parent  add_event_parent = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
@@ -91,6 +83,10 @@ public class AccueilController implements Initializable {
         app_stage.show();
         
         }
+
+    @FXML
+    private void onClickEvenementAction(ActionEvent event) {
+    }
        
     }
     

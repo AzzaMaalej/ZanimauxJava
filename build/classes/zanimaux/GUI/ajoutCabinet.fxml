@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AjoutCabinetController">
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AjoutCabinetController">
    <children>
       <Pane prefHeight="83.0" prefWidth="600.0" style="-fx-background-color: #286262;">
          <effect>

@@ -54,7 +54,7 @@ public class MagasinService {
     
     public boolean modifMagasin(int i,Magasin m)
     { 
-    String requete="UPDATE Magasin SET nomMagasin=?, adresseMagasin=?, codePostaleMagasin=?, photoMagasin=? where idMagasin='"+i+"'";
+    String requete="UPDATE Magasin SET nomMagasin=?, adresseMagasin=?, codePostaleMagasin=?, photoMagasin=? where `idMagasin`="+i;
         try {
             PreparedStatement pst =con.prepareStatement(requete);
             pst.setString(1,m.getNomMagasin());

@@ -5,6 +5,7 @@
  */
 package zanimaux.GUI;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,8 +24,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 import zanimaux.Service.EvenementService;
 import zanimaux.Service.Userservice;
 import zanimaux.entities.Evenement;
@@ -35,7 +40,9 @@ import zanimaux.entities.User;
  * @author Maroua
  */
 public class AddEventController implements Initializable {
-
+    
+    @FXML
+    private ImageView iv;
     @FXML
     private AnchorPane AnchorPaneEvent;
     @FXML
@@ -63,18 +70,34 @@ public class AddEventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    public String handle(){
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        String filePath = file.getAbsolutePath();
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            iv.setImage(image);
+
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+
+        return filePath;
     }    
 
     @FXML
     private void chooseAction(ActionEvent event) {
-         FileChooser fc = new FileChooser();
-        File selectedFile = fc.showOpenDialog(null);
-        if(selectedFile != null){
-            selectedFile.getAbsolutePath();
-            
-        }else{
-            System.out.println("fichier invalide"); 
-       }
+        BtnChoixImage.setText(handle());
     
     }
 
@@ -90,7 +113,7 @@ public class AddEventController implements Initializable {
        
      
             
-          Evenement e=new Evenement(lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()));
+          Evenement e=new Evenement(lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());
            
           
            se.ajouterEvenement(e);

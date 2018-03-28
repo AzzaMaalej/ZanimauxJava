@@ -5,9 +5,11 @@
  */
 package zanimaux.entities;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Date;
+import zanimaux.util.Session;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.util.Objects;
  */
 public class Evenement {
     private int idEvt;
-    private User cinUser;
+    private Session cinUser;
     private String lieu;
     private Date dateDebut;
     private Date dateFin;
@@ -26,7 +28,7 @@ public class Evenement {
     private int nbPlace=0;
     private int nbParticipants=0;
 
-    public Evenement(int idEvt, User cinUser, String lieu, Date dateDebut, Date dateFin, String type, String titre, String description, String imageEvt,int nbPlace) {
+    public Evenement(int idEvt, Session cinUser, String lieu, Date dateDebut, Date dateFin, String type, String titre, String description, String imageEvt,int nbPlace) {
         this.idEvt = idEvt;
         this.cinUser = cinUser;
         this.lieu = lieu;
@@ -39,7 +41,7 @@ public class Evenement {
         this.nbPlace = nbPlace;
     }
 
-    public Evenement(String lieu, Date dateDebut, Date dateFin, String type, String titre, String description, int nbPlace) {
+    public Evenement(String lieu, Date dateDebut, Date dateFin, String type, String titre, String description, int nbPlace,String imageEvt) {
         this.lieu = lieu;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -47,14 +49,15 @@ public class Evenement {
         this.titre = titre;
         this.description = description;
         this.nbPlace = nbPlace;
+        this.imageEvt = imageEvt;
     }
 
     public Evenement() {
     }
 
-    public Evenement(String text, java.util.Date dated, java.util.Date datef, String text0, String text1, String text2, int parseInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+
+ 
 
   
     
@@ -67,11 +70,11 @@ public class Evenement {
         this.idEvt = idEvt;
     }
 
-    public User getCinUser() {
+    public Session getCinUser() {
         return cinUser;
     }
 
-    public void setCinUser(User cinUser) {
+    public void setCinUser(Session cinUser) {
         this.cinUser = cinUser;
     }
 

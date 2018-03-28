@@ -15,10 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-<<<<<<< HEAD
 import javafx.scene.control.Label;
-=======
->>>>>>> 9a0ab3d5ffd1fddd7c0171870aa685558f25d120
+
 
 /**
  *
@@ -108,7 +106,7 @@ public class Userservice {
         pre.setInt(14, g.getCodePostale());
         pre.executeUpdate();   
     }
-<<<<<<< HEAD
+
 //     public User GetUserByUsername (String e, Label l) {
 //        try {
 //            String req = "SELECT * FROM user where username=?  ";
@@ -188,7 +186,7 @@ public class Userservice {
         }
         
     }
-=======
+
     public User UserByCin(String i)
     { 
 
@@ -196,7 +194,7 @@ public class Userservice {
         try {  
             String requete = "SELECT * FROM fos_user WHERE cin='"+i+"' ";
 
-           
+           PreparedStatement st=con.prepareStatement(requete);
             ResultSet rs = st.executeQuery(requete);
 
              while(rs.next()){
@@ -224,5 +222,5 @@ public class Userservice {
     
     }        
 
->>>>>>> 9a0ab3d5ffd1fddd7c0171870aa685558f25d120
+
 }

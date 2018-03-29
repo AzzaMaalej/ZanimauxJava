@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import zanimaux.Technique.DataSource;
 import zanimaux.entities.Refuge;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  *
@@ -37,12 +39,13 @@ public Statement ste;
     public boolean ajouterRefuge(Refuge r) throws SQLException{
        String requete = "INSERT INTO refuge(immatriculation, cin, nomRefuge, emailRefuge, telephoneRefuge, faxRefuge, adresseRefuge, codePostaleRefuge, gouvernementRefuge, photoRefuge, chat, chien, rongeur, autre) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
         Refuge a =new Refuge();
+        User user=Session.getLoggedInUser();
         Userservice us= new Userservice();
        try {
            
             PreparedStatement pst =con.prepareStatement(requete);
             pst.setString(1, r.getImmatriculation());
-            pst.setObject(2,us.UserByCin(r.getCin()));
+            pst.setString(2,user.getCin());
             pst.setString(3,r.getNomRefuge());
 
             pst.setString(4,r.getEmailRefuge());
@@ -127,4 +130,14 @@ public Statement ste;
             System.err.println(ex.getMessage());
         }
 }
+    public ResultSet AfficherRefugeByCin(String c){
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM refuge WHERE cin='"+c+"'";
+            rs = ste.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherTousRefuge()");
+        }
+        return rs ;
+    }
 }

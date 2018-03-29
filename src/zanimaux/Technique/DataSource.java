@@ -22,7 +22,7 @@ public class DataSource {
     private Connection con;
     public String login="root";
     public String password="";
-    public String url="jdbc:mysql://localhost:3306/basez";
+    public String url="jdbc:mysql://localhost:3306/zanimauxfinal";
     
     private DataSource(){
        

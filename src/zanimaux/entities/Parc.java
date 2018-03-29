@@ -32,6 +32,14 @@ public class Parc {
         this.cinUser = cinUser;
     }
 
+    public Parc(String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc) {
+        this.nomParc = nomParc;
+        this.CategorieDressage = CategorieDressage;
+        this.adresseParc = adresseParc;
+        this.villeParc = villeParc;
+        this.codePostaleParc = codePostaleParc;
+    }
+
     public Parc(int idParc, String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc, User cinUser) {
         this.idParc = idParc;
         this.nomParc = nomParc;

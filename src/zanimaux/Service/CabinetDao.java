@@ -16,6 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import zanimaux.Technique.DataSource;
 import zanimaux.entities.Cabinet;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  *
@@ -33,18 +35,19 @@ public class CabinetDao {
 
 public boolean ajouterCabinet(String immatriculeCabinet, String emailCabinet, int telephoneCabinet, int FaxCabinet, String AdresseCabinet, String VilleCabinet, int CodePostaleCabinet, String photovet){
         try {
-            String requete = "INSERT INTO  cabinet(immatriculecabinet,emailCabinet,photovet,telephoneCabinet,faxCabinet,adresseCabinet,villeCabinet,codePostaleCabinet)  VALUES (?,?,?,?,?,?,?,?) ";
+            String requete = "INSERT INTO  cabinet(cin,immatriculecabinet,emailCabinet,photovet,telephoneCabinet,faxCabinet,adresseCabinet,villeCabinet,codePostaleCabinet)  VALUES (?,?,?,?,?,?,?,?,?) ";
             Cabinet p=new Cabinet();
-            
+            User user = Session.getLoggedInUser();
             PreparedStatement pst =cnx.prepareStatement(requete);
-            pst.setString(1,immatriculeCabinet);
-            pst.setString(2,emailCabinet);
-            pst.setString(3,photovet);
-            pst.setInt(4,telephoneCabinet);
-            pst.setInt(5,FaxCabinet);
-            pst.setString(6,AdresseCabinet);
-            pst.setString(7, VilleCabinet);
-            pst.setInt(8, CodePostaleCabinet);
+            pst.setString(1,user.getCin());
+            pst.setString(2,immatriculeCabinet);
+            pst.setString(3,emailCabinet);
+            pst.setString(4,photovet);
+            pst.setInt(5,telephoneCabinet);
+            pst.setInt(6,FaxCabinet);
+            pst.setString(7,AdresseCabinet);
+            pst.setString(8, VilleCabinet);
+            pst.setInt(9, CodePostaleCabinet);
             
             pst.executeUpdate();
             System.out.println("ajout reussit");

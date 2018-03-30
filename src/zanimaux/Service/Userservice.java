@@ -13,11 +13,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javafx.scene.control.Label;
-
 
 
 /**
@@ -196,7 +197,9 @@ public class Userservice {
         try {  
             String requete = "SELECT * FROM fos_user WHERE cin='"+i+"' ";
 
+
            PreparedStatement st=con.prepareStatement(requete);
+
            
 
             ResultSet rs = st.executeQuery(requete);
@@ -224,7 +227,55 @@ public class Userservice {
         }
         return listForm;
     
-    }        
+    }     
+    
+   
+    
+    public List<User> getAllUsers()
+    {
+        List<User> list = new ArrayList<User>();
+        int count = 0;
+           
+        String requete="select * from fos_user";
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next())
+            {
+                if(! rs.getString(12).equals("a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}")){
+                    User user = new User();
+                    user.setCin(rs.getString(1));
+                user.setUsername(rs.getString(2));
+                user.setUsername_canonical(rs.getString(3));
+                user.setEmail(rs.getString(4));
+                user.setEmail_canonical(rs.getString(5));
+                user.setEnabled(rs.getInt(6));
+                user.setPassword(rs.getString(8));
+                user.setRoles(rs.getString(12));
+                user.setNom(rs.getString(13));
+                user.setPrenom(rs.getString(14));
+                
+                
+                user.setTelephone(rs.getInt(15));
+                
+                user.setAdresse(rs.getString(16));
+                user.setVille(rs.getString(17));
+                user.setCodePostale(rs.getInt(18));
+                    count++;
+                    list.add(user);
+                }
+            }
+           if(count == 0){
+                return null;
+           }else{
+               return list;
+           }  
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Userservice.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+   }
 
 
 }

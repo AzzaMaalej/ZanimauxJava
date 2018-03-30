@@ -10,11 +10,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import zanimaux.Technique.DataSource;
+import zanimaux.entities.Articles;
 import zanimaux.entities.Cabinet;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -86,9 +88,60 @@ return false;   }
         return list;
     }
 
+public Cabinet getByVet(String cin)
+   {
+        Cabinet cabinet = new Cabinet();
+        try {
+            String requete = "select * from cabinet where cin='"+cin+"'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            
+            while(rs.next()){
+                
+               
+                cabinet.setCin(cin);
+               cabinet.setImmatriculeCabinet(rs.getString("immatriculecabinet"));
+                 cabinet.setAdresseCabinet(rs.getString("adresseCabinet"));
+                cabinet.setVilleCabinet(rs.getString("villeCabinet"));
+                cabinet.setFaxCabinet(rs.getInt("faxCabinet"));
+                cabinet.setTelephoneCabinet(rs.getInt("telephoneCabinet"));
+                 cabinet.setCodePostaleCabinet(rs.getInt("codePostaleCabinet"));
+               cabinet.setEmailCabinet(rs.getString("emailCabinet"));
+               cabinet.setPhotovet(rs.getString("photovet"));
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return cabinet;
+    }
 
-
-
+ public boolean modifierCabinet(Cabinet u)
+    {  System.out.println("modifié avec succés");
+    String requete="UPDATE Cabinet SET emailCabinet=?,faxCabinet=?,telephoneCabinet=?,adresseCabinet=?,villeCabinet=?,codePostaleCabinet=?,photovet=? WHERE immatriculecabinet=?";
+         System.out.println("modifié avec succés1");
+    try {
+            PreparedStatement pst =cnx.prepareStatement(requete);
+            System.out.println("modifié avec succés");
+            pst.setString(1,u.getEmailCabinet());
+            pst.setInt(2,u.getFaxCabinet());
+            pst.setInt(3,u.getTelephoneCabinet());
+            pst.setString(4,u.getAdresseCabinet()); 
+            pst.setString(5,u.getVilleCabinet());
+            pst.setInt(6,u.getCodePostaleCabinet()); 
+            pst.setString(7,u.getPhotovet()); 
+            pst.setString(8,u.getImmatriculeCabinet());
+          
+             System.out.println("modifié avec succés");
+             pst.executeUpdate();
+           
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+            return false;
+    }
 
 
 }

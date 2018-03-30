@@ -143,7 +143,7 @@ public class LoginController implements Initializable {
                     Session.setLoggedInUser(result);
                     // TODO: Proceed to other page
                     
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RefugeDashboard.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GestionRefuges.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));

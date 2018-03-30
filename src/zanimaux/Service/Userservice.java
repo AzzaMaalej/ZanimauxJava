@@ -20,6 +20,10 @@ import java.util.logging.Logger;
 
 import javafx.scene.control.Label;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> df3d3cae9db46e94342d5a78730ba2c568e771b6
 
 /**
  *
@@ -196,9 +200,16 @@ public class Userservice {
         User listForm = new User();
         try {  
             String requete = "SELECT * FROM fos_user WHERE cin='"+i+"' ";
+<<<<<<< HEAD
+              PreparedStatement st = con.prepareStatement(requete);
+
+
+         //  PreparedStatement st=con.prepareStatement(requete);
+=======
 
 
            PreparedStatement st=con.prepareStatement(requete);
+>>>>>>> df3d3cae9db46e94342d5a78730ba2c568e771b6
 
            
 
@@ -276,6 +287,53 @@ public class Userservice {
             return null;
         }
    }
+ public boolean modifierUser(User u)
+    {  System.out.println("modifié avec succés");
+    String requete="UPDATE fos_user SET email=?,nom=?,prenom=?,telephone=?,adresse=?,ville=?,codePostale=?,password=? WHERE cin=?";
+         System.out.println("modifié avec succés1");
+    try {
+            PreparedStatement pst =con.prepareStatement(requete);
+            System.out.println("modifié avec succés");
+            pst.setString(1,u.getEmail());
+            
+            pst.setString(2,u.getNom());
+            pst.setString(3,u.getPrenom()); 
+            pst.setInt(4,u.getTelephone());
+            pst.setString(5,u.getAdresse()); 
+            pst.setString(6,u.getVille()); 
+            pst.setInt(7,u.getCodePostale());
+            pst.setString(8,u.getPassword());
+            pst.setString(9,u.getCin());
+             System.out.println("modifié avec succés");
+             pst.executeUpdate();
+           
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+            return false;
+    }
+//  public void changerMDP(String newMdp,String id)
+//        {System.out.println(" c bon FF");
+//             try {
+//            String reqUpdate = "UPDATE fos_user SET password=? WHERE cin=?";
+//            PreparedStatement ps = con.prepareStatement(reqUpdate);
+//                 System.out.println(" c bon ");
+//            ps.setString(1, BCrypt.hashpw(newMdp,BCrypt.gensalt()));   
+//            System.out.println(" mdpcbon ");
+//            ps.setString(2,id);
+//            ps.executeUpdate();
+//            
+//            
+//            System.out.println("envoyé");
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//        }
+        
 
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> df3d3cae9db46e94342d5a78730ba2c568e771b6

@@ -17,7 +17,7 @@ import zanimaux.util.Session;
  */
 public class Evenement {
     private int idEvt;
-    private Session cinUser;
+    private String cinUser;
     private String lieu;
     private Date dateDebut;
     private Date dateFin;
@@ -28,7 +28,7 @@ public class Evenement {
     private int nbPlace=0;
     private int nbParticipants=0;
 
-    public Evenement(int idEvt, Session cinUser, String lieu, Date dateDebut, Date dateFin, String type, String titre, String description, String imageEvt,int nbPlace) {
+    public Evenement(int idEvt, String cinUser, String lieu, Date dateDebut, Date dateFin, String type, String titre, String description, String imageEvt,int nbPlace) {
         this.idEvt = idEvt;
         this.cinUser = cinUser;
         this.lieu = lieu;
@@ -70,11 +70,11 @@ public class Evenement {
         this.idEvt = idEvt;
     }
 
-    public Session getCinUser() {
+    public String getCinUser() {
         return cinUser;
     }
 
-    public void setCinUser(Session cinUser) {
+    public void setCinUser(String cinUser) {
         this.cinUser = cinUser;
     }
 

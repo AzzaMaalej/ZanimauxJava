@@ -20,6 +20,10 @@ import java.util.logging.Logger;
 
 import javafx.scene.control.Label;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> df3d3cae9db46e94342d5a78730ba2c568e771b6
 
 /**
  *
@@ -196,9 +200,16 @@ public class Userservice {
         User listForm = new User();
         try {  
             String requete = "SELECT * FROM fos_user WHERE cin='"+i+"' ";
+<<<<<<< HEAD
+              PreparedStatement st = con.prepareStatement(requete);
+
+
+         //  PreparedStatement st=con.prepareStatement(requete);
+=======
 
 
            PreparedStatement st=con.prepareStatement(requete);
+>>>>>>> df3d3cae9db46e94342d5a78730ba2c568e771b6
 
            
 
@@ -320,4 +331,9 @@ public class Userservice {
 //        }
         
 
+<<<<<<< HEAD
+
 }
+=======
+}
+>>>>>>> df3d3cae9db46e94342d5a78730ba2c568e771b6

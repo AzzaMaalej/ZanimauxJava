@@ -20,10 +20,6 @@ import java.util.logging.Logger;
 
 import javafx.scene.control.Label;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 25db89f7d6e731fafac31d3e661f1259f7d96b11
 
 /**
  *
@@ -113,10 +109,7 @@ public class Userservice {
         pre.setInt(14, g.getCodePostale());
         pre.executeUpdate();   
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 25db89f7d6e731fafac31d3e661f1259f7d96b11
 //     public User GetUserByUsername (String e, Label l) {
 //        try {
 //            String req = "SELECT * FROM user where username=?  ";
@@ -203,12 +196,10 @@ public class Userservice {
         User listForm = new User();
         try {  
             String requete = "SELECT * FROM fos_user WHERE cin='"+i+"' ";
-<<<<<<< HEAD
-              PreparedStatement st = con.prepareStatement(requete);
-=======
+
 
            PreparedStatement st=con.prepareStatement(requete);
->>>>>>> 25db89f7d6e731fafac31d3e661f1259f7d96b11
+
            
 
             ResultSet rs = st.executeQuery(requete);
@@ -287,8 +278,4 @@ public class Userservice {
    }
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 25db89f7d6e731fafac31d3e661f1259f7d96b11
 }

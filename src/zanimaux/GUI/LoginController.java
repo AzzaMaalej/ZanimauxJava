@@ -89,7 +89,7 @@ public class LoginController implements Initializable {
                     Session.setLoggedInUser(result);
                     // TODO: Proceed to other page
                     
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutCabinet.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutArticle.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));

@@ -10,6 +10,7 @@ import zanimaux.entities.Articles;
 import zanimaux.entities.User;
 import zanimaux.Technique.DataSource;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import zanimaux.entities.Cabinet;
+import zanimaux.util.Session;
 
 /**
  *
@@ -40,90 +43,95 @@ public class Articleservice {
        ste = con.createStatement();
     }
     
-    
-    public boolean ajouterArticle(String desc,String tit,int cin){
-       String requete = "INSERT INTO article(titre,description,cin) VALUES (?,?,?) ";
-       Articles a =new Articles();
-       try {
+ public boolean ajouterArticle(String titre, String description, String piecejointe){
+        int nbr_ligne=0;
+        try{
+            String requete = "INSERT INTO article(cin,titre,description,piecejointe)  VALUES (?,?,?,?) ";
+            Articles  a=new Articles();
+            User user = Session.getLoggedInUser();
             PreparedStatement pst =con.prepareStatement(requete);
-            pst.setString(1,desc);
-            pst.setString(2,tit);
-           // pst.setObject(3, user);
-            pst.setInt(3,cin);
-            //pst.setString(3,path);
+            pst.setString(1,user.getCin());
+            pst.setString(2,titre);
+            pst.setString(3,description);
+            pst.setString(4,piecejointe);
            
-           
-             pst.executeUpdate();
-            System.out.println("ajout reussit");
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+                nbr_ligne=pst.executeUpdate();
         }
+        catch (SQLException ex) {
+            Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-    }
-    
-    public boolean updateArticle(int i)
-    { 
-        Articles p=new Articles();
-    String requete="UPDATE article SET titre=?,description=? where id='"+i+"'";
-        try {
-            PreparedStatement pst =con.prepareStatement(requete);
-            pst.setString(1,p.getTitre());
-         
-            pst.setString(2,p.getDescription());
-           // pst.setString(3,p.getPiecejointe());
-            
-             pst.executeUpdate();
-            System.out.println("modification reussite");
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
         }
+        if(nbr_ligne == 0){
             return false;
-    }
-
-    
+        }else{
+            return true;
+        }
+   }
    
-    public Articles recherchearticle(int i)
-    { System.out.println("awel e recherche");
-     Articles listForm = new Articles();
-        try {  
-            String requete = "select * from articles WHERE id=?";
+    public List<Articles> getAllByVet(String cin)
+   {
+        List<Articles> listArticles = new ArrayList<>();
+        try {
+            String requete = "select * from article where cin='"+cin+"'";
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(requete); 
-            System.out.println(rs.next());
-             while(rs.next()){
-         Articles ff = new Articles(i,rs.getString("titre"),rs.getString("description"),rs.getString("piecejointe"));
-               listForm.setId(i);
-               listForm.setTitre(rs.getString("titre"));
-       
-               listForm.setDescription(rs.getString("description"));
-               listForm.setPiecejointe(rs.getString("piecejointe"));
-        
-              
+            ResultSet rs = st.executeQuery(requete);
+            
+            while(rs.next()){
+                Articles article = new Articles();
+               
+                article.setCin(cin);
+                article.setTitre(rs.getString(3));
+                article.setDescription(rs.getString(4));
+                article.setPiecejointe(rs.getString(5));
+               
+                listArticles.add(article);
+                
             }
-             
+            
         } catch (SQLException ex) {
             Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return listForm;
+        return listArticles;
+    }
+      
+    public void supprimerArticle (int id) throws SQLException
+    {
+        
+       
+            String requete = "DELETE FROM article WHERE id='"+id+"'";
+            PreparedStatement pst = con.prepareStatement(requete);
+           
+              pst.executeUpdate(requete);
+              System.out.println("article supprimé");
+
+           
     
     }
-    
-    
-  
-   
-     public void supprimer(int id)
-{
-  String requete="DELETE FROM `article` WHERE id='"+id+"' ";     
-        Statement st;
-        try {
-            st = con.createStatement(); 
-            st.executeUpdate(requete);
-      System.out.println("article supprimé");
-
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+     public boolean ModifierArticle(Articles article)
+    {
+        int nbr_ligne;
+        try{
+            String requete="UPDATE article set titre=?,description=?,piecejointe=?,cin=?";
+            PreparedStatement pst = con.prepareStatement(requete);
+            pst.setString(1,article.getTitre());
+            pst.setString(2,article.getDescription());
+            pst.setString(3,article.getPiecejointe());
+            pst.setString(4,article.getCin());
+            
+            
+            nbr_ligne=pst.executeUpdate();
         }
-      
-
-}
+        catch (SQLException ex) {
+            Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        if(nbr_ligne == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+   
+  
 }

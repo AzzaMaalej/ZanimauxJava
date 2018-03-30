@@ -16,42 +16,21 @@ public class Articles {
     private int id;
     private String description;
     private String titre;
-    private User user;
+    private String cin;
 
-    public String getPiecejointe() {
-        return piecejointe;
-    }
-
-    public void setPiecejointe(String piecejointe) {
-        this.piecejointe = piecejointe;
-    }
+    
     private String piecejointe;
 
-    @Override
-    public String toString() {
-        return "Articles{" + "id=" + id+ ", description=" + description + ", titre=" + titre + ", user=" + user + ", piecejointe=" + piecejointe + '}';
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + this.id;
-        return hash;
+    public String getDescription() {
+        return description;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Articles other = (Articles) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTitre() {
@@ -62,74 +41,35 @@ public class Articles {
         this.titre = titre;
     }
 
-    public static Articles getArticles() {
-        return articles;
+    public String getCin() {
+        return cin;
     }
 
-    public static void setArticles(Articles articles) {
-        Articles.articles = articles;
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
+    public String getPiecejointe() {
+        return piecejointe;
+    }
 
-    
-    private static Articles articles;
+    public void setPiecejointe(String piecejointe) {
+        this.piecejointe = piecejointe;
+    }
 
     public Articles() {
     }
 
-    public Articles(int id, String description, String titre, String piecejointe) {
-        this.id= id;
+    public Articles(int id, String description, String titre, String cin, String piecejointe) {
+        this.id = id;
         this.description = description;
         this.titre = titre;
+        this.cin = cin;
         this.piecejointe = piecejointe;
     }
 
-    public Articles(String description, String titre) {
-        this.description = description;
-        this.titre = titre;
-    }
-    
-   
-    
-    
-
-    public int getId() {
-        return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-    
-
-
-    public String getDescription() {
-        return description;
-    }
-
-    //public int getFk_role() {
-     //   return fk_role;
-   // }
-
    
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    //public void setFk_role(int fk_role) {
-   //     this.fk_role = fk_role;
-    //}
-
-  
     
 
    

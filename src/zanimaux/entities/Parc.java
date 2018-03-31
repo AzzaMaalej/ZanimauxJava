@@ -12,7 +12,7 @@ import java.util.Objects;
  * @author Azza
  */
 public class Parc {
-    private int id;
+    private String id;
     private String nomParc;
     private String CategorieDressage;
     private String adresseParc;
@@ -24,7 +24,7 @@ public class Parc {
     public Parc() {
     }
 
-    public Parc(int id, String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc, String photoParc, String cinDresseur) {
+    public Parc(String id, String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc, String photoParc, String cinDresseur) {
         this.id = id;
         this.nomParc = nomParc;
         this.CategorieDressage = CategorieDressage;
@@ -38,7 +38,7 @@ public class Parc {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 53 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.id);
         hash = 53 * hash + Objects.hashCode(this.nomParc);
         hash = 53 * hash + Objects.hashCode(this.CategorieDressage);
         hash = 53 * hash + Objects.hashCode(this.adresseParc);
@@ -61,7 +61,7 @@ public class Parc {
             return false;
         }
         final Parc other = (Parc) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (this.codePostaleParc != other.codePostaleParc) {
@@ -87,11 +87,11 @@ public class Parc {
     
     
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

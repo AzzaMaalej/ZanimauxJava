@@ -19,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
@@ -32,6 +34,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import zanimaux.Service.ParcService;
 import zanimaux.entities.Parc;
 
@@ -53,7 +56,9 @@ public class ParcController implements Initializable {
     @FXML
     private AnchorPane anchorEvent;
     @FXML
-    private Button button;
+    private Button ajou;
+    @FXML
+    private Button aff;
    
     /**
      * Initializes the controller class.
@@ -82,18 +87,21 @@ public class ParcController implements Initializable {
          try{
       while(r.next())
       { 
-          m1.setId(r.getInt("id"));
+          m1.setId(r.getString("id"));
           m1.setNomParc(r.getString("nomParc"));
           m1.setCategorieDressage(r.getString("CategorieDressage"));
           m1.setAdresseParc(r.getString("adresseParc"));
+          m1.setVilleParc(r.getString("villeParc"));
           m1.setCodePostaleParc(r.getInt("codePostaleParc"));
           m1.setPhotoParc(r.getString("photoParc"));
           m1.setCinDresseur(r.getString("cinDresseur"));
           ImageView im= new ImageView();
-          Image image= new Image("zanimaux/ImageUtile/",150,120,false,false) ;
+          Image image= new Image("zanimaux/ImageUtile/Amazonie.jpg",150,120,false,false) ;
           im.setImage(image);
           Text t1 =new Text(m1.getNomParc());
           t1.setFont(Font.font("Verdana", 20));
+          Text t2 = new Text(m1.getCategorieDressage());
+          t2.setFont(Font.font("Verdana", 18));
           Text t =new Text(m1.getAdresseParc()+" "+m1.getVilleParc()+", "+m1.getCodePostaleParc());
           t.setFont(Font.font("Verdana", 15) );
           VBox vbParc = new VBox(); 
@@ -103,6 +111,7 @@ public class ParcController implements Initializable {
           vbParc.setPrefSize(200, 150);
           vbParc.getChildren().add(im);
           vbParc.getChildren().add(t1);
+          vbParc.getChildren().add(t2);
           vbParc.getChildren().add(t);
           i++;
           System.out.println(m1.getId()+" "+m1.getPhotoParc());
@@ -128,12 +137,27 @@ public class ParcController implements Initializable {
         
     }  
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-    }
-    @FXML
     private void onClickEvenementAction(ActionEvent event) {
     }
      @FXML
     private void showPane(MouseEvent event) {
     }
+    @FXML
+    private void retourner(ActionEvent event) {
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutParc.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) ajou.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
  }

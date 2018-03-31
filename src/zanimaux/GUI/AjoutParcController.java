@@ -5,6 +5,8 @@
  */
 package zanimaux.GUI;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,17 +17,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import zanimaux.Service.ParcService;
-import zanimaux.Service.Userservice;
 import zanimaux.entities.Parc;
 import zanimaux.entities.User;
 import zanimaux.util.Validation;
@@ -64,7 +75,7 @@ public class AjoutParcController implements Initializable {
     @FXML
     private Button btn;
     @FXML
-    private TextField photo;
+    private Button photo;
     
     
     
@@ -85,6 +96,8 @@ public class AjoutParcController implements Initializable {
     private Label photoLabel;
     @FXML
     private Label catgLabel;
+    @FXML
+    private ImageView iv;
     
 
     /**
@@ -97,12 +110,40 @@ public class AjoutParcController implements Initializable {
         list.add("Chien");
         list.add("Chevaux");
         list.add("Autre");
-	
-        
         ObservableList<String> ob = FXCollections.observableArrayList();
         ob.addAll(list);
         catg.setItems(ob);
     }    
+    
+    
+     public String handle(){
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        String filePath = file.getAbsolutePath();
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            iv.setImage(image);
+
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+
+        return filePath;
+    }    
+     
+    @FXML
+    private void chooseAction(ActionEvent event) {
+        photo.setText(handle());
+    
+    }
     
          public boolean controleSaisie2() throws IOException, SQLException {
         boolean saisie = true;
@@ -165,7 +206,7 @@ public class AjoutParcController implements Initializable {
         }
      
               try {
-          Parc u=new Parc(Integer.parseInt(idp.getText()),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),photo.getText(),cin.getText());
+          Parc u=new Parc(idp.getText(),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),photo.getText(),cin.getText());
            
           
            a.ajouterParc(u);
@@ -174,7 +215,35 @@ public class AjoutParcController implements Initializable {
            Logger.getLogger(Zanimaux.class.getName()).log(Level.SEVERE, null, ex);
        }
  
-          
+         try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Parc.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) nom.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        }
+
+    }
+    @FXML
+    private void retourner(ActionEvent event) {
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Parc.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) nom.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

@@ -35,7 +35,7 @@ public class ParcService {
        String req="INSERT INTO parc (id,nomParc,CategorieDressage, adresseParc ,villeParc ,codePostaleParc ,photoParc,cinDresseur) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement pre= con.prepareStatement(req);
         
-        pre.setInt(1, g.getId());
+        pre.setString(1, g.getId());
         pre.setString(2, g.getNomParc());
         pre.setString(3, g.getCategorieDressage());
         pre.setString(4, g.getAdresseParc());
@@ -57,7 +57,7 @@ public class ParcService {
             ResultSet rs = ste.executeQuery(requete);
 
              while(rs.next()){
-                 listForm.setId(rs.getInt("id"));
+                 listForm.setId(rs.getString("id"));
                  listForm.setNomParc(rs.getString("nomParc"));
                  listForm.setCategorieDressage(rs.getString("CategorieDressage"));
                  listForm.setAdresseParc(rs.getString("adresseParc"));
@@ -87,5 +87,23 @@ public class ParcService {
         }
         return rs ;
     
+    }
+   public void supprimerParc(int id)
+         {
+                
+             String requete="DELETE FROM `parc` WHERE id='"+id+"' ";     
+             Statement st;
+             try {
+              st = con.createStatement(); 
+              st.executeUpdate(requete);
+              System.out.println("Parc supprimé");
+
+            } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+}
+
+    public void supprimerParc(String b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -14,12 +14,12 @@
      <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+            <Button fx:id="ajou" layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="3.0" layoutY="210.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Afficher" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="210.0">
+            <Button fx:id="aff" layoutX="3.0" layoutY="210.0" mnemonicParsing="false" onAction="#retourner" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Afficher" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="210.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -112,6 +112,7 @@
       </Pane>
       <AnchorPane fx:id="anchorEvent" layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
+             <ImageView fx:id="iv" fitHeight="77.0" fitWidth="183.0" layoutX="48.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" />
             <TextField fx:id="idp" alignment="TOP_CENTER" layoutX="56.0" layoutY="95.0" promptText="Le numéro du parc" />
             <Label fx:id="idpLabel" layoutX="35.0" layoutY="122.0" textFill="RED" />
             <TextField fx:id="nom" alignment="TOP_CENTER" layoutX="319.0" layoutY="95.0" promptText="Le nom" />
@@ -126,9 +127,9 @@
             <Label fx:id="cinLabel" layoutX="307.0" layoutY="303.0" textFill="RED" />
             <ChoiceBox fx:id="catg" layoutX="319.0" layoutY="355.0" prefWidth="150.0" />
             <Label fx:id="catgLabel" layoutX="307.0" layoutY="383.0" textFill="RED" />
-            <Button fx:id="btn" layoutX="223.0" layoutY="447.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Ajouter" />
-            <TextField fx:id="photo" alignment="TOP_CENTER" layoutX="56.0" layoutY="355.0" promptText="Photo" />
+            <Button fx:id="btn" layoutX="296.0" layoutY="485.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Ajouter" />
             <Label fx:id="photoLabel" layoutX="49.0" layoutY="383.0" textFill="RED" />
+            <Button fx:id="photo" layoutX="64.0" layoutY="405.0" mnemonicParsing="false" onAction="#chooseAction" opacity="0.6" prefHeight="27.0" prefWidth="138.0" text="Photo" />
                      
          </children>
          

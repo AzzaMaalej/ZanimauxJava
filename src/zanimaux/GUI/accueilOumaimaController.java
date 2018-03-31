@@ -93,7 +93,17 @@ public class accueilOumaimaController implements Initializable {
     }    
 
     @FXML
-    private void onClickEvenementAction(ActionEvent event) {
+    private void onClickEvenementAction(ActionEvent event) throws SQLException {
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Ajouter Evenement");
+        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     @FXML

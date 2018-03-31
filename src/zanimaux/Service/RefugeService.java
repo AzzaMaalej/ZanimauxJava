@@ -10,9 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import zanimaux.Technique.DataSource;
+import zanimaux.entities.Articles;
 import zanimaux.entities.Refuge;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -130,14 +133,69 @@ public Statement ste;
             System.err.println(ex.getMessage());
         }
 }
-    public ResultSet AfficherRefugeByCin(String c){
-        ResultSet rs=null;
+    public List<Refuge> AfficherRefugeByCin(String c){
+         List<Refuge>  listRefuges = new ArrayList<>();
         try {  
             String requete = "SELECT * FROM refuge WHERE cin='"+c+"'";
-            rs = ste.executeQuery(requete);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+                Refuge listForm=new Refuge();
+                 listForm.setImmatriculation(rs.getString("immatriculation"));
+                 listForm.setCin(rs.getString("cin"));
+                 listForm.setNomRefuge(rs.getString("nomRefuge"));
+                 listForm.setEmailRefuge(rs.getString("emailRefuge"));
+                 listForm.setTelephoneRefuge(rs.getInt("telephoneRefuge"));
+                 listForm.setFaxRefuge(rs.getInt("faxRefuge"));
+                 listForm.setAdresseRefuge(rs.getString("adresseRefuge"));
+                 listForm.setCodePostaleRefuge(rs.getInt("codePostaleRefuge"));
+                 listForm.setGouvernementRefuge(rs.getString("gouvernementRefuge"));
+                 listForm.setPhotoRefuge(rs.getString("photorefuge"));
+                 listForm.setChat(rs.getString("chat"));
+                 listForm.setChien(rs.getString("chien"));
+                 listForm.setRongeur(rs.getString("rongeur"));
+                 listForm.setAutre(rs.getString("autre"));
+                 listRefuges.add(listForm);
+            }
              }catch (SQLException ex) {
-                 System.out.println(" erreur AfficherTousRefuge()");
+                 System.out.println(" erreur AfficherRefugeByCin()");
         }
-        return rs ;
+        return listRefuges ;
     }
+     public boolean ModifierRefuge(Refuge r)
+    {
+        int nbr_ligne;
+        try{
+            
+            String requete="UPDATE refuge set immatriculation=?, nomRefuge=?, emailRefuge=?, telephoneRefuge=?, faxRefuge=?, adresseRefuge=?, codePostaleRefuge=?, gouvernementRefuge=?, photoRefuge=?, chat=?, chien=?, rongeur=?, autre=? WHERE immatriculation='"+r.getImmatriculation()+"'";
+            PreparedStatement pst = con.prepareStatement(requete);
+            pst.setString(1, r.getImmatriculation());
+            pst.setString(2,r.getNomRefuge());
+
+            pst.setString(3,r.getEmailRefuge());
+            pst.setInt(4,r.getTelephoneRefuge());
+            pst.setInt(5,r.getFaxRefuge());
+            pst.setString(6,r.getAdresseRefuge());
+            pst.setInt(7,r.getCodePostaleRefuge());
+            pst.setString(8, r.getGouvernementRefuge());
+            pst.setString(9,r.getPhotoRefuge());
+            pst.setString(10,r.getChat());
+            pst.setString(11,r.getChien());
+            pst.setString(12,r.getRongeur());
+            pst.setString(13, r.getAutre());
+            
+            
+            nbr_ligne=pst.executeUpdate();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(RefugeService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        if(nbr_ligne == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+   
 }

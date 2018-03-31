@@ -13,6 +13,27 @@ package zanimaux.entities;
 public class Cabinet {
     private  String immatriculeCabinet;
     private String emailCabinet;
+    private String cin;
+
+    public String getCin() {
+        return cin;
+    }
+
+    public Cabinet(String immatriculeCabinet, String emailCabinet, String cin, int telephoneCabinet, int FaxCabinet, String AdresseCabinet, String VilleCabinet, int CodePostaleCabinet, String photovet) {
+        this.immatriculeCabinet = immatriculeCabinet;
+        this.emailCabinet = emailCabinet;
+        this.cin = cin;
+        this.telephoneCabinet = telephoneCabinet;
+        this.FaxCabinet = FaxCabinet;
+        this.AdresseCabinet = AdresseCabinet;
+        this.VilleCabinet = VilleCabinet;
+        this.CodePostaleCabinet = CodePostaleCabinet;
+        this.photovet = photovet;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
     private int telephoneCabinet;
     private int FaxCabinet;
      private String AdresseCabinet;

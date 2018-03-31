@@ -57,7 +57,7 @@ public class RefugeDashboardController implements Initializable {
 
         try {
         Stage stage=(Stage) GestRef.getScene().getWindow(); 
-        stage.setTitle("Vos Refuges");
+        stage.setTitle("Gestion des refuges");
         Parent root = FXMLLoader.load(getClass().getResource("GestionRefuges.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -1,48 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.ParcController">
-    <children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AjoutParcController">
+     <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="1.0" layoutY="257.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
-               <font>
-                  <Font name="Baskerville" size="20.0" />
-               </font>
-            </Button>
-            <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
-               <font>
-                  <Font name="Baskerville" size="20.0" />
-               </font>
-            </Button>
-            <Button layoutX="1.0" layoutY="326.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Pet-Sitter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="310.0">
-               <font>
-                  <Font name="Baskerville" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonRF" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
-               <font>
-                  <Font name="Baskerville" size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="evenement" layoutX="1.0" layoutY="457.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
-               <font>
-                  <Font name="Baskerville" size="20.0" />
-               </font>
-            </Button>
-            <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+            <Button layoutX="3.0" layoutY="210.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Afficher" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="210.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -52,34 +29,9 @@
                   <Image url="@../Image/home.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="42.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="219.0">
                <image>
                   <Image url="@../Image/valise.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0">
-               <image>
-                  <Image url="@../Image/storeIcon.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="440.0">
-               <image>
-                  <Image url="@../Image/event.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="39.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="500.0">
-               <image>
-                  <Image url="@../Image/annonce.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="38.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="380.0">
-               <image>
-                  <Image url="@../Image/shelter.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="40.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="320.0">
-               <image>
-                  <Image url="@../Image/petsitter.png" />
                </image>
             </ImageView>
             <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
@@ -158,6 +110,28 @@
             </Button>
          </children>
       </Pane>
-      <AnchorPane fx:id="anchorEvent" layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <AnchorPane fx:id="anchorEvent" layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <TextField fx:id="idp" alignment="TOP_CENTER" layoutX="56.0" layoutY="95.0" promptText="Le numéro du parc" />
+            <Label fx:id="idpLabel" layoutX="35.0" layoutY="122.0" textFill="RED" />
+            <TextField fx:id="nom" alignment="TOP_CENTER" layoutX="319.0" layoutY="95.0" promptText="Le nom" />
+            <Label fx:id="nomLabel" layoutX="308.0" layoutY="130.0" textFill="RED" />
+            <TextField fx:id="adr" alignment="TOP_CENTER" layoutX="56.0" layoutY="187.0" promptText="L'adresse" />
+            <Label fx:id="adrLabel" layoutX="51.0" layoutY="223.0" textFill="RED" />
+            <TextField fx:id="ville" alignment="TOP_CENTER" layoutX="319.0" layoutY="187.0" promptText="La ville" />
+            <Label fx:id="villeLabel" layoutX="307.0" layoutY="215.0" textFill="RED" />
+            <TextField fx:id="codep" alignment="TOP_CENTER" layoutX="56.0" layoutY="278.0" promptText="Le code postale" />
+            <Label fx:id="codepLabel" layoutX="50.0" layoutY="311.0" textFill="RED" />
+            <TextField fx:id="cin" alignment="TOP_CENTER" layoutX="319.0" layoutY="278.0" promptText="cin" />
+            <Label fx:id="cinLabel" layoutX="307.0" layoutY="303.0" textFill="RED" />
+            <ChoiceBox fx:id="catg" layoutX="319.0" layoutY="355.0" prefWidth="150.0" />
+            <Label fx:id="catgLabel" layoutX="307.0" layoutY="383.0" textFill="RED" />
+            <Button fx:id="btn" layoutX="223.0" layoutY="447.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Ajouter" />
+            <TextField fx:id="photo" alignment="TOP_CENTER" layoutX="56.0" layoutY="355.0" promptText="Photo" />
+            <Label fx:id="photoLabel" layoutX="49.0" layoutY="383.0" textFill="RED" />
+                     
+         </children>
+         
+      </AnchorPane>       
    </children>
 </AnchorPane>

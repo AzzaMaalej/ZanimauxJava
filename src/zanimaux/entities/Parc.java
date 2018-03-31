@@ -9,53 +9,90 @@ import java.util.Objects;
 
 /**
  *
- * @author BelhassenLimam
+ * @author Azza
  */
 public class Parc {
-     private int idParc;
+    private int id;
     private String nomParc;
     private String CategorieDressage;
     private String adresseParc;
     private String villeParc;
     private int   codePostaleParc;
     private String photoParc;
-    private User cinUser;
+    private String cinDresseur;
 
-    public Parc(int idParc, String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc, String photoParc, User cinUser) {
-        this.idParc = idParc;
+    public Parc() {
+    }
+
+    public Parc(int id, String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc, String photoParc, String cinDresseur) {
+        this.id = id;
         this.nomParc = nomParc;
         this.CategorieDressage = CategorieDressage;
         this.adresseParc = adresseParc;
         this.villeParc = villeParc;
         this.codePostaleParc = codePostaleParc;
         this.photoParc = photoParc;
-        this.cinUser = cinUser;
+        this.cinDresseur = cinDresseur;
     }
 
-    public Parc(String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc) {
-        this.nomParc = nomParc;
-        this.CategorieDressage = CategorieDressage;
-        this.adresseParc = adresseParc;
-        this.villeParc = villeParc;
-        this.codePostaleParc = codePostaleParc;
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.nomParc);
+        hash = 53 * hash + Objects.hashCode(this.CategorieDressage);
+        hash = 53 * hash + Objects.hashCode(this.adresseParc);
+        hash = 53 * hash + Objects.hashCode(this.villeParc);
+        hash = 53 * hash + this.codePostaleParc;
+        hash = 53 * hash + Objects.hashCode(this.photoParc);
+        hash = 53 * hash + Objects.hashCode(this.cinDresseur);
+        return hash;
     }
 
-    public Parc(int idParc, String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc, User cinUser) {
-        this.idParc = idParc;
-        this.nomParc = nomParc;
-        this.CategorieDressage = CategorieDressage;
-        this.adresseParc = adresseParc;
-        this.villeParc = villeParc;
-        this.codePostaleParc = codePostaleParc;
-        this.cinUser = cinUser;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Parc other = (Parc) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.codePostaleParc != other.codePostaleParc) {
+            return false;
+        }
+        if (!Objects.equals(this.nomParc, other.nomParc)) {
+            return false;
+        }
+        if (!Objects.equals(this.CategorieDressage, other.CategorieDressage)) {
+            return false;
+        }
+        if (!Objects.equals(this.adresseParc, other.adresseParc)) {
+            return false;
+        }
+        if (!Objects.equals(this.villeParc, other.villeParc)) {
+            return false;
+        }
+        if (!Objects.equals(this.cinDresseur, other.cinDresseur)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+
+    public int getId() {
+        return id;
     }
 
-    public int getIdParc() {
-        return idParc;
-    }
-
-    public void setIdParc(int idParc) {
-        this.idParc = idParc;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomParc() {
@@ -106,69 +143,14 @@ public class Parc {
         this.photoParc = photoParc;
     }
 
-    public User getCinUser() {
-        return cinUser;
+    public String getCinDresseur() {
+        return cinDresseur;
     }
 
-    public void setCinUser(User cinUser) {
-        this.cinUser = cinUser;
+    public void setCinDresseur(String cinDresseur) {
+        this.cinDresseur = cinDresseur;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.idParc;
-        hash = 59 * hash + Objects.hashCode(this.nomParc);
-        hash = 59 * hash + Objects.hashCode(this.CategorieDressage);
-        hash = 59 * hash + Objects.hashCode(this.adresseParc);
-        hash = 59 * hash + Objects.hashCode(this.villeParc);
-        hash = 59 * hash + this.codePostaleParc;
-        hash = 59 * hash + Objects.hashCode(this.photoParc);
-        hash = 59 * hash + Objects.hashCode(this.cinUser);
-        return hash;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Parc other = (Parc) obj;
-        if (this.idParc != other.idParc) {
-            return false;
-        }
-        if (this.codePostaleParc != other.codePostaleParc) {
-            return false;
-        }
-        if (!Objects.equals(this.nomParc, other.nomParc)) {
-            return false;
-        }
-        if (!Objects.equals(this.CategorieDressage, other.CategorieDressage)) {
-            return false;
-        }
-        if (!Objects.equals(this.adresseParc, other.adresseParc)) {
-            return false;
-        }
-        if (!Objects.equals(this.villeParc, other.villeParc)) {
-            return false;
-        }
-        if (!Objects.equals(this.cinUser, other.cinUser)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Parc{" + "idParc=" + idParc + ", nomParc=" + nomParc + ", CategorieDressage=" + CategorieDressage + ", adresseParc=" + adresseParc + ", villeParc=" + villeParc + ", codePostaleParc=" + codePostaleParc + ", photoParc=" + photoParc + ", cinUser=" + cinUser + '}';
-    }
     
-    
-  
 }

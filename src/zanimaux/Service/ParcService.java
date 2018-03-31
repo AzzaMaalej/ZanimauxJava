@@ -24,11 +24,13 @@ import zanimaux.util.Session;
  * @author Azza
  */
 public class ParcService {
-    public Connection con;
-     public ParcService() throws SQLException{
-        // st=con.createStatement();
-        con = DataSource.getInstance().getCon();
+     public Connection con = DataSource.getInstance().getCon();
+     public Statement ste;
+     public ParcService() throws SQLException 
+    {
+        ste=con.createStatement();
     }
+     
    public void ajouterParc(Parc g) throws SQLException {
        String req="INSERT INTO parc (id,nomParc,CategorieDressage, adresseParc ,villeParc ,codePostaleParc ,photoParc,cinDresseur) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement pre= con.prepareStatement(req);
@@ -42,5 +44,48 @@ public class ParcService {
         pre.setString(7, g.getPhotoParc());
         pre.setString(8, g.getCinDresseur());
         pre.executeUpdate();   
+    }
+   
+   public Parc AfficherParc(int i)
+    { 
+
+        Parc listForm = new Parc();
+        try {  
+            String requete = "SELECT * FROM parc WHERE `id`="+i;
+
+           
+            ResultSet rs = ste.executeQuery(requete);
+
+             while(rs.next()){
+                 listForm.setId(rs.getInt("id"));
+                 listForm.setNomParc(rs.getString("nomParc"));
+                 listForm.setCategorieDressage(rs.getString("CategorieDressage"));
+                 listForm.setAdresseParc(rs.getString("adresseParc"));
+                 listForm.setVilleParc(rs.getString("villeParc"));
+                 listForm.setCodePostaleParc(rs.getInt("codePostaleParc"));
+                 listForm.setPhotoParc(rs.getString("photoParc"));
+                 listForm.setCinDresseur(rs.getString("cinDresseur"));             
+            }
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(ParcService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listForm;
+    
+    }
+   
+   
+   
+   public ResultSet AfficherParc()
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM parc" ;
+            rs = ste.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherParc()");
+        }
+        return rs ;
+    
     }
 }

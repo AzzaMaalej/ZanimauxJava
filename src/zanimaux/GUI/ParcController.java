@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -37,6 +38,7 @@ import zanimaux.entities.Parc;
 
 
 
+
 /**
  * FXML Controller class
  *
@@ -45,28 +47,93 @@ import zanimaux.entities.Parc;
 public class ParcController implements Initializable {
 
     @FXML
-    private Button buttonRF;
-    @FXML
     private Button evenement;
     @FXML
     private Button userName;
     @FXML
-    private Pane pane;
-    @FXML
-    private Button btn11;
-    @FXML
-    private Button btn1;
-    @FXML
     private AnchorPane anchorEvent;
+    @FXML
+    private Button button;
    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-
+     ParcService m=null;
+        try {
+            m = new ParcService();
+        } catch (SQLException ex) {
+            Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ResultSet r =m.AfficherParc();
+        Parc m1=new Parc();
+        r= m.AfficherParc();
+        ScrollPane sp = new ScrollPane();
     
-   
-
-}}
+        sp.setPrefSize(900, 650);
+//         sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+//         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+        VBox vb = new VBox();
+        HBox hb =null;
+        vb.setPadding(new Insets(100, 30, 0, 30));
+        vb.setSpacing(100);
+        int i=0;
+         try{
+      while(r.next())
+      { 
+          m1.setId(r.getInt("id"));
+          m1.setNomParc(r.getString("nomParc"));
+          m1.setCategorieDressage(r.getString("CategorieDressage"));
+          m1.setAdresseParc(r.getString("adresseParc"));
+          m1.setCodePostaleParc(r.getInt("codePostaleParc"));
+          m1.setPhotoParc(r.getString("photoParc"));
+          m1.setCinDresseur(r.getString("cinDresseur"));
+          ImageView im= new ImageView();
+          Image image= new Image("zanimaux/ImageUtile/",150,120,false,false) ;
+          im.setImage(image);
+          Text t1 =new Text(m1.getNomParc());
+          t1.setFont(Font.font("Verdana", 20));
+          Text t =new Text(m1.getAdresseParc()+" "+m1.getVilleParc()+", "+m1.getCodePostaleParc());
+          t.setFont(Font.font("Verdana", 15) );
+          VBox vbParc = new VBox(); 
+          vbParc.setPadding(new Insets(-60,0,30,30));
+          vbParc.setSpacing(50);
+          vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
+          vbParc.setPrefSize(200, 150);
+          vbParc.getChildren().add(im);
+          vbParc.getChildren().add(t1);
+          vbParc.getChildren().add(t);
+          i++;
+          System.out.println(m1.getId()+" "+m1.getPhotoParc());
+          if(i%3!=1)
+          {
+            hb.getChildren().add(vbParc) ;
+          }
+          else
+          {
+            hb = new HBox();
+            hb.setPadding(new Insets(0,0,0,0));
+            hb.setSpacing(50);
+            hb.getChildren().add(vbParc) ;
+            vb.getChildren().add(hb); 
+           }
+                 
+      }
+      }catch( SQLException e){}
+        sp.setContent(vb);
+               
+        
+        anchorEvent.getChildren().setAll(sp);
+        
+    }  
+    @FXML
+    private void handleButtonAction(ActionEvent event) {
+    }
+    @FXML
+    private void onClickEvenementAction(ActionEvent event) {
+    }
+     @FXML
+    private void showPane(MouseEvent event) {
+    }
+ }

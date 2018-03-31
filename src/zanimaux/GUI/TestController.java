@@ -76,7 +76,6 @@ public class TestController implements Initializable {
         MagasinService m= new MagasinService();
         ResultSet r =m.rechercheMagasin();
         Magasin m1=new Magasin();
-        r= m.rechercheMagasin();
         
          ScrollPane sp = new ScrollPane();
     

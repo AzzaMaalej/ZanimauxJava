@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package zanimaux.GUI;
 
 import java.io.IOException;
@@ -18,12 +17,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,28 +34,30 @@ import javafx.stage.Stage;
 import zanimaux.Service.ParcService;
 import zanimaux.entities.Parc;
 
-
-
-
-
 /**
  * FXML Controller class
  *
  * @author BelhassenLimam
  */
-public class ParcController implements Initializable {
+public class AccueilDresseurController implements Initializable {
 
+    @FXML
+    private Button button;
     @FXML
     private Button evenement;
     @FXML
     private Button userName;
     @FXML
+    private Pane pane;
+    @FXML
+    private Button btn11;
+    @FXML
+    private Button btn1;
+    @FXML
+    private Button parc;
+    @FXML
     private AnchorPane anchorEvent;
-    @FXML
-    private Button ajou;
-    @FXML
-    private Button aff;
-   
+
     /**
      * Initializes the controller class.
      */
@@ -135,29 +133,62 @@ public class ParcController implements Initializable {
         
         anchorEvent.getChildren().setAll(sp);
         
-    }  
+    }     
+    
+    
     @FXML
-    private void onClickEvenementAction(ActionEvent event) {
+    void handleButtonAction(ActionEvent event) throws SQLException {
+
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("NOS MAGASINS");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
     }
+
+    
+
      @FXML
+    private void onClickEvenementAction(ActionEvent event) throws SQLException {
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Ajouter Evenement");
+        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+     @FXML
+    private void parcAction(ActionEvent event) throws SQLException {
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Affihcer les parcs");
+        Parent root = FXMLLoader.load(getClass().getResource("Parc.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+
+    @FXML
     private void showPane(MouseEvent event) {
     }
+
     @FXML
-    private void retourner(ActionEvent event) {
-        
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutParc.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage secondStage = new Stage();
-            secondStage.setScene(new Scene(root));
-            Stage stage = (Stage) ajou.getScene().getWindow();
-            // do what you have to do
-            stage.hide();
-            secondStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    private void connexionAction(ActionEvent event) {
     }
-
- }
+    
+}

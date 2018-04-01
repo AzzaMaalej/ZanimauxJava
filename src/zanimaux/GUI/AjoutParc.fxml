@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AjoutParcController">
      <children>
@@ -123,13 +124,13 @@
             <Label fx:id="villeLabel" layoutX="307.0" layoutY="215.0" textFill="RED" />
             <TextField fx:id="codep" alignment="TOP_CENTER" layoutX="56.0" layoutY="278.0" promptText="Le code postale" />
             <Label fx:id="codepLabel" layoutX="50.0" layoutY="311.0" textFill="RED" />
-            <TextField fx:id="cin" alignment="TOP_CENTER" layoutX="319.0" layoutY="278.0" promptText="cin" />
             <Label fx:id="cinLabel" layoutX="307.0" layoutY="303.0" textFill="RED" />
-            <ChoiceBox fx:id="catg" layoutX="319.0" layoutY="355.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="catg" layoutX="336.0" layoutY="278.0" prefWidth="150.0" />
             <Label fx:id="catgLabel" layoutX="307.0" layoutY="383.0" textFill="RED" />
             <Button fx:id="btn" layoutX="296.0" layoutY="485.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Ajouter" />
             <Label fx:id="photoLabel" layoutX="49.0" layoutY="383.0" textFill="RED" />
             <Button fx:id="photo" layoutX="64.0" layoutY="405.0" mnemonicParsing="false" onAction="#chooseAction" opacity="0.6" prefHeight="27.0" prefWidth="138.0" text="Photo" />
+            <Text fill="#22549a" layoutX="315.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie de dressage :" />
                      
          </children>
          

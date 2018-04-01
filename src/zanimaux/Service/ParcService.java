@@ -24,6 +24,14 @@ import zanimaux.util.Session;
  * @author Azza
  */
 public class ParcService {
+    private static ParcService instance;
+    public static ParcService getInstance() throws SQLException {
+       
+         if (instance == null) {
+            instance = new ParcService();
+        }
+        return instance;//To change body of generated methods, choose Tools | Templates.
+    }
      public Connection con = DataSource.getInstance().getCon();
      public Statement ste;
      public ParcService() throws SQLException 
@@ -31,9 +39,14 @@ public class ParcService {
         ste=con.createStatement();
     }
      
-   public void ajouterParc(Parc g) throws SQLException {
+   public boolean ajouterParc(Parc g) throws SQLException {
        String req="INSERT INTO parc (id,nomParc,CategorieDressage, adresseParc ,villeParc ,codePostaleParc ,photoParc,cinDresseur) VALUES (?,?,?,?,?,?,?,?)";
-        PreparedStatement pre= con.prepareStatement(req);
+        Parc a =new Parc();
+        User user=Session.getLoggedInUser();
+        Userservice us= new Userservice();
+       try {
+       
+       PreparedStatement pre= con.prepareStatement(req);
         
         pre.setString(1, g.getId());
         pre.setString(2, g.getNomParc());
@@ -42,16 +55,21 @@ public class ParcService {
         pre.setString(5, g.getVilleParc());
         pre.setInt(6, g.getCodePostaleParc());
         pre.setString(7, g.getPhotoParc());
-        pre.setString(8, g.getCinDresseur());
+        pre.setString(8, user.getCin());
         pre.executeUpdate();   
+     System.out.println("ajout reussit");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+            return false;
     }
    
-   public Parc AfficherParc(int i)
+   public Parc AfficherParc(String i)
     { 
 
         Parc listForm = new Parc();
         try {  
-            String requete = "SELECT * FROM parc WHERE `id`="+i;
+            String requete = "SELECT * FROM parc WHERE `cinDresseur`="+i;
 
            
             ResultSet rs = ste.executeQuery(requete);
@@ -88,6 +106,21 @@ public class ParcService {
         return rs ;
     
     }
+   public ResultSet AfficherParcByCin(String c)
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM parc WHERE cinDresseur='"+c+"' " ;
+            
+            rs = ste.executeQuery(requete);
+            
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherParc()");
+        }
+        return rs ;
+    
+    }
+   
    public void supprimerParc(int id)
          {
                 
@@ -105,5 +138,59 @@ public class ParcService {
 
     public void supprimerParc(String b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public List<Parc> AfficherParcsByCin(String c){
+         List<Parc>  listParcs = new ArrayList<>();
+        try {  
+            String requete = "SELECT * FROM parc WHERE cinDresseur='"+c+"'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+                Parc listForm=new Parc();
+                 listForm.setId(rs.getString("id"));
+                 listForm.setNomParc(rs.getString("nomParc"));
+                 listForm.setCategorieDressage(rs.getString("CategorieDressage"));
+                 listForm.setAdresseParc(rs.getString("adresseParc"));
+                 listForm.setVilleParc(rs.getString("villeParc"));
+                 listForm.setCodePostaleParc(rs.getInt("codePostaleParc"));
+                 listForm.setPhotoParc(rs.getString("photoParc"));
+                 listForm.setCinDresseur(rs.getString("cinDresseur"));
+                 listParcs.add(listForm);
+            }
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherRefugeByCin()");
+        }
+        return listParcs ;
+    }
+    
+    public boolean ModifierParc(Parc r)
+    {
+        int nbr_ligne;
+        try{
+            
+            String requete="UPDATE parc set id=?, nomParc=?, CategorieDressage=?, adresseParc=?, villeParc=?, codePostaleParc=?, photoParc=? WHERE id='"+r.getId()+"'";
+            PreparedStatement pst = con.prepareStatement(requete);
+            pst.setString(1, r.getId());
+            pst.setString(2,r.getNomParc());
+
+            pst.setString(3,r.getCategorieDressage());
+            pst.setString(4,r.getAdresseParc());
+            pst.setString(5,r.getVilleParc());
+            pst.setInt(6,r.getCodePostaleParc());
+            pst.setString(7,r.getPhotoParc());
+            
+            
+            
+            nbr_ligne=pst.executeUpdate();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ParcService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        if(nbr_ligne == 0){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

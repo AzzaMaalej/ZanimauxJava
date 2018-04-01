@@ -107,6 +107,7 @@ public class InscriptionController implements Initializable {
         list.add("Magasinier");
         list.add("Vétérinaire");
 	list.add("Dresseur");
+        list.add("PetSitter");
         list.add("Proprietaire de refuge");
         
         ObservableList<String> ob = FXCollections.observableArrayList();
@@ -131,10 +132,12 @@ public class InscriptionController implements Initializable {
             r = 3;
         }else if ("Dresseur".equals(z)) {
             r = 4;
-        }else if ("Vétérinaire".equals(z)) {
+        }else if ("PetSitter".equals(z)) {
             r = 5;
+        }else if ("Vétérinaire".equals(z)) {
+            r = 6;
         }
-        if((r!=1)&&(r!=2)&&(r!=3)&&(r!=4)&&(r!=5)){
+        if((r!=1)&&(r!=2)&&(r!=3)&&(r!=4)&&(r!=5)&&(r!=6)){
             roleLabel.setText("* vous devez choisir votre rôle");
             saisie = false;
         }
@@ -226,6 +229,8 @@ public class InscriptionController implements Initializable {
             r = "a:1:{i:0;s:24:\"ROLE_PROPRIETAIRE_REFUGE\";}";
         }else if ("Dresseur".equals(z)) {
             r = "a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
+        }else if ("PetSitter".equals(z)) {
+            r = "a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";    
         }else if ("Vétérinaire".equals(z)) {
             r ="a:1:{i:0;s:15:\"ROLE_VETRINAIRE\";}";
         }

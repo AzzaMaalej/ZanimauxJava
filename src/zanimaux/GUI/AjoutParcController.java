@@ -39,6 +39,7 @@ import javax.imageio.ImageIO;
 import zanimaux.Service.ParcService;
 import zanimaux.entities.Parc;
 import zanimaux.entities.User;
+import zanimaux.util.Session;
 import zanimaux.util.Validation;
 
 /**
@@ -69,8 +70,6 @@ public class AjoutParcController implements Initializable {
     @FXML
     private TextField codep;
     @FXML
-    private TextField cin;
-    @FXML
     private ChoiceBox<String> catg;
     @FXML
     private Button btn;
@@ -98,6 +97,10 @@ public class AjoutParcController implements Initializable {
     private Label catgLabel;
     @FXML
     private ImageView iv;
+    @FXML
+    private Button ajou;
+    @FXML
+    private Button aff;
     
 
     /**
@@ -180,10 +183,7 @@ public class AjoutParcController implements Initializable {
             saisie = false;
         }
        
-        if (!Validation.textValidation(cin, cinLabel, "* tout les champs doivent etre remplis")) {
-                saisie = false;
-                
-         }
+        
         return saisie;
 
         }
@@ -204,9 +204,11 @@ public class AjoutParcController implements Initializable {
         } else if ("Autre".equals(z)) {
             r = "Autre";
         }
+             User user=Session.getLoggedInUser();
+              String cin=user.getCin();
      
               try {
-          Parc u=new Parc(idp.getText(),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),photo.getText(),cin.getText());
+          Parc u=new Parc(idp.getText(),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),photo.getText(),cin);
            
           
            a.ajouterParc(u);

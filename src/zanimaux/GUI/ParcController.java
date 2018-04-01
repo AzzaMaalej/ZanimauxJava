@@ -6,6 +6,7 @@
 
 package zanimaux.GUI;
 
+import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -37,6 +38,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import zanimaux.Service.ParcService;
 import zanimaux.entities.Parc;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 
 
@@ -71,9 +74,11 @@ public class ParcController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ResultSet r =m.AfficherParc();
+        User user=Session.getLoggedInUser();
+            String cin=user.getCin();
+        ResultSet r =m.AfficherParcByCin(cin);
         Parc m1=new Parc();
-        r= m.AfficherParc();
+        r= m.AfficherParcByCin(cin);
         ScrollPane sp = new ScrollPane();
     
         sp.setPrefSize(900, 650);
@@ -99,19 +104,27 @@ public class ParcController implements Initializable {
           Image image= new Image("zanimaux/ImageUtile/"+m1.getPhotoParc(),150,120,false,false) ;
           im.setImage(image);
           Text t1 =new Text(m1.getNomParc());
-          t1.setFont(Font.font("Verdana", 20));
+          t1.setFont(Font.font("Verdana", 16));
+          Text t3 = new Text("Dressage de : ");
+          t3.setFont(Font.font("Verdana", 15));
+          t3.setFill(Color.web("#0076a3"));
           Text t2 = new Text(m1.getCategorieDressage());
-          t2.setFont(Font.font("Verdana", 18));
+          t2.setFont(Font.font("Verdana", 14));
+          Text t4 = new Text("Adresse : ");
+          t4.setFont(Font.font("Verdana", 15));
+          t4.setFill(Color.web("#0076a3"));
           Text t =new Text(m1.getAdresseParc()+" "+m1.getVilleParc()+", "+m1.getCodePostaleParc());
-          t.setFont(Font.font("Verdana", 15) );
+          t.setFont(Font.font("Verdana", 14) );
           VBox vbParc = new VBox(); 
           vbParc.setPadding(new Insets(-60,0,30,30));
-          vbParc.setSpacing(50);
+          vbParc.setSpacing(20);
           vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
           vbParc.setPrefSize(200, 150);
           vbParc.getChildren().add(im);
           vbParc.getChildren().add(t1);
+          vbParc.getChildren().add(t3);
           vbParc.getChildren().add(t2);
+          vbParc.getChildren().add(t4);
           vbParc.getChildren().add(t);
           i++;
           System.out.println(m1.getId()+" "+m1.getPhotoParc());

@@ -49,6 +49,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.NumberStringConverter;
 import javax.imageio.ImageIO;
 import zanimaux.Service.Articleservice;
@@ -184,9 +185,7 @@ public class GestionRefugesController implements Initializable {
             column_gouvernement.setCellValueFactory(
                     new PropertyValueFactory<Refuge,String>("gouvernementRefuge")
             );
-            column_photo.setCellValueFactory(
-                    new PropertyValueFactory<Refuge,String>("photorefuge")
-            );
+            
             column_chat.setCellValueFactory(
                     new PropertyValueFactory<Refuge,String>("chat")
             );
@@ -198,6 +197,9 @@ public class GestionRefugesController implements Initializable {
             );
             column_autre.setCellValueFactory(
                     new PropertyValueFactory<Refuge,String>("autre")
+            );
+            column_photo.setCellValueFactory(
+                    new PropertyValueFactory<Refuge,String>("photorefuge")
             );
             
             
@@ -278,12 +280,12 @@ public class GestionRefugesController implements Initializable {
                         
                     });
             //modifier telephone refuge
-            column_tel.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+            column_tel.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
             column_tel.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Refuge, Number>>() {
+                    new EventHandler<TableColumn.CellEditEvent<Refuge, Integer>>() {
                         
                         @Override
-                        public void handle(TableColumn.CellEditEvent<Refuge, Number> t) {
+                        public void handle(TableColumn.CellEditEvent<Refuge, Integer> t) {
                             try {
                                 ((Refuge) t.getTableView().getItems().get(
                                         t.getTablePosition().getRow())
@@ -302,12 +304,12 @@ public class GestionRefugesController implements Initializable {
                         
                     });
             //modifier fax refuge
-            column_fax.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+            column_fax.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
             column_fax.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Refuge, Number>>() {
+                    new EventHandler<TableColumn.CellEditEvent<Refuge, Integer>>() {
                         
                         @Override
-                        public void handle(TableColumn.CellEditEvent<Refuge, Number> t) {
+                        public void handle(TableColumn.CellEditEvent<Refuge, Integer> t) {
                             try {
                                 ((Refuge) t.getTableView().getItems().get(
                                         t.getTablePosition().getRow())
@@ -374,12 +376,12 @@ public class GestionRefugesController implements Initializable {
                         
                     });
             //modifier code postale refuge
-            column_codePostale.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+            column_codePostale.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
             column_codePostale.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Refuge, Number>>() {
+                    new EventHandler<TableColumn.CellEditEvent<Refuge, Integer>>() {
                         
                         @Override
-                        public void handle(TableColumn.CellEditEvent<Refuge, Number> t) {
+                        public void handle(TableColumn.CellEditEvent<Refuge, Integer> t) {
                             try {
                                 ((Refuge) t.getTableView().getItems().get(
                                         t.getTablePosition().getRow())

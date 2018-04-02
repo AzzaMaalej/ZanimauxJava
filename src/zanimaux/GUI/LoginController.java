@@ -76,6 +76,7 @@ public class LoginController implements Initializable {
         String propref= "a:1:{i:0;s:24:\"ROLE_PROPRIETAIRE_REFUGE\";}";
         String clt= "a:1:{i:0;s:11:\"ROLE_CLIENT\";}";
         String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
+        String pet="a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";
             if(result == null){
                 lb.setText("Bad credentials");
                 lb.setVisible(true);
@@ -179,6 +180,24 @@ public class LoginController implements Initializable {
                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                         }}
                      else if (z.equals(dres))
+                         
+                {
+                     try{
+                    Session.setLoggedInUser(result);
+                    // TODO: Proceed to other page
+                    
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GestionParc.fxml"));
+                    Parent root = (Parent) fxmlLoader.load();
+                    Stage secondStage = new Stage();
+                    secondStage.setScene(new Scene(root));
+                    Stage stage = (Stage) cin.getScene().getWindow();
+                    // do what you have to do
+                    stage.hide();
+                    secondStage.show();
+                     } catch (IOException ex) {
+                            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                        }}
+                   else if (z.equals(pet))
                          
                 {
                      try{

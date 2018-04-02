@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AjoutParcController">
+     <children>
+      <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="ajou" layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="aff" layoutX="3.0" layoutY="210.0" mnemonicParsing="false" onAction="#retourner" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Afficher" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="210.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
+               <image>
+                  <Image url="@../Image/home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="42.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="219.0">
+               <image>
+                  <Image url="@../Image/valise.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutX="89.0" layoutY="11.0" opacity="0.53" text="ANIMAUX" textFill="#138fab9e" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="11.0">
+                     <font>
+                        <Font name="Baskerville" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="63.0" layoutY="-8.0" opacity="0.82" prefHeight="48.0" prefWidth="33.0" text="Z" textFill="#138fab">
+                     <font>
+                        <Font name="Baskerville" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="246.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="304.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/panier.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="255.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/favoris.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="38.0" layoutX="495.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0">
+               <image>
+                  <Image url="@../Image/account.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="userName" layoutX="348.0" layoutY="3.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="userName" textFill="WHITE" AnchorPane.rightAnchor="24.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/fleche.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="pane" layoutX="524.0" layoutY="56.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">
+         <children>
+            <Label layoutX="-2.0" prefHeight="136.0" prefWidth="268.0" />
+            <Label layoutX="1.0" layoutY="136.0" prefHeight="64.0" prefWidth="265.0" style="-fx-border-color: #37502D8E;" />
+            <Button fx:id="btn11" layoutX="48.0" layoutY="149.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: #D15710; -fx-background-radius: 100; -fx-text-fill: white;" text="Se déconnecter" textFill="#1c4a26">
+               <font>
+                  <Font name="Comic Sans MS" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn1" layoutX="50.0" layoutY="92.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: #1023D1BE; -fx-background-radius: 100; -fx-text-fill: white;" text="Voir profil" textFill="#1c4a26">
+               <font>
+                  <Font name="Comic Sans MS" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <AnchorPane fx:id="anchorEvent" layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+             <ImageView fx:id="iv" fitHeight="77.0" fitWidth="183.0" layoutX="48.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="idp" alignment="TOP_CENTER" layoutX="56.0" layoutY="95.0" promptText="Le numéro du parc" />
+            <Label fx:id="idpLabel" layoutX="35.0" layoutY="122.0" textFill="RED" />
+            <TextField fx:id="nom" alignment="TOP_CENTER" layoutX="319.0" layoutY="95.0" promptText="Le nom" />
+            <Label fx:id="nomLabel" layoutX="308.0" layoutY="130.0" textFill="RED" />
+            <TextField fx:id="adr" alignment="TOP_CENTER" layoutX="56.0" layoutY="187.0" promptText="L'adresse" />
+            <Label fx:id="adrLabel" layoutX="51.0" layoutY="223.0" textFill="RED" />
+            <TextField fx:id="ville" alignment="TOP_CENTER" layoutX="319.0" layoutY="187.0" promptText="La ville" />
+            <Label fx:id="villeLabel" layoutX="307.0" layoutY="215.0" textFill="RED" />
+            <TextField fx:id="codep" alignment="TOP_CENTER" layoutX="56.0" layoutY="278.0" promptText="Le code postale" />
+            <Label fx:id="codepLabel" layoutX="50.0" layoutY="311.0" textFill="RED" />
+            <Label fx:id="cinLabel" layoutX="307.0" layoutY="303.0" textFill="RED" />
+            <ChoiceBox fx:id="catg" layoutX="336.0" layoutY="278.0" prefWidth="150.0" />
+            <Label fx:id="catgLabel" layoutX="307.0" layoutY="383.0" textFill="RED" />
+            <Button fx:id="btn" layoutX="296.0" layoutY="485.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Ajouter" />
+            <Label fx:id="photoLabel" layoutX="49.0" layoutY="383.0" textFill="RED" />
+            <Button fx:id="photo" layoutX="64.0" layoutY="405.0" mnemonicParsing="false" onAction="#chooseAction" opacity="0.6" prefHeight="27.0" prefWidth="138.0" text="Photo" />
+            <Text fill="#22549a" layoutX="315.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie de dressage :" />
+                     
+         </children>
+         
+      </AnchorPane>       
+   </children>
+</AnchorPane>

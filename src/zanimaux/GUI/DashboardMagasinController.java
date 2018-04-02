@@ -93,7 +93,6 @@ public class DashboardMagasinController implements Initializable {
     private TableView table_list_produit;
     @FXML
     private ChoiceBox<Integer>idMagasin;
-    @FXML
     private Button BtnChoixImage;
     @FXML
     private ImageView iv;
@@ -101,12 +100,134 @@ public class DashboardMagasinController implements Initializable {
     private Pane ajoutProduit;
     @FXML
     private Label lb;
+    @FXML
+    private Button picturepath;
+    @FXML
+    private Button btnsuppression;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
+         
+       ajoutProduit.setVisible(false);
+       table_list_produit.setVisible(false);
+       btnsuppression.setVisible(false);
+    }    
+
+    @FXML
+    private void ajouterProduit(ActionEvent event) throws SQLException {
+        
+        if((libelle.getText().equals(""))||(marque.getText().equals(""))|| (type.getText().equals(""))|| (qte.getText().equals(""))|| (prix.getText().equals("")) || (picturepath.getText().equals("")) ){
+            lb.setText("champ vide");
+            lb.setVisible(true);
+        }
+        else
+        {
+               Produit p= new Produit();
+               p.setLibelle(libelle.getText());
+               p.setDescription(desc.getText());
+               p.setMarque(marque.getText());
+               p.setPhotoProduit(picturepath.getText());
+               p.setIdMagasin(idMagasin.getValue());
+               p.setPrix(Double.parseDouble(prix.getText()));
+               p.setQuantite(Integer.parseInt(qte.getText()));
+               p.setType(type.getText());
+               ProduitService ps= new ProduitService();
+               ps.ajouterProduit(p);
+               System.out.println("Ajout réussi");
+               resetTableData();
+    }
+    }
+
+    @FXML
+    private void uploadpic(MouseEvent event) {
+         picturepath.setText(handle());
+    }
+
+    @FXML
+    private void logOut(MouseEvent event) {
+                
+        Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) table_list_produit.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    }
+
+    
+
+    @FXML
+    private void supprimerProduit(ActionEvent event) throws SQLException 
+    {
+        Produit a = (Produit) table_list_produit.getSelectionModel().getSelectedItem();
+        if(a == null){
+            System.out.println("Choisir un de vos Produit");
+                   
+        }else{
+            ProduitService ps = new ProduitService();
+            ps.SupprimerProduit(a.getIdProduit());
+            System.out.println("SUCCESS");
+                    resetTableData();
+                    resetTableData();
+           
+        }}
+       public void resetTableData() throws SQLException
+    {
+        MagasinService ms = new MagasinService();
+        User a = Session.getLoggedInUser();
+        List<Magasin> listMagasin= new ArrayList<>();
+        listMagasin = ms.Magasinier(a.getCin());
+        List<Produit> listProduit = new ArrayList<>();
+        ProduitService ps = new ProduitService();
+        List<Produit> list = new ArrayList<>();
+            for(int i =0; i<listMagasin.size();i++){
+                list=ps.rechercheProduitsMagasin(listMagasin.get(i).getIdMagasin());
+                listProduit.addAll(list);
+            }
+            ObservableList<Produit> data = FXCollections.observableArrayList(listProduit); 
+            table_list_produit.setItems(data);
+    }
+    
+
+        public String handle() {
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        String filePath = file.getAbsolutePath();
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            iv.setImage(image);
+
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+
+        return filePath;
+        }
+
+    @FXML
+    private void afficherMagasin(ActionEvent event) {
+    }
+
+    @FXML
+    private void afficherProduit(ActionEvent event) {
         ObservableList<Integer> idsMagasin = FXCollections.observableArrayList();
         
         
@@ -296,125 +417,24 @@ public class DashboardMagasinController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(DashboardMagasinController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-
-    @FXML
-    private void ajouterProduit(ActionEvent event) {
+        ajoutProduit.setVisible(false);
+        table_list_produit.setVisible(true);
+        btnsuppression.setVisible(true);
     }
 
     @FXML
-    private void uploadpic(MouseEvent event) {
+    private void afficherFormMagasin(ActionEvent event) {
     }
 
     @FXML
-    private void logOut(MouseEvent event) {
-                
-        Session.setLoggedInUser(null);
-        Parent root;
-             try {
-                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
-                 Stage myWindow = (Stage) table_list_produit.getScene().getWindow();
-                 Scene sc = new Scene(root);
-                 myWindow.setScene(sc);
-                 myWindow.setTitle("Login");
-                 myWindow.show();
-             } catch (IOException ex) {
-                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-             }
+    private void afficherFormProduit(ActionEvent event) {
+       ajoutProduit.setVisible(true);
+       table_list_produit.setVisible(false);
+       btnsuppression.setVisible(false);
     }
 
-    
-
-    @FXML
-    private void supprimerProduit(ActionEvent event) throws SQLException 
-    {
-        Produit a = (Produit) table_list_produit.getSelectionModel().getSelectedItem();
-        if(a == null){
-            System.out.println("Choisir un de vos Produit");
-                   
-        }else{
-            ProduitService ps = new ProduitService();
-            ps.SupprimerProduit(a.getIdProduit());
-            System.out.println("SUCCESS");
-                    resetTableData();
-                    resetTableData();
-           
-        }}
-       public void resetTableData() throws SQLException
-    {
-        MagasinService ms = new MagasinService();
-        User a = Session.getLoggedInUser();
-        List<Magasin> listMagasin= new ArrayList<>();
-        listMagasin = ms.Magasinier(a.getCin());
-        List<Produit> listProduit = new ArrayList<>();
-        ProduitService ps = new ProduitService();
-        List<Produit> list = new ArrayList<>();
-            for(int i =0; i<listMagasin.size();i++){
-                list=ps.rechercheProduitsMagasin(listMagasin.get(i).getIdMagasin());
-                listProduit.addAll(list);
-            }
-            ObservableList<Produit> data = FXCollections.observableArrayList(listProduit); 
-            table_list_produit.setItems(data);
-    }
-    
-    @FXML
-    private void ajouterMagasin(ActionEvent event) throws SQLException 
-    {
-        
-        if(libelle.getText().equals("") ||  marque.getText().equals("") || type.getText().equals("")|| qte.getText().equals("") || prix.getText().equals("") || BtnChoixImage.getText().equals("") ){
-            lb.setText("champ vide");
-            lb.setVisible(true);
-        }else{
-               Produit p= new Produit();
-               p.setLibelle(libelle.getText());
-               p.setDescription(desc.getText());
-               p.setMarque(marque.getText());
-                             
-               p.setPhotoProduit(BtnChoixImage.getText());
-               p.setIdMagasin(idMagasin.getValue());
-               p.setPrix(Double.parseDouble(prix.getText()));
-               p.setQuantite(Integer.parseInt(qte.getText()));
-               p.setType(type.getText());
-               ProduitService ps= new ProduitService();
-
-               ps.ajouterProduit(p);
-               System.out.println("Ajout réussi");
-               resetTableData();
-             
-    }}
 
 
- 
-    public String handle(){
-        FileChooser fileChooser = new FileChooser();
 
-        //Set extension filter
-        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-
-        //Show open file dialog
-        File file = fileChooser.showOpenDialog(null);
-        String filePath = file.getAbsolutePath();
-        try {
-            BufferedImage bufferedImage = ImageIO.read(file);
-            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-            iv.setImage(image);
-                         System.out.println(" aaaaaaaa");
-
-
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-
-        return filePath;
-    }    
-    @FXML
-    private void chooseAction(ActionEvent event) throws IOException {
-        BtnChoixImage.setText(handle());
-    }
-    
-    
-   
     
 }

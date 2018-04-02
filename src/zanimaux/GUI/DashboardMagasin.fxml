@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="538.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.DashboardMagasinController">
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.DashboardMagasinController">
    <children>
-      <ImageView fitHeight="638.0" fitWidth="940.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="577.0" fitWidth="953.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.45733642578125" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../ImageUtile/BloodHound.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="41.0" layoutY="3.0" mnemonicParsing="false" onAction="#ajouterMagasin" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes magasins" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="10.0">
+      <Button layoutX="41.0" layoutY="3.0" mnemonicParsing="false" onAction="#afficherMagasin" prefHeight="20.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes magasins" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="660.0" AnchorPane.topAnchor="5.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -28,9 +28,8 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
-      <Pane fx:id="ajoutProduit" layoutX="27.0" layoutY="50.0" onMouseClicked="#uploadpic" prefHeight="501.0" prefWidth="353.0" style="-fx-background-color: rgba(17,149,175,0.3);">
+      <Pane fx:id="ajoutProduit" layoutX="295.0" layoutY="46.0" onMouseClicked="#uploadpic" prefHeight="501.0" prefWidth="353.0" style="-fx-background-color: rgba(17,149,175,0.3);">
          <children>
-            <Label id="lb" layoutX="2.0" layoutY="456.0" prefHeight="37.0" prefWidth="130.0" visible="false" />
             <Label layoutX="12.0" layoutY="25.0" text="Libelle" textFill="#f5f0f0">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -74,12 +73,12 @@
             </Label>
             <TextField id="titre" fx:id="desc" layoutX="172.0" layoutY="235.0" opacity="0.7" prefHeight="95.0" prefWidth="167.0" />
             <ChoiceBox id="idMagasin" fx:id="idMagasin" layoutX="174.0" layoutY="345.0" prefHeight="27.0" prefWidth="164.0" />
-            <Button id="bt" fx:id="BtnChoixImage" layoutX="10.0" layoutY="410.0" mnemonicParsing="false" onAction="#chooseAction" style="-fx-background-color: transparent; -fx-border-color: white;" text="Photo produit..." textFill="WHITE" />
             <ImageView fx:id="iv" fitHeight="65.0" fitWidth="68.0" layoutX="234.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" />
-            <Label id="lb" fx:id="lb" prefHeight="17.0" prefWidth="111.0" visible="false" />
+            <Label id="lb" fx:id="lb" layoutY="467.0" prefHeight="27.0" prefWidth="167.0" visible="false" />
+            <Button fx:id="picturepath" layoutX="13.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#uploadpic" text="Photo produit" />
          </children>
       </Pane>
-      <TableView fx:id="table_list_produit" editable="true" layoutX="403.0" layoutY="163.0" prefHeight="247.0" prefWidth="532.0">
+      <TableView fx:id="table_list_produit" editable="true" layoutX="7.0" layoutY="163.0" prefHeight="247.0" prefWidth="928.0">
          <columns>
             <TableColumn fx:id="column_id" prefWidth="100.0" text="idProduit" />
             <TableColumn fx:id="column_idMagasin" prefWidth="75.0" text="idMagasin" />
@@ -88,19 +87,18 @@
             <TableColumn fx:id="column_type" prefWidth="75.0" text="Type" />
             <TableColumn fx:id="column_qte" prefWidth="75.0" text="Quantité" />
             <TableColumn fx:id="column_prix" prefWidth="75.0" text="Prix" />
-            <TableColumn fx:id="column_desc" prefWidth="75.0" text="Description" />
-            <TableColumn fx:id="column_nbfoisvendu" prefWidth="75.0" text="Nombre de fois vendu" />
-            <TableColumn fx:id="column_url" prefWidth="75.0" text="Url vers la piece jointe" />
+            <TableColumn fx:id="column_desc" prefWidth="88.610107421875" text="Description" />
+            <TableColumn fx:id="column_nbfoisvendu" prefWidth="142.38983154296875" text="Nombre de fois vendu" />
+            <TableColumn fx:id="column_url" prefWidth="148.4576416015625" text="Url vers la piece jointe" />
          </columns>
       </TableView>
-      <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="836.0" layoutY="11.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+      <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="836.0" layoutY="11.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../Image/logout.png" />
          </image>
       </ImageView>
-      <Label layoutX="864.0" layoutY="12.0" onMouseClicked="#logOut" prefHeight="17.0" prefWidth="46.0" text="LogOut" textFill="#fffafa" AnchorPane.topAnchor="10.0" />
-      <Button layoutX="574.0" layoutY="447.0" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="26.0" prefWidth="190.0" text="Supprimer Produit" />
-      <Button layoutX="221.0" layoutY="3.0" mnemonicParsing="false" onAction="#ajouterMagasin" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes produits" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="10.0">
+      <Label layoutX="864.0" layoutY="12.0" onMouseClicked="#logOut" prefHeight="17.0" prefWidth="46.0" text="LogOut" textFill="#fffafa" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button layoutX="221.0" layoutY="3.0" mnemonicParsing="false" onAction="#afficherProduit" prefHeight="20.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes produits" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="5.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -108,7 +106,7 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="425.0" layoutY="3.0" mnemonicParsing="false" onAction="#ajouterMagasin" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Ajouter Magasin" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="10.0">
+      <Button layoutX="425.0" layoutY="3.0" mnemonicParsing="false" onAction="#afficherFormMagasin" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Ajouter Magasin" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="5.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -116,7 +114,7 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="635.0" layoutY="2.0" mnemonicParsing="false" onAction="#ajouterMagasin" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Ajouter Produit" AnchorPane.leftAnchor="590.0" AnchorPane.topAnchor="10.0">
+      <Button layoutX="668.0" layoutY="8.0" mnemonicParsing="false" onAction="#afficherFormProduit" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Ajouter Produit" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="5.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -124,5 +122,6 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
+      <Button fx:id="btnsuppression" layoutX="743.0" layoutY="439.0" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="26.0" prefWidth="190.0" text="Supprimer Produit" />
    </children>
 </AnchorPane>

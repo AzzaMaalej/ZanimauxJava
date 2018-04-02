@@ -5,6 +5,9 @@
  */
 package zanimaux.GUI;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,10 +18,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -26,8 +34,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
+import javax.imageio.ImageIO;
 import zanimaux.Service.MagasinService;
 import zanimaux.Service.ProduitService;
 import zanimaux.entities.Magasin;
@@ -44,10 +59,6 @@ public class DashboardMagasinController implements Initializable {
 
     @FXML
     private TextField libelle;
-    @FXML
-    private ImageView imgProduit;
-    @FXML
-    private TextField picturepath;
     @FXML
     private TextField marque;
     @FXML
@@ -81,24 +92,26 @@ public class DashboardMagasinController implements Initializable {
     @FXML
     private TableView table_list_produit;
     @FXML
-    private ChoiceBox<String>Magasins;
+    private ChoiceBox<Integer>idMagasin;
+    @FXML
+    private Button BtnChoixImage;
+    @FXML
+    private ImageView iv;
+    @FXML
+    private Pane ajoutProduit;
+    @FXML
+    private Label lb;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //ObservableList<String> nomsMagasin = FXCollections.observableArrayList();
+        ObservableList<Integer> idsMagasin = FXCollections.observableArrayList();
         
         
         try {
-            /*MagasinService ms = new MagasinService();
-            User a = Session.getLoggedInUser();
-            List<Magasin> listMagasin= new ArrayList<>();
-            listMagasin = ms.Magasinier(a.getCin());
-            for(int i =0; i<=listMagasin.size();i++){
-                nomsMagasin.add(listMagasin.get(i).getNomMagasin());
-            }*/
+    
             MagasinService ms = new MagasinService();
             User a = Session.getLoggedInUser();
             List<Magasin> listMagasin= new ArrayList<>();
@@ -109,7 +122,9 @@ public class DashboardMagasinController implements Initializable {
             for(int i =0; i<listMagasin.size();i++){
                 list=sp.rechercheProduitsMagasin(listMagasin.get(i).getIdMagasin());
                 listProduit.addAll(list);
+                idsMagasin.add(listMagasin.get(i).getIdMagasin());
             }
+            idMagasin.setItems(idsMagasin);
             ObservableList<Produit> data = FXCollections.observableArrayList(listProduit); 
             
             column_id.setCellValueFactory(
@@ -195,9 +210,9 @@ public class DashboardMagasinController implements Initializable {
                         };
                        
                     }); 
-            /*
+            
             //modifier quantité
-            column_qte.setCellFactory(TextFieldTableCell.forTableColumn());
+            column_qte.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
             column_qte.setOnEditCommit(
                     new EventHandler<TableColumn.CellEditEvent<Produit, Integer>>() {
                         
@@ -205,26 +220,26 @@ public class DashboardMagasinController implements Initializable {
                         public void handle(TableColumn.CellEditEvent<Produit, Integer> t) {
                             ((Produit) t.getTableView().getItems().get(
                                     t.getTablePosition().getRow())
-                                    ).setQuantite(t.getNewValue());
+                                    ).setQuantite(t.getNewValue().intValue());
                             Produit p = (Produit) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                            p.setQuantite(t.getNewValue());
+                            p.setQuantite(t.getNewValue().intValue());
                             sp.ModifProduit(p,p.getIdProduit());
                         };
                        
                     }); 
-            */
+            
              //modifier prix
-            column_prix.setCellFactory(TextFieldTableCell.forTableColumn());
+            column_prix.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
             column_prix.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Produit, String>>() {
+                    new EventHandler<TableColumn.CellEditEvent<Produit, Double>>() {
                         
                         @Override
-                        public void handle(TableColumn.CellEditEvent<Produit, String> t) {
+                        public void handle(TableColumn.CellEditEvent<Produit, Double> t) {
                             ((Produit) t.getTableView().getItems().get(
                                     t.getTablePosition().getRow())
-                                    ).setPrix(Double.parseDouble(t.getNewValue()));
+                                    ).setPrix(t.getNewValue().doubleValue() );
                             Produit p = (Produit) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                            p.setPrix(Double.parseDouble(t.getNewValue()));
+                            p.setPrix(t.getNewValue().doubleValue());
                             sp.ModifProduit(p,p.getIdProduit());
                         };
                        
@@ -245,9 +260,9 @@ public class DashboardMagasinController implements Initializable {
                         };
                        
                     });
-            /*
+            
               //modfier nbfoisvendu
-            column_nbfoisvendu.setCellFactory(TextFieldTableCell.forTableColumn());
+            column_nbfoisvendu.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
             column_nbfoisvendu.setOnEditCommit(
                     new EventHandler<TableColumn.CellEditEvent<Produit, Integer>>() {
                         
@@ -255,13 +270,13 @@ public class DashboardMagasinController implements Initializable {
                         public void handle(TableColumn.CellEditEvent<Produit, Integer> t) {
                             ((Produit) t.getTableView().getItems().get(
                                     t.getTablePosition().getRow())
-                                    ).setNbFoisVendu(t.getNewValue());
+                                    ).setNbFoisVendu(t.getNewValue().intValue());
                             Produit p = (Produit) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                            p.setNbFoisVendu(t.getNewValue());
+                            p.setNbFoisVendu(t.getNewValue().intValue());
                             sp.ModifProduit(p,p.getIdProduit());
                         };
                        
-                    });  */            
+                    });          
               //modfier url photo
             column_url.setCellFactory(TextFieldTableCell.forTableColumn());
             column_url.setOnEditCommit(
@@ -293,14 +308,113 @@ public class DashboardMagasinController implements Initializable {
 
     @FXML
     private void logOut(MouseEvent event) {
+                
+        Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) table_list_produit.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
     }
 
-    @FXML
-    private void supprimerProduit(ActionEvent event) {
-    }
+    
 
     @FXML
-    private void ajouterMagasin(ActionEvent event) {
+    private void supprimerProduit(ActionEvent event) throws SQLException 
+    {
+        Produit a = (Produit) table_list_produit.getSelectionModel().getSelectedItem();
+        if(a == null){
+            System.out.println("Choisir un de vos Produit");
+                   
+        }else{
+            ProduitService ps = new ProduitService();
+            ps.SupprimerProduit(a.getIdProduit());
+            System.out.println("SUCCESS");
+                    resetTableData();
+                    resetTableData();
+           
+        }}
+       public void resetTableData() throws SQLException
+    {
+        MagasinService ms = new MagasinService();
+        User a = Session.getLoggedInUser();
+        List<Magasin> listMagasin= new ArrayList<>();
+        listMagasin = ms.Magasinier(a.getCin());
+        List<Produit> listProduit = new ArrayList<>();
+        ProduitService ps = new ProduitService();
+        List<Produit> list = new ArrayList<>();
+            for(int i =0; i<listMagasin.size();i++){
+                list=ps.rechercheProduitsMagasin(listMagasin.get(i).getIdMagasin());
+                listProduit.addAll(list);
+            }
+            ObservableList<Produit> data = FXCollections.observableArrayList(listProduit); 
+            table_list_produit.setItems(data);
     }
+    
+    @FXML
+    private void ajouterMagasin(ActionEvent event) throws SQLException 
+    {
+        
+        if(libelle.getText().equals("") ||  marque.getText().equals("") || type.getText().equals("")|| qte.getText().equals("") || prix.getText().equals("") || BtnChoixImage.getText().equals("") ){
+            lb.setText("champ vide");
+            lb.setVisible(true);
+        }else{
+               Produit p= new Produit();
+               p.setLibelle(libelle.getText());
+               p.setDescription(desc.getText());
+               p.setMarque(marque.getText());
+                             
+               p.setPhotoProduit(BtnChoixImage.getText());
+               p.setIdMagasin(idMagasin.getValue());
+               p.setPrix(Double.parseDouble(prix.getText()));
+               p.setQuantite(Integer.parseInt(qte.getText()));
+               p.setType(type.getText());
+               ProduitService ps= new ProduitService();
+
+               ps.ajouterProduit(p);
+               System.out.println("Ajout réussi");
+               resetTableData();
+             
+    }}
+
+
+ 
+    public String handle(){
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        String filePath = file.getAbsolutePath();
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            iv.setImage(image);
+                         System.out.println(" aaaaaaaa");
+
+
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+
+        return filePath;
+    }    
+    @FXML
+    private void chooseAction(ActionEvent event) throws IOException {
+        BtnChoixImage.setText(handle());
+    }
+    
+    
+   
     
 }

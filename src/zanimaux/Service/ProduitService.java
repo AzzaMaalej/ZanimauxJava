@@ -18,6 +18,8 @@ import zanimaux.Technique.DataSource;
 import zanimaux.entities.Articles;
 import zanimaux.entities.Magasin;
 import zanimaux.entities.Produit;
+import zanimaux.entities.User;
+import zanimaux.util.Session ;
 
 /**
  *
@@ -32,6 +34,29 @@ public class ProduitService
     public ProduitService() throws SQLException 
     {
         ste=con.createStatement();
+    }
+        public boolean ajouterProduit(Produit p) throws SQLException{
+       String requete = "INSERT INTO `Produit` ( `libelle`, `photoProduit`, `marque`, `type`,`idMagasin`, `quantite`, `description`, `prix`) VALUES (?,?,?,?,?,?,?,?) ";
+        Produit prod =new Produit();
+    
+       try {
+           
+            PreparedStatement pst =con.prepareStatement(requete);
+            pst.setString(1, p.getLibelle());
+            pst.setString(2,p.getPhotoProduit());
+            pst.setString(3,p.getMarque());
+            pst.setString(4,p.getType());
+            pst.setInt(5,p.getIdMagasin());
+            pst.setInt(6,p.getQuantite());
+            pst.setString(7,p.getDescription());
+            pst.setDouble(8,p.getPrix());
+           
+             pst.executeUpdate();
+            System.out.println("ajout reussi");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+            return false;
     }
     
     public ResultSet rechercheProduits(int i)
@@ -108,5 +133,19 @@ public class ProduitService
         }else{
             return true;
         }
+        
     }
+    public void SupprimerProduit(int id)
+    {
+        String requete="DELETE FROM Produit WHERE idProduit='"+id+"' ";     
+        Statement st;
+        try {
+            st = con.createStatement(); 
+            st.executeUpdate(requete);
+      System.out.println("produit supprimé");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+}
 }

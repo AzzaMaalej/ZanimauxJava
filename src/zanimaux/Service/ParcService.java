@@ -7,74 +7,190 @@ package zanimaux.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import zanimaux.Technique.DataSource;
 import zanimaux.entities.Parc;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  *
- * @author BelhassenLimam
+ * @author Azza
  */
 public class ParcService {
-     public Connection con = DataSource.getInstance().getCon();
-    
-     public boolean ajouterParc(Parc p)
-    {
-       String requete = "INSERT INTO parc (nomParc,CategorieDressage,adresseParc, villeParc, codePostaleParc, photoParc, cinUser) VALUES (?,?,?,?,?,?,?) ";
+    private static ParcService instance;
+    public static ParcService getInstance() throws SQLException {
        
+         if (instance == null) {
+            instance = new ParcService();
+        }
+        return instance;//To change body of generated methods, choose Tools | Templates.
+    }
+     public Connection con = DataSource.getInstance().getCon();
+     public Statement ste;
+     public ParcService() throws SQLException 
+    {
+        ste=con.createStatement();
+    }
+     
+   public boolean ajouterParc(Parc g) throws SQLException {
+       String req="INSERT INTO parc (id,nomParc,CategorieDressage, adresseParc ,villeParc ,codePostaleParc ,photoParc,cinDresseur) VALUES (?,?,?,?,?,?,?,?)";
+        Parc a =new Parc();
+        User user=Session.getLoggedInUser();
+        Userservice us= new Userservice();
        try {
-            PreparedStatement pst = con.prepareStatement(requete);
-            pst.setString(1,p.getNomParc());
-            pst.setString(2,p.getCategorieDressage());
-            pst.setString(3,p.getAdresseParc());
-            pst.setString(4,p.getVilleParc());
-            pst.setInt(5,p.getCodePostaleParc());
-            pst.setString(6,p.getPhotoParc());
-            pst.setObject(7,p.getCinUser());
-            pst.setString(8,null);
-            
-            pst.executeUpdate();
-            System.out.println("ajouté avec succés");
+       
+       PreparedStatement pre= con.prepareStatement(req);
+        
+        pre.setString(1, g.getId());
+        pre.setString(2, g.getNomParc());
+        pre.setString(3, g.getCategorieDressage());
+        pre.setString(4, g.getAdresseParc());
+        pre.setString(5, g.getVilleParc());
+        pre.setInt(6, g.getCodePostaleParc());
+        pre.setString(7, g.getPhotoParc());
+        pre.setString(8, user.getCin());
+        pre.executeUpdate();   
+     System.out.println("ajout reussit");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
             return false;
     }
-     
-     
-      public boolean modifierParc(int id,Parc p)
+   
+   public Parc AfficherParc(String i)
     { 
-    String requete="UPDATE parc SET nomParc=?, CategorieDressage=?, adresseParc=?, villeParc=? , codePostaleParc=? , photoParc=? where idParc='"+id+"'";
-        try {
-            PreparedStatement pst =con.prepareStatement(requete);
-            pst.setString(1,p.getNomParc());
-            pst.setString(2,p.getCategorieDressage());
-            pst.setString(3,p.getAdresseParc());
-            pst.setString(4,p.getVilleParc());
-            pst.setInt(5,p.getCodePostaleParc()); 
-            pst.setString(6,p.getPhotoParc());
-            
-             pst.executeUpdate();
-            System.out.println("modifié avec succés");
+
+        Parc listForm = new Parc();
+        try {  
+            String requete = "SELECT * FROM parc WHERE `cinDresseur`="+i;
+
+           
+            ResultSet rs = ste.executeQuery(requete);
+
+             while(rs.next()){
+                 listForm.setId(rs.getString("id"));
+                 listForm.setNomParc(rs.getString("nomParc"));
+                 listForm.setCategorieDressage(rs.getString("CategorieDressage"));
+                 listForm.setAdresseParc(rs.getString("adresseParc"));
+                 listForm.setVilleParc(rs.getString("villeParc"));
+                 listForm.setCodePostaleParc(rs.getInt("codePostaleParc"));
+                 listForm.setPhotoParc(rs.getString("photoParc"));
+                 listForm.setCinDresseur(rs.getString("cinDresseur"));             
+            }
+             
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            Logger.getLogger(ParcService.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return false;
+        return listForm;
+    
     }
-     
-     public void supprimerParc(int id)
+   
+   
+   
+   public ResultSet AfficherParc()
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM parc" ;
+            rs = ste.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherParc()");
+        }
+        return rs ;
+    
+    }
+   public ResultSet AfficherParcByCin(String c)
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM parc WHERE cinDresseur='"+c+"' " ;
+            
+            rs = ste.executeQuery(requete);
+            
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherParc()");
+        }
+        return rs ;
+    
+    }
+   
+   public void supprimerParc(int id)
          {
                 
-             String requete="DELETE FROM `parc` WHERE idParc='"+id+"' ";     
+             String requete="DELETE FROM `parc` WHERE id='"+id+"' ";     
              Statement st;
              try {
               st = con.createStatement(); 
               st.executeUpdate(requete);
-              System.out.println("Supprimé avec succés");
+              System.out.println("Parc supprimé");
 
             } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-     }
+}
+
+    public void supprimerParc(String b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public List<Parc> AfficherParcsByCin(String c){
+         List<Parc>  listParcs = new ArrayList<>();
+        try {  
+            String requete = "SELECT * FROM parc WHERE cinDresseur='"+c+"'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+                Parc listForm=new Parc();
+                 listForm.setId(rs.getString("id"));
+                 listForm.setNomParc(rs.getString("nomParc"));
+                 listForm.setCategorieDressage(rs.getString("CategorieDressage"));
+                 listForm.setAdresseParc(rs.getString("adresseParc"));
+                 listForm.setVilleParc(rs.getString("villeParc"));
+                 listForm.setCodePostaleParc(rs.getInt("codePostaleParc"));
+                 listForm.setPhotoParc(rs.getString("photoParc"));
+                 listForm.setCinDresseur(rs.getString("cinDresseur"));
+                 listParcs.add(listForm);
+            }
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherRefugeByCin()");
+        }
+        return listParcs ;
+    }
+    
+    public boolean ModifierParc(Parc r)
+    {
+        int nbr_ligne;
+        try{
+            
+            String requete="UPDATE parc set id=?, nomParc=?, CategorieDressage=?, adresseParc=?, villeParc=?, codePostaleParc=?, photoParc=? WHERE id='"+r.getId()+"'";
+            PreparedStatement pst = con.prepareStatement(requete);
+            pst.setString(1, r.getId());
+            pst.setString(2,r.getNomParc());
+
+            pst.setString(3,r.getCategorieDressage());
+            pst.setString(4,r.getAdresseParc());
+            pst.setString(5,r.getVilleParc());
+            pst.setInt(6,r.getCodePostaleParc());
+            pst.setString(7,r.getPhotoParc());
+            
+            
+            
+            nbr_ligne=pst.executeUpdate();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ParcService.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        if(nbr_ligne == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

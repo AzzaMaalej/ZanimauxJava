@@ -16,6 +16,11 @@ public class Magasin {
     private String nomMagasin;
     private String adresseMagasin;
     private String villeMagasin;
+    private int nbProduit;
+    private String cinProprietaireMagasin;
+    private int bestSellerMagasin;
+    private String photoMagasin;
+    private int codePostaleMagasin;
 
     public String getVilleMagasin() {
         return villeMagasin;
@@ -24,11 +29,8 @@ public class Magasin {
     public void setVilleMagasin(String villeMagasin) {
         this.villeMagasin = villeMagasin;
     }
-    private int codePostaleMagasin;
-    private String photoMagasin;
-    private String cinProprietaireMagasin;
-    private int bestSellerMagasin;
-
+    
+   
     public Magasin() {
         
     }
@@ -148,6 +150,14 @@ public class Magasin {
         this.codePostaleMagasin = codePostaleMagasin;
         this.photoMagasin = photoMagasin;
         this.bestSellerMagasin = bestSellerMagasin;
+    }
+
+    public int getNbProduit() {
+        return nbProduit;
+    }
+
+    public void setNbProduit(int nbProduit) {
+        this.nbProduit = nbProduit;
     }
 
     public void setIdMagasin(int idMagasin) {

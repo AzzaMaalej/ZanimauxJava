@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -51,7 +50,7 @@
             <TextArea id="desc" fx:id="input_description" layoutX="14.0" layoutY="83.0" prefHeight="288.0" prefWidth="200.0" />
             <Button id="bt" layoutX="219.0" layoutY="22.0" mnemonicParsing="false" onAction="#ajouterArticle" text="Publier votre article" />
             <ImageView id="imm" fx:id="iv" fitHeight="99.0" fitWidth="94.0" layoutX="231.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXTextField id="picturepath" fx:id="picturepath" focusColor="#8cd0ba" labelFloat="true" layoutX="239.0" layoutY="213.0" prefHeight="25.0" prefWidth="81.0" unFocusColor="#1a1d4d" visible="false" />
+            <TextField id="picturepath" fx:id="picturepath" layoutX="239.0" layoutY="213.0" prefHeight="25.0" prefWidth="81.0"  visible="false" />
          </children>
       </Pane>
       <TableView fx:id="table_list_article" editable="true" layoutX="431.0" layoutY="103.0" prefHeight="247.0" prefWidth="326.0">

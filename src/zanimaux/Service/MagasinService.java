@@ -14,8 +14,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import zanimaux.entities.Articles;
+import zanimaux.util.Session;
 
 /**
  *
@@ -32,8 +36,8 @@ public class MagasinService {
     
     public boolean ajouterMagasin(Magasin m)
     {
-       String requete = "INSERT INTO Magasin (numRC,nomMagasin,adresseMagasin, codePostaleMagasin, photoMagasin, cinProprietaireMagasin, bestSellerMagasin) VALUES (?,?,?,?,?,?) ";
-       
+       String requete = "INSERT INTO Magasin (numRC,nomMagasin,adresseMagasin, codePostaleMagasin, photoMagasin, cinProprietaireMagasin) VALUES (?,?,?,?,?,) ";
+       User u= Session.getLoggedInUser();
        try {
             PreparedStatement pst =con.prepareStatement(requete);
             pst.setString(1,m.getNumRC());
@@ -41,8 +45,8 @@ public class MagasinService {
             pst.setString(3,m.getAdresseMagasin());
             pst.setInt(4,m.getCodePostaleMagasin());
             pst.setString(5,m.getPhotoMagasin());
-            pst.setObject(6, m.getCinProprietaireMagasin());
-            pst.setObject(7, null);
+            pst.setString(6, u.getCin());
+            
             pst.executeUpdate();
             System.out.println("ajout reussit");
         } catch (SQLException ex) {
@@ -95,16 +99,37 @@ public class MagasinService {
         return listForm;
     
     }
-      public ResultSet rechercheMagasin()
-    { 
-        ResultSet rs=null;
-        try {  
-            String requete = "SELECT * FROM Magasin";
-            rs = ste.executeQuery(requete);
-             }catch (SQLException ex) {
-                 System.out.println(" erreur rechercheMagasin()");
+    
+    
+      public List<Magasin> Magasinier(String cin)
+   {
+        List<Magasin> listMagasins = new ArrayList<>();
+        try {
+            String requete = "select * from Magasin where cinProprietaireMagasin='"+cin+"'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            
+            while(rs.next()){
+                Magasin m= new Magasin();
+                m.setNumRC(rs.getString("numRC"));
+                m.setNomMagasin(rs.getString("nomMagasin"));
+                m.setNbProduit(rs.getInt("nbProduit"));
+                m.setAdresseMagasin(rs.getString("adresseMagasin"));
+                m.setCinProprietaireMagasin(cin);
+                m.setBestSellerMagasin(rs.getInt("bestSellerMagasin"));
+                m.setCodePostaleMagasin(rs.getInt("codePostaleMagasin"));
+                m.setIdMagasin(rs.getInt("idMagasin"));
+                m.setPhotoMagasin(rs.getString("photoMagasin"));
+                              
+                listMagasins.add(m);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        return rs ;
+        return listMagasins;
     
     }
     
@@ -124,6 +149,21 @@ public class MagasinService {
       
 
 }
+    
+        
+    public ResultSet rechercheMagasin()
+    { 
+
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM Magasin" ;
+            rs = ste.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur rechercheMagasin()");
+        }
+        return rs ;
+    
+    }
 }
     
 

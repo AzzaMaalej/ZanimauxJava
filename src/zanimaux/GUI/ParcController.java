@@ -67,6 +67,12 @@ public class ParcController implements Initializable {
      * Initializes the controller class.
      */
     @Override
+<<<<<<< HEAD
+    public void initialize(URL url, ResourceBundle rb)  {
+        /*  ParcService m = null;
+          m = new ParcService();
+        ResultSet r =m.AfficherTousParc();
+=======
     public void initialize(URL url, ResourceBundle rb) {
      ParcService m=null;
         try {
@@ -77,6 +83,7 @@ public class ParcController implements Initializable {
         User user=Session.getLoggedInUser();
             String cin=user.getCin();
         ResultSet r =m.AfficherParcByCin(cin);
+>>>>>>> 5fd14659e4be428c489a9856d41c43b356bacd67
         Parc m1=new Parc();
         r= m.AfficherParcByCin(cin);
         ScrollPane sp = new ScrollPane();
@@ -171,6 +178,14 @@ public class ParcController implements Initializable {
             Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+<<<<<<< HEAD
+           
+        sp.setContent(vb);
+         anchorEvent.getChildren().setAll(sp);*/
+        
+    }}    
+=======
     }
 
  }
+>>>>>>> 5fd14659e4be428c489a9856d41c43b356bacd67

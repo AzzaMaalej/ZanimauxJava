@@ -197,9 +197,22 @@ public class Userservice {
         User listForm = new User();
         try {  
             String requete = "SELECT * FROM fos_user WHERE cin='"+i+"' ";
+<<<<<<< HEAD
+
+              PreparedStatement st = con.prepareStatement(requete);
+
+
+         //  PreparedStatement st=con.prepareStatement(requete);
+
+
+
+         //  PreparedStatement st=con.prepareStatement(requete);
+
+=======
 
 
           PreparedStatement st=con.prepareStatement(requete);
+>>>>>>> 5fd14659e4be428c489a9856d41c43b356bacd67
 
            
 
@@ -322,6 +335,10 @@ public class Userservice {
         
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5fd14659e4be428c489a9856d41c43b356bacd67
 
 }
 

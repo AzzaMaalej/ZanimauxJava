@@ -49,6 +49,7 @@ import zanimaux.entities.Produit;
 import zanimaux.entities.Refuge;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
+import zanimaux.util.Validation;
 
 /**
  * FXML Controller class
@@ -65,8 +66,7 @@ public class GestionAnimauxController implements Initializable {
     private TextField picturepath;
     @FXML
     private TableColumn column_id;
-    @FXML
-    private TextField input_id_animal;
+    
     @FXML
     private TextField input_nom_animal;
     @FXML
@@ -101,6 +101,18 @@ public class GestionAnimauxController implements Initializable {
     private Label logOut;
     @FXML
     private TableView table_list_animal;
+    @FXML
+    private Label lbnom;
+    @FXML
+    private Label lbrace;
+    @FXML
+    private Label lbtype;
+    @FXML
+    private Label lbage;
+    @FXML
+    private Label lbetat;
+    @FXML
+    private Label lbphoto;
 
     /**
      * Initializes the controller class.
@@ -117,8 +129,9 @@ public class GestionAnimauxController implements Initializable {
             ObservableList<String> ob = FXCollections.observableArrayList();
             ob.addAll(listetat);
             choice_etat.setItems(ob);
-        
+            System.out.println("azzza");
             User a = Session.getLoggedInUser();
+            System.out.println(a.getCin());
             List<Refuge> listRefuge= new ArrayList<>();
             listRefuge = ms.AfficherRefugeByCin(a.getCin());
             List<Animal> listAnimal = new ArrayList<>();
@@ -156,25 +169,7 @@ public class GestionAnimauxController implements Initializable {
                     new PropertyValueFactory<Animal,String>("photoanimal")
             );              
             table_list_animal.setItems(data);
-            //modification idAnimal
-            column_id.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-            column_id.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Animal, Integer>>() {
-                        
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<Animal, Integer> t) {
-                            ((Animal) t.getTableView().getItems().get(
-                                    t.getTablePosition().getRow())
-                                    ).setIdAnimal(t.getNewValue());
-                            Animal p = (Animal) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                            p.setIdAnimal(t.getNewValue());
-                            sp.ModifierAnimal(p);
-                        };
-                        
-                        
-                        
-                    });
-            
+           
             //modifier nom animal
             column_nom.setCellFactory(TextFieldTableCell.forTableColumn());
             column_nom.setOnEditCommit(
@@ -278,26 +273,78 @@ public class GestionAnimauxController implements Initializable {
             Logger.getLogger(GestionAnimauxController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-
-    @FXML
-    private void ajouterAnimal(ActionEvent event) throws SQLException {
-         String z,zz;
+         public boolean controleSaisie() throws IOException, SQLException {
+        boolean saisie = true;
+        String z;
         int r = 0;
-        int q=0;
         z = choice_etat.getValue();
-        zz=choice_refuge.getValue();
         if ("à adopter".equals(z)) {
             r = 1;
         }
+        if((r!=1)){
+            lbetat.setText("* vous devez choisir l'etat de l'animal");
+            saisie = false;
+        }else{
+            lbetat.setText("");
+             saisie = true;
+        }
+//        String zz;
+//        zz=choice_refuge.getValue();
+//        if( zz.equals("")){
+//          lb.setText("* vous devez choisir un refuge");
+//           lb.setVisible(true);
+//          saisie = false;
+//      } else {
+//                     lb.setText("");
+//                      saisie = true;
+// 
+//        }
+
+        if (!Validation.textalphabet(input_nom_animal, lbnom, "* le nom doit contenir que des lettre")) {
+            saisie = false;
+        }
+        
+         if (!Validation.textValidation(input_nom_animal,lbnom, "* tout les champs doivent etre remplis")) {
+            saisie = false;
+        }
+
+        if (!Validation.textalphabet(input_race, lbrace, "* le race doit contenir que des lettre")) {
+            saisie = false;
+        }
+         if (!Validation.textValidation(input_race, lbrace, "* tout les champs doivent etre remplis")) {
+            saisie = false;
+        }
+
+        if (!Validation.textValidation(input_type, lbtype, "* tout les champs doivent etre remplis")) {
+            saisie = false;
+        }
+       if (!Validation.textalphabet(input_type, lbtype, "* le type doit contenir que des lettre")) {
+            saisie = false;
+        }
+
        
-         if(input_id_animal.getText().equals("") ||  input_nom_animal.getText().equals("")||  input_age.getText().equals("") ||  input_race.getText().equals("")|| picturepath.getText().equals("")||  input_type.getText().equals("") ||  ((r!=1))||  zz.equals("")){
-            lb.setText("Remplir tous les champs");
-            lb.setVisible(true);
-        }else
+        if (!Validation.textValidation(input_age, lbage, "* tout les champs doivent etre remplis")) {
+            saisie = false;
+        }
+         if (!Validation.texNum(input_age, lbage, "* l'age doit contenir que des numero")) {
+                    saisie = false;
+                }
+        if (!Validation.textValidation(picturepath, lbphoto, "photo manquante")) {
+            saisie = false;
+        }
+         
+      
+        return saisie;
+    }
+
+    @FXML
+    private void ajouterAnimal(ActionEvent event) throws SQLException, IOException {
+
+            if(this.controleSaisie())
          {
                AnimalService ase= new AnimalService();
                Animal listForm=new Animal();
-               listForm.setIdAnimal(Integer.parseInt(input_id_animal.getText()));
+               
                  listForm.setNomAnimal(input_nom_animal.getText());
                  listForm.setRefuge(choice_refuge.getValue());
                  listForm.setEtat(choice_etat.getValue());

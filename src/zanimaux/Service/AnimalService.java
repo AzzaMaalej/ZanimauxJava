@@ -123,19 +123,19 @@ public Statement ste;
         }
 }
      public boolean ajouterAnimal(Animal r) throws SQLException{
-       String requete = "INSERT INTO animal (refuge,idAnimal, type, etat, nomAnimal, photoanimal, age,  race) VALUES (?,?,?,?,?,?,?,?) ";
+       String requete = "INSERT INTO animal (refuge, type, etat, nomAnimal, photoanimal, age,  race) VALUES (?,?,?,?,?,?,?) ";
         
        try {
            
             PreparedStatement pst =con.prepareStatement(requete);
             pst.setString(1, r.getRefuge());
-            pst.setInt(2,r.getIdAnimal());
-            pst.setString(3,r.getType());
+            
+            pst.setString(2,r.getType());
 
-            pst.setString(4,r.getEtat());
-            pst.setString(5,r.getNomAnimal());
-            pst.setString(6,r.getPhotoAnimal());
-            pst.setInt(8,r.getAge());
+            pst.setString(3,r.getEtat());
+            pst.setString(4,r.getNomAnimal());
+            pst.setString(5,r.getPhotoAnimal());
+            pst.setInt(6,r.getAge());
             pst.setString(7,r.getRace());
             
              pst.executeUpdate();

@@ -21,12 +21,14 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -40,6 +42,7 @@ import zanimaux.Service.RefugeService;
 import zanimaux.entities.Animal;
 
 import zanimaux.entities.Refuge;
+import zanimaux.util.Session;
 
 
 /**
@@ -52,8 +55,6 @@ public class RefugeClientController implements Initializable {
     @FXML
     private Button buttonRF;
     @FXML
-    private Button evenement;
-    @FXML
     private Button userName;
     @FXML
     private Pane pane;
@@ -63,6 +64,10 @@ public class RefugeClientController implements Initializable {
     private Button btn1;
     @FXML
     private AnchorPane anchorEvent;
+    @FXML
+    private Button btnMagasin;
+    @FXML
+    private Button btnevenement;
    
     /**
      * Initializes the controller class.
@@ -82,8 +87,7 @@ public class RefugeClientController implements Initializable {
          ScrollPane sp = new ScrollPane();
     
           sp.setPrefSize(900, 650);
-//         sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-//         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+
         VBox vb = new VBox();
         HBox hb =null;
         vb.setPadding(new Insets(100, 30, 0, 30));
@@ -111,9 +115,10 @@ public class RefugeClientController implements Initializable {
                 Image image= new Image("zanimaux/ImageUtile/"+m1.getPhotoRefuge(),150,120,false,false) ;
                 im.setImage(image);
                 Text t1 =new Text(m1.getNomRefuge());
-                t1.setFont(Font.font("Verdana", 20) );
+                t1.setFont(Font.font("Comic Sans MS", 20) );
+                t1.setStyle("Bold");
                 Text t =new Text(m1.getAdresseRefuge()+" "+m1.getGouvernementRefuge()+", "+m1.getCodePostaleRefuge());
-                t.setFont(Font.font("Verdana", 15) );
+                t.setFont(Font.font("Comic Sans MS", 15) );
                 Button b = new Button();
                 b.setText("consulter refuge");
                 b.setId(String.valueOf(m1.getImmatriculation()));
@@ -121,7 +126,7 @@ public class RefugeClientController implements Initializable {
                     try {
                         consulterRefuge(e);
                     } catch (SQLException ex) {
-                        Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
                 VBox vbMagasin = new VBox();
@@ -164,11 +169,15 @@ public class RefugeClientController implements Initializable {
            AnimalService m= new AnimalService();
           
             String a =((Node)e.getSource()).getId();
+            
             rs=  m.RechercherAnimalByImm(a) ;
+            if (rs==null){
+               
+            }
             int i=0;
             Animal listForm=new Animal();
             ScrollPane sp = new ScrollPane();
-            sp.setPrefSize(500, 500);
+            sp.setPrefSize(900, 650);
             sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
             sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
             VBox vb = new VBox();
@@ -189,11 +198,14 @@ public class RefugeClientController implements Initializable {
                 ImageView im= new ImageView();
                 Image image= new Image("zanimaux/ImageUtile/"+listForm.getPhotoAnimal(),150,120,false,false) ;
                 im.setImage(image);
-                Text t1 =new Text(listForm.getRace());
-                t1.setFont(Font.font("Verdana", 20));
-                Text t =new Text(listForm.getType());
-                t.setFont(Font.font("Verdana", 15) );
+                Text t1 =new Text("Race: "+listForm.getRace());
+                t1.setFont(Font.font("Comic Sans MS", 20));
                 
+                Text t =new Text("Type: "+listForm.getType());
+                t.setFont(Font.font("Comic Sans MS", 15) );
+                t1.setStyle("Bold");
+                 Text t2 =new Text("Etat: "+listForm.getEtat());
+                t2.setFont(Font.font("Comic Sans MS", 15) );
           
                       VBox vbProduit = new VBox(); 
           vbProduit.setPadding(new Insets(-60,0,30,30));
@@ -204,6 +216,7 @@ public class RefugeClientController implements Initializable {
           vbProduit.getChildren().add(im);
           vbProduit.getChildren().add(t1);
           vbProduit.getChildren().add(t);
+          vbProduit.getChildren().add(t2);
           i++;
           
           if(i%3!=1)
@@ -223,6 +236,73 @@ public class RefugeClientController implements Initializable {
         sp.setContent(vb);
          anchorEvent.getChildren().setAll(sp);
            
+    }
+
+    @FXML
+    private void AfficherLesMagasins(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnMagasin.getScene().getWindow(); 
+        stage.setTitle("NOS MAGASINS");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void addEvent(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnevenement.getScene().getWindow(); 
+        stage.setTitle("Ajouter Evenement");
+        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+     @FXML
+    private void showPane(MouseEvent event) {
+         pane.setVisible(true);
+    }
+      @FXML
+    private void hidePane(MouseEvent event) {
+         pane.setVisible(false);
+
+    }
+
+    @FXML
+    private void connexionAction(ActionEvent event) {
+          Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) btn11.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    }
+
+    @FXML
+    private void profil(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btn1.getScene().getWindow(); 
+        stage.setTitle("Profil");
+        Parent root = FXMLLoader.load(getClass().getResource("ProfilManager.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
    

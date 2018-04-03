@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.accueilOumaimaController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.accueilOumaimaController">
    <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -32,7 +32,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="3.0" layoutY="391.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
+            <Button fx:id="buttonRefuge" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" onAction="#AfficherRefugeAction" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -142,22 +142,20 @@
             </Button>
          </children>
       </AnchorPane>
-      <Pane fx:id="pane" layoutX="524.0" layoutY="56.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">
+      <Pane fx:id="pane" focusTraversable="true" layoutX="534.0" layoutY="55.0" prefHeight="98.0" prefWidth="179.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">
          <children>
-            <Label layoutX="-2.0" prefHeight="136.0" prefWidth="268.0" />
-            <Label layoutX="1.0" layoutY="136.0" prefHeight="64.0" prefWidth="265.0" style="-fx-border-color: #37502D8E;" />
-            <Button fx:id="btn11" layoutX="48.0" layoutY="149.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: #D15710; -fx-background-radius: 100; -fx-text-fill: white;" text="Se déconnecter" textFill="#1c4a26">
+            <Button fx:id="btn11" layoutX="48.0" layoutY="52.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #D15710; -fx-background-radius: 100; -fx-text-fill: white;" text="Se déconnecter" textFill="#1c4a26">
                <font>
                   <Font name="Comic Sans MS" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btn1" layoutX="50.0" layoutY="92.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: #1023D1BE; -fx-background-radius: 100; -fx-text-fill: white;" text="Voir profil" textFill="#1c4a26">
+            <Button fx:id="btn1" layoutX="50.0" mnemonicParsing="false" onAction="#profil" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #1023D1BE; -fx-background-radius: 100; -fx-text-fill: white;" text="Voir profil" textFill="#1c4a26">
                <font>
                   <Font name="Comic Sans MS" size="15.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <AnchorPane layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <AnchorPane layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
    </children>
 </AnchorPane>

@@ -56,13 +56,9 @@ public class ParcController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-          ParcService m = null;
-        try {
-            m = new ParcService();
-        } catch (SQLException ex) {
-            Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void initialize(URL url, ResourceBundle rb)  {
+        /*  ParcService m = null;
+          m = new ParcService();
         ResultSet r =m.AfficherTousParc();
         Parc m1=new Parc();
         r= m.AfficherTousParc();
@@ -126,6 +122,6 @@ public class ParcController implements Initializable {
 
            
         sp.setContent(vb);
-         anchorEvent.getChildren().setAll(sp);
+         anchorEvent.getChildren().setAll(sp);*/
         
     }}    

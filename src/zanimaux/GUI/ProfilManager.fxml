@@ -16,7 +16,7 @@
             <Image url="@../ImageUtile/29664086_1993762444219819_1871219695_n.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="14.0" layoutY="47.0" opacity="0.74" prefHeight="248.0" prefWidth="393.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;">
+      <AnchorPane layoutX="14.0" layoutY="67.0" opacity="0.74" prefHeight="248.0" prefWidth="393.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;">
          <children>
             <TextField id="nom" fx:id="nomId" layoutX="35.0" layoutY="26.0" prefHeight="30.0" prefWidth="150.0" promptText="Nom" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" />
             <TextField id="prenom" fx:id="prenomId" layoutX="220.0" layoutY="25.0" prefHeight="32.0" prefWidth="150.0" promptText="Prénom" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;">
@@ -51,7 +51,7 @@
             <Label fx:id="codePostaleLabel" layoutX="279.0" layoutY="198.0" textFill="RED" />
          </children>
       </AnchorPane>
-      <AnchorPane id="anchorPanecab" fx:id="anchorPanecab" layoutX="14.0" layoutY="339.0" opacity="0.74" prefHeight="268.0" prefWidth="503.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;" visible="false">
+      <AnchorPane id="anchorPanecab" fx:id="anchorPanecab" layoutX="14.0" layoutY="367.0" opacity="0.74" prefHeight="268.0" prefWidth="503.0" style="-fx-background-color: #d9cccc#d9cccc75; -fx-background-radius: 50;" visible="false">
          <children>
             <TextField id="telcab" fx:id="telcab" layoutX="218.0" layoutY="75.0" prefHeight="30.0" prefWidth="150.0" promptText="Téléphone Cabinet" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;" />
             <TextField id="adressecab" fx:id="adressecab" layoutX="30.0" layoutY="75.0" prefHeight="30.0" prefWidth="150.0" promptText="Adresse Cabinet" style="-fx-text-fill: black; -fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" />
@@ -83,16 +83,17 @@
             <Label fx:id="faxlabel" layoutX="-1.0" layoutY="-148.0" textFill="RED" />
          </children>
       </AnchorPane>
-      <Label alignment="TOP_CENTER" layoutX="-13.0" layoutY="14.0" prefHeight="39.0" prefWidth="380.0" text="Informations personelles" textFill="#128fad">
+      <Label alignment="TOP_CENTER" layoutX="-12.0" layoutY="31.0" prefHeight="39.0" prefWidth="380.0" text="Informations personelles" textFill="#128fad">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Label id="lbinf" fx:id="lbinf" alignment="TOP_CENTER" layoutX="-64.0" layoutY="295.0" prefHeight="39.0" prefWidth="440.0" text="Informations Cabinet" textFill="#128fad" visible="false">
+      <Label id="lbinf" fx:id="lbinf" alignment="TOP_CENTER" layoutX="-63.0" layoutY="325.0" prefHeight="39.0" prefWidth="440.0" text="Informations Cabinet" textFill="#128fad" visible="false">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
       <Label layoutX="460.0" layoutY="14.0" onMouseClicked="#logOut" text="LogOut" textFill="#128fad" />
+      <Label fx:id="btnRetour" layoutX="14.0" layoutY="14.0" onMouseClicked="#Retour" text="Retour" textFill="#128fad" />
    </children>
 </AnchorPane>

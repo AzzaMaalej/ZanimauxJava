@@ -635,7 +635,6 @@ public class GestionRefugesController implements Initializable {
     @FXML
     private void GoBack(ActionEvent event) {
         
-        Session.setLoggedInUser(null);
         Parent root;
              try {
                  root = FXMLLoader.load(getClass().getResource("RefugeDashboard.fxml"));

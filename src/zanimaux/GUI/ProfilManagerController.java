@@ -119,6 +119,8 @@ public class ProfilManagerController implements Initializable {
     private Label faxlabel;
     @FXML
     private Label lbinf;
+    @FXML
+    private Label btnRetour;
 
     /**
      * Initializes the controller class.
@@ -386,5 +388,43 @@ public class ProfilManagerController implements Initializable {
                  Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
              }
     }
-    
+    @FXML
+    private void Retour(MouseEvent event) {
+        Parent root;
+        String z;
+       User a = Session.getLoggedInUser();
+        z = a.getRoles();
+        String vet= "a:1:{i:0;s:16:\"ROLE_VETERINAIRE\";}";
+        String admin= "a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}";
+        String propmag= "a:1:{i:0;s:25:\"ROLE_PROPRIETAIRE_MAGASIN\";}";
+        String propref= "a:1:{i:0;s:24:\"ROLE_PROPRIETAIRE_REFUGE\";}";
+        String clt= "a:1:{i:0;s:11:\"ROLE_CLIENT\";}";
+        String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
+        String pet="a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";
+       if (z.equals(propref))
+                         
+                {try{
+                    root = FXMLLoader.load(getClass().getResource("RefugeDashboard.fxml"));
+                 Stage myWindow = (Stage) btnRetour.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Proprietaire refuge");
+                 myWindow.show();}
+                catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+                }
+       else{
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) btnRetour.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    }
+    }
 }

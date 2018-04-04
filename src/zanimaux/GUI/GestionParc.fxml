@@ -112,7 +112,7 @@
             <TableColumn fx:id="column_photo" minWidth="0.0" prefWidth="92.0" text="Photo" />
          </columns>
       </TableView>
-      <Button fx:id="btnSupprimerRefuge" layoutX="443.0" layoutY="237.0" mnemonicParsing="false" onAction="#supprimerParc" prefHeight="26.0" prefWidth="190.0" text="Supprimer Refuge" />
+      <Button fx:id="btnSupprimerRefuge" layoutX="443.0" layoutY="237.0" mnemonicParsing="false" onAction="#supprimerParc" prefHeight="26.0" prefWidth="190.0" text="Supprimer Parc" />
       <Button fx:id="logOut" layoutX="504.0" layoutY="6.0" mnemonicParsing="false" onAction="#logOut" prefHeight="31.0" prefWidth="73.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Log out" textFill="WHITE">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

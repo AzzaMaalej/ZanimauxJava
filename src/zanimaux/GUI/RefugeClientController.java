@@ -39,6 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -202,6 +203,15 @@ public class RefugeClientController implements Initializable {
     
         ResultSet rs =null;
        String a =((Node)e.getSource()).getId();
+         VBox comm = new VBox();
+           comm.setSpacing(5);
+           Label erreur= new Label(); 
+           erreur.setVisible(false);
+           Text tex=new Text();
+           tex.setText("Vos avis..");
+           tex.setFont(Font.font("Comic Sans MS", 18) );
+           tex.setStyle("Bold");
+            comm.getChildren().add(tex);
         TextArea inputCom=new TextArea();
             inputCom.setPromptText("Ajouter un commentaire..");
             inputCom.setPrefHeight(40.0);
@@ -214,21 +224,23 @@ public class RefugeClientController implements Initializable {
             btnCom.layoutYProperty().add(535.0);
              btnCom.setOnAction(k->{
                     try {
+                        if("".equals(inputCom.getText())){
+                          
+                          erreur.setText("** D'abbord vous devez ecrire un commentaire");
+                          erreur.setTextFill(Paint.valueOf("#ff0000"));
+                          erreur.setVisible(true);
+                          
+                        }else{
+                         erreur.setVisible(false);   
                         ajouterCommentaire(k,inputCom.getText(),a);
                         inputCom.setText("");
                         
-                       
+                        }
                     } catch (SQLException ex) {
                         Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
-            VBox comm = new VBox();
-           comm.setSpacing(5);
-           Text tex=new Text();
-           tex.setText("Vos avis..");
-           tex.setFont(Font.font("Comic Sans MS", 18) );
-           tex.setStyle("Bold");
-            comm.getChildren().add(tex);
+          
            Commentaires co =new Commentaires();
         CommentairesService cs= new CommentairesService();
         ResultSet rc = cs.RechercherComByImm(a);
@@ -292,6 +304,7 @@ public class RefugeClientController implements Initializable {
                 });
            }
            comm.getChildren().add(inputCom);
+           comm.getChildren().add(erreur);
            comm.getChildren().add(btnCom);
            AnimalService m= new AnimalService();
           

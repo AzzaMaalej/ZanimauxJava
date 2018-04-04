@@ -6,6 +6,7 @@
 
 package zanimaux.GUI;
 
+
 import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -69,6 +71,7 @@ public class ParcController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb)  {
+        
         ParcService m=null;
         try {
             m = new ParcService();
@@ -116,6 +119,34 @@ public class ParcController implements Initializable {
           t4.setFill(Color.web("#0076a3"));
           Text t =new Text(m1.getAdresseParc()+" "+m1.getVilleParc()+", "+m1.getCodePostaleParc());
           t.setFont(Font.font("Verdana", 14) );
+          
+          Image imageDecline = new Image("zanimaux/ImageUtile/delete.png",26,26,false,false);
+          Image imageModif = new Image("zanimaux/ImageUtile/pencil.png",26,26,false,false);
+            Button b = new Button();
+            b.setBackground(Background.EMPTY);
+            b.setGraphic(new ImageView(imageDecline));
+            b.setId(String.valueOf(m1.getId()));
+            b.setOnAction(e->{
+                    try {
+                        onClickEvenementAction(e);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+             Button b1 = new Button();
+             b1.setBackground(Background.EMPTY);
+            b1.setGraphic(new ImageView(imageModif));
+            b1.setId(String.valueOf(m1.getId()));
+            b1.setOnAction(e->{
+                    try {
+                        onClickEvenementAction(e);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+         
+         HBox h = new HBox(b, b1);
+         h.setSpacing(50);
           VBox vbParc = new VBox(); 
           vbParc.setPadding(new Insets(-60,0,30,30));
           vbParc.setSpacing(20);
@@ -127,6 +158,10 @@ public class ParcController implements Initializable {
           vbParc.getChildren().add(t2);
           vbParc.getChildren().add(t4);
           vbParc.getChildren().add(t);
+          vbParc.getChildren().add(h);
+         
+
+          
           i++;
           System.out.println(m1.getId()+" "+m1.getPhotoParc());
           if(i%3!=1)
@@ -152,7 +187,14 @@ public class ParcController implements Initializable {
         
     }  
     @FXML
-    private void onClickEvenementAction(ActionEvent event) {
+    private void onClickEvenementAction(ActionEvent event) throws SQLException {
+       
+        ParcService m= new ParcService();
+          
+            String a =((Node)event.getSource()).getId();
+            m.supprimerParc(a);
+         resetPageData();
+        
     }
      @FXML
     private void showPane(MouseEvent event) {
@@ -174,7 +216,125 @@ public class ParcController implements Initializable {
 
        
         
-    }}   
+    }
+   public void resetPageData() throws SQLException
+    {
+        
+          ParcService m=null;
+        try {
+            m = new ParcService();
+        } catch (SQLException ex) {
+            Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        User user=Session.getLoggedInUser();
+            String cin=user.getCin();
+        ResultSet r =m.AfficherParcByCin(cin);
+        Parc m1=new Parc();
+        r= m.AfficherParcByCin(cin);
+        ScrollPane sp = new ScrollPane();
+    
+        sp.setPrefSize(900, 650);
+//         sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+//         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+        VBox vb = new VBox();
+        HBox hb =null;
+        vb.setPadding(new Insets(100, 30, 0, 30));
+        vb.setSpacing(100);
+        int i=0;
+         try{
+      while(r.next())
+      { 
+          m1.setId(r.getString("id"));
+          m1.setNomParc(r.getString("nomParc"));
+          m1.setCategorieDressage(r.getString("CategorieDressage"));
+          m1.setAdresseParc(r.getString("adresseParc"));
+          m1.setVilleParc(r.getString("villeParc"));
+          m1.setCodePostaleParc(r.getInt("codePostaleParc"));
+          m1.setPhotoParc(r.getString("photoParc"));
+          m1.setCinDresseur(r.getString("cinDresseur"));
+          ImageView im= new ImageView();
+          Image image= new Image("zanimaux/ImageUtile/"+m1.getPhotoParc(),150,120,false,false) ;
+          im.setImage(image);
+          Text t1 =new Text(m1.getNomParc());
+          t1.setFont(Font.font("Verdana", 16));
+          Text t3 = new Text("Dressage de : ");
+          t3.setFont(Font.font("Verdana", 15));
+          t3.setFill(Color.web("#0076a3"));
+          Text t2 = new Text(m1.getCategorieDressage());
+          t2.setFont(Font.font("Verdana", 14));
+          Text t4 = new Text("Adresse : ");
+          t4.setFont(Font.font("Verdana", 15));
+          t4.setFill(Color.web("#0076a3"));
+          Text t =new Text(m1.getAdresseParc()+" "+m1.getVilleParc()+", "+m1.getCodePostaleParc());
+          t.setFont(Font.font("Verdana", 14) );
+          
+          Image imageDecline = new Image("zanimaux/ImageUtile/delete.png",26,26,false,false);
+          Image imageModif = new Image("zanimaux/ImageUtile/pencil.png",26,26,false,false);
+            Button b = new Button();
+            b.setBackground(Background.EMPTY);
+            b.setGraphic(new ImageView(imageDecline));
+            b.setId(String.valueOf(m1.getId()));
+            b.setOnAction(e->{
+                    try {
+                        onClickEvenementAction(e);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+             Button b1 = new Button();
+             b1.setBackground(Background.EMPTY);
+            b1.setGraphic(new ImageView(imageModif));
+            b1.setId(String.valueOf(m1.getId()));
+            b1.setOnAction(e->{
+                    try {
+                        onClickEvenementAction(e);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+         
+         HBox h = new HBox(b, b1);
+         h.setSpacing(50);
+          VBox vbParc = new VBox(); 
+          vbParc.setPadding(new Insets(-60,0,30,30));
+          vbParc.setSpacing(20);
+          vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
+          vbParc.setPrefSize(200, 150);
+          vbParc.getChildren().add(im);
+          vbParc.getChildren().add(t1);
+          vbParc.getChildren().add(t3);
+          vbParc.getChildren().add(t2);
+          vbParc.getChildren().add(t4);
+          vbParc.getChildren().add(t);
+          vbParc.getChildren().add(h);
+         
+
+          
+          i++;
+          System.out.println(m1.getId()+" "+m1.getPhotoParc());
+          if(i%3!=1)
+          {
+            hb.getChildren().add(vbParc) ;
+          }
+          else
+          {
+            hb = new HBox();
+            hb.setPadding(new Insets(0,0,0,0));
+            hb.setSpacing(50);
+            hb.getChildren().add(vbParc) ;
+            vb.getChildren().add(hb); 
+           }
+                 
+      }
+      }catch( SQLException e){}
+        sp.setContent(vb);
+               
+        
+        anchorEvent.getChildren().setAll(sp);
+    }
+}
+
+
 
     
 

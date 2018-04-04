@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.DashboardMagasinController">
+<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="1011.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.DashboardMagasinController">
    <children>
-      <ImageView fitHeight="577.0" fitWidth="953.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.45733642578125" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="607.0" fitWidth="1015.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-46.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-67.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../ImageUtile/BloodHound.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="41.0" layoutY="3.0" mnemonicParsing="false" onAction="#afficherMagasin" prefHeight="20.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes magasins" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="660.0" AnchorPane.topAnchor="5.0">
+      <Button layoutX="41.0" layoutY="3.0" mnemonicParsing="false" onAction="#afficherMagasin" prefHeight="20.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes magasins" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="10.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -28,7 +28,7 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
-      <Pane fx:id="ajoutProduit" layoutX="295.0" layoutY="46.0" onMouseClicked="#uploadpic" prefHeight="501.0" prefWidth="353.0" style="-fx-background-color: rgba(17,149,175,0.3);">
+      <Pane fx:id="ajoutProduit" layoutX="23.0" layoutY="61.0" onMouseClicked="#uploadpic" prefHeight="501.0" prefWidth="353.0" style="-fx-background-color: rgba(17,149,175,0.3);">
          <children>
             <Label layoutX="12.0" layoutY="25.0" text="Libelle" textFill="#f5f0f0">
                <font>
@@ -78,7 +78,7 @@
             <Button fx:id="picturepath" layoutX="13.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#uploadpic" text="Photo produit" />
          </children>
       </Pane>
-      <TableView fx:id="table_list_produit" editable="true" layoutX="7.0" layoutY="163.0" prefHeight="247.0" prefWidth="928.0">
+      <TableView fx:id="table_list_produit" editable="true" layoutX="438.0" layoutY="163.0" prefHeight="247.0" prefWidth="524.0">
          <columns>
             <TableColumn fx:id="column_id" prefWidth="100.0" text="idProduit" />
             <TableColumn fx:id="column_idMagasin" prefWidth="75.0" text="idMagasin" />
@@ -98,23 +98,7 @@
          </image>
       </ImageView>
       <Label layoutX="864.0" layoutY="12.0" onMouseClicked="#logOut" prefHeight="17.0" prefWidth="46.0" text="LogOut" textFill="#fffafa" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <Button layoutX="221.0" layoutY="3.0" mnemonicParsing="false" onAction="#afficherProduit" prefHeight="20.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes produits" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="5.0">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <font>
-            <Font name="Comic Sans MS" size="13.0" />
-         </font>
-      </Button>
-      <Button layoutX="425.0" layoutY="3.0" mnemonicParsing="false" onAction="#afficherFormMagasin" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Ajouter Magasin" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="5.0">
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-         <font>
-            <Font name="Comic Sans MS" size="13.0" />
-         </font>
-      </Button>
-      <Button layoutX="668.0" layoutY="8.0" mnemonicParsing="false" onAction="#afficherFormProduit" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Ajouter Produit" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="5.0">
+      <Button layoutX="562.0" layoutY="11.0" mnemonicParsing="false" onAction="#afficherProduit" prefHeight="20.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes produits" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
@@ -123,5 +107,58 @@
          </font>
       </Button>
       <Button fx:id="btnsuppression" layoutX="743.0" layoutY="439.0" mnemonicParsing="false" onAction="#supprimerProduit" prefHeight="26.0" prefWidth="190.0" text="Supprimer Produit" />
+      <Pane fx:id="ajoutMagasin" layoutX="22.0" layoutY="86.0" onMouseClicked="#uploadpic" prefHeight="425.0" prefWidth="353.0" style="-fx-background-color: rgba(17,149,175,0.3);">
+         <children>
+            <Label layoutX="12.0" layoutY="25.0" prefHeight="18.0" prefWidth="213.0" text="Numero RC" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField id="titre" fx:id="numRC" layoutX="173.0" layoutY="20.0" opacity="0.7" />
+            <Button id="bt" layoutX="225.0" layoutY="387.0" mnemonicParsing="false" onAction="#ajouterMagasin" text="Ajouter Magasin" />
+            <Label layoutX="14.0" layoutY="68.0" text="Nom Magasin" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField id="titre" fx:id="nomMagasin" layoutX="172.0" layoutY="63.0" opacity="0.7" />
+            <Label layoutX="14.0" layoutY="111.0" text="Adresse Magasin" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField id="titre" fx:id="adresseMagsin" layoutX="172.0" layoutY="106.0" opacity="0.7" />
+            <Label layoutX="14.0" layoutY="154.0" text="Ville Magasin" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField id="titre" fx:id="villeMagasin" layoutX="172.0" layoutY="149.0" opacity="0.7" />
+            <Label layoutX="15.0" layoutY="197.0" text="Code Postale Magasin" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField id="titre" fx:id="cdpstMagasin" layoutX="172.0" layoutY="192.0" opacity="0.7" />
+            <ImageView fx:id="iv" fitHeight="65.0" fitWidth="68.0" layoutX="271.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" />
+            <Label id="lb" fx:id="lb1" layoutY="467.0" prefHeight="27.0" prefWidth="167.0" visible="false" />
+            <Button fx:id="picturepathMagasin" layoutX="15.0" layoutY="291.0" mnemonicParsing="false" onMouseClicked="#uploadpicMagasin" text="Photo Magasin" />
+            <Label layoutX="15.0" layoutY="240.0" text="Nombre Produit" textFill="WHITE" />
+            <TextField id="titre" fx:id="nbProduitMagasin" layoutX="172.0" layoutY="238.0" opacity="0.7" />
+         </children>
+      </Pane>
+      <TableView fx:id="table_list_magasin" editable="true" layoutX="401.0" layoutY="165.0" prefHeight="247.0" prefWidth="593.0">
+         <columns>
+            <TableColumn fx:id="column_idMagasinM" prefWidth="100.0" text="idMagasin" />
+            <TableColumn fx:id="column_numRC" prefWidth="75.0" text="numero RC" />
+            <TableColumn fx:id="column_nom" prefWidth="91.75531005859375" text="Nom " />
+            <TableColumn fx:id="column_nbProduit" prefWidth="115.94418334960938" text="Nombre Produit" />
+            <TableColumn fx:id="column_adresse" prefWidth="78.4920654296875" text="Adresse" />
+            <TableColumn fx:id="column_ville" prefWidth="53.6995849609375" text="Ville" />
+            <TableColumn fx:id="column_cdPstMagasin" prefWidth="61.3004150390625" text="Code Postale" />
+            <TableColumn fx:id="column_urlMagasin" prefWidth="146.00006103515625" text="Url vers la piece jointe" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnsuppressionMagasin" layoutX="744.0" layoutY="437.0" mnemonicParsing="false" onAction="#supprimerMag" prefHeight="26.0" prefWidth="190.0" text="Supprimer Magasin" />
    </children>
 </AnchorPane>

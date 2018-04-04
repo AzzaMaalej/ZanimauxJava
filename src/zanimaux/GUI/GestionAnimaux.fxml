@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.GestionAnimauxController">
+     <children>
+      <ImageView fitHeight="471.0" fitWidth="800.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ImageUtile/BloodHound.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_goBack" layoutX="16.0" layoutY="6.0" mnemonicParsing="false" onAction="#GoBack" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Retour">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Button>
+      <Pane layoutX="39.0" layoutY="52.0" prefHeight="387.0" prefWidth="349.0" style="-fx-background-color: rgba(17,149,175,0.3);">
+         <children>
+            <Label id="lb" fx:id="lb" layoutX="104.0" layoutY="288.0" prefHeight="31.0" prefWidth="163.0" textFill="RED" visible="false">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
+            <Label layoutX="17.0" layoutY="41.0" text="Nom animal" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button id="bt" layoutX="119.0" layoutY="338.0" mnemonicParsing="false" onAction="#ajouterAnimal" text="Ajouter l'animal" />
+            <ImageView id="imm" fx:id="iv" fitHeight="99.0" fitWidth="94.0" layoutX="239.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField id="picturepath" fx:id="picturepath" layoutX="239.0" layoutY="213.0" prefHeight="25.0" prefWidth="81.0" visible="false" />
+            <TextField id="titre" fx:id="input_nom_animal" layoutX="109.0" layoutY="38.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
+            <Label layoutX="15.0" layoutY="87.0" text="Race" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField id="titre" fx:id="input_race" layoutX="109.0" layoutY="85.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
+            <Label layoutX="14.0" layoutY="134.0" text="Type" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="16.0" layoutY="173.0" text="Age" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="217.0" prefHeight="17.0" prefWidth="26.0" text="Etat" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="262.0" text="Refuge" textFill="#f5f0f0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField id="titre" fx:id="input_type" layoutX="109.0" layoutY="132.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
+            <TextField id="titre" fx:id="input_age" layoutX="109.0" layoutY="171.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
+            <ChoiceBox fx:id="choice_refuge" layoutX="109.0" layoutY="259.0" prefHeight="25.0" prefWidth="119.0" />
+            <ChoiceBox fx:id="choice_etat" layoutX="109.0" layoutY="213.0" prefHeight="25.0" prefWidth="119.0" />
+            <Button id="bt" fx:id="BtnChoixImage" layoutX="255.0" layoutY="51.0" mnemonicParsing="false" onAction="#uploadpic" style="-fx-background-color: transparent; -fx-border-color: white;" text="Photo" textFill="WHITE" />
+            <Label fx:id="lbnom" layoutX="109.0" layoutY="70.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbrace" layoutX="109.0" layoutY="110.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="lbtype" layoutX="105.0" layoutY="157.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="lbage" layoutX="105.0" layoutY="196.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="lbetat" layoutX="109.0" layoutY="238.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font></Label>
+            <Label fx:id="lbphoto" layoutX="241.0" layoutY="29.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
+         </children>
+      </Pane>
+      <TableView fx:id="table_list_animal" editable="true" layoutX="400.0" layoutY="104.0" prefHeight="247.0" prefWidth="390.0">
+         <columns>
+            <TableColumn fx:id="column_id" prefWidth="34.6666259765625" text="Id" />
+            <TableColumn fx:id="column_nom" prefWidth="52.0" text="Nom" />
+            <TableColumn fx:id="column_race" prefWidth="63.333404541015625" text="Race" />
+            <TableColumn fx:id="column_type" prefWidth="58.66668701171875" text="Type" />
+            <TableColumn fx:id="column_age" prefWidth="34.0" text="Age" />
+            <TableColumn fx:id="column_etat" prefWidth="46.66668701171875" text="Etat" />
+            <TableColumn fx:id="column_refuge" prefWidth="45.99993896484375" text="Refuge" />
+            <TableColumn fx:id="column_photo" prefWidth="51.33331298828125" text="Photo" />
+         </columns>
+      </TableView>
+      <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="615.0" layoutY="15.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/logout.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="logOut" layoutX="643.0" layoutY="16.0" onMouseClicked="#logOut" text="LogOut" />
+      <Button layoutX="509.0" layoutY="376.0" mnemonicParsing="false" onAction="#supprimerAnimal" prefHeight="26.0" prefWidth="190.0" text="Supprimer Animal" />
+   </children>
+</AnchorPane>

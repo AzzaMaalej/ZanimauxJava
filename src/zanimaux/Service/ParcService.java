@@ -121,7 +121,7 @@ public class ParcService {
     
     }
    
-   public void supprimerParc(int id)
+   public void supprimerParc(String id)
          {
                 
              String requete="DELETE FROM `parc` WHERE id='"+id+"' ";     
@@ -136,9 +136,7 @@ public class ParcService {
         }
 }
 
-    public void supprimerParc(String b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     public List<Parc> AfficherParcsByCin(String c){
          List<Parc>  listParcs = new ArrayList<>();
         try {  

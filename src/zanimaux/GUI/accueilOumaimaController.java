@@ -52,6 +52,7 @@ import zanimaux.Service.MagasinService;
 import zanimaux.Service.ProduitService;
 import zanimaux.entities.Magasin;
 import zanimaux.entities.Produit;
+import zanimaux.util.Session;
 /**
  * FXML Controller class
  *
@@ -71,6 +72,8 @@ public class accueilOumaimaController implements Initializable {
     private Button btn11;
     @FXML
     private Button btn1;
+    @FXML
+    private Button buttonRefuge;
 
     @FXML
     void handleButtonAction(ActionEvent event) throws SQLException {
@@ -108,10 +111,58 @@ public class accueilOumaimaController implements Initializable {
 
     @FXML
     private void showPane(MouseEvent event) {
+         pane.setVisible(true);
+    }
+      @FXML
+    private void hidePane(MouseEvent event) {
+         pane.setVisible(false);
+
     }
 
     @FXML
     private void connexionAction(ActionEvent event) {
+           Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) btn11.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    }
+     @FXML
+     void AfficherRefugeAction(ActionEvent event) throws SQLException {
+
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS Refuges");
+        Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+    }
+
+    @FXML
+    private void profil(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btn1.getScene().getWindow(); 
+        stage.setTitle("Profil");
+        Parent root = FXMLLoader.load(getClass().getResource("ProfilManager.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
     }
     
 }

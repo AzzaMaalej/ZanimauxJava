@@ -187,8 +187,8 @@ public class AccueilDresseurController implements Initializable {
     private void parcAction(ActionEvent event) throws SQLException {
         try {
         Stage stage=(Stage) button.getScene().getWindow(); 
-        stage.setTitle("Affihcer les parcs");
-        Parent root = FXMLLoader.load(getClass().getResource("Parc.fxml"));
+        stage.setTitle("Ajouter Parc");
+        Parent root = FXMLLoader.load(getClass().getResource("AjoutParc.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

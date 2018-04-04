@@ -199,7 +199,20 @@ public class Userservice {
             String requete = "SELECT * FROM fos_user WHERE cin='"+i+"' ";
 
 
+            //  PreparedStatement st = con.prepareStatement(requete);
+
+
+         //  PreparedStatement st=con.prepareStatement(requete);
+
+
+
+         //  PreparedStatement st=con.prepareStatement(requete);
+
+
+
+
           PreparedStatement st=con.prepareStatement(requete);
+
 
            
 

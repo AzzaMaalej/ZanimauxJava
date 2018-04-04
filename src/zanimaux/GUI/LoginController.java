@@ -144,7 +144,7 @@ public class LoginController implements Initializable {
                     Session.setLoggedInUser(result);
                     // TODO: Proceed to other page
                     
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GestionRefuges.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RefugeDashboard.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
@@ -165,7 +165,7 @@ public class LoginController implements Initializable {
 
                    // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
-
+                  //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
 
                    // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
 
@@ -186,7 +186,7 @@ public class LoginController implements Initializable {
                     Session.setLoggedInUser(result);
                     // TODO: Proceed to other page
                     
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GestionParc.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));

@@ -567,7 +567,7 @@ public class GestionRefugesController implements Initializable {
     }
      public void resetTableData() throws SQLException
     {
-        List<Refuge> listRefuges = new ArrayList<>();
+        List<Refuge> listRefuges ;
         RefugeService as = new RefugeService();
         listRefuges = (List<Refuge>) as.AfficherRefugeByCin(Session.getLoggedInUser().getCin());
         ObservableList<Refuge> data = FXCollections.observableArrayList(listRefuges);

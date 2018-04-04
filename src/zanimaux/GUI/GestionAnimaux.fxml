@@ -30,17 +30,11 @@
       </Button>
       <Pane layoutX="39.0" layoutY="52.0" prefHeight="387.0" prefWidth="349.0" style="-fx-background-color: rgba(17,149,175,0.3);">
          <children>
-            <Label id="lb" fx:id="lb" layoutX="104.0" layoutY="288.0" prefHeight="25.0" prefWidth="163.0" textFill="RED" visible="false">
+            <Label id="lb" fx:id="lb" layoutX="104.0" layoutY="288.0" prefHeight="31.0" prefWidth="163.0" textFill="RED" visible="false">
                <font>
                   <Font name="Comic Sans MS Bold" size="12.0" />
                </font></Label>
-            <Label layoutX="14.0" layoutY="24.0" text="Id animal" textFill="#f5f0f0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField id="titre" fx:id="input_id_animal" layoutX="109.0" layoutY="22.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
-            <Label layoutX="14.0" layoutY="64.0" text="Nom animal" textFill="#f5f0f0">
+            <Label layoutX="17.0" layoutY="41.0" text="Nom animal" textFill="#f5f0f0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -48,13 +42,13 @@
             <Button id="bt" layoutX="119.0" layoutY="338.0" mnemonicParsing="false" onAction="#ajouterAnimal" text="Ajouter l'animal" />
             <ImageView id="imm" fx:id="iv" fitHeight="99.0" fitWidth="94.0" layoutX="239.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
             <TextField id="picturepath" fx:id="picturepath" layoutX="239.0" layoutY="213.0" prefHeight="25.0" prefWidth="81.0" visible="false" />
-            <TextField id="titre" fx:id="input_nom_animal" layoutX="109.0" layoutY="62.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
-            <Label layoutX="14.0" layoutY="98.0" text="Race" textFill="#f5f0f0">
+            <TextField id="titre" fx:id="input_nom_animal" layoutX="109.0" layoutY="38.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
+            <Label layoutX="15.0" layoutY="87.0" text="Race" textFill="#f5f0f0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField id="titre" fx:id="input_race" layoutX="109.0" layoutY="96.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
+            <TextField id="titre" fx:id="input_race" layoutX="109.0" layoutY="85.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
             <Label layoutX="14.0" layoutY="134.0" text="Type" textFill="#f5f0f0">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -70,16 +64,41 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="251.0" text="Refuge" textFill="#f5f0f0">
+            <Label layoutX="19.0" layoutY="262.0" text="Refuge" textFill="#f5f0f0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <TextField id="titre" fx:id="input_type" layoutX="109.0" layoutY="132.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
             <TextField id="titre" fx:id="input_age" layoutX="109.0" layoutY="171.0" opacity="0.7" prefHeight="25.0" prefWidth="119.0" />
-            <ChoiceBox fx:id="choice_refuge" layoutX="109.0" layoutY="249.0" prefHeight="25.0" prefWidth="119.0" />
+            <ChoiceBox fx:id="choice_refuge" layoutX="109.0" layoutY="259.0" prefHeight="25.0" prefWidth="119.0" />
             <ChoiceBox fx:id="choice_etat" layoutX="109.0" layoutY="213.0" prefHeight="25.0" prefWidth="119.0" />
             <Button id="bt" fx:id="BtnChoixImage" layoutX="255.0" layoutY="51.0" mnemonicParsing="false" onAction="#uploadpic" style="-fx-background-color: transparent; -fx-border-color: white;" text="Photo" textFill="WHITE" />
+            <Label fx:id="lbnom" layoutX="109.0" layoutY="70.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbrace" layoutX="109.0" layoutY="110.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="lbtype" layoutX="105.0" layoutY="157.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="lbage" layoutX="105.0" layoutY="196.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="lbetat" layoutX="109.0" layoutY="238.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font></Label>
+            <Label fx:id="lbphoto" layoutX="241.0" layoutY="29.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font></Label>
          </children>
       </Pane>
       <TableView fx:id="table_list_animal" editable="true" layoutX="400.0" layoutY="104.0" prefHeight="247.0" prefWidth="390.0">

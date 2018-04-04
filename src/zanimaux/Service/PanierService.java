@@ -18,6 +18,7 @@ import zanimaux.entities.Magasin;
 import zanimaux.entities.Panier;
 import zanimaux.entities.Produit;
 import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  *
@@ -45,6 +46,7 @@ public class PanierService {
             return false;
     
     }
+    
     public boolean modifContenuPanier(String cin, ContenuPanier cp)
     {
         String requete="UPDATE ContenuPanier SET quantite=?, commande=?, dateCommande=? where `cin`="+cin;
@@ -60,6 +62,7 @@ public class PanierService {
         }
             return false;
     }
+    
     public Panier recherchePanier(String cin)
     {
         Panier listForm = new Panier();
@@ -79,7 +82,7 @@ public class PanierService {
     }
     public ContenuPanier rechercheProduitContenuPanier(String cin, Produit p)
     {
-                ContenuPanier listForm = new ContenuPanier();
+        ContenuPanier listForm = new ContenuPanier();
         try {  
             String requete = "SELECT * FROM ContenuPanier WHERE `cin`="+cin+"AND `idProduit`="+p.getIdProduit()+"`commande`=0";
             ResultSet rs = ste.executeQuery(requete);
@@ -98,14 +101,15 @@ public class PanierService {
     }
     public void ajouterProduitPanier(Produit p)
     {
-        Panier panier = this.recherchePanier("09625522");
+        User u = Session.getLoggedInUser();
+        Panier panier = this.recherchePanier(u.getCin());
         if (panier==null)
         {
             String requete = "INSERT INTO Panier (cin,somme) VALUES (?,?) ";
        
        try {
             PreparedStatement pst =con.prepareStatement(requete);
-            pst.setString(1,"09625522");
+            pst.setString(1,u.getCin());
             pst.setDouble(2,p.getPrix());
             pst.executeUpdate();
             System.out.println("ajout reussit");
@@ -116,9 +120,9 @@ public class PanierService {
         else
         {
             panier.setSomme(panier.getSomme()+p.getPrix());
-            this.modifPanier("09625522", panier);
+            this.modifPanier(u.getCin(), panier);
         }
-        ContenuPanier cp= this.rechercheProduitContenuPanier("0962552", p);
+        ContenuPanier cp= this.rechercheProduitContenuPanier(u.getCin(), p);
         if(cp==null)
         {
             
@@ -126,7 +130,7 @@ public class PanierService {
        
        try {
             PreparedStatement pst =con.prepareStatement(requete);
-            pst.setString(1,"09625522");
+            pst.setString(1,u.getCin());
             pst.setInt(2,1);
             pst.setInt(3, p.getIdProduit());
             pst.setInt(4, 0);
@@ -139,10 +143,7 @@ public class PanierService {
         else
         {
             cp.setQuantite(cp.getQuantite()+1);
-            this.modifContenuPanier("09625522", cp);
+            this.modifContenuPanier(u.getCin(), cp);
         }
-        
-        
     }
-    
 }

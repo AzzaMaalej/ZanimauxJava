@@ -120,6 +120,20 @@ public class ParcService {
         return rs ;
     
     }
+   public ResultSet AfficherParcById(String c)
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM parc WHERE id='"+c+"' " ;
+            
+            rs = ste.executeQuery(requete);
+            
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherParc()");
+        }
+        return rs ;
+    
+    }
    
    public void supprimerParc(String id)
          {
@@ -170,7 +184,6 @@ public class ParcService {
             PreparedStatement pst = con.prepareStatement(requete);
             pst.setString(1, r.getId());
             pst.setString(2,r.getNomParc());
-
             pst.setString(3,r.getCategorieDressage());
             pst.setString(4,r.getAdresseParc());
             pst.setString(5,r.getVilleParc());

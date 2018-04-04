@@ -51,7 +51,7 @@ import zanimaux.util.Validation;
  *
  * @author BelhassenLimam
  */
-public class AjoutParcController implements Initializable {
+public class ModifParcController implements Initializable {
 
     @FXML
     private Button userName;

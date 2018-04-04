@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AjoutParcController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.ModifParcController">
      <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -132,7 +132,7 @@
             <Label fx:id="cinLabel" layoutX="307.0" layoutY="303.0" textFill="RED" />
             <ChoiceBox fx:id="catg" layoutX="336.0" layoutY="278.0" prefWidth="150.0" />
             <Label fx:id="catgLabel" layoutX="307.0" layoutY="383.0" textFill="RED" />
-            <Button fx:id="btn" layoutX="296.0" layoutY="485.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Ajouter" />
+            <Button fx:id="btn" layoutX="296.0" layoutY="485.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Modifier" />
             <Label fx:id="photoLabel" layoutX="49.0" layoutY="383.0" textFill="RED" />
             <Button fx:id="photo" layoutX="64.0" layoutY="405.0" mnemonicParsing="false" onAction="#chooseAction" opacity="0.6" prefHeight="27.0" prefWidth="138.0" text="Photo" />
             <Text fill="#22549a" layoutX="315.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie de dressage :" />

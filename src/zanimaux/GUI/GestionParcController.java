@@ -30,7 +30,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import zanimaux.Service.AnimalService;
 import zanimaux.Service.ParcService;
+import zanimaux.entities.Animal;
 import zanimaux.entities.Parc;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -55,15 +57,11 @@ public class GestionParcController implements Initializable {
     @FXML
     private TableView table_list_parc;
     @FXML
-    private TableColumn column_nom;
+    private TableColumn<Parc, String> column_nom;
     
-    @FXML
-    private TableColumn column_fax;
     @FXML
     private TableColumn column_adresse;
-    
-    @FXML
-    private Button btnSupprimerRefuge;
+  
     @FXML
     private Button logOut;
     @FXML
@@ -82,12 +80,14 @@ public class GestionParcController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
+            
         try {
-            List<String> list = new ArrayList();
-            list.add("Oui");
-            list.add("Non");
-              List<Parc> listParcs = new ArrayList<>();
-            ParcService as = ParcService.getInstance();
+            List<Parc> listParcs = new ArrayList<>();
+            ParcService as;
+        
+            as = ParcService.getInstance();
+        
             User user=Session.getLoggedInUser();
             String cin=user.getCin();
             listParcs = as.AfficherParcsByCin(cin);//TODO : SET USER FROM SESSION
@@ -118,205 +118,21 @@ public class GestionParcController implements Initializable {
             
             
             table_list_parc.setItems(data);
+            
+            
+            
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(GestionParcController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        //////////////////////////////////////////////////////
-        //////////Modifier id////////////////////////////////
-        
-        column_id.setCellFactory(TextFieldTableCell.forTableColumn());
-            column_id.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Parc, String>>() {
-                        
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<Parc, String> t) {
-                            try {
-                                ((Parc) t.getTableView().getItems().get(
-                                        t.getTablePosition().getRow())
-                                        ).setId(t.getNewValue());
-                                Parc a = (Parc) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                                a.setId(t.getNewValue());
-                                
-                                ParcService.getInstance().ModifierParc(a);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(GestionParcController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        };
-                        
-                        
-                        
-                    });
-        
-            
-           //////////////////////////////////////////////////////
-        //////////Modifier nom//////////////////////////////// 
-            
-            
-            column_nom.setCellFactory(TextFieldTableCell.forTableColumn());
-            column_nom.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Parc, String>>() {
-                        
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<Parc, String> t) {
-                            try {
-                                ((Parc) t.getTableView().getItems().get(
-                                        t.getTablePosition().getRow())
-                                        ).setNomParc(t.getNewValue());
-                               Parc a = (Parc) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                                a.setNomParc(t.getNewValue());
-                                
-                                
-                                ParcService.getInstance().ModifierParc(a);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(GestionParcController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        };
-                        
-                        
-                        
-                    });
-            
-            
-              //////////////////////////////////////////////////////
-        //////////Modifier CategorieDressage//////////////////////////////// 
-            
-            
-            column_catg.setCellFactory(TextFieldTableCell.forTableColumn());
-            column_catg.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Parc, String>>() {
-                        
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<Parc, String> t) {
-                            try {
-                                ((Parc) t.getTableView().getItems().get(
-                                        t.getTablePosition().getRow())
-                                        ).setCategorieDressage(t.getNewValue());
-                               Parc a = (Parc) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                                a.setCategorieDressage(t.getNewValue());
-                                
-                                
-                                ParcService.getInstance().ModifierParc(a);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(GestionParcController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        };
-                        
-                        
-                        
-                    });
-            
-            
-            
-                  //////////////////////////////////////////////////////
-        //////////Modifier Adresse//////////////////////////////// 
-            
-            
-            column_adresse.setCellFactory(TextFieldTableCell.forTableColumn());
-            column_adresse.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Parc, String>>() {
-                        
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<Parc, String> t) {
-                            try {
-                                ((Parc) t.getTableView().getItems().get(
-                                        t.getTablePosition().getRow())
-                                        ).setAdresseParc(t.getNewValue());
-                               Parc a = (Parc) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                                a.setAdresseParc(t.getNewValue());
-                                
-                                
-                                ParcService.getInstance().ModifierParc(a);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(GestionParcController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        };
-                    });
-        
-            
-            
-                       //////////////////////////////////////////////////////
-        //////////Modifier ville//////////////////////////////// 
-            
-            
-            column_ville.setCellFactory(TextFieldTableCell.forTableColumn());
-            column_ville.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Parc, String>>() {
-                        
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<Parc, String> t) {
-                            try {
-                                ((Parc) t.getTableView().getItems().get(
-                                        t.getTablePosition().getRow())
-                                        ).setVilleParc(t.getNewValue());
-                               Parc a = (Parc) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                                a.setVilleParc(t.getNewValue());
-                                
-                                
-                                ParcService.getInstance().ModifierParc(a);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(GestionParcController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        };
-                    });
-        
-            
-                           //////////////////////////////////////////////////////
-        //////////Modifier code postale//////////////////////////////// 
-            
-            
-            column_codep.setCellFactory(TextFieldTableCell.forTableColumn());
-            column_codep.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Parc, Integer>>() {
-                        
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<Parc, Integer> t) {
-                            try {
-                                ((Parc) t.getTableView().getItems().get(
-                                        t.getTablePosition().getRow())
-                                        ).setCodePostaleParc(t.getNewValue());
-                               Parc a = (Parc) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                                a.setCodePostaleParc(t.getNewValue());
-                                
-                                
-                                ParcService.getInstance().ModifierParc(a);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(GestionParcController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        };
-                    });
-            
-                                //////////////////////////////////////////////////////
-        //////////Modifier photo//////////////////////////////// 
-            
-            
-            column_photo.setCellFactory(TextFieldTableCell.forTableColumn());
-            column_photo.setOnEditCommit(
-                    new EventHandler<TableColumn.CellEditEvent<Parc, String>>() {
-                        
-                        @Override
-                        public void handle(TableColumn.CellEditEvent<Parc, String> t) {
-                            try {
-                                ((Parc) t.getTableView().getItems().get(
-                                        t.getTablePosition().getRow())
-                                        ).setPhotoParc(t.getNewValue());
-                               Parc a = (Parc) t.getTableView().getItems().get(t.getTablePosition().getRow());
-                                a.setPhotoParc(t.getNewValue());
-                                
-                                
-                                ParcService.getInstance().ModifierParc(a);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(GestionParcController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        };
-                    });
+    
         
         
         
         
-    }   
+    } 
+    
     
     
 
@@ -341,7 +157,6 @@ public class GestionParcController implements Initializable {
         }else{
             ParcService.getInstance().supprimerParc(a.getId());
             System.out.println("SUCCESS");
-                    resetTableData();
                     resetTableData();
         }
     }

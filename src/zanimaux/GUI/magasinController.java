@@ -74,15 +74,14 @@ public class magasinController implements Initializable {
         }
         ResultSet r =m.rechercheMagasin();
         Magasin m1=new Magasin();
-        r= m.rechercheMagasin();
         ScrollPane sp = new ScrollPane();
-    
+        sp.setPadding(new Insets(30, 30, 30, 30));
         sp.setPrefSize(900, 650);
 //         sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
 //         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
         VBox vb = new VBox();
         HBox hb =null;
-        vb.setPadding(new Insets(100, 30, 0, 30));
+        vb.setPadding(new Insets(100, 30, 30, 30));
         vb.setSpacing(100);
         int i=0;
          try{
@@ -183,7 +182,7 @@ public class magasinController implements Initializable {
             sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
             VBox vb = new VBox();
             HBox hb =null;
-            vb.setPadding(new Insets(100, 30, 0, 30));
+            vb.setPadding(new Insets(100, 30, 30, 30));
             vb.setSpacing(100);
             
              while(r.next())

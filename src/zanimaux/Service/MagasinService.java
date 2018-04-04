@@ -36,7 +36,7 @@ public class MagasinService {
     
     public boolean ajouterMagasin(Magasin m)
     {
-       String requete = "INSERT INTO Magasin (numRC,nomMagasin,adresseMagasin, codePostaleMagasin, photoMagasin, cinProprietaireMagasin) VALUES (?,?,?,?,?,) ";
+       String requete = "INSERT INTO Magasin (numRC,nomMagasin,adresseMagasin, codePostaleMagasin, photoMagasin, cinProprietaireMagasin,villeMagasin,nbProduit) VALUES (?,?,?,?,?,?,?,?) ";
        User u= Session.getLoggedInUser();
        try {
             PreparedStatement pst =con.prepareStatement(requete);
@@ -46,7 +46,8 @@ public class MagasinService {
             pst.setInt(4,m.getCodePostaleMagasin());
             pst.setString(5,m.getPhotoMagasin());
             pst.setString(6, u.getCin());
-            
+            pst.setString(7, m.getVilleMagasin());
+            pst.setInt(8, m.getNbProduit());
             pst.executeUpdate();
             System.out.println("ajout reussit");
         } catch (SQLException ex) {
@@ -58,13 +59,15 @@ public class MagasinService {
     
     public boolean modifMagasin(int i,Magasin m)
     { 
-    String requete="UPDATE Magasin SET nomMagasin=?, adresseMagasin=?, codePostaleMagasin=?, photoMagasin=? where `idMagasin`="+i;
+    String requete="UPDATE Magasin SET nomMagasin=?, adresseMagasin=?,codePostaleMagasin=?, photoMagasin=?,villeMagasin=?,nbProduit=? where `idMagasin`="+i;
         try {
             PreparedStatement pst =con.prepareStatement(requete);
             pst.setString(1,m.getNomMagasin());
             pst.setString(2,m.getAdresseMagasin());
             pst.setInt(3,m.getCodePostaleMagasin());
-            pst.setString(4,m.getPhotoMagasin());            
+            pst.setString(4,m.getPhotoMagasin());  
+            pst.setString(5,m.getVilleMagasin());  
+            pst.setInt(6,m.getNbProduit());  
              pst.executeUpdate();
             System.out.println("modification reussite");
         } catch (SQLException ex) {
@@ -89,6 +92,7 @@ public class MagasinService {
                  listForm.setAdresseMagasin(rs.getString("adresseMagasin"));
                  listForm.setCodePostaleMagasin(rs.getInt("codePostaleMagasin"));
                  listForm.setPhotoMagasin(rs.getString("photoMagasin"));
+                 listForm.setVilleMagasin(rs.getString("villeMagasin"));
                  listForm.setCinProprietaireMagasin(rs.getString("cinProprietaireMagasin"));
                  listForm.setBestSellerMagasin(rs.getInt("bestSellerMagasin"));              
             }
@@ -115,6 +119,7 @@ public class MagasinService {
                 m.setNomMagasin(rs.getString("nomMagasin"));
                 m.setNbProduit(rs.getInt("nbProduit"));
                 m.setAdresseMagasin(rs.getString("adresseMagasin"));
+                m.setVilleMagasin(rs.getString("villeMagasin"));
                 m.setCinProprietaireMagasin(cin);
                 m.setBestSellerMagasin(rs.getInt("bestSellerMagasin"));
                 m.setCodePostaleMagasin(rs.getInt("codePostaleMagasin"));

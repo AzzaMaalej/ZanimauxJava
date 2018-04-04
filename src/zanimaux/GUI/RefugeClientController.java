@@ -209,7 +209,7 @@ public class RefugeClientController implements Initializable {
           
                       VBox vbProduit = new VBox(); 
           vbProduit.setPadding(new Insets(-60,0,30,30));
-          vbProduit.setSpacing(50);
+          vbProduit.setSpacing(10);
           vbProduit.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
          
           vbProduit.setPrefSize(200, 150);
@@ -227,7 +227,7 @@ public class RefugeClientController implements Initializable {
           {
             hb = new HBox();
             hb.setPadding(new Insets(0,0,0,0));
-            hb.setSpacing(50);
+            hb.setSpacing(10);
             hb.getChildren().add(vbProduit) ;
             vb.getChildren().add(hb); 
            }

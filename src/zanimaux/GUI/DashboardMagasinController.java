@@ -93,7 +93,6 @@ public class DashboardMagasinController implements Initializable {
     private TableView table_list_produit;
     @FXML
     private ChoiceBox<Integer>idMagasin;
-    private Button BtnChoixImage;
     @FXML
     private ImageView iv;
     @FXML
@@ -104,17 +103,193 @@ public class DashboardMagasinController implements Initializable {
     private Button picturepath;
     @FXML
     private Button btnsuppression;
+    @FXML
+    private Pane ajoutMagasin;
+    @FXML
+    private TextField numRC;
+    @FXML
+    private TextField nomMagasin;
+    @FXML
+    private TextField adresseMagsin;
+    @FXML
+    private TextField villeMagasin;
+    @FXML
+    private TextField cdpstMagasin;
+    @FXML
+    private Label lb1;
+    @FXML
+    private Button picturepathMagasin;
+    @FXML
+    private TableView table_list_magasin;
+    @FXML
+    private TableColumn column_numRC;
+    @FXML
+    private TableColumn column_nom;
+    @FXML
+    private Button btnsuppressionMagasin;
+    @FXML
+    private TableColumn column_nbProduit;
+    @FXML
+    private TableColumn column_adresse;
+    @FXML
+    private TableColumn column_ville;
+    @FXML
+    private TableColumn column_cdPstMagasin;
+    @FXML
+    private TableColumn column_urlMagasin;
+    @FXML
+    private TableColumn column_idMagasinM;
+    @FXML
+    private TextField nbProduitMagasin;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
        
-         
-       ajoutProduit.setVisible(false);
-       table_list_produit.setVisible(false);
-       btnsuppression.setVisible(false);
+        try {
+    
+            MagasinService ms = new MagasinService();
+            User a = Session.getLoggedInUser();
+            List<Magasin> listMagasin= new ArrayList<>();
+            listMagasin = ms.Magasinier(a.getCin());
+           
+            ObservableList<Magasin> data = FXCollections.observableArrayList(listMagasin); 
+            
+            column_idMagasinM.setCellValueFactory(
+                    new PropertyValueFactory<Magasin,Integer>("idMagasin")
+            );
+            column_numRC.setCellValueFactory(
+                    new PropertyValueFactory<Magasin,String>("numRC")
+            );
+            column_nom.setCellValueFactory(
+                    new PropertyValueFactory<Magasin,String>("nomMagasin")
+            );
+            column_nbProduit.setCellValueFactory(
+                    new PropertyValueFactory<Magasin,Integer>("nbProduit")
+            );
+            column_adresse.setCellValueFactory(
+                    new PropertyValueFactory<Magasin,String>("adresseMagasin")
+            );
+            column_ville.setCellValueFactory(
+                    new PropertyValueFactory<Magasin,String>("villeMagasin")
+            );
+            column_cdPstMagasin.setCellValueFactory(
+                    new PropertyValueFactory<Magasin,Integer>("codePostaleMagasin")
+            );
+                 
+             column_urlMagasin.setCellValueFactory(
+                    new PropertyValueFactory<Magasin,String>("photoMagasin")
+            );              
+            table_list_magasin.setItems(data);
+            
+            //modification nom magasin
+            column_nom.setCellFactory(TextFieldTableCell.forTableColumn());
+            column_nom.setOnEditCommit(
+                    new EventHandler<TableColumn.CellEditEvent<Magasin, String>>() {
+                        
+                        @Override
+                        public void handle(TableColumn.CellEditEvent<Magasin, String> t) {
+                            ((Magasin) t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                                    ).setNomMagasin(t.getNewValue());
+                            Magasin m = (Magasin) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                            m.setNomMagasin(t.getNewValue());
+                            ms.modifMagasin(m.getIdMagasin(), m) ;
+                        };
+                        
+                        
+                        
+                    });
+              //modification nbProduit magasin
+            column_nbProduit.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+            column_nbProduit.setOnEditCommit(
+                    new EventHandler<TableColumn.CellEditEvent<Magasin, Integer>>() {
+                        
+                        @Override
+                        public void handle(TableColumn.CellEditEvent<Magasin, Integer> t) {
+                            ((Magasin) t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                                    ).setNbProduit(t.getNewValue().intValue());
+                            Magasin m = (Magasin) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                            m.setNbProduit(t.getNewValue().intValue());
+                            ms.modifMagasin(m.getIdMagasin(), m) ;
+                        };
+                        
+                        
+                        
+                    });          
+                          //modification adresse magasin
+            column_adresse.setCellFactory(TextFieldTableCell.forTableColumn());
+            column_adresse.setOnEditCommit(
+                    new EventHandler<TableColumn.CellEditEvent<Magasin, String>>() {
+                        
+                        @Override
+                        public void handle(TableColumn.CellEditEvent<Magasin, String> t) {
+                            ((Magasin) t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                                    ).setAdresseMagasin(t.getNewValue());
+                            Magasin m = (Magasin) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                            m.setAdresseMagasin(t.getNewValue());
+                            ms.modifMagasin(m.getIdMagasin(), m) ;
+                        };
+                    });    
+            column_ville.setCellFactory(TextFieldTableCell.forTableColumn());
+            column_ville.setOnEditCommit(
+                    new EventHandler<TableColumn.CellEditEvent<Magasin, String>>() {
+                        
+                        @Override
+                        public void handle(TableColumn.CellEditEvent<Magasin, String> t) {
+                            ((Magasin) t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                                    ).setVilleMagasin(t.getNewValue());
+                            Magasin m = (Magasin) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                            m.setVilleMagasin(t.getNewValue());
+                            ms.modifMagasin(m.getIdMagasin(), m) ;
+                        };
+                    });  
+            column_cdPstMagasin.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+            column_cdPstMagasin.setOnEditCommit(
+                    new EventHandler<TableColumn.CellEditEvent<Magasin,Integer>>() {
+                        
+                        @Override
+                        public void handle(TableColumn.CellEditEvent<Magasin, Integer> t) {
+                            ((Magasin) t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                                    ).setCodePostaleMagasin(t.getNewValue().intValue());
+                            Magasin m = (Magasin) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                            m.setCodePostaleMagasin(t.getNewValue().intValue());
+                            ms.modifMagasin(m.getIdMagasin(), m) ;
+                        };
+                    });           
+                      column_urlMagasin.setCellFactory(TextFieldTableCell.forTableColumn());
+            column_urlMagasin.setOnEditCommit(
+                    new EventHandler<TableColumn.CellEditEvent<Magasin,String>>() {
+                        
+                        @Override
+                        public void handle(TableColumn.CellEditEvent<Magasin, String> t) {
+                            ((Magasin) t.getTableView().getItems().get(
+                                    t.getTablePosition().getRow())
+                                    ).setPhotoMagasin(t.getNewValue());
+                            Magasin m = (Magasin) t.getTableView().getItems().get(t.getTablePosition().getRow());
+                            m.setPhotoMagasin(t.getNewValue());
+                            ms.modifMagasin(m.getIdMagasin(),m);
+                        };
+                       
+                    }); 
+                 
+        } catch (SQLException ex) {
+            Logger.getLogger(DashboardMagasinController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+          ajoutProduit.setVisible(false);
+        ajoutMagasin.setVisible(true);
+        table_list_produit.setVisible(false);
+        btnsuppression.setVisible(false);
+        table_list_magasin.setVisible(true);
+        btnsuppressionMagasin.setVisible(true);
     }    
 
     @FXML
@@ -224,6 +399,12 @@ public class DashboardMagasinController implements Initializable {
 
     @FXML
     private void afficherMagasin(ActionEvent event) {
+        ajoutProduit.setVisible(false);
+        ajoutMagasin.setVisible(true);
+        table_list_produit.setVisible(false);
+        btnsuppression.setVisible(false);
+        table_list_magasin.setVisible(true);
+        btnsuppressionMagasin.setVisible(true);
     }
 
     @FXML
@@ -417,24 +598,68 @@ public class DashboardMagasinController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(DashboardMagasinController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ajoutProduit.setVisible(false);
+        ajoutProduit.setVisible(true);
+        ajoutMagasin.setVisible(false);
         table_list_produit.setVisible(true);
         btnsuppression.setVisible(true);
+        table_list_magasin.setVisible(false);
+        btnsuppressionMagasin.setVisible(false);
+
     }
 
     @FXML
-    private void afficherFormMagasin(ActionEvent event) {
+    private void uploadpicMagasin(MouseEvent event) {
+                 picturepathMagasin.setText(handle());
+
     }
 
     @FXML
-    private void afficherFormProduit(ActionEvent event) {
-       ajoutProduit.setVisible(true);
-       table_list_produit.setVisible(false);
-       btnsuppression.setVisible(false);
+    private void ajouterMagasin(ActionEvent event) throws SQLException {
+             if((nomMagasin.getText().equals(""))||(numRC.getText().equals(""))|| (adresseMagsin.getText().equals(""))|| (villeMagasin.getText().equals(""))|| (cdpstMagasin.getText().equals("")) || (picturepathMagasin.getText().equals("")) ){
+            lb.setText("champ vide");
+            lb.setVisible(true);
+        }
+        else
+        {
+               Magasin m= new Magasin();
+               m.setNomMagasin(nomMagasin.getText());
+               m.setNumRC(numRC.getText());
+               m.setAdresseMagasin(adresseMagsin.getText());
+               m.setVilleMagasin(villeMagasin.getText());
+               m.setCodePostaleMagasin(Integer.parseInt(cdpstMagasin.getText()));
+               m.setPhotoMagasin(picturepathMagasin.getText());
+               m.setNbProduit(Integer.parseInt(nbProduitMagasin.getText()));
+               MagasinService ms= new MagasinService();
+               ms.ajouterMagasin(m);
+               System.out.println("Ajout réussi");
+               resetTableDataMagasin();
+    }
     }
 
+    @FXML
+    private void supprimerMag(ActionEvent event) throws SQLException {
+        Magasin a = (Magasin) table_list_magasin.getSelectionModel().getSelectedItem();
+        if(a == null){
+            System.out.println("Choisir une de vos magasins");
+                   
+        }else{
+            MagasinService ms = new MagasinService();
+            ms.supprimerMagasin(a.getIdMagasin());
+            System.out.println("SUCCESS");
+                    resetTableDataMagasin();
+                    resetTableDataMagasin();
+           
+        }
+    }
 
+    private void resetTableDataMagasin() throws SQLException {
 
+        MagasinService ms = new MagasinService();
+        User a = Session.getLoggedInUser();
+        List<Magasin> listMagasin= new ArrayList<>();
+        listMagasin = ms.Magasinier(a.getCin());
+        ObservableList<Magasin> data = FXCollections.observableArrayList(listMagasin); 
+        table_list_magasin.setItems(data);    
+    }
 
-    
 }

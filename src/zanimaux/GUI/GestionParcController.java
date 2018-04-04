@@ -74,6 +74,12 @@ public class GestionParcController implements Initializable {
     private TableColumn column_codep;
     @FXML
     private TableColumn column_photo;
+    @FXML
+    private Button ajou1;
+    @FXML
+    private TableColumn<?, ?> column_fax;
+    @FXML
+    private Button btnSupprimerRefuge;
 
     /**
      * Initializes the controller class.
@@ -184,6 +190,32 @@ public class GestionParcController implements Initializable {
                  Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
              }
     }
+     @FXML
+    private void afficheAction(ActionEvent event) throws SQLException {
+        try {
+        Stage stage=(Stage) aff.getScene().getWindow(); 
+        stage.setTitle("Afficher les Parcs");
+        Parent root = FXMLLoader.load(getClass().getResource("Parc.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
 
+ @FXML
+    private void ajotAction(ActionEvent event) throws SQLException {
+        try {
+        Stage stage=(Stage) ajou.getScene().getWindow(); 
+        stage.setTitle("Ajouter Parc");
+        Parent root = FXMLLoader.load(getClass().getResource("AjoutParc.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
     
 }

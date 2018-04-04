@@ -7,7 +7,11 @@ package zanimaux.GUI;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -101,7 +105,11 @@ public class AjoutParcController implements Initializable {
     private Button ajou;
     @FXML
     private Button aff;
-    
+    @FXML
+    private Button ajou1;
+    @FXML
+    private Label chooseFile;
+    public String filePath;
 
     /**
      * Initializes the controller class.
@@ -129,7 +137,8 @@ public class AjoutParcController implements Initializable {
 
         //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
-        String filePath = file.getAbsolutePath();
+        chooseFile.setText(file.getName());
+        filePath = file.getAbsolutePath();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -191,6 +200,7 @@ public class AjoutParcController implements Initializable {
          @FXML
     private void valider(ActionEvent event) throws SQLException, IOException  {
         ParcService a= new ParcService();
+             copyFileUsingStream(new File(filePath), new File ("src/ImageUtile"+chooseFile.getText()));
         if ((this.controleSaisie2()) ) {
 
         
@@ -208,7 +218,7 @@ public class AjoutParcController implements Initializable {
               String cin=user.getCin();
      
               try {
-          Parc u=new Parc(idp.getText(),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),photo.getText(),cin);
+          Parc u=new Parc(idp.getText(),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),chooseFile.getText(),cin);
            
           
            a.ajouterParc(u);
@@ -249,9 +259,47 @@ public class AjoutParcController implements Initializable {
         }
 
     }
+    @FXML
+    private void gestionAction(ActionEvent event) throws SQLException {
+        try {
+        Stage stage=(Stage) ajou1.getScene().getWindow(); 
+        stage.setTitle("Gestion des Parcs");
+        Parent root = FXMLLoader.load(getClass().getResource("GestionParc.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
     
+     private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        if(!dest.exists())
+            dest.createNewFile();
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        } finally{
+            if(is!=null)
+            is.close();
+            if(os!=null)
+            os.close();
+        }
+    }
+    
+   
+    }
          
          
          
-} 
+
 

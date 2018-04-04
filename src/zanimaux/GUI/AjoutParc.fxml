@@ -54,6 +54,11 @@
                   </Label>
                </children>
             </AnchorPane>
+            <Button fx:id="ajou1" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" onAction="#gestionAction" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Gestion des parcs" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="246.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -131,6 +136,7 @@
             <Label fx:id="photoLabel" layoutX="49.0" layoutY="383.0" textFill="RED" />
             <Button fx:id="photo" layoutX="64.0" layoutY="405.0" mnemonicParsing="false" onAction="#chooseAction" opacity="0.6" prefHeight="27.0" prefWidth="138.0" text="Photo" />
             <Text fill="#22549a" layoutX="315.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie de dressage :" />
+            <Label fx:id="chooseFile" layoutX="34.0" layoutY="468.0" opacity="0.54" text="Label" />
                      
          </children>
          

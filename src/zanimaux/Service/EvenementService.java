@@ -138,5 +138,36 @@ public class EvenementService {
         return rs ;
     
     }
-    
+    public Evenement getByUser(String cin)
+   {
+       User usr = Session.getLoggedInUser();
+       
+        Evenement ev = new Evenement();
+        try {
+            String requete = "select * from evenement where cin='"+cin+"'";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            
+            while(rs.next()){
+                
+               
+               usr.setCin(cin);
+               ev.setLieu(rs.getString("lieu"));
+               ev.setDateDebut(rs.getDate("dateDebut"));
+               ev.setDateFin (rs.getDate("dateFin"));
+               ev.setType(rs.getString("type"));
+               ev.setTitre(rs.getString("titre"));
+               ev.setDescription(rs.getString("description"));
+               ev.setNbPlace(rs.getInt("nb_place"));
+               ev.setImageEvt(rs.getString("image_evt"));
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return ev;
+    }
+
 }

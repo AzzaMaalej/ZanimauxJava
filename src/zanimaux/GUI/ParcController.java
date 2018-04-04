@@ -67,7 +67,7 @@ public class ParcController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-<<<<<<< HEAD
+
     public void initialize(URL url, ResourceBundle rb)  {
         /*  ParcService m = null;
           m = new ParcService();
@@ -184,8 +184,6 @@ public class ParcController implements Initializable {
          anchorEvent.getChildren().setAll(sp);*/
         
     }}    
-=======
-    }
 
- }
->>>>>>> 5fd14659e4be428c489a9856d41c43b356bacd67
+    
+

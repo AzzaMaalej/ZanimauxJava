@@ -5,6 +5,7 @@
  */
 package zanimaux.GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,9 +14,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
@@ -29,6 +33,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import zanimaux.Service.AnimalService;
 import zanimaux.Service.EvenementService;
 import zanimaux.Service.RefugeService;
@@ -112,6 +117,7 @@ public class AfficheEventController implements Initializable {
                 Button b = new Button();
                 Button modifier = new Button();
                 Button supprimer = new Button();
+               
                 HBox BtnBox=new HBox(b,modifier,supprimer);
                 BtnBox.setSpacing(50);
                 b.setText("consulter evenement");
@@ -134,7 +140,12 @@ public class AfficheEventController implements Initializable {
                     } catch (SQLException ex) {
                         Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }); VBox vbEvent = new VBox();
+                     
+                });
+                modifier.setOnAction(m->{
+                    goToModif(m);
+});
+                VBox vbEvent = new VBox();
                 vbEvent.setPadding(new Insets(-60,0,30,30));
                 vbEvent.setSpacing(50);
                
@@ -178,6 +189,7 @@ public class AfficheEventController implements Initializable {
                        } } catch (SQLException ex) {
             Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
            
         sp.setContent(vb);
@@ -269,5 +281,21 @@ public class AfficheEventController implements Initializable {
     @FXML
     private void connexionAction(ActionEvent event) {
     }
+     private void goToModif(ActionEvent e) {
+          Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("modifierEvent.fxml"));
+                 Stage myWindow = (Stage) button.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("modifier");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+
+    }
+    
     
 }

@@ -8,8 +8,12 @@ package zanimaux.GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +30,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -37,9 +43,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import zanimaux.Service.AnimalService;
+import zanimaux.Service.CommentairesService;
 
 import zanimaux.Service.RefugeService;
 import zanimaux.entities.Animal;
+import zanimaux.entities.Commentaires;
 
 import zanimaux.entities.Refuge;
 import zanimaux.util.Session;
@@ -68,6 +76,10 @@ public class RefugeClientController implements Initializable {
     private Button btnMagasin;
     @FXML
     private Button btnevenement;
+    @FXML
+    private TextArea input_commentaire;
+    @FXML
+    private Button btnCommenter;
    
     /**
      * Initializes the controller class.
@@ -125,6 +137,7 @@ public class RefugeClientController implements Initializable {
                 b.setOnAction(e->{
                     try {
                         consulterRefuge(e);
+                       
                     } catch (SQLException ex) {
                         Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -160,15 +173,129 @@ public class RefugeClientController implements Initializable {
         sp.setContent(vb);
          anchorEvent.getChildren().setAll(sp);
         
-    }    
+    }   
+    void ajouterCommentaire(ActionEvent e,String a,String b) throws SQLException{
+        Commentaires co =new Commentaires();
+        CommentairesService cs= new CommentairesService();
+        co.setCin(Session.getLoggedInUser().getCin());
+        co.setContenant(a);
+        co.setDate(Date.valueOf(LocalDate.now()));
+        co.setRefuge(b);
+        cs.ajouterCommentaire(co);
+    }
+    void SupprimerCom(ActionEvent e,int i)throws SQLException{
+        CommentairesService cs= new CommentairesService();
+        cs.SupprimerCommentaire(i);
+    }
+    void ModifierCom(ActionEvent e,int id,String msg,String refuge)throws SQLException{
+        CommentairesService cs= new CommentairesService();
+        Commentaires co =new Commentaires();
+        co.setId(id);
+        co.setCin(Session.getLoggedInUser().getCin());
+        co.setContenant(msg);
+        co.setDate(Date.valueOf(LocalDate.now()));
+        co.setRefuge(refuge);
+        cs.ModifierComm(co);
+    }
 
     void consulterRefuge(ActionEvent e) throws SQLException {
     
         ResultSet rs =null;
-        
+       String a =((Node)e.getSource()).getId();
+        TextArea inputCom=new TextArea();
+            inputCom.setPromptText("Ajouter un commentaire..");
+            inputCom.setPrefHeight(40.0);
+            inputCom.setPrefWidth(235.0);
+            inputCom.layoutXProperty().add(63.0);
+            inputCom.layoutYProperty().add(525.0);
+            Button btnCom=new Button();
+            btnCom.setText("Commenter");
+            btnCom.layoutXProperty().add(311.0);
+            btnCom.layoutYProperty().add(535.0);
+             btnCom.setOnAction(k->{
+                    try {
+                        ajouterCommentaire(k,inputCom.getText(),a);
+                        inputCom.setText("");
+                        
+                       
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            VBox comm = new VBox();
+           comm.setSpacing(5);
+           Text tex=new Text();
+           tex.setText("Vos avis..");
+           tex.setFont(Font.font("Comic Sans MS", 18) );
+           tex.setStyle("Bold");
+            comm.getChildren().add(tex);
+           Commentaires co =new Commentaires();
+        CommentairesService cs= new CommentairesService();
+        ResultSet rc = cs.RechercherComByImm(a);
+           if (rc==null){
+               
+           }
+           while(rc.next()){
+               HBox h= new HBox();
+               co.setId(rc.getInt("id"));
+           co.setContenant(rc.getString("contenant"));
+           co.setDate(rc.getDate("date"));
+           co.setCin(rc.getString("cin"));
+           String format = "dd/MM/yy H:mm";
+          java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+           Label lbcom= new Label();
+           lbcom.setText(co.getContenant()+"     "+formater.format(co.getDate()));
+           lbcom.setFont(Font.font("Comic Sans MS", 14) );
+           lbcom.setStyle("-fx-background-color:#E3F9FE;");
+           lbcom.setPrefHeight(30.0);
+           Button btneditCom=new Button();
+           btneditCom.setText("Modifier");
+           
+           Button btndeleteCom=new Button();
+           btndeleteCom.setText("Supprimer");
+          
+
+           if( co.getCin().equals(Session.getLoggedInUser().getCin())){
+           btneditCom.setVisible(true);
+           btndeleteCom.setVisible(true);
+           }else{btneditCom.setVisible(false);
+            btndeleteCom.setVisible(false);}
+           h.getChildren().add(lbcom);
+           h.getChildren().add(btneditCom);
+           h.getChildren().add(btndeleteCom);
+           comm.getChildren().add(h);
+            btndeleteCom.setOnAction(n->{
+                    try {
+                        SupprimerCom(n,co.getId());
+                        lbcom.setText("");
+                        btneditCom.setVisible(false);
+                        btndeleteCom.setVisible(false);
+                       
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+             btneditCom.setOnAction(c->{
+                 
+                 inputCom.setText(co.getContenant());
+                 btneditCom.setOnAction(d->{
+                     try {
+                         ModifierCom(d,co.getId(),inputCom.getText(),a);
+                         lbcom.setText(inputCom.getText()+"     "+formater.format(co.getDate()));
+                         inputCom.setText("");
+                         
+                         
+                     } catch (SQLException ex) {
+                         Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                 });
+                });
+           }
+           comm.getChildren().add(inputCom);
+           comm.getChildren().add(btnCom);
            AnimalService m= new AnimalService();
           
-            String a =((Node)e.getSource()).getId();
+            
             
             rs=  m.RechercherAnimalByImm(a) ;
             if (rs==null){
@@ -184,6 +311,7 @@ public class RefugeClientController implements Initializable {
             HBox hb =null;
             vb.setPadding(new Insets(100, 30, 0, 30));
             vb.setSpacing(100);
+            
             
              while(rs.next())
             {
@@ -217,6 +345,8 @@ public class RefugeClientController implements Initializable {
           vbProduit.getChildren().add(t1);
           vbProduit.getChildren().add(t);
           vbProduit.getChildren().add(t2);
+          
+
           i++;
           
           if(i%3!=1)
@@ -230,6 +360,8 @@ public class RefugeClientController implements Initializable {
             hb.setSpacing(10);
             hb.getChildren().add(vbProduit) ;
             vb.getChildren().add(hb); 
+            vb.getChildren().add(comm);
+           
            }
                  
       }
@@ -265,11 +397,9 @@ public class RefugeClientController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
-     @FXML
     private void showPane(MouseEvent event) {
          pane.setVisible(true);
     }
-      @FXML
     private void hidePane(MouseEvent event) {
          pane.setVisible(false);
 

@@ -79,6 +79,8 @@ public class ParcController implements Initializable {
     @FXML
     private Button aff;
    public String filePath;
+    @FXML
+    private Button Acc;
     /**
      * Initializes the controller class.
      */
@@ -215,6 +217,24 @@ public class ParcController implements Initializable {
          resetPageData();
      }
     }
+    @FXML
+    private void retourAcc(ActionEvent event) {
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) Acc.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+   
      @FXML
     private void showPane(MouseEvent event) {
     }
@@ -450,7 +470,7 @@ public class ParcController implements Initializable {
             r = 3;
         }
         Label chooseFile = new Label();
-        
+        chooseFile.setText(m1.getPhotoParc());
         Image imagePhoto = new Image("zanimaux/ImageUtile/photo.png",26,26,false,false);
         
         Button pho = new Button();

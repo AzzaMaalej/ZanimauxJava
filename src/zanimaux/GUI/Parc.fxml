@@ -11,12 +11,12 @@
   <children>
       <AnchorPane layoutX="10.0" layoutY="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="ajou" layoutY="128.0" mnemonicParsing="false" onAction="#retourner" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+            <Button fx:id="ajou" layoutX="2.0" layoutY="186.0" mnemonicParsing="false" onAction="#retourner" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="186.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="aff" layoutX="2.0" layoutY="209.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Afficher" textFill="WHITE" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="209.0">
+            <Button fx:id="aff" layoutX="7.0" layoutY="240.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="248.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Afficher" textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="240.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -26,14 +26,14 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="45.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="414.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="203.0">
                <image>
-                  <Image url="@../Image/home.png" />
+                  <Image url="@../Image/add-2.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="41.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="218.0">
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="45.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="262.0">
                <image>
-                  <Image url="@../Image/valise.png" />
+                  <Image url="@../Image/view-files.png" />
                </image>
             </ImageView>
             <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
@@ -55,6 +55,16 @@
                   </Label>
                </children>
             </AnchorPane>
+            <Button fx:id="Acc" layoutX="20.0" layoutY="127.0" mnemonicParsing="false" onAction="#retourAcc" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="45.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/home.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="256.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

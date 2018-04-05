@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AccueilDresseurController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AccueilPetSitterController">
     <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -49,7 +49,7 @@
             </Button>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
                <image>
-                  <Image url="@../Image/dressage.png" />
+                  <Image url="@../Image/home.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">

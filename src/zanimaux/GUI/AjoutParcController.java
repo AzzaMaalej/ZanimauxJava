@@ -106,10 +106,10 @@ public class AjoutParcController implements Initializable {
     @FXML
     private Button aff;
     @FXML
-    private Button ajou1;
-    @FXML
     private Label chooseFile;
     public String filePath;
+    @FXML
+    private Button acc;
 
     /**
      * Initializes the controller class.
@@ -247,19 +247,6 @@ public class AjoutParcController implements Initializable {
         }
 
     }
-    @FXML
-    private void gestionAction(ActionEvent event) throws SQLException {
-        try {
-        Stage stage=(Stage) ajou1.getScene().getWindow(); 
-        stage.setTitle("Gestion des Parcs");
-        Parent root = FXMLLoader.load(getClass().getResource("GestionParc.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        } catch (IOException ex) {
-           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }
     
      private static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;
@@ -283,7 +270,6 @@ public class AjoutParcController implements Initializable {
             os.close();
         }
     }
-    @FXML
     private void redirect() throws IOException {
         
         
@@ -296,6 +282,24 @@ public class AjoutParcController implements Initializable {
             stage.hide();
             secondStage.show();
         
+
+    }
+    
+    @FXML
+    private void retourAcc(ActionEvent event) {
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) nom.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
    

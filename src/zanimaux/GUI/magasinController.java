@@ -34,6 +34,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import zanimaux.Service.MagasinService;
+import zanimaux.Service.PanierService;
 import zanimaux.Service.ProduitService;
 import zanimaux.entities.Magasin;
 import zanimaux.entities.Produit;
@@ -204,7 +205,15 @@ public class magasinController implements Initializable {
                 Text t =new Text(m1.getDescription());
                 t.setFont(Font.font("Verdana", 15) );
                 Button b = new Button();
+                b.setId(String.valueOf(m1.getIdProduit()));
                 b.setText("Ajouter au panier"); 
+                b.setOnAction(l->{
+                    try{
+                  ajoutProduitPanier(l);
+                    }catch (SQLException ex)
+                    { System.out.println(ex.getMessage());}
+            
+          });
           
                       VBox vbProduit = new VBox(); 
           vbProduit.setPadding(new Insets(-60,0,30,30));
@@ -235,6 +244,14 @@ public class magasinController implements Initializable {
         sp.setContent(vb);
          anchorEvent.getChildren().setAll(sp);
            
+    }
+
+    private void ajoutProduitPanier(ActionEvent e) throws SQLException {
+        int a =Integer.parseInt(((Node)e.getSource()).getId());
+        ProduitService ps = new ProduitService();
+        Produit prod= ps.rechercheProduitMagasin(a);
+        PanierService p = new PanierService();
+        p.ajouterProduitPanier(prod);
     }
     
  

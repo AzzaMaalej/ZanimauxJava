@@ -34,9 +34,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import zanimaux.Service.MagasinService;
+import zanimaux.Service.PanierService;
 import zanimaux.Service.ProduitService;
 import zanimaux.entities.Magasin;
 import zanimaux.entities.Produit;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  * FXML Controller class
@@ -51,7 +54,6 @@ public class magasinController implements Initializable {
     private Button evenement;
     @FXML
     private Button userName;
-    @FXML
     private Pane pane;
     @FXML
     private Button btn11;
@@ -59,13 +61,18 @@ public class magasinController implements Initializable {
     private Button btn1;
     @FXML
     private AnchorPane anchorEvent;
+    @FXML
+    private Button buttonRefuge;
+    @FXML
+    private Pane paneProfil;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+          User u= Session.getLoggedInUser();
+        userName.setText(u.getUsername());
         MagasinService m=null;
         try {
             m = new MagasinService();
@@ -159,12 +166,37 @@ public class magasinController implements Initializable {
     private void onClickEvenementAction(ActionEvent event) {
     }
 
-    @FXML
     private void showPane(MouseEvent event) {
     }
+     @FXML
+     void AfficherRefugeAction(ActionEvent event) throws SQLException {
 
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS Refuges");
+        Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+    }
     @FXML
     private void connexionAction(ActionEvent event) {
+                  Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) btn11.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
     }
     void consulterMagasin(ActionEvent e) throws SQLException {
     
@@ -204,7 +236,15 @@ public class magasinController implements Initializable {
                 Text t =new Text(m1.getDescription());
                 t.setFont(Font.font("Verdana", 15) );
                 Button b = new Button();
+                b.setId(String.valueOf(m1.getIdProduit()));
                 b.setText("Ajouter au panier"); 
+                b.setOnAction(l->{
+                    try{
+                  ajoutProduitPanier(l);
+                    }catch (SQLException ex)
+                    { System.out.println(ex.getMessage());}
+            
+          });
           
                       VBox vbProduit = new VBox(); 
           vbProduit.setPadding(new Insets(-60,0,30,30));
@@ -235,6 +275,29 @@ public class magasinController implements Initializable {
         sp.setContent(vb);
          anchorEvent.getChildren().setAll(sp);
            
+    }
+
+    private void ajoutProduitPanier(ActionEvent e) throws SQLException {
+        int a =Integer.parseInt(((Node)e.getSource()).getId());
+        ProduitService ps = new ProduitService();
+        Produit prod= ps.rechercheProduitMagasin(a);
+        PanierService p = new PanierService();
+        p.ajouterProduitPanier(prod);
+    }
+
+    private void hidePane(MouseEvent event) {
+    }
+
+    @FXML
+    private void showPaneProfil(MouseEvent event) {
+                paneProfil.setVisible(true);
+
+    }
+
+    @FXML
+    private void hidePaneProfil(MouseEvent event) {
+                paneProfil.setVisible(false);
+
     }
     
  

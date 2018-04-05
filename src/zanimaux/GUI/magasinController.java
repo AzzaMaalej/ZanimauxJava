@@ -38,6 +38,8 @@ import zanimaux.Service.PanierService;
 import zanimaux.Service.ProduitService;
 import zanimaux.entities.Magasin;
 import zanimaux.entities.Produit;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  * FXML Controller class
@@ -52,7 +54,6 @@ public class magasinController implements Initializable {
     private Button evenement;
     @FXML
     private Button userName;
-    @FXML
     private Pane pane;
     @FXML
     private Button btn11;
@@ -60,13 +61,18 @@ public class magasinController implements Initializable {
     private Button btn1;
     @FXML
     private AnchorPane anchorEvent;
+    @FXML
+    private Button buttonRefuge;
+    @FXML
+    private Pane paneProfil;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+          User u= Session.getLoggedInUser();
+        userName.setText(u.getUsername());
         MagasinService m=null;
         try {
             m = new MagasinService();
@@ -160,12 +166,37 @@ public class magasinController implements Initializable {
     private void onClickEvenementAction(ActionEvent event) {
     }
 
-    @FXML
     private void showPane(MouseEvent event) {
     }
+     @FXML
+     void AfficherRefugeAction(ActionEvent event) throws SQLException {
 
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS Refuges");
+        Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+    }
     @FXML
     private void connexionAction(ActionEvent event) {
+                  Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) btn11.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
     }
     void consulterMagasin(ActionEvent e) throws SQLException {
     
@@ -252,6 +283,21 @@ public class magasinController implements Initializable {
         Produit prod= ps.rechercheProduitMagasin(a);
         PanierService p = new PanierService();
         p.ajouterProduitPanier(prod);
+    }
+
+    private void hidePane(MouseEvent event) {
+    }
+
+    @FXML
+    private void showPaneProfil(MouseEvent event) {
+                paneProfil.setVisible(true);
+
+    }
+
+    @FXML
+    private void hidePaneProfil(MouseEvent event) {
+                paneProfil.setVisible(false);
+
     }
     
  

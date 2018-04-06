@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.accueilOumaimaController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.accueilOumaimaController">
    <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -42,7 +42,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+            <Button fx:id="annonceBtn" layoutY="525.0" mnemonicParsing="false" onAction="#goToAnn" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>

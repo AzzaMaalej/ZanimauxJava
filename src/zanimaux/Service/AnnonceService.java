@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import zanimaux.Technique.DataSource;
 import zanimaux.entities.Annonce;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  *
@@ -22,11 +24,12 @@ public class AnnonceService {
     
      public boolean ajouterAnnonce(Annonce a)
     {
-       String requete = "INSERT INTO Annonce (cinUser,type,titre, description, pieceJointe) VALUES (?,?,?,?,?) ";
+       String requete = "INSERT INTO Annonce (cin,type,titre, description, photoAnimal) VALUES (?,?,?,?,?) ";
+        User usr = Session.getLoggedInUser();
        
        try {
             PreparedStatement pst = con.prepareStatement(requete);
-            pst.setObject(1,a.getCinUser());
+            pst.setObject(1,usr.getCin());
             pst.setString(2,a.getType());
             pst.setString(3,a.getTitre());
             pst.setString(4,a.getDescription());

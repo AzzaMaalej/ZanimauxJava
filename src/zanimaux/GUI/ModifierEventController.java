@@ -90,7 +90,7 @@ public class ModifierEventController implements Initializable {
            
          if(e != null){
             lieu.setText(e.getLieu());
-           // dateDebut.(e.getDateDebut().getDate());
+           //dateDebut.(e.getDateDebut().getDate());
             //dateFin.setTime(e.getDateFin().getTime());
             type.setText(e.getType());
             titre.setText(e.getTitre());

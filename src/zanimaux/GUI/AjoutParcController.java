@@ -36,6 +36,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -64,8 +65,6 @@ public class AjoutParcController implements Initializable {
     @FXML
     private AnchorPane anchorEvent;
     @FXML
-    private TextField idp;
-    @FXML
     private TextField nom;
     @FXML
     private TextField adr;
@@ -84,8 +83,6 @@ public class AjoutParcController implements Initializable {
     
     ObservableList<String> list=FXCollections.observableArrayList("val1","val2");
     @FXML
-    private Label idpLabel;
-    @FXML
     private Label nomLabel;
     @FXML
     private Label adrLabel;
@@ -93,8 +90,6 @@ public class AjoutParcController implements Initializable {
     private Label villeLabel;
     @FXML
     private Label codepLabel;
-    @FXML
-    private Label cinLabel;
     @FXML
     private Label photoLabel;
     @FXML
@@ -110,6 +105,8 @@ public class AjoutParcController implements Initializable {
     public String filePath;
     @FXML
     private Button acc;
+    @FXML
+    private Button reinit;
 
     /**
      * Initializes the controller class.
@@ -124,6 +121,15 @@ public class AjoutParcController implements Initializable {
         ObservableList<String> ob = FXCollections.observableArrayList();
         ob.addAll(list);
         catg.setItems(ob);
+        Image imageAjout = new Image("zanimaux/ImageUtile/checked.png",40,40,false,false);
+        btn.setBackground(Background.EMPTY);
+            btn.setGraphic(new ImageView(imageAjout));
+            Image imagePhoto = new Image("zanimaux/ImageUtile/photo.png",26,26,false,false);
+        photo.setBackground(Background.EMPTY);
+        photo.setGraphic(new ImageView(imagePhoto));
+        Image Ref = new Image("zanimaux/ImageUtile/refresh.png",26,26,false,false);
+        reinit.setBackground(Background.EMPTY);
+            reinit.setGraphic(new ImageView(Ref));
     }    
     
     
@@ -174,10 +180,6 @@ public class AjoutParcController implements Initializable {
             saisie = false;
         }
 
-        if (!Validation.texNum(idp, idpLabel, "* le numéro doit contenir que des chiffres")) {
-            saisie = false;
-        }
-
         if (!Validation.textalphabet(nom, nomLabel, "* le nom doit contenir que des lettres")) {
             saisie = false;
         }
@@ -218,7 +220,7 @@ public class AjoutParcController implements Initializable {
               String cin=user.getCin();
      
               try {
-          Parc u=new Parc(idp.getText(),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),chooseFile.getText(),cin);
+          Parc u=new Parc(nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),chooseFile.getText(),cin);
            
           
            a.ajouterParc(u);
@@ -290,6 +292,24 @@ public class AjoutParcController implements Initializable {
         
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) nom.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void reinit(ActionEvent event) {
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutParc.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage secondStage = new Stage();
             secondStage.setScene(new Scene(root));

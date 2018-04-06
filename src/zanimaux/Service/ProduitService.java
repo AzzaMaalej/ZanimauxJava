@@ -107,6 +107,39 @@ public class ProduitService
     
     }
         
+        
+    public Produit rechercheProduitMagasin(int i)
+            
+    {
+        
+        Produit p = new Produit();
+        try {
+            String requete = "SELECT * FROM Produit WHERE `idProduit`="+i;
+            ResultSet rs = ste.executeQuery(requete);
+            while(rs.next()){
+               p.setDescription(rs.getString("description") );
+               p.setIdMagasin(i);
+               p.setIdProduit(rs.getInt("idProduit"));
+               p.setLibelle(rs.getString("libelle"));
+               p.setMarque(rs.getString("marque"));
+               p.setNbFoisVendu(rs.getInt("nbFoisVendu"));
+               p.setPhotoProduit(rs.getString("photoProduit"));
+               p.setPrix(rs.getDouble("prix"));
+               p.setQuantite(rs.getInt("quantite"));
+               p.setType(rs.getString("type"));
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return p;
+    
+
+    
+    }
+        
          public boolean ModifProduit(Produit p,int id)
     {
         int nbr_ligne;

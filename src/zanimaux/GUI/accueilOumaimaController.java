@@ -52,6 +52,7 @@ import zanimaux.Service.MagasinService;
 import zanimaux.Service.ProduitService;
 import zanimaux.entities.Magasin;
 import zanimaux.entities.Produit;
+import zanimaux.entities.User;
 import zanimaux.util.Session;
 /**
  * FXML Controller class
@@ -94,6 +95,8 @@ public class accueilOumaimaController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        User u= Session.getLoggedInUser();
+        userName.setText(u.getUsername());
         // TODO
     }    
 

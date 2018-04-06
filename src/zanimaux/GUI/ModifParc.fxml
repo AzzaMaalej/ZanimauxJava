@@ -11,28 +11,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AjoutParcController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.ModifParcController">
      <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="ajou" layoutX="8.0" layoutY="178.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="178.0">
+            <Button fx:id="ajou" layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Ajouter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="aff" layoutX="8.0" layoutY="242.0" mnemonicParsing="false" onAction="#retourner" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Afficher" textFill="WHITE" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="242.0">
+            <Button fx:id="aff" layoutX="3.0" layoutY="210.0" mnemonicParsing="false" onAction="#retourner" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Afficher" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="210.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="42.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="411.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="183.0" AnchorPane.topAnchor="195.0">
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
                <image>
-                  <Image url="@../Image/add-2.png" />
+                  <Image url="@../Image/home.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="43.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="259.0">
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="42.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="219.0">
                <image>
-                  <Image url="@../Image/view-files.png" />
+                  <Image url="@../Image/valise.png" />
                </image>
             </ImageView>
             <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
@@ -54,16 +54,11 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button fx:id="acc" layoutX="20.0" layoutY="119.0" mnemonicParsing="false" onAction="#retourAcc" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE">
+            <Button fx:id="ajou1" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" onAction="#gestionAction" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Gestion des parcs" textFill="WHITE">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="43.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Image/home.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="246.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -137,7 +132,7 @@
             <Label fx:id="cinLabel" layoutX="307.0" layoutY="303.0" textFill="RED" />
             <ChoiceBox fx:id="catg" layoutX="336.0" layoutY="278.0" prefWidth="150.0" />
             <Label fx:id="catgLabel" layoutX="307.0" layoutY="383.0" textFill="RED" />
-            <Button fx:id="btn" layoutX="296.0" layoutY="485.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Ajouter" />
+            <Button fx:id="btn" layoutX="296.0" layoutY="485.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Modifier" />
             <Label fx:id="photoLabel" layoutX="49.0" layoutY="383.0" textFill="RED" />
             <Button fx:id="photo" layoutX="64.0" layoutY="405.0" mnemonicParsing="false" onAction="#chooseAction" opacity="0.6" prefHeight="27.0" prefWidth="138.0" text="Photo" />
             <Text fill="#22549a" layoutX="315.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie de dressage :" />

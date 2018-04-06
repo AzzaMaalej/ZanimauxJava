@@ -57,6 +57,7 @@ public class RefugeDashboardController implements Initializable {
         @FXML
      void GestRefuges(ActionEvent event) throws SQLException {
         try {
+            
             Stage stage=(Stage) btnprofil.getScene().getWindow(); 
         stage.setTitle("Profil");
         Parent root = FXMLLoader.load(getClass().getResource("GestionRefuges.fxml"));

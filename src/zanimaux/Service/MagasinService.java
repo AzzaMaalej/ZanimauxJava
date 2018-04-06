@@ -36,7 +36,7 @@ public class MagasinService {
     
     public boolean ajouterMagasin(Magasin m)
     {
-       String requete = "INSERT INTO Magasin (numRC,nomMagasin,adresseMagasin, codePostaleMagasin, photoMagasin, cinProprietaireMagasin,villeMagasin) VALUES (?,?,?,?,?,?,?) ";
+       String requete = "INSERT INTO Magasin (numRC,nomMagasin,adresseMagasin, codePostaleMagasin, photoMagasin, cinProprietaireMagasin,villeMagasin,nbProduit) VALUES (?,?,?,?,?,?,?,?) ";
        User u= Session.getLoggedInUser();
        try {
             PreparedStatement pst =con.prepareStatement(requete);
@@ -47,6 +47,7 @@ public class MagasinService {
             pst.setString(5,m.getPhotoMagasin());
             pst.setString(6, u.getCin());
             pst.setString(7, m.getVilleMagasin());
+            pst.setInt(8, m.getNbProduit());
             pst.executeUpdate();
             System.out.println("ajout reussit");
         } catch (SQLException ex) {

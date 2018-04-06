@@ -163,10 +163,14 @@ public class LoginController implements Initializable {
                     // TODO: Proceed to other page
                     
 
+<<<<<<< HEAD
                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
                  // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
+=======
+                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
+                  //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
+>>>>>>> 378241334dc6f768e5b383689e21063bcfacced7
                   //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
-
                    // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
 
                     Parent root = (Parent) fxmlLoader.load();
@@ -204,7 +208,7 @@ public class LoginController implements Initializable {
                     Session.setLoggedInUser(result);
                     // TODO: Proceed to other page
                     
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("acceuil.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilPetSitter.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));

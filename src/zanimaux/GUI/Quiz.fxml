@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="zanimaux.GUI.QuizController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
        <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -152,25 +152,28 @@
          </children>
       </Pane>
       <AnchorPane layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
-      <Pane fx:id="PanaPrincipale" layoutX="269.0" layoutY="154.0" prefHeight="373.0" prefWidth="509.0" style="-fx-border-color: #128FAD; -fx-background-radius: 20px;">
+      <Pane fx:id="PanePrincipale" layoutX="269.0" layoutY="154.0" prefHeight="373.0" prefWidth="509.0" style="-fx-border-color: #128FAD; -fx-border-radius: 20px; -fx-border-width: 3;">
          <children>
             <Label layoutX="38.0" layoutY="38.0" text="-- Quel animal vous ressemble le plus? --">
                <font>
                   <Font name="Comic Sans MS Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="13.0" layoutY="118.0" prefHeight="31.0" prefWidth="483.0" text="A treavers notre quiz, vous pouvez savoir quelle race vous convient le plus.">
+            <Label layoutX="31.0" layoutY="112.0" prefHeight="101.0" prefWidth="448.0" text="A treavers notre quiz, vous pouvez savoir quelle race vous convient le plus.D'habord, vous préférez: " textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font name="Comic Sans MS" size="14.0" />
+                  <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="170.0" layoutY="187.0" text="D'habord, vous préférez: ">
-               <font>
-                  <Font name="Comic Sans MS" size="14.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnChat" layoutX="109.0" layoutY="268.0" mnemonicParsing="false" onAction="#questionnaire_chat" prefHeight="40.0" prefWidth="87.0" text="Chat" />
-            <Button fx:id="btnChien" layoutX="306.0" layoutY="268.0" mnemonicParsing="false" onAction="#questionnaire_chien" prefHeight="40.0" prefWidth="87.0" text="Chien" />
+            <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="124.0" layoutY="257.0" onMouseClicked="#questionnaire_chat" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/cat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="304.0" layoutY="255.0" onMouseClicked="#questionnaire_chien" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/german-shepherd.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane fx:id="pane_questionnaire_chat" layoutX="252.0" layoutY="50.0" prefHeight="583.0" prefWidth="543.0" visible="false">
@@ -185,17 +188,17 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <CheckBox fx:id="autre_animal_1" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="autre_animal_1" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_animal_1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="autre_animal_2" layoutX="316.0" layoutY="207.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="autre_animal_2" layoutX="316.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_animal_2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="autre_animal_3" layoutX="395.0" layoutY="207.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="autre_animal_3" layoutX="395.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_animal_3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
@@ -230,82 +233,87 @@
                   <Font name="Comic Sans MS" size="14.0" />
                </font>
             </Label>
-            <CheckBox layoutX="234.0" layoutY="260.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="dynamique1" layoutX="234.0" layoutY="260.0" mnemonicParsing="false" onAction="#dynamique1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="234.0" layoutY="316.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="affectueux1" layoutX="234.0" layoutY="316.0" mnemonicParsing="false" onAction="#affectueux1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="234.0" layoutY="369.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="poils1" layoutX="234.0" layoutY="369.0" mnemonicParsing="false" onAction="#poils1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="234.0" layoutY="425.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="intelligent1" layoutX="234.0" layoutY="425.0" mnemonicParsing="false" onAction="#intelligent1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="234.0" layoutY="474.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="accept1" layoutX="234.0" layoutY="474.0" mnemonicParsing="false" onAction="#accept1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="260.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="dynamique2" layoutX="316.0" layoutY="260.0" mnemonicParsing="false" onAction="#dynamique2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="316.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="affectueux2" layoutX="316.0" layoutY="316.0" mnemonicParsing="false" onAction="#affectueux2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="369.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="poils2" layoutX="316.0" layoutY="369.0" mnemonicParsing="false" onAction="#poils2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="425.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="intelligent2" layoutX="316.0" layoutY="425.0" mnemonicParsing="false" onAction="#intelligent2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="474.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="accept2" layoutX="316.0" layoutY="474.0" mnemonicParsing="false" onAction="#accept2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="260.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="dynamique3" layoutX="395.0" layoutY="260.0" mnemonicParsing="false" onAction="#dynamique3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="316.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="affectueux3" layoutX="395.0" layoutY="316.0" mnemonicParsing="false" onAction="#affectueux3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="369.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="poils3" layoutX="395.0" layoutY="369.0" mnemonicParsing="false" onAction="#poils3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="425.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="intelligent3" layoutX="395.0" layoutY="425.0" mnemonicParsing="false" onAction="#intelligent3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="474.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="accept3" layoutX="395.0" layoutY="474.0" mnemonicParsing="false" onAction="#accept3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <Button fx:id="btnresultatchat" layoutX="292.0" layoutY="522.0" mnemonicParsing="false" text="Voir resultat" />
+            <Button fx:id="btnresultatchat" layoutX="292.0" layoutY="522.0" mnemonicParsing="false" onAction="#btnresultatchatAction" text="Voir resultat" />
+            <Label fx:id="lb" layoutX="127.0" layoutY="170.0" prefHeight="28.0" prefWidth="242.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="pane_questionnaire_chien" layoutX="252.0" layoutY="50.0" prefHeight="583.0" prefWidth="543.0" visible="false">
@@ -320,17 +328,17 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <CheckBox fx:id="autre_animal_11" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="autre_chien1" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="autre_animal_21" layoutX="316.0" layoutY="207.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="autre_chien2" layoutX="316.0" layoutY="207.0" mnemonicParsing="false" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="autre_animal_31" layoutX="395.0" layoutY="207.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="autre_chien3" layoutX="395.0" layoutY="207.0" mnemonicParsing="false" text="3">
                <font>
                   <Font size="14.0" />
                </font>
@@ -365,82 +373,107 @@
                   <Font name="Comic Sans MS" size="14.0" />
                </font>
             </Label>
-            <CheckBox layoutX="234.0" layoutY="260.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="tolerer_chat1" layoutX="234.0" layoutY="260.0" mnemonicParsing="false" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="234.0" layoutY="316.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="chien_affectueux1" layoutX="234.0" layoutY="316.0" mnemonicParsing="false" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="234.0" layoutY="369.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="calme1" layoutX="234.0" layoutY="369.0" mnemonicParsing="false" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="234.0" layoutY="425.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="chien_intelligent1" layoutX="234.0" layoutY="425.0" mnemonicParsing="false" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="234.0" layoutY="474.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="poils_chien1" layoutX="234.0" layoutY="474.0" mnemonicParsing="false" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="260.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="tolerer_chat2" layoutX="316.0" layoutY="260.0" mnemonicParsing="false" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="316.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="chien_affectueux2" layoutX="316.0" layoutY="316.0" mnemonicParsing="false" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="369.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="calme2" layoutX="316.0" layoutY="369.0" mnemonicParsing="false" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="425.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="chien_intelligent2" layoutX="316.0" layoutY="425.0" mnemonicParsing="false" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="316.0" layoutY="474.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="poils_chien2" layoutX="316.0" layoutY="474.0" mnemonicParsing="false" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="260.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="tolerer_chat3" layoutX="395.0" layoutY="260.0" mnemonicParsing="false" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="316.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="chien_affectueux3" layoutX="395.0" layoutY="316.0" mnemonicParsing="false" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="369.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="calme3" layoutX="395.0" layoutY="369.0" mnemonicParsing="false" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="425.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="chien_intelligent3" layoutX="395.0" layoutY="425.0" mnemonicParsing="false" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="395.0" layoutY="474.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="poils_chien3" layoutX="395.0" layoutY="474.0" mnemonicParsing="false" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <Button fx:id="btnresultatchat1" layoutX="292.0" layoutY="522.0" mnemonicParsing="false" text="Voir resultat" />
+            <Button fx:id="btnresultatchien" layoutX="292.0" layoutY="522.0" mnemonicParsing="false" text="Voir resultat" />
+         </children>
+      </Pane>
+      <Pane fx:id="pane_resultat" layoutX="351.0" layoutY="82.0" prefHeight="513.0" prefWidth="389.0" style="-fx-border-radius: 0 90 5 90; -fx-border-color: #128FAD; -fx-border-width: 2;" visible="false">
+         <children>
+            <ImageView fx:id="imageanimal" fitHeight="150.0" fitWidth="200.0" layoutX="95.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/animaux.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="95.0" layoutY="26.0" prefHeight="132.0" prefWidth="200.0" style="-fx-background-color: #0000; -fx-border-color: #128FAD; -fx-border-width: 3;" />
+            <Label layoutX="48.0" layoutY="175.0" text="Race:" textFill="#128fad">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="race_resultat" layoutX="113.0" layoutY="175.0" prefHeight="35.0" prefWidth="242.0" textFill="#7bbfcf">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="description" layoutX="40.0" layoutY="229.0" prefHeight="250.0" prefWidth="314.0" text="Label" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

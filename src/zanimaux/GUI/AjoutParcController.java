@@ -64,8 +64,6 @@ public class AjoutParcController implements Initializable {
     @FXML
     private AnchorPane anchorEvent;
     @FXML
-    private TextField idp;
-    @FXML
     private TextField nom;
     @FXML
     private TextField adr;
@@ -83,8 +81,6 @@ public class AjoutParcController implements Initializable {
     
     
     ObservableList<String> list=FXCollections.observableArrayList("val1","val2");
-    @FXML
-    private Label idpLabel;
     @FXML
     private Label nomLabel;
     @FXML
@@ -174,9 +170,7 @@ public class AjoutParcController implements Initializable {
             saisie = false;
         }
 
-        if (!Validation.texNum(idp, idpLabel, "* le numéro doit contenir que des chiffres")) {
-            saisie = false;
-        }
+        
 
         if (!Validation.textalphabet(nom, nomLabel, "* le nom doit contenir que des lettres")) {
             saisie = false;
@@ -218,7 +212,7 @@ public class AjoutParcController implements Initializable {
               String cin=user.getCin();
      
               try {
-          Parc u=new Parc(idp.getText(),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),chooseFile.getText(),cin);
+          Parc u=new Parc(nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),chooseFile.getText(),cin);
            
           
            a.ajouterParc(u);

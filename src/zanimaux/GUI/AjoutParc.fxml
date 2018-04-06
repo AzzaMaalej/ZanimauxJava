@@ -124,8 +124,6 @@
       <AnchorPane fx:id="anchorEvent" layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
              <ImageView fx:id="iv" fitHeight="77.0" fitWidth="183.0" layoutX="48.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="idp" alignment="TOP_CENTER" layoutX="56.0" layoutY="95.0" promptText="Le numéro du parc" />
-            <Label fx:id="idpLabel" layoutX="35.0" layoutY="122.0" textFill="RED" />
             <TextField fx:id="nom" alignment="TOP_CENTER" layoutX="319.0" layoutY="95.0" promptText="Le nom" />
             <Label fx:id="nomLabel" layoutX="308.0" layoutY="130.0" textFill="RED" />
             <TextField fx:id="adr" alignment="TOP_CENTER" layoutX="56.0" layoutY="187.0" promptText="L'adresse" />

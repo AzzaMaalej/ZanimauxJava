@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Control;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -68,12 +69,17 @@ public class AccueilDresseurController implements Initializable {
     private Button parc;
     @FXML
     private AnchorPane anchorEvent;
+    @FXML
+    private Button logOut;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        User u= Session.getLoggedInUser();
+        userName.setText(u.getUsername());
+        
         ParcService m=null;
         try {
             m = new ParcService();
@@ -82,9 +88,9 @@ public class AccueilDresseurController implements Initializable {
         }
         User user=Session.getLoggedInUser();
         String cin=user.getCin();
-        ResultSet r =m.AfficherParcByCin(cin);
+        ResultSet r =m.AfficherParc();
         Parc m1=new Parc();
-        r= m.AfficherParcByCin(cin);
+        r= m.AfficherParc();
         ScrollPane sp = new ScrollPane();
         sp.setPrefSize(900, 650);
         //         sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
@@ -125,8 +131,49 @@ try{
         Avis av1= new Avis();
         
         boolean r1 = av.VerifierAvis(m1.getId(), cin);
+        if (m1.getCinDresseur().equals(cin)){
         
-        if (r1==false){
+            
+           
+            VBox vbParc = new VBox();
+            vbParc.setPadding(new Insets(-60,0,30,30));
+            vbParc.setSpacing(20);
+            vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
+            vbParc.setPrefSize(200, 170);
+            vbParc.getChildren().add(im);
+            vbParc.getChildren().add(t1);
+            vbParc.getChildren().add(t3);
+            vbParc.getChildren().add(t2);
+            vbParc.getChildren().add(t4);
+            vbParc.getChildren().add(t);
+           
+          
+                    
+               
+            
+            
+            i++;
+            System.out.println(m1.getId()+" "+m1.getPhotoParc());
+            
+            if(i%3!=1)
+            {
+                hb.getChildren().add(vbParc) ;
+                
+            }
+            else
+            {
+                hb = new HBox();
+                hb.setPadding(new Insets(0,0,0,0));
+                hb.setSpacing(50);
+                hb.getChildren().add(vbParc) ;
+                vb.getChildren().add(hb);
+            }
+            
+            
+        
+            
+        }else{
+           if (r1==false){
             Rating rating = new Rating (5);
             rating.setRating(0);
            
@@ -166,7 +213,7 @@ try{
                         } catch (IOException ex) {
                             Logger.getLogger(AccueilDresseurController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        
+                          
                     } catch (SQLException ex) {
             Logger.getLogger(AccueilDresseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -251,6 +298,7 @@ try{
             
             
         }
+        }
         
         
         
@@ -320,7 +368,6 @@ anchorEvent.getChildren().setAll(sp);
     @FXML
     private void connexionAction(ActionEvent event) {
     }
-     @FXML
     private void reinit(ActionEvent event) {
         
         try {
@@ -336,6 +383,23 @@ anchorEvent.getChildren().setAll(sp);
             Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+  
+
+    @FXML
+    private void Deconnexion(ActionEvent event) {
+        Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) logOut.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
     }
    
        

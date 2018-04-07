@@ -62,13 +62,16 @@ public class AccueilPetSitterController implements Initializable {
     private Button parc;
     @FXML
     private AnchorPane anchorEvent;
+    @FXML
+    private Button logOut;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-             
+        User u= Session.getLoggedInUser();
+        userName.setText(u.getUsername());     
     }     
     
     
@@ -126,5 +129,22 @@ public class AccueilPetSitterController implements Initializable {
     @FXML
     private void connexionAction(ActionEvent event) {
     }
-       
+    
+
+    @FXML
+    private void Deconnexion(ActionEvent event) {
+        Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) logOut.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    }
+    
 }

@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.4" fx:controller="zanimaux.GUI.AffichePanierController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AffichePanierController">
    <children>
       <AnchorPane id="AnchorPane" onMouseClicked="#hidePaneProfil" prefHeight="632.0" prefWidth="721.0">
          <children>
@@ -167,7 +166,7 @@
             </Pane>
             <AnchorPane fx:id="anchorEvent" layoutX="277.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <VBox fx:id="vbPanier" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #128FAD55;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <VBox fx:id="vbPanier" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #128FAD55;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
@@ -218,10 +217,13 @@
                            <children>
                               <VBox fx:id="vbProduit" prefHeight="450.0" prefWidth="174.0">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets right="20.0" />
                                  </HBox.margin>
                               </VBox>
-                              <VBox fx:id="vbQuantite" prefHeight="450.0" prefWidth="93.0" />
+                              <VBox fx:id="vbQuantite" prefHeight="450.0" prefWidth="93.0">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin></VBox>
                               <VBox fx:id="vbPrix" prefHeight="450.0" prefWidth="95.0">
                                  <HBox.margin>
                                     <Insets right="20.0" />

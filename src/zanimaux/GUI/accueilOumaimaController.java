@@ -66,8 +66,6 @@ public class accueilOumaimaController implements Initializable {
     @FXML
     private Button button;
     @FXML
-    private Button evenement;
-    @FXML
     private Button userName;
     @FXML
     private Pane pane;
@@ -78,10 +76,12 @@ public class accueilOumaimaController implements Initializable {
     @FXML
     private Button buttonRefuge;
     @FXML
-
     private Label sommePanier;
 
+    @FXML
     private Button annonceBtn;
+    @FXML
+    private Button evenement;
 
 
     @FXML
@@ -133,6 +133,7 @@ public class accueilOumaimaController implements Initializable {
     private void showPane(MouseEvent event) {
          pane.setVisible(true);
     }
+    @FXML
     private void hidePane(MouseEvent event) {
          pane.setVisible(false);
 
@@ -153,7 +154,7 @@ public class accueilOumaimaController implements Initializable {
                  Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
              }
     }
-     @FXML
+    @FXML
      void AfficherRefugeAction(ActionEvent event) throws SQLException {
 
         try {
@@ -199,6 +200,7 @@ public class accueilOumaimaController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }}
 
+    @FXML
     private void goToAnn(ActionEvent event) {
         try {
         Stage stage=(Stage) annonceBtn.getScene().getWindow(); 

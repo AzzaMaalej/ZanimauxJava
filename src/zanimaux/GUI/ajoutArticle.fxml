@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -28,7 +29,7 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Button>
-      <Pane layoutX="39.0" layoutY="52.0" onMouseClicked="#uploadpic" prefHeight="392.0" prefWidth="353.0" style="-fx-background-color: rgba(17,149,175,0.3);">
+      <Pane layoutX="39.0" layoutY="52.0" prefHeight="392.0" prefWidth="353.0" style="-fx-background-color: rgba(17,149,175,0.3);">
          <children>
             <Label id="lb" fx:id="lb" layoutX="230.0" layoutY="296.0" prefHeight="17.0" prefWidth="111.0" visible="false" />
             <Label layoutX="14.0" layoutY="24.0" text="Titre" textFill="#f5f0f0">
@@ -37,11 +38,6 @@
                </font>
             </Label>
             <TextField id="titre" fx:id="input_titre" layoutX="56.0" layoutY="22.0" opacity="0.7" />
-            <Label id="lb" layoutX="222.0" layoutY="54.0" text="Photo" textFill="#faf6f6">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
             <Label layoutX="14.0" layoutY="54.0" text="Texte de votre article" textFill="#f5f0f0">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -49,8 +45,9 @@
             </Label>
             <TextArea id="desc" fx:id="input_description" layoutX="14.0" layoutY="83.0" prefHeight="288.0" prefWidth="200.0" />
             <Button id="bt" layoutX="219.0" layoutY="22.0" mnemonicParsing="false" onAction="#ajouterArticle" text="Publier votre article" />
-            <ImageView id="imm" fx:id="iv" fitHeight="99.0" fitWidth="94.0" layoutX="231.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField id="picturepath" fx:id="picturepath" layoutX="239.0" layoutY="213.0" prefHeight="25.0" prefWidth="81.0"  visible="false" />
+            <TextField id="picturepath" fx:id="picturepath" layoutX="239.0" layoutY="213.0" prefHeight="25.0" prefWidth="81.0" visible="false" />
+            <ChoiceBox fx:id="choice" layoutX="239.0" layoutY="62.0" prefHeight="25.0" prefWidth="81.0" />
+            <Button layoutX="251.0" layoutY="105.0" mnemonicParsing="false" onAction="#uploadpic" text="Upload" />
          </children>
       </Pane>
       <TableView fx:id="table_list_article" editable="true" layoutX="431.0" layoutY="103.0" prefHeight="247.0" prefWidth="326.0">

@@ -47,6 +47,7 @@ import zanimaux.Service.AnimalService;
 import zanimaux.Service.CommentairesService;
 
 import zanimaux.Service.RefugeService;
+import zanimaux.Service.Userservice;
 import zanimaux.entities.Animal;
 import zanimaux.entities.Commentaires;
 
@@ -77,10 +78,6 @@ public class RefugeClientController implements Initializable {
     private Button btnMagasin;
     @FXML
     private Button btnevenement;
-    @FXML
-    private TextArea input_commentaire;
-    @FXML
-    private Button btnCommenter;
    
     /**
      * Initializes the controller class.
@@ -96,10 +93,11 @@ public class RefugeClientController implements Initializable {
         ResultSet r =m.AfficherTousRefuge();
         Refuge m1=new Refuge();
         r= m.AfficherTousRefuge();
-        
+        userName.setText((Session.getLoggedInUser()).getUsername());
          ScrollPane sp = new ScrollPane();
     
           sp.setPrefSize(900, 650);
+          
 
         VBox vb = new VBox();
         HBox hb =null;
@@ -200,7 +198,7 @@ public class RefugeClientController implements Initializable {
     }
 
     void consulterRefuge(ActionEvent e) throws SQLException {
-    
+    Userservice su=new Userservice();
         ResultSet rs =null;
        String a =((Node)e.getSource()).getId();
          VBox comm = new VBox();
@@ -231,7 +229,9 @@ public class RefugeClientController implements Initializable {
                           erreur.setVisible(true);
                           
                         }else{
-                         erreur.setVisible(false);   
+                          erreur.setText("Votre commentaire est ajouté avec succés et sera afficher lors de votre prochaine connexion");
+                          erreur.setTextFill(Paint.valueOf("#00bd13"));
+                          erreur.setVisible(true);
                         ajouterCommentaire(k,inputCom.getText(),a);
                         inputCom.setText("");
                         
@@ -256,10 +256,14 @@ public class RefugeClientController implements Initializable {
            String format = "dd/MM/yy H:mm";
           java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
            Label lbcom= new Label();
-           lbcom.setText(co.getContenant()+"     "+formater.format(co.getDate()));
+           Text info=new Text();
+           info.setText((su.UserByCin(co.getCin())).getPrenom()+" "+(su.UserByCin(co.getCin())).getNom());
+           info.setFont(Font.font("Comic Sans MS", 10) );
+
+           lbcom.setText(co.getContenant()+"     "+formater.format(co.getDate())+"\n"+info.getText());
            lbcom.setFont(Font.font("Comic Sans MS", 14) );
            lbcom.setStyle("-fx-background-color:#E3F9FE;");
-           lbcom.setPrefHeight(30.0);
+           lbcom.setPrefHeight(40.0);
            Button btneditCom=new Button();
            btneditCom.setText("Modifier");
            
@@ -274,7 +278,7 @@ public class RefugeClientController implements Initializable {
             btndeleteCom.setVisible(false);}
            h.getChildren().add(lbcom);
            h.getChildren().add(btneditCom);
-           h.getChildren().add(btndeleteCom);
+           h.getChildren().add(btndeleteCom);        
            comm.getChildren().add(h);
             btndeleteCom.setOnAction(n->{
                     try {
@@ -293,7 +297,7 @@ public class RefugeClientController implements Initializable {
                  btneditCom.setOnAction(d->{
                      try {
                          ModifierCom(d,co.getId(),inputCom.getText(),a);
-                         lbcom.setText(inputCom.getText()+"     "+formater.format(co.getDate()));
+                         lbcom.setText(inputCom.getText()+"     "+formater.format(co.getDate()+"\n"+info.getText()));
                          inputCom.setText("");
                          
                          
@@ -317,6 +321,7 @@ public class RefugeClientController implements Initializable {
             int i=0;
             Animal listForm=new Animal();
             ScrollPane sp = new ScrollPane();
+            sp.setPadding(new Insets(0,0,100,0));
             sp.setPrefSize(900, 650);
             sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
             sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
@@ -410,9 +415,11 @@ public class RefugeClientController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+    @FXML
     private void showPane(MouseEvent event) {
          pane.setVisible(true);
     }
+    @FXML
     private void hidePane(MouseEvent event) {
          pane.setVisible(false);
 
@@ -447,6 +454,8 @@ public class RefugeClientController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+
+   
 
    
 

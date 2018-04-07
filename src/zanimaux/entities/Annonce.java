@@ -28,6 +28,14 @@ public class Annonce {
         this.pieceJointe = pieceJointe;
     }
 
+    public Annonce(String type, String titre, String description, String pieceJointe) {
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
+        this.pieceJointe = pieceJointe;
+    }
+
+   
     public int getIdAnnonce() {
         return idAnnonce;
     }

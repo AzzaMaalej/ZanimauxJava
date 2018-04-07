@@ -121,27 +121,65 @@
             </Button>
          </children>
       </Pane>
-      <AnchorPane fx:id="anchorEvent" layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <AnchorPane fx:id="anchorEvent" layoutX="250.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="50.0">
          <children>
-             <ImageView fx:id="iv" fitHeight="77.0" fitWidth="183.0" layoutX="48.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField fx:id="idp" alignment="TOP_CENTER" layoutX="56.0" layoutY="95.0" promptText="Le numéro du parc" />
-            <Label fx:id="idpLabel" layoutX="35.0" layoutY="122.0" textFill="RED" />
-            <TextField fx:id="nom" alignment="TOP_CENTER" layoutX="319.0" layoutY="95.0" promptText="Le nom" />
-            <Label fx:id="nomLabel" layoutX="308.0" layoutY="130.0" textFill="RED" />
-            <TextField fx:id="adr" alignment="TOP_CENTER" layoutX="56.0" layoutY="187.0" promptText="L'adresse" />
-            <Label fx:id="adrLabel" layoutX="51.0" layoutY="223.0" textFill="RED" />
-            <TextField fx:id="ville" alignment="TOP_CENTER" layoutX="319.0" layoutY="187.0" promptText="La ville" />
-            <Label fx:id="villeLabel" layoutX="307.0" layoutY="215.0" textFill="RED" />
-            <TextField fx:id="codep" alignment="TOP_CENTER" layoutX="56.0" layoutY="278.0" promptText="Le code postale" />
-            <Label fx:id="codepLabel" layoutX="50.0" layoutY="311.0" textFill="RED" />
-            <Label fx:id="cinLabel" layoutX="307.0" layoutY="303.0" textFill="RED" />
-            <ChoiceBox fx:id="catg" layoutX="336.0" layoutY="278.0" prefWidth="150.0" />
-            <Label fx:id="catgLabel" layoutX="307.0" layoutY="383.0" textFill="RED" />
-            <Button fx:id="btn" layoutX="296.0" layoutY="485.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" text="Ajouter" />
-            <Label fx:id="photoLabel" layoutX="49.0" layoutY="383.0" textFill="RED" />
-            <Button fx:id="photo" layoutX="64.0" layoutY="405.0" mnemonicParsing="false" onAction="#chooseAction" opacity="0.6" prefHeight="27.0" prefWidth="138.0" text="Photo" />
-            <Text fill="#22549a" layoutX="315.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie de dressage :" />
+             <ImageView fx:id="iv" fitHeight="77.0" fitWidth="183.0" layoutX="223.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="nom" alignment="TOP_CENTER" layoutX="68.0" layoutY="126.0" prefHeight="27.0" prefWidth="409.0" style="-fx-border-color: #128fad#128fad;" />
+            <Label fx:id="nomLabel" layoutX="188.0" layoutY="161.0" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <TextField fx:id="adr" alignment="TOP_CENTER" layoutX="66.0" layoutY="203.0" prefHeight="27.0" prefWidth="409.0" style="-fx-border-color: #128fad#128fad;" />
+            <Label fx:id="adrLabel" layoutX="194.0" layoutY="239.0" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <TextField fx:id="ville" alignment="TOP_CENTER" layoutX="65.0" layoutY="279.0" prefHeight="27.0" prefWidth="409.0" style="-fx-border-color: #128fad#128fad;" />
+            <Label fx:id="villeLabel" layoutX="187.0" layoutY="307.0" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <TextField fx:id="codep" alignment="TOP_CENTER" layoutX="64.0" layoutY="358.0" prefHeight="27.0" prefWidth="409.0" style="-fx-border-color: #128fad#128fad;" />
+            <Label fx:id="codepLabel" layoutX="193.0" layoutY="391.0" textFill="RED" />
+            <ChoiceBox fx:id="catg" layoutX="202.0" layoutY="425.0" prefWidth="150.0" />
+            <Label fx:id="catgLabel" layoutX="367.0" layoutY="434.0" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Button fx:id="btn" layoutX="374.0" layoutY="529.0" mnemonicParsing="false" onAction="#valider" prefHeight="27.0" prefWidth="123.0" />
+            <Label fx:id="photoLabel" layoutX="366.0" layoutY="483.0" textFill="RED" />
+            <Button fx:id="photo" layoutX="214.0" layoutY="479.0" mnemonicParsing="false" onAction="#chooseAction" opacity="0.6" prefHeight="27.0" prefWidth="138.0" text="Photo" />
+            <Text fill="#128fad" layoutX="75.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie :">
+               <font>
+                  <Font name="Beirut Regular" size="17.0" />
+               </font></Text>
             <Label fx:id="chooseFile" layoutX="34.0" layoutY="468.0" opacity="0.54" text="Label" visible="false" />
+            <Text fill="#128fad" layoutX="240.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LE NOM " textAlignment="CENTER">
+               <font>
+                  <Font name="Beirut Regular" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#128fad" layoutX="223.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="L'ADRESSE">
+               <font>
+                  <Font name="Beirut Regular" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#128fad" layoutX="235.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LA VILLE">
+               <font>
+                  <Font name="Beirut Regular" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#128fad" layoutX="210.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CODE POSTALE">
+               <font>
+                  <Font name="Beirut Regular" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#128fad" layoutX="71.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une photo:">
+               <font>
+                  <Font name="Beirut Regular" size="17.0" />
+               </font>
+            </Text>
+            <Button fx:id="reinit" layoutX="465.0" layoutY="26.0" mnemonicParsing="false" onAction="#reinit" />
                      
          </children>
          

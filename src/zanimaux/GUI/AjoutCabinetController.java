@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zanimaux.GUI;
 
+package zanimaux.GUI;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,16 +20,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import zanimaux.Service.CabinetDao;
-
+import zanimaux.util.Session;
 
 /**
  * FXML Controller class
@@ -37,33 +38,38 @@ import zanimaux.Service.CabinetDao;
  * @author Mariam
  */
 public class AjoutCabinetController implements Initializable {
-
     @FXML
-    private ImageView iv;
+    private TextField telcab;
     @FXML
-    private TextField imm;
+    private TextField adressecab;
     @FXML
-    private TextField mail;
+    private TextField villecab;
     @FXML
-    private TextField tel;
+    private TextField codepostcab;
     @FXML
-    private TextField fax;
+    private TextField faxcab;
     @FXML
-    private TextField rue;
+    private TextField emailcab;
     @FXML
-    private TextField ville;
+    private TextField path;
     @FXML
-    private TextField codep;
+    private Button btnvalid2;
     @FXML
-    private Button saveb;
+    private ImageView imageuser;
     @FXML
-    private Button returnb;
+    private Label emaillabelcab;
     @FXML
-    private TextField picturepath;
+    private Label telLabel1;
     @FXML
-    private Label enre;
+    private Label adresseLabel1;
     @FXML
-    private Label obg;
+    private Label villeLabel1;
+    @FXML
+    private Label codePostaleLabel1;
+    @FXML
+    private Label faxlabel;
+    @FXML
+    private TextField immcab;
 
     /**
      * Initializes the controller class.
@@ -71,9 +77,60 @@ public class AjoutCabinetController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }    
+
+    @FXML
+    private void uploadImage(ActionEvent event) {
     }
 
-    public String handle() {
+    @FXML
+    private void validerinfocabinet(ActionEvent event) {
+        CabinetDao cb = new CabinetDao();
+        int telp = Integer.parseInt(telcab.getText());
+        int faxp = Integer.parseInt(faxcab.getText());
+        int code = Integer.parseInt(codepostcab.getText());
+        int i=0;
+        if (imageuser.getImage().isBackgroundLoading()) {
+            imageuser.setStyle("-fx-text-inner-color: red;");
+            i++;
+        }
+         if (immcab.getText().isEmpty()) {
+            immcab.setStyle("-fx-text-inner-color: red;");
+            i++;
+        }
+        if (emailcab.getText().isEmpty()) {
+            emailcab.setStyle("-fx-text-inner-color: red;");
+            i++;
+        }
+        if (telcab.getText().isEmpty()) {
+            telcab.setStyle("-fx-text-inner-color: red;");
+            i++;
+        }
+        if (faxcab.getText().isEmpty()) {
+            faxcab.setStyle("-fx-text-inner-color: red;");
+             i++;
+        }
+        if (adressecab.getText().isEmpty()) {
+            adressecab.setStyle("-fx-text-inner-color: red;");
+             i++;
+        }
+        if (villecab.getText().isEmpty()) {
+            villecab.setStyle("-fx-text-inner-color: red;");
+             i++;
+        }
+        if (codepostcab.getText().isEmpty()) {
+            codepostcab.setStyle("-fx-text-inner-color: red;");
+             i++;
+        }
+      if(i==0)
+      { cb.ajouterCabinet(path.getText(), emailcab.getText(), telp, faxp, adressecab.getText(), villecab.getText(), code, path.getText());
+        
+       System.out.println("Ajout réussi");}
+      
+
+    }
+    
+      public String handle() {
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
@@ -87,7 +144,7 @@ public class AjoutCabinetController implements Initializable {
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-            iv.setImage(image);
+            imageuser.setImage(image);
 
         } catch (IOException ex) {
             System.err.println(ex);
@@ -96,141 +153,27 @@ public class AjoutCabinetController implements Initializable {
         return filePath;
     }
 
+    
+
     @FXML
     private void uploadpic(MouseEvent event) {
-
-        picturepath.setText(handle());
-
+          path.setText(handle());
     }
 
     @FXML
-    private void save(ActionEvent event) throws IOException {
-        CabinetDao cb = new CabinetDao();
-        int telp = Integer.parseInt(tel.getText());
-        int faxp = Integer.parseInt(fax.getText());
-        int code = Integer.parseInt(codep.getText());
-        int i=0;
-        if (imm.getText().isEmpty()) {
-            imm.setStyle("-fx-text-inner-color: red;");
-            i++;
-        }
-        if (mail.getText().isEmpty()) {
-            mail.setStyle("-fx-text-inner-color: red;");
-            i++;
-        }
-        if (tel.getText().isEmpty()) {
-            tel.setStyle("-fx-text-inner-color: red;");
-            i++;
-        }
-        if (fax.getText().isEmpty()) {
-            fax.setStyle("-fx-text-inner-color: red;");
-             i++;
-        }
-        if (rue.getText().isEmpty()) {
-            rue.setStyle("-fx-text-inner-color: red;");
-             i++;
-        }
-        if (ville.getText().isEmpty()) {
-            ville.setStyle("-fx-text-inner-color: red;");
-             i++;
-        }
-        if (codep.getText().isEmpty()) {
-            codep.setStyle("-fx-text-inner-color: red;");
-             i++;
-        }
-      if(i==0)
-      { cb.ajouterCabinet(imm.getText(), mail.getText(), telp, faxp, rue.getText(), ville.getText(), code, picturepath.getText());
-        
-        enre.setText("réussi");}
-      else
-      {
-          obg.setVisible(true);
-      }
-
+    private void logOut(MouseEvent event) {
+          Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) immcab.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
     }
-
-    @FXML
-    private void retourner(ActionEvent event) {
-        
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AffichageCabinets.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage secondStage = new Stage();
-            secondStage.setScene(new Scene(root));
-            Stage stage = (Stage) imm.getScene().getWindow();
-            // do what you have to do
-            stage.hide();
-            secondStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    //////////////////////////////////////////////
-
-    @FXML
-    @SuppressWarnings("empty-statement")
-    private void testint(KeyEvent event) {
-        if(tel.getText().trim().length()>0)
-        {
-        try {
-           int i=Integer.parseInt(tel.getText());;
-        }
-         catch (NumberFormatException e)
-         { obg.setText("veuillez entrer une valeur valide");
-         obg.setVisible(true);
-          saveb.setDisable(true);
-            }
-  }
-        else
-        {
-          obg.setVisible(false);
-           saveb.setDisable(false);
-        }
-        }
-       
-
     
-
-    @FXML
-    private void testint1(KeyEvent event) {
-         if(fax.getText().trim().length()>0)
-        {
-       try {
-           int i=Integer.parseInt(fax.getText());;
-        }
-         catch (NumberFormatException e)
-         { obg.setText("veuillez entrer une valeur valide");
-         obg.setVisible(true);
-          saveb.setDisable(true);
-            }
-            }
-          else
-        {
-          obg.setVisible(false);
-           saveb.setDisable(false);
-        }
-        }
-    
-
-    @FXML
-    private void testint2(KeyEvent event) {
-        if(codep.getText().trim().length()>0)
-        {
-        try {
-           int i=Integer.parseInt(codep.getText());;
-        }
-         catch (NumberFormatException e)
-         { obg.setText("veuillez entrer une valeur valide");
-         obg.setVisible(true);
-          saveb.setDisable(true);
-            }
-            }
-         else
-        {
-          obg.setVisible(false);
-            saveb.setDisable(false);
-        }
-    }
-
 }

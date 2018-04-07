@@ -55,6 +55,10 @@ public class Evenement {
     public Evenement() {
     }
 
+    public Evenement(String e1, String text, String text0, String text1, String text2, String text3, String text4, int parseInt, String text5, String cin) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
  

@@ -199,5 +199,29 @@ public class EvenementService {
     
     }*/
     
+    
+     public boolean modifierEvenement(Evenement e)
+    {
+     String requete="UPDATE evenement SET lieu=?, dateDebut=?, dateFin=?, type=? , titre=? , description=?,imageEvt=?, nbPlace=? where idEvt='"+e.getIdEvt()+"'";
+        try {
+            PreparedStatement pst =con.prepareStatement(requete);
+            pst.setString(1,e.getLieu());
+            pst.setDate(2, (Date) e.getDateDebut());
+            pst.setDate(3, (Date) e.getDateFin());
+            pst.setString(4,e.getType());
+            pst.setString(5,e.getTitre()); 
+            pst.setString(6,e.getDescription());
+            pst.setString(7,e.getImageEvt());
+            pst.setInt(8,e.getNbPlace());
+             pst.executeUpdate();
+            System.out.println("modifié avec succés");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        
+        
+    }
+        return false;
+    
 
+}
 }

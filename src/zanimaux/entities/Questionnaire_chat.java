@@ -12,14 +12,18 @@ package zanimaux.entities;
 public class Questionnaire_chat {
      private int id;
     private int race;
-    private int tolererChien ;
-    private int dynamique;
-    private int affectueux;
-    private int chutePoils;
-    private int intelligent;
-    private int acceptationEtranger;
+    private String tolererChien ;
+    private String dynamique;
+    private String affectueux;
+    private String chutePoils;
+    private String intelligent;
+    private String acceptationEtranger;
 
-    public Questionnaire_chat(int race, int tolererChien, int dynamique, int affectueux, int chutePoils, int intelligent, int acceptationEtranger) {
+    public Questionnaire_chat() {
+    }
+
+    public Questionnaire_chat(int id, int race, String tolererChien, String dynamique, String affectueux, String chutePoils, String intelligent, String acceptationEtranger) {
+        this.id = id;
         this.race = race;
         this.tolererChien = tolererChien;
         this.dynamique = dynamique;
@@ -29,14 +33,13 @@ public class Questionnaire_chat {
         this.acceptationEtranger = acceptationEtranger;
     }
 
-    public Questionnaire_chat() {
-    }
-
     public int getId() {
         return id;
     }
 
-   
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getRace() {
         return race;
@@ -46,58 +49,63 @@ public class Questionnaire_chat {
         this.race = race;
     }
 
-    public int getTolererChien() {
+    public String getTolererChien() {
         return tolererChien;
     }
 
-    public void setTolererChien(int tolererChien) {
+    public void setTolererChien(String tolererChien) {
         this.tolererChien = tolererChien;
     }
 
-    public int getDynamique() {
+    public String getDynamique() {
         return dynamique;
     }
 
-    public void setDynamique(int dynamique) {
+    public void setDynamique(String dynamique) {
         this.dynamique = dynamique;
     }
 
-    public int getAffectueux() {
+    public String getAffectueux() {
         return affectueux;
     }
 
-    public void setAffectueux(int affectueux) {
+    public void setAffectueux(String affectueux) {
         this.affectueux = affectueux;
     }
 
-    public int getChutePoils() {
+    public String getChutePoils() {
         return chutePoils;
     }
 
-    public void setChutePoils(int chutePoils) {
+    public void setChutePoils(String chutePoils) {
         this.chutePoils = chutePoils;
     }
 
-    public int getIntelligent() {
+    public String getIntelligent() {
         return intelligent;
     }
 
-    public void setIntelligent(int intelligent) {
+    public void setIntelligent(String intelligent) {
         this.intelligent = intelligent;
     }
 
-    public int getAcceptationEtranger() {
+    public String getAcceptationEtranger() {
         return acceptationEtranger;
     }
 
-    public void setAcceptationEtranger(int acceptationEtranger) {
+    public void setAcceptationEtranger(String acceptationEtranger) {
         this.acceptationEtranger = acceptationEtranger;
     }
 
     @Override
+    public String toString() {
+        return "Questionnaire_chat{" + "id=" + id + ", race=" + race + ", tolererChien=" + tolererChien + ", dynamique=" + dynamique + ", affectueux=" + affectueux + ", chutePoils=" + chutePoils + ", intelligent=" + intelligent + ", acceptationEtranger=" + acceptationEtranger + '}';
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 41 * hash + this.id;
+        int hash = 3;
+        hash = 17 * hash + this.id;
         return hash;
     }
 
@@ -119,9 +127,5 @@ public class Questionnaire_chat {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Questionnaire_chat{" + "id=" + id + ", race=" + race + ", tolererChien=" + tolererChien + ", dynamique=" + dynamique + ", affectueux=" + affectueux + ", chutePoils=" + chutePoils + ", intelligent=" + intelligent + ", acceptationEtranger=" + acceptationEtranger + '}';
-    }
-    
+   
 }

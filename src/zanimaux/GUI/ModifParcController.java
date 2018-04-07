@@ -218,7 +218,7 @@ public class ModifParcController implements Initializable {
               String cin=user.getCin();
      
               try {
-          Parc u=new Parc(idp.getText(),nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),chooseFile.getText(),cin);
+          Parc u=new Parc(nom.getText(),r,adr.getText(),ville.getText(),Integer.parseInt(codep.getText()),chooseFile.getText(),cin);
            
           
            a.ajouterParc(u);

@@ -32,7 +32,7 @@ public class ChatService {
        ste = con.createStatement();
     }
     
-     public int AfficherIdChatRace(int a,int b,int c,int d,int e,int f) throws SQLException{
+     public int AfficherIdChatRace(String a,String b,String c,String d,String e,String f) throws SQLException{
         Questionnaire_chat chat=new Questionnaire_chat();
         String requete = "SELECT race FROM questionnaire_chat WHERE tolererChien="+a+" AND dynamique="+b+" AND affectueux="+c+" AND chutePoils="+d+" AND intelligent="+e+" AND acceptationEtranger="+f;
         ResultSet rs = ste.executeQuery(requete);

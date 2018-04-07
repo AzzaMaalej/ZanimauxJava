@@ -105,8 +105,22 @@
       </AnchorPane>
       <AnchorPane layoutX="246.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="304.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="5.0" />
-            <Button layoutX="255.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="5.0" />
+            <Button layoutX="300.0" layoutY="9.0" mnemonicParsing="false" onAction="#affichePanierAction" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/panier.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button layoutX="334.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="166.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/favoris.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <ImageView fitHeight="28.0" fitWidth="38.0" layoutX="495.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0">
                <image>
                   <Image url="@../Image/account.png" />
@@ -124,16 +138,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="298.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Image/panier.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="330.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Image/favoris.png" />
-               </image>
-            </ImageView>
+            <Label fx:id="sommePanier" layoutX="265.0" layoutY="15.0" text="Label" textFill="WHITE" />
          </children>
       </AnchorPane>
       <Pane fx:id="pane" focusTraversable="true" layoutX="534.0" layoutY="55.0" prefHeight="166.0" prefWidth="179.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">

@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -127,28 +129,12 @@ try{
         if (r1==false){
             Rating rating = new Rating (5);
             rating.setRating(0);
-            Button note = new Button();
-            note.setId(String.valueOf(m1.getId()));
-            note.setOnAction((ActionEvent event) -> {
-                try {
-                    AvisService av2 = new AvisService();
-                    User user1 = Session.getLoggedInUser();
-                    String cin1 = user1.getCin();
-                    String e1 =((Node)event.getSource()).getId();
-                    
-                    Avis a = new Avis(e1, rating.getRating(), cin1);
-                    av2.ajouterAvis(a);
-                    System.out.println("Avis Modifié");
-                    
-                }catch (SQLException ex) {
-                    Logger.getLogger(AccueilDresseurController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
+           
             VBox vbParc = new VBox();
             vbParc.setPadding(new Insets(-60,0,30,30));
             vbParc.setSpacing(20);
             vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
-            vbParc.setPrefSize(200, 150);
+            vbParc.setPrefSize(200, 170);
             vbParc.getChildren().add(im);
             vbParc.getChildren().add(t1);
             vbParc.getChildren().add(t3);
@@ -156,8 +142,39 @@ try{
             vbParc.getChildren().add(t4);
             vbParc.getChildren().add(t);
             vbParc.getChildren().add(rating);
-            vbParc.getChildren().add(note);
-            
+           rating.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    try {
+                        AvisService av2 = new AvisService();
+                        User user1 = Session.getLoggedInUser();
+                        String cin1 = user1.getCin();
+                        String e1 = m1.getId();
+                        
+                        Avis a = new Avis(e1, rating.getRating(), cin1);
+                        av2.ajouterAvis(a);
+                        System.out.println("Avis Modifié");
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
+                            Parent root = (Parent) fxmlLoader.load();
+                            Stage secondStage = new Stage();
+                            secondStage.setScene(new Scene(root));
+                            Stage stage = (Stage) btn1.getScene().getWindow();
+                            // do what you have to do
+                            stage.hide();
+                            secondStage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(AccueilDresseurController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                    } catch (SQLException ex) {
+            Logger.getLogger(AccueilDresseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+           }
+           
+            });
+               
             
             
             i++;
@@ -185,7 +202,19 @@ try{
                 av1.setAvis(r2.getDouble("avis"));
                 
             }
+            
+           Text ra = new Text("Votre note est de:");
+           ra.setFont(Font.font("Verdana", 15));
+           ra.setFill(Color.web("#0076a3"));
+           HBox ras = new HBox(ra);
+           ras.setAlignment(Pos.CENTER);
             Text rat = new Text(Double.toString(av1.getAvis()));
+            rat.setFont(Font.font("Verdana", 14));
+            ImageView rats= new ImageView();
+            Image imageStar= new Image("zanimaux/ImageUtile/star.png",26,26,false,false) ;
+            rats.setImage(imageStar);
+            HBox rate = new HBox(rat,rats);
+            rate.setAlignment(Pos.CENTER);
             VBox vbParc = new VBox();
             vbParc.setPadding(new Insets(-60,0,30,30));
             vbParc.setSpacing(20);
@@ -197,7 +226,8 @@ try{
             vbParc.getChildren().add(t2);
             vbParc.getChildren().add(t4);
             vbParc.getChildren().add(t);
-            vbParc.getChildren().add(rat);
+            vbParc.getChildren().add(ra);
+            vbParc.getChildren().add(rate);
             
             
             
@@ -290,7 +320,23 @@ anchorEvent.getChildren().setAll(sp);
     @FXML
     private void connexionAction(ActionEvent event) {
     }
-    
+     @FXML
+    private void reinit(ActionEvent event) {
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) btn1.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
    
        
 }

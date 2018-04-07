@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import zanimaux.Technique.DataSource;
@@ -161,5 +163,37 @@ public class PanierService {
             cp.setQuantite(cp.getQuantite()+1);
             this.modifContenuPanier(u.getCin(), cp);
         }
+    }
+         public List<ContenuPanier> rechercheContenuPanier(String cin)
+   {
+        List<ContenuPanier> listContenuPanier = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM ContenuPanier WHERE `cin`="+cin+" AND `commande`=0";
+            ResultSet rs = ste.executeQuery(requete);
+            ContenuPanier listForm;
+            if (rs.next() == false) 
+            listForm = null;
+            else { 
+            do{
+                 listForm = new ContenuPanier();
+
+                 listForm.setCin(cin);
+                 listForm.setIdProduit(rs.getInt("idProduit"));
+                 listForm.setCommande(rs.getInt("commande"));
+                 listForm.setIdContenuPanier(rs.getInt("idContenuPanier"));
+                 listForm.setQuantite(rs.getInt("quantite"));
+                 listContenuPanier.add(listForm);
+
+            }while(rs.next());
+                              
+            }   
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PanierService.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return listContenuPanier;
+    
     }
 }

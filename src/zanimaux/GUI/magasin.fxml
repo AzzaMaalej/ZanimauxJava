@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" onMouseClicked="#hidePaneProfil" prefHeight="632.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.magasinController">
@@ -17,7 +20,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="button" layoutX="1.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+            <Button fx:id="button" layoutX="1.0" layoutY="257.0" mnemonicParsing="false" onAction="#afficherMagasin" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -105,7 +108,7 @@
       </AnchorPane>
       <AnchorPane layoutX="256.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="304.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="5.0">
+            <Button layoutX="202.0" layoutY="6.0" mnemonicParsing="false" onAction="#affichePanierAction" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="6.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -114,7 +117,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="255.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="5.0">
+            <Button layoutX="249.0" layoutY="6.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="6.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -140,6 +143,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label fx:id="sommePanier" layoutX="167.0" layoutY="16.0" text="Label" textFill="WHITE" AnchorPane.rightAnchor="240.0" />
          </children>
       </AnchorPane>
       <Pane fx:id="paneProfil" layoutX="534.0" layoutY="66.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
@@ -158,6 +162,74 @@
             </Button>
          </children>
       </Pane>
-      <AnchorPane fx:id="anchorEvent" layoutX="277.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="251.0" AnchorPane.topAnchor="50.0" />
+      <AnchorPane fx:id="anchorEvent" layoutX="277.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <VBox fx:id="vbPanier" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #128FAD55;" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Mon Panier" textFill="#1d7e9e">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="135.0" prefWidth="470.0" style="-fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;">
+                     <children>
+                        <Label prefHeight="63.0" prefWidth="160.0" text="Produits" textFill="WHITE">
+                           <font>
+                              <Font name="Avenir Book" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="56.0" prefWidth="69.0" text="Quantité" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Avenir Book" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="63.0" prefWidth="67.0" text="Prix Uniatire" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="Avenir Book" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="58.0" prefWidth="64.0" text="Total" textFill="WHITE">
+                           <font>
+                              <Font name="Avenir Book" size="17.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="532.0" prefWidth="470.0">
+                     <children>
+                        <VBox fx:id="vbProduit" prefHeight="450.0" prefWidth="174.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox fx:id="vbQuantite" prefHeight="450.0" prefWidth="93.0" />
+                        <VBox fx:id="vbPrix" prefHeight="450.0" prefWidth="95.0">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox fx:id="vbTotal" prefHeight="450.0" prefWidth="78.0" />
+                        <VBox fx:id="vbBoutton" prefHeight="450.0" prefWidth="47.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

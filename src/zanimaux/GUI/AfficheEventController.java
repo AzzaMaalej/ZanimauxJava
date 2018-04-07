@@ -5,13 +5,19 @@
  */
 package zanimaux.GUI;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,8 +28,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,7 +42,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import zanimaux.Service.AnimalService;
 import zanimaux.Service.EvenementService;
 import zanimaux.Service.RefugeService;
@@ -64,6 +75,28 @@ public class AfficheEventController implements Initializable {
     private AnchorPane anchorEvent;
     @FXML
     private Button btnEvenement;
+    @FXML
+    private AnchorPane AnchorPaneEvent;
+    @FXML
+    private TextField lieu;
+    @FXML
+    private DatePicker dateDebut;
+    @FXML
+    private DatePicker dateFin;
+    @FXML
+    private TextField type;
+    @FXML
+    private TextField titre;
+    @FXML
+    private TextArea description;
+    @FXML
+    private Button BtnChoixImage;
+    @FXML
+    private TextField nbPlace;
+    @FXML
+    private ImageView iv;
+    @FXML
+    private Button buttonModifierEvent;
 
     /**
      * Initializes the controller class.
@@ -97,6 +130,7 @@ public class AfficheEventController implements Initializable {
             while(r.next()){
                 i++;
                 Label lbl = new Label();
+                e1.setIdEvt(r.getInt("idEvt"));
                 e1.setLieu(r.getString("lieu"));
                 e1.setDateDebut(r.getDate("dateDebut"));
                 e1.setDateFin(r.getDate("dateFin"));
@@ -116,7 +150,23 @@ public class AfficheEventController implements Initializable {
                 
                 Button b = new Button();
                 Button modifier = new Button();
+                             modifier.setId(String.valueOf(e1.getIdEvt()));
+               
+                modifier.setOnAction(x->{
+                    try {
+                        goToModif(x);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+});
                 Button supprimer = new Button();
+                 supprimer.setOnAction(x->{
+                    try {
+                        supprimerEvent(x);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+});
                
                 HBox BtnBox=new HBox(b,modifier,supprimer);
                 BtnBox.setSpacing(50);
@@ -142,9 +192,7 @@ public class AfficheEventController implements Initializable {
                     }
                      
                 });
-                modifier.setOnAction(m->{
-                    goToModif(m);
-});
+   
                 VBox vbEvent = new VBox();
                 vbEvent.setPadding(new Insets(-60,0,30,30));
                 vbEvent.setSpacing(50);
@@ -281,7 +329,8 @@ public class AfficheEventController implements Initializable {
     @FXML
     private void connexionAction(ActionEvent event) {
     }
-     private void goToModif(ActionEvent e) {
+    
+    /*private void goToModif(ActionEvent e) {
           Session.setLoggedInUser(null);
         Parent root;
              try {
@@ -295,7 +344,81 @@ public class AfficheEventController implements Initializable {
                  Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
              }
 
+    }*/
+    
+    void goToModif(ActionEvent e) throws SQLException {
+          int a=Integer.parseInt(((Node) e.getSource()).getId());
+          EvenementService es = new EvenementService();
+          Evenement e1 = new Evenement();
+          e1=es.rechercheEvent(a);
+          anchorEvent.getChildren().setAll(AnchorPaneEvent);
+          AnchorPaneEvent.setVisible(true);
+          lieu.setText(e1.getLieu());
+          System.out.println(e1.getLieu());
+          type.setText(e1.getType());
+          titre.setText(e1.getTitre());
+          description.setText(e1.getDescription());
+          nbPlace.setText(Integer.toString(e1.getNbPlace()));
+          BtnChoixImage.setText(e1.getImageEvt());
     }
+    
+     public String handle() {
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        String filePath = file.getAbsolutePath();
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+            iv.setImage(image);
+
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+
+        return filePath;
+    }
+     @FXML
+    void modifier(ActionEvent e) throws SQLException{
+           int a=Integer.parseInt(((Node) e.getSource()).getId());
+          EvenementService es = new EvenementService();
+          Evenement e1 = new Evenement();
+          e1=es.rechercheEvent(a);
+         
+          
+          lieu.setText(e1.getLieu());
+          System.out.println(e1.getLieu());
+          type.setText(e1.getType());
+          titre.setText(e1.getTitre());
+          description.setText(e1.getDescription());
+          nbPlace.setText(Integer.toString(e1.getNbPlace()));
+          
+         es.modifierEvenement(a, e1);
+               
+    }
+
+    void  supprimerEvent(ActionEvent e) throws SQLException{
+         
+          EvenementService es = new EvenementService();
+          Evenement e1 = new Evenement();
+        int s = e1.getIdEvt();
+          es.supprimerEvenement(s);
+        
+    }
+    @FXML
+    private void uploadImage(ActionEvent event) {
+        BtnChoixImage.setText(handle());
+    }
+    
+
+    
+    
     
     
 }

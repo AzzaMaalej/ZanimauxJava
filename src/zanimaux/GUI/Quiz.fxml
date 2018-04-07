@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
+       <children>
+      <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="button" layoutX="1.0" layoutY="257.0" mnemonicParsing="false" onAction="#MagasinButtonAction" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="1.0" layoutY="326.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Pet-Sitter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="310.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonRefuge" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" onAction="#AfficherRefugeAction" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="evenement" layoutX="1.0" layoutY="457.0" mnemonicParsing="false" onAction="#onClickEvenementAction" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
+               <image>
+                  <Image url="@../Image/home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
+               <image>
+                  <Image url="@../Image/valise.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0">
+               <image>
+                  <Image url="@../Image/storeIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="440.0">
+               <image>
+                  <Image url="@../Image/event.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="39.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="500.0">
+               <image>
+                  <Image url="@../Image/annonce.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="38.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="380.0">
+               <image>
+                  <Image url="@../Image/shelter.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="40.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="320.0">
+               <image>
+                  <Image url="@../Image/petsitter.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutX="89.0" layoutY="11.0" opacity="0.53" text="ANIMAUX" textFill="#138fab9e" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="11.0">
+                     <font>
+                        <Font name="Baskerville" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="63.0" layoutY="-8.0" opacity="0.82" prefHeight="48.0" prefWidth="33.0" text="Z" textFill="#138fab">
+                     <font>
+                        <Font name="Baskerville" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="246.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="304.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="5.0" />
+            <Button layoutX="255.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="5.0" />
+            <ImageView fitHeight="28.0" fitWidth="38.0" layoutX="495.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0">
+               <image>
+                  <Image url="@../Image/account.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="userName" layoutX="316.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#showPane" prefHeight="44.0" prefWidth="146.0" style="-fx-background-color: transparent;" textFill="WHITE" AnchorPane.rightAnchor="32.0">
+               <font>
+                  <Font name="Baskerville" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/fleche.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="298.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/panier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="330.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/favoris.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="pane" focusTraversable="true" layoutX="534.0" layoutY="55.0" prefHeight="166.0" prefWidth="179.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Button fx:id="btn11" layoutX="19.0" layoutY="115.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #D15710; -fx-background-radius: 100; -fx-text-fill: white;" text="Se déconnecter" textFill="#1c4a26">
+               <font>
+                  <Font name="Comic Sans MS" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn1" layoutX="19.0" layoutY="75.0" mnemonicParsing="false" onAction="#profil" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #1023D1BE; -fx-background-radius: 100; -fx-text-fill: white;" text="Voir profil" textFill="#1c4a26">
+               <font>
+                  <Font name="Comic Sans MS" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <Pane fx:id="PanePrincipale" layoutX="269.0" layoutY="154.0" prefHeight="373.0" prefWidth="509.0" style="-fx-border-color: #128FAD; -fx-border-radius: 20px; -fx-border-width: 3;">
+         <children>
+            <Label layoutX="38.0" layoutY="38.0" text="-- Quel animal vous ressemble le plus? --">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="112.0" prefHeight="101.0" prefWidth="448.0" text="A treavers notre quiz, vous pouvez savoir quelle race vous convient le plus.D'habord, vous préférez: " textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="124.0" layoutY="257.0" onMouseClicked="#questionnaire_chat" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/cat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="56.0" fitWidth="56.0" layoutX="304.0" layoutY="255.0" onMouseClicked="#questionnaire_chien" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/german-shepherd.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane_questionnaire_chat" layoutX="252.0" layoutY="50.0" prefHeight="583.0" prefWidth="543.0" visible="false">
+         <children>
+            <Label layoutX="121.0" layoutY="28.0" text="Votre Chat Prefere" textFill="#0096c4">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="108.0" prefHeight="70.0" prefWidth="472.0" text="Sur une échelle de 1 à 3 (ex: 1 est peu affectueux, 3 est plus affectueux) évaluer votre niveau désiré des caractéristiques suivantes:" wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="autre_animal_1" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_animal_1Action" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="autre_animal_2" layoutX="316.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_animal_2Action" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="autre_animal_3" layoutX="395.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_animal_3Action" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <Label layoutX="31.0" layoutY="206.0" text="Accepter un autre animal:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="259.0" text="Dynamique:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="315.0" text="Affectueux:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="368.0" text="Chute de poils:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="424.0" text="Intelligent:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="473.0" text="Acceptation d'un etranger:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="dynamique1" layoutX="234.0" layoutY="260.0" mnemonicParsing="false" onAction="#dynamique1Action" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="affectueux1" layoutX="234.0" layoutY="316.0" mnemonicParsing="false" onAction="#affectueux1Action" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="poils1" layoutX="234.0" layoutY="369.0" mnemonicParsing="false" onAction="#poils1Action" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="intelligent1" layoutX="234.0" layoutY="425.0" mnemonicParsing="false" onAction="#intelligent1Action" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="accept1" layoutX="234.0" layoutY="474.0" mnemonicParsing="false" onAction="#accept1Action" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="dynamique2" layoutX="316.0" layoutY="260.0" mnemonicParsing="false" onAction="#dynamique2Action" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="affectueux2" layoutX="316.0" layoutY="316.0" mnemonicParsing="false" onAction="#affectueux2Action" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="poils2" layoutX="316.0" layoutY="369.0" mnemonicParsing="false" onAction="#poils2Action" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="intelligent2" layoutX="316.0" layoutY="425.0" mnemonicParsing="false" onAction="#intelligent2Action" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="accept2" layoutX="316.0" layoutY="474.0" mnemonicParsing="false" onAction="#accept2Action" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="dynamique3" layoutX="395.0" layoutY="260.0" mnemonicParsing="false" onAction="#dynamique3Action" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="affectueux3" layoutX="395.0" layoutY="316.0" mnemonicParsing="false" onAction="#affectueux3Action" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="poils3" layoutX="395.0" layoutY="369.0" mnemonicParsing="false" onAction="#poils3Action" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="intelligent3" layoutX="395.0" layoutY="425.0" mnemonicParsing="false" onAction="#intelligent3Action" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="accept3" layoutX="395.0" layoutY="474.0" mnemonicParsing="false" onAction="#accept3Action" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="btnresultatchat" layoutX="292.0" layoutY="522.0" mnemonicParsing="false" onAction="#btnresultatchatAction" text="Voir resultat" />
+            <Label fx:id="lb" layoutX="127.0" layoutY="170.0" prefHeight="28.0" prefWidth="242.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="pane_questionnaire_chien" layoutX="252.0" layoutY="50.0" prefHeight="583.0" prefWidth="543.0" visible="false">
+         <children>
+            <Label layoutX="121.0" layoutY="28.0" text="Votre Chien Prefere" textFill="#0096c4">
+               <font>
+                  <Font name="Comic Sans MS" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="108.0" prefHeight="70.0" prefWidth="472.0" text="Sur une échelle de 1 à 3 (ex: 1 est peu affectueux, 3 est plus affectueux) évaluer votre niveau désiré des caractéristiques suivantes:" wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="autre_chien1" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="autre_chien2" layoutX="316.0" layoutY="207.0" mnemonicParsing="false" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="autre_chien3" layoutX="395.0" layoutY="207.0" mnemonicParsing="false" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <Label layoutX="31.0" layoutY="206.0" text="Accepter les autres chiens:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="259.0" text="tolerer les Chats:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="315.0" text="Affectueux:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="368.0" text="Calme:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="424.0" text="Intelligent:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="473.0" text="Chute de poils:">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="tolerer_chat1" layoutX="234.0" layoutY="260.0" mnemonicParsing="false" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chien_affectueux1" layoutX="234.0" layoutY="316.0" mnemonicParsing="false" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="calme1" layoutX="234.0" layoutY="369.0" mnemonicParsing="false" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chien_intelligent1" layoutX="234.0" layoutY="425.0" mnemonicParsing="false" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="poils_chien1" layoutX="234.0" layoutY="474.0" mnemonicParsing="false" text="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="tolerer_chat2" layoutX="316.0" layoutY="260.0" mnemonicParsing="false" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chien_affectueux2" layoutX="316.0" layoutY="316.0" mnemonicParsing="false" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="calme2" layoutX="316.0" layoutY="369.0" mnemonicParsing="false" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chien_intelligent2" layoutX="316.0" layoutY="425.0" mnemonicParsing="false" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="poils_chien2" layoutX="316.0" layoutY="474.0" mnemonicParsing="false" text="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="tolerer_chat3" layoutX="395.0" layoutY="260.0" mnemonicParsing="false" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chien_affectueux3" layoutX="395.0" layoutY="316.0" mnemonicParsing="false" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="calme3" layoutX="395.0" layoutY="369.0" mnemonicParsing="false" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="chien_intelligent3" layoutX="395.0" layoutY="425.0" mnemonicParsing="false" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="poils_chien3" layoutX="395.0" layoutY="474.0" mnemonicParsing="false" text="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <Button fx:id="btnresultatchien" layoutX="292.0" layoutY="522.0" mnemonicParsing="false" text="Voir resultat" />
+         </children>
+      </Pane>
+      <Pane fx:id="pane_resultat" layoutX="351.0" layoutY="82.0" prefHeight="513.0" prefWidth="389.0" style="-fx-border-radius: 0 90 5 90; -fx-border-color: #128FAD; -fx-border-width: 2;" visible="false">
+         <children>
+            <ImageView fx:id="imageanimal" fitHeight="150.0" fitWidth="200.0" layoutX="95.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/animaux.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="95.0" layoutY="26.0" prefHeight="132.0" prefWidth="200.0" style="-fx-background-color: #0000; -fx-border-color: #128FAD; -fx-border-width: 3;" />
+            <Label layoutX="48.0" layoutY="175.0" text="Race:" textFill="#128fad">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="race_resultat" layoutX="113.0" layoutY="175.0" prefHeight="35.0" prefWidth="242.0" textFill="#7bbfcf">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="description" layoutX="40.0" layoutY="229.0" prefHeight="250.0" prefWidth="314.0" text="Label" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+
+</AnchorPane>

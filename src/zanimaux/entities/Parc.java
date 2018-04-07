@@ -35,6 +35,30 @@ public class Parc {
         this.cinDresseur = cinDresseur;
     }
 
+    
+    public Parc(String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc, String photoParc, String cinDresseur) {
+        
+        this.nomParc = nomParc;
+        this.CategorieDressage = CategorieDressage;
+        this.adresseParc = adresseParc;
+        this.villeParc = villeParc;
+        this.codePostaleParc = codePostaleParc;
+        this.photoParc = photoParc;
+        this.cinDresseur = cinDresseur;
+    }
+
+    public Parc(String nomParc, String CategorieDressage, String adresseParc, String villeParc, int codePostaleParc, String photoParc) {
+        this.nomParc = nomParc;
+        this.CategorieDressage = CategorieDressage;
+        this.adresseParc = adresseParc;
+        this.villeParc = villeParc;
+        this.codePostaleParc = codePostaleParc;
+        this.photoParc = photoParc;
+    }
+    
+    
+
+   
     @Override
     public int hashCode() {
         int hash = 3;

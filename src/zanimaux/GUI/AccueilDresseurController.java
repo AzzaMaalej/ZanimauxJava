@@ -34,6 +34,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 import zanimaux.Service.ParcService;
 import zanimaux.entities.Parc;
 import zanimaux.entities.User;
@@ -115,6 +116,9 @@ public class AccueilDresseurController implements Initializable {
           t4.setFill(Color.web("#0076a3"));
           Text t =new Text(m1.getAdresseParc()+" "+m1.getVilleParc()+", "+m1.getCodePostaleParc());
           t.setFont(Font.font("Verdana", 14) );
+         Rating rating = new Rating(5);  
+         
+         
           VBox vbParc = new VBox(); 
           vbParc.setPadding(new Insets(-60,0,30,30));
           vbParc.setSpacing(20);
@@ -126,11 +130,14 @@ public class AccueilDresseurController implements Initializable {
           vbParc.getChildren().add(t2);
           vbParc.getChildren().add(t4);
           vbParc.getChildren().add(t);
+          vbParc.getChildren().add(rating);
+          
           i++;
           System.out.println(m1.getId()+" "+m1.getPhotoParc());
           if(i%3!=1)
           {
             hb.getChildren().add(vbParc) ;
+            
           }
           else
           {

@@ -75,6 +75,8 @@ public class accueilOumaimaController implements Initializable {
     private Button btn1;
     @FXML
     private Button buttonRefuge;
+    @FXML
+    private Button annonceBtn;
 
     @FXML
     void handleButtonAction(ActionEvent event) throws SQLException {
@@ -116,7 +118,6 @@ public class accueilOumaimaController implements Initializable {
     private void showPane(MouseEvent event) {
          pane.setVisible(true);
     }
-      @FXML
     private void hidePane(MouseEvent event) {
          pane.setVisible(false);
 
@@ -166,6 +167,20 @@ public class accueilOumaimaController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
         
+    }
+
+    @FXML
+    private void goToAnn(ActionEvent event) {
+        try {
+        Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
+        stage.setTitle("Deposez votre annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("addAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
 }

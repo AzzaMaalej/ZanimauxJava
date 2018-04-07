@@ -34,7 +34,7 @@ public class EvenementService {
       
      public boolean ajouterEvenement(Evenement e)
     {
-       String requete = "INSERT INTO Evenement (cin,lieu,dateDebut, dateFin, type, titre, description,nb_place,nbParticipants,image_evt) VALUES (?,?,?,?,?,?,?,?,0,?) ";
+       String requete = "INSERT INTO evenement (cin,lieu,dateDebut, dateFin, type, titre, description,nb_place,nbParticipants,image_evt) VALUES (?,?,?,?,?,?,?,?,0,?) ";
         User usr = Session.getLoggedInUser();
        
        try {
@@ -63,7 +63,7 @@ public class EvenementService {
      
      public boolean modifierEvenement(int id,Evenement e)
     { 
-    String requete="UPDATE Evenement SET lieu=?, dateDebut=?, dateFin=?, type=? , titre=? , description=?,imageEvt=?, nbPlace=? where idEvt='"+id+"'";
+    String requete="UPDATE evenement SET lieu=?, dateDebut=?, dateFin=?, type=? , titre=? , description=?,imageEvt=?, nbPlace=? where idEvt='"+id+"'";
         try {
             PreparedStatement pst =con.prepareStatement(requete);
             pst.setString(1,e.getLieu());
@@ -103,7 +103,7 @@ public class EvenementService {
 
         Evenement listeEvent = new Evenement();
         try {  
-            String requete = "SELECT * FROM Evenement WHERE `idEvt`="+i;
+            String requete = "SELECT * FROM evenement WHERE `idEvt`="+i;
 
            
             ResultSet rs = ste.executeQuery(requete);
@@ -115,8 +115,8 @@ public class EvenementService {
                  listeEvent.setType(rs.getString("type"));
                  listeEvent.setTitre(rs.getString("titre"));
                  listeEvent.setDescription(rs.getString("description"));
-                 listeEvent.setNbPlace(rs.getInt("nbPlace"));
-                 listeEvent.setImageEvt(rs.getString("imageEvt"));
+                 listeEvent.setNbPlace(rs.getInt("nb_place"));
+                 listeEvent.setImageEvt(rs.getString("image_evt"));
             }
              
         } catch (SQLException ex) {
@@ -169,5 +169,35 @@ public class EvenementService {
         }
         return ev;
     }
+    
+    
+     /*public Magasin rechercheEvenement(int i)
+    { 
+
+        Magasin listForm = new Magasin();
+        try {  
+            String requete = "SELECT * FROM Magasin WHERE `idMagasin`="+i;
+
+           
+            ResultSet rs = ste.executeQuery(requete);
+
+             while(rs.next()){
+                 listForm.setNumRC(rs.getString("numRC"));
+                 listForm.setNomMagasin(rs.getString("nomMagasin"));
+                 listForm.setAdresseMagasin(rs.getString("adresseMagasin"));
+                 listForm.setCodePostaleMagasin(rs.getInt("codePostaleMagasin"));
+                 listForm.setPhotoMagasin(rs.getString("photoMagasin"));
+                 listForm.setVilleMagasin(rs.getString("villeMagasin"));
+                 listForm.setCinProprietaireMagasin(rs.getString("cinProprietaireMagasin"));
+                 listForm.setBestSellerMagasin(rs.getInt("bestSellerMagasin"));              
+            }
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listForm;
+    
+    }*/
+    
 
 }

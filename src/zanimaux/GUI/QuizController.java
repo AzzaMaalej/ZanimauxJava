@@ -1,0 +1,383 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package zanimaux.GUI;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javax.xml.bind.Marshaller.Listener;
+import zanimaux.Service.ChatService;
+import zanimaux.Service.RaceService;
+import zanimaux.entities.Race;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
+
+/**
+ * FXML Controller class
+ *
+ * @author Azza
+ */
+public class QuizController implements Initializable {
+
+    @FXML
+    private Button button;
+    @FXML
+    private Button buttonRefuge;
+    @FXML
+    private Button evenement;
+    @FXML
+    private Button userName;
+    @FXML
+    private Pane pane;
+    @FXML
+    private Button btn11;
+    @FXML
+    private Button btn1;
+    @FXML
+    private Pane PanePrincipale;
+    @FXML
+    private Pane pane_questionnaire_chat;
+    @FXML
+    private CheckBox autre_animal_1;
+    @FXML
+    private CheckBox autre_animal_2;
+    @FXML
+    private CheckBox autre_animal_3;
+    @FXML
+    private Button btnresultatchat;
+    @FXML
+    private Pane pane_questionnaire_chien;
+    @FXML
+    private Pane pane_resultat;
+    @FXML
+    private ImageView imageanimal;
+    @FXML
+    private Label race_resultat;
+    @FXML
+    private Label description;
+    @FXML
+    private CheckBox dynamique1;
+    @FXML
+    private CheckBox affectueux1;
+    @FXML
+    private CheckBox poils1;
+    @FXML
+    private CheckBox intelligent1;
+    @FXML
+    private CheckBox accept1;
+    @FXML
+    private CheckBox dynamique2;
+    @FXML
+    private CheckBox affectueux2;
+    @FXML
+    private CheckBox poils2;
+    @FXML
+    private CheckBox intelligent2;
+    @FXML
+    private CheckBox accept2;
+    @FXML
+    private CheckBox dynamique3;
+    @FXML
+    private CheckBox affectueux3;
+    @FXML
+    private CheckBox poils3;
+    @FXML
+    private CheckBox intelligent3;
+    @FXML
+    private CheckBox accept3;
+    @FXML
+    private CheckBox autre_chien1;
+    @FXML
+    private CheckBox autre_chien2;
+    @FXML
+    private CheckBox autre_chien3;
+    @FXML
+    private CheckBox tolerer_chat1;
+    @FXML
+    private CheckBox chien_affectueux1;
+    @FXML
+    private CheckBox calme1;
+    @FXML
+    private CheckBox chien_intelligent1;
+    @FXML
+    private CheckBox poils_chien1;
+    @FXML
+    private CheckBox tolerer_chat2;
+    @FXML
+    private CheckBox chien_affectueux2;
+    @FXML
+    private CheckBox calme2;
+    @FXML
+    private CheckBox chien_intelligent2;
+    @FXML
+    private CheckBox poils_chien2;
+    @FXML
+    private CheckBox tolerer_chat3;
+    @FXML
+    private CheckBox chien_affectueux3;
+    @FXML
+    private CheckBox calme3;
+    @FXML
+    private CheckBox chien_intelligent3;
+    @FXML
+    private CheckBox poils_chien3;
+    @FXML
+    private Button btnresultatchien;
+    String autre_animal;
+    String chatdynamique;
+    String chataffectueux;
+    String chatchute;
+    String chatintelligent;
+    String chataccept;
+    String autre_chien;
+    String tolerer;
+    String chienaffectueux;
+    String chienchute;
+    String chienintelligent;
+    String calme;
+    @FXML
+    private Label lb;
+    
+    
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+       User u= Session.getLoggedInUser();
+        userName.setText(u.getUsername());
+    }    
+
+    @FXML
+    private void MagasinButtonAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void AfficherRefugeAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void onClickEvenementAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void showPane(MouseEvent event) {
+    }
+
+    @FXML
+    private void connexionAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void profil(ActionEvent event) {
+    }
+
+    @FXML
+    private void hidePane(MouseEvent event) {
+    }
+
+   
+
+    @FXML
+    private void questionnaire_chat(MouseEvent event) {
+        PanePrincipale.setVisible(false);
+        pane_questionnaire_chat.setVisible(true);
+       
+        
+    }
+
+    @FXML
+    private void questionnaire_chien(MouseEvent event) {
+        PanePrincipale.setVisible(false);
+        pane_questionnaire_chien.setVisible(true);
+    }
+
+    @FXML
+    private void autre_animal_1Action(ActionEvent event) {
+         autre_animal_2.setSelected(false);
+            autre_animal_3.setSelected(false);
+             
+    }
+
+    @FXML
+    private void autre_animal_2Action(ActionEvent event) {
+         autre_animal_1.setSelected(false);
+            autre_animal_3.setSelected(false);
+            
+    }
+
+    @FXML
+    private void autre_animal_3Action(ActionEvent event) {
+            autre_animal_2.setSelected(false);
+            autre_animal_1.setSelected(false);
+            
+    }
+
+    @FXML
+    private void dynamique1Action(ActionEvent event) {
+        dynamique2.setSelected(false);
+            dynamique3.setSelected(false);
+    }
+
+    @FXML
+    private void affectueux1Action(ActionEvent event) {
+         affectueux2.setSelected(false);
+            affectueux3.setSelected(false);
+    }
+
+    @FXML
+    private void poils1Action(ActionEvent event) {
+       poils2.setSelected(false);
+            poils3.setSelected(false);
+    }
+
+    @FXML
+    private void intelligent1Action(ActionEvent event) {
+        intelligent2.setSelected(false);
+            intelligent3.setSelected(false);
+    }
+
+    @FXML
+    private void accept1Action(ActionEvent event) {
+        accept2.setSelected(false);
+            accept3.setSelected(false);
+    }
+
+    @FXML
+    private void dynamique2Action(ActionEvent event) {
+        dynamique1.setSelected(false);
+            dynamique3.setSelected(false);
+    }
+
+    @FXML
+    private void affectueux2Action(ActionEvent event) {
+         affectueux1.setSelected(false);
+           affectueux3.setSelected(false);
+    }
+
+    @FXML
+    private void poils2Action(ActionEvent event) {
+         poils1.setSelected(false);
+           poils3.setSelected(false);
+    }
+
+    @FXML
+    private void intelligent2Action(ActionEvent event) {
+        intelligent1.setSelected(false);
+           intelligent3.setSelected(false);
+    }
+
+    @FXML
+    private void accept2Action(ActionEvent event) {
+         accept1.setSelected(false);
+           accept3.setSelected(false);
+    }
+
+    @FXML
+    private void dynamique3Action(ActionEvent event) {
+        dynamique2.setSelected(false);
+            dynamique1.setSelected(false);
+    }
+
+    @FXML
+    private void affectueux3Action(ActionEvent event) {
+        affectueux2.setSelected(false);
+            affectueux1.setSelected(false);
+    }
+
+    @FXML
+    private void poils3Action(ActionEvent event) {
+        poils2.setSelected(false);
+       poils1.setSelected(false);
+    }
+
+    @FXML
+    private void intelligent3Action(ActionEvent event) {
+         intelligent2.setSelected(false);
+         intelligent1.setSelected(false);
+    }
+
+    @FXML
+    private void accept3Action(ActionEvent event) {
+        accept2.setSelected(false);
+        accept1.setSelected(false);
+    }
+
+    @FXML
+    private void btnresultatchatAction(ActionEvent event) throws SQLException {
+        if(autre_animal_1.isSelected()){
+            autre_animal="1";
+        }else if(autre_animal_2.isSelected()){
+            autre_animal="2";
+        }else if(autre_animal_3.isSelected()){
+            autre_animal="3";
+        }else
+            lb.setText("vous devez choisir tous les lignes");
+    if(dynamique1.isSelected()){
+            chatdynamique="1";
+        }else if(dynamique2.isSelected()){
+            chatdynamique="2";
+        }else if(dynamique3.isSelected()){
+            chatdynamique="3";
+        }else
+            lb.setText("vous devez choisir tous les lignes");
+    if(affectueux1.isSelected()){
+            chataffectueux="1";
+        }else if(affectueux2.isSelected()){
+            chataffectueux="2";
+        }else if(affectueux3.isSelected()){
+           chataffectueux="3";
+        }else
+            lb.setText("vous devez choisir tous les lignes");
+    if(poils1.isSelected()){
+            chatchute="1";
+        }else if(poils2.isSelected()){
+            chatchute="2";
+        }else if(poils3.isSelected()){
+           chatchute="3";
+        }else
+            lb.setText("vous devez choisir tous les lignes");
+    if(intelligent1.isSelected()){
+            chatintelligent="1";
+        }else if(intelligent2.isSelected()){
+            chatintelligent="2";
+        }else if(intelligent3.isSelected()){
+           chatintelligent="3";
+        }else
+            lb.setText("vous devez choisir tous les lignes");
+    if(accept1.isSelected()){
+            chataccept="1";
+        }else if(accept2.isSelected()){
+            chataccept="2";
+        }else if(accept3.isSelected()){
+           chataccept="3";
+        }else
+            lb.setText("vous devez choisir tous les lignes");
+    ChatService chats=new ChatService();
+    int ra= chats.AfficherIdChatRace(autre_animal, chatdynamique, chataffectueux, chatchute, chatintelligent, chataccept);
+        RaceService races= new RaceService();
+        Race racechat=new Race();
+        racechat=races.RechercherRaceById(ra);
+        Image image= new Image("zanimaux/ImageUtile/"+racechat.getPhoto());
+        imageanimal.setImage(image);
+        race_resultat.setText(racechat.getRace());
+        description.setText(racechat.getInformations());
+        pane_questionnaire_chat.setVisible(false);
+        pane_resultat.setVisible(true);
+    }
+    
+}

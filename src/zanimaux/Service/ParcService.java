@@ -40,7 +40,7 @@ public class ParcService {
     }
      
    public boolean ajouterParc(Parc g) throws SQLException {
-       String req="INSERT INTO parc (id,nomParc,CategorieDressage, adresseParc ,villeParc ,codePostaleParc ,photoParc,cinDresseur) VALUES (?,?,?,?,?,?,?,?)";
+       String req="INSERT INTO parc (nomParc,CategorieDressage, adresseParc ,villeParc ,codePostaleParc ,photoParc,cinDresseur) VALUES (?,?,?,?,?,?,?)";
         Parc a =new Parc();
         User user=Session.getLoggedInUser();
         Userservice us= new Userservice();
@@ -48,14 +48,14 @@ public class ParcService {
        
        PreparedStatement pre= con.prepareStatement(req);
         
-        pre.setString(1, g.getId());
-        pre.setString(2, g.getNomParc());
-        pre.setString(3, g.getCategorieDressage());
-        pre.setString(4, g.getAdresseParc());
-        pre.setString(5, g.getVilleParc());
-        pre.setInt(6, g.getCodePostaleParc());
-        pre.setString(7, g.getPhotoParc());
-        pre.setString(8, user.getCin());
+        
+        pre.setString(1, g.getNomParc());
+        pre.setString(2, g.getCategorieDressage());
+        pre.setString(3, g.getAdresseParc());
+        pre.setString(4, g.getVilleParc());
+        pre.setInt(5, g.getCodePostaleParc());
+        pre.setString(6, g.getPhotoParc());
+        pre.setString(7, user.getCin());
         pre.executeUpdate();   
      System.out.println("ajout reussit");
         } catch (SQLException ex) {
@@ -120,6 +120,20 @@ public class ParcService {
         return rs ;
     
     }
+   public ResultSet AfficherParcById(String c)
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM parc WHERE id='"+c+"' " ;
+            
+            rs = ste.executeQuery(requete);
+            
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherParc()");
+        }
+        return rs ;
+    
+    }
    
    public void supprimerParc(String id)
          {
@@ -170,7 +184,6 @@ public class ParcService {
             PreparedStatement pst = con.prepareStatement(requete);
             pst.setString(1, r.getId());
             pst.setString(2,r.getNomParc());
-
             pst.setString(3,r.getCategorieDressage());
             pst.setString(4,r.getAdresseParc());
             pst.setString(5,r.getVilleParc());

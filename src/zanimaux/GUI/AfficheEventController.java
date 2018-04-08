@@ -430,257 +430,257 @@ public class AfficheEventController implements Initializable {
     }
     
    void editEvent(ActionEvent e) throws SQLException {
-    
-       
-        
-           EvenementService es= new EvenementService();
-          
-            int a=Integer.parseInt(((Node) e.getSource()).getId());            
-           ResultSet rs=  es.rechercheEvent(a) ;
-            if (rs==null){
-               
-            }
-            int i=0;
-            Evenement e1=new Evenement();
-            ScrollPane sp = new ScrollPane();
-            sp.setPrefSize(900, 650);
-            sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-            sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-            VBox vb = new VBox();
-            HBox hb =null;
-            vb.setPadding(new Insets(100, 30, 0, 30));
-            vb.setSpacing(100);
-            
-             while(rs.next())
-            {
-                e1.setIdEvt(rs.getInt("idEvt"));
-                e1.setLieu(rs.getString("lieu"));
-                e1.setDateDebut(rs.getDate("dateDebut"));
-                e1.setDateFin(rs.getDate("dateFin"));
-                e1.setType(rs.getString("type"));
-                e1.setTitre(rs.getString("titre"));
-                e1.setDescription(rs.getString("description"));
-                e1.setNbPlace(rs.getInt("nb_place"));
-                e1.setImageEvt(rs.getString("image_evt"));
-                
-                
-                 
-                ImageView im= new ImageView();
-                Image image= new Image("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
-                im.setImage(image);
-                
-                Text n1 = new Text("lieu:");
-                n1.setFont(Font.font("Comic Sans MS", 19) );
-                n1.setFill(Color.web("#0076a3"));
-                TextField lieu =new TextField(""+e1.getLieu());
-                lieu.setFont(Font.font("Comic Sans MS", 17));
-                
-                
-                
-                
-                Text n2 = new Text("date debut");
-                n2.setFont(Font.font("Comic Sans MS", 19) );
-                n2.setFill(Color.web("#0076a3"));
-                TextField dated =new TextField(""+e1.getDateDebut());
-                dated.setFont(Font.font("Comic Sans MS", 17));
-                
-                    Text n3 = new Text("date fin");
-                n3.setFont(Font.font("Comic Sans MS", 19) );
-                n3.setFill(Color.web("#0076a3"));
-                TextField datef =new TextField(""+e1.getDateFin());
-                datef.setFont(Font.font("Comic Sans MS", 17));
-                
-                
-                
-                
-                
-                Text n4 = new Text("Type:");
-                n4.setFont(Font.font("Comic Sans MS", 19) );
-                n4.setFill(Color.web("#0076a3"));
-                TextField type =new TextField(""+e1.getType());
-                type.setFont(Font.font("Comic Sans MS", 17));
-                
-                
-                
-                
-                Text n5 = new Text("Titre:");
-                n4.setFont(Font.font("Comic Sans MS", 19) );
-                n4.setFill(Color.web("#0076a3"));
-                TextField titre =new TextField(""+e1.getTitre());
-                titre.setFont(Font.font("Comic Sans MS", 17));
-                
-                Text n6 = new Text("description:");
-                n6.setFont(Font.font("Comic Sans MS", 19) );
-                n6.setFill(Color.web("#0076a3"));
-                TextField description =new TextField(""+e1.getDescription());
-                description.setFont(Font.font("Comic Sans MS", 17));
-                
-                 Text n7 = new Text("nb plce:");
-                n7.setFont(Font.font("Comic Sans MS", 19) );
-                n7.setFill(Color.web("#0076a3"));
-                TextField nb =new TextField(""+e1.getNbPlace());
-                nb.setFont(Font.font("Comic Sans MS", 17));
-                
-                
-                
-                /*ChoiceBox<String> catg = new ChoiceBox ();
-                catg.setTooltip(new Tooltip("Choisir la catégorie"));
-                
-                List<String> list = new ArrayList();
-                list.add("Chien");
-                list.add("Chevaux");
-                list.add("Autre");
-             ObservableList<String> ob = FXCollections.observableArrayList();
-        ob.addAll(list);
-        catg.setItems(ob);
-        catg.getSelectionModel().select(m1.getCategorieDressage());
-        String z;
-        int r = 0;
-        z = catg.getValue();
-        if ("Chien".equals(z)) {
-            r = 1;
-        } else if ("Chevaux".equals(z)) {
-            r = 2;
-        } else if ("Autre".equals(z)) {
-            r = 3;
-        }*/
-        Label chooseFile = new Label();
-        chooseFile.setText(e1.getImageEvt());
-        Image imagePhoto = new Image("zanimaux/ImageUtile/photo.png",26,26,false,false);
-        
-        Button pho = new Button();
-        pho.setBackground(Background.EMPTY);
-        pho.setGraphic(new ImageView(imagePhoto));
-        pho.setId(String.valueOf(e1.getIdEvt()));
-        pho.setOnAction((ActionEvent event) -> {
-            FileChooser fileChooser = new FileChooser();
-            
-            //Set extension filter
-            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-            
-            //Show open file dialog
-            File file = fileChooser.showOpenDialog(null);
-            chooseFile.setText(file.getName());
-            filePath = file.getAbsolutePath();
-            try {
-                BufferedImage bufferedImage = ImageIO.read(file);
-                Image images = SwingFXUtils.toFXImage(bufferedImage, null);
-                im.setImage(images);
-                im.setFitHeight(120);
-                im.setFitWidth(150);
-                
-            } catch (IOException ex) {
-                System.err.println(ex);
-            }
-                });
-        
-        
-        
-        
-        Image imageCheck = new Image("zanimaux/ImageUtile/check.png",26,26,false,false);
-          Image imageBack = new Image("zanimaux/ImageUtile/left.png",26,26,false,false);
-          
-          
-          Button ret = new Button();
-        ret.setBackground(Background.EMPTY);
-        ret.setGraphic(new ImageView(imageBack));
-        ret.setOnAction(new EventHandler<ActionEvent>(){
-             @Override 
-            public void handle(ActionEvent event) {
-                 try {
-                     consulterEvent(event);
-                 } catch (SQLException ex) {
-                     Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-            }
-        });
-        
-        Button val = new Button();
-        val.setBackground(Background.EMPTY);
-            val.setGraphic(new ImageView(imageCheck));
-        val.setId(String.valueOf(e1.getIdEvt()));
-            val.setOnAction(new EventHandler<ActionEvent>() {  
-            @Override 
-            public void handle(ActionEvent event) {
-               
-                try {
-                    EvenementService se= new EvenementService();
-                    
-                   /* String z;
-                    String r="Autre";
-                    z = catg.getValue();
-                    if ("Chien".equals(z)) {
-                        r = "Chien";
-                    } else if ("Chevaux".equals(z)) {
-                        r = "Chevaux";
-                    } else if ("Autre".equals(z)) {
-                        r = "Autre";
-                    }*/
-                    User user=Session.getLoggedInUser();
-                    String cin=user.getCin();
-                    String e1 =((Node)event.getSource()).getId();
-                    Evenement e=new Evenement(e1,lieu.getText(),dated.getText(),datef.getText(),type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),chooseFile.getText(),cin);
-                    javafx.scene.control.Alert alert = new  javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);
-                    alert.setHeaderText("voulez-vous vraiment modifié ce parc ?");
-                    alert.showAndWait();
-
-     if (alert.getResult() == ButtonType.YES) {
-                    se.modifierEvenement(e);
-                    System.out.println("evenet Modifié");
-                    consulterEvent(event);
-                } }catch (SQLException ex) {
-                    Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-            HBox t = new HBox (pho);
-            HBox bt = new HBox (ret,val);
-            bt.setSpacing(100);
-            
-                      VBox vbParc = new VBox(); 
-          vbParc.setPadding(new Insets(-60,0,30,30));
-          vbParc.setSpacing(10);
-          vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
-         
-          vbParc.setPrefSize(250, 200);
-          vbParc.getChildren().add(im);
-          vbParc.getChildren().add(n1);
-          vbParc.getChildren().add(lieu);
-          vbParc.getChildren().add(n2);
-          vbParc.getChildren().add(dated);
-          vbParc.getChildren().add(n3);
-          vbParc.getChildren().add(datef);
-          vbParc.getChildren().add(n4);
-          vbParc.getChildren().add(type);
-              vbParc.getChildren().add(n5);
-          vbParc.getChildren().add(titre);
-              vbParc.getChildren().add(n6);
-          vbParc.getChildren().add(description);
-           vbParc.getChildren().add(n7);
-          vbParc.getChildren().add(nb);
-          vbParc.getChildren().add(t);
-          vbParc.getChildren().add(bt);
-          
-          i++;
-          
-          if(i%3!=1)
-          {
-            hb.getChildren().add(vbParc) ;
-          }
-          else
-          {
-            hb = new HBox();
-            hb.setPadding(new Insets(0,0,0,0));
-            hb.setSpacing(10);
-            hb.getChildren().add(vbParc) ;
-            vb.getChildren().add(hb); 
-           }
-                 
-      }
-        sp.setContent(vb);
-         anchorEvent.getChildren().setAll(sp);
+//    
+//       
+//        
+//           EvenementService es= new EvenementService();
+//          
+//            int a=Integer.parseInt(((Node) e.getSource()).getId());            
+//           ResultSet rs=  es.rechercheEvent(a) ;
+//            if (rs==null){
+//               
+//            }
+//            int i=0;
+//            Evenement e1=new Evenement();
+//            ScrollPane sp = new ScrollPane();
+//            sp.setPrefSize(900, 650);
+//            sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+//            sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+//            VBox vb = new VBox();
+//            HBox hb =null;
+//            vb.setPadding(new Insets(100, 30, 0, 30));
+//            vb.setSpacing(100);
+//            
+//             while(rs.next())
+//            {
+//                e1.setIdEvt(rs.getInt("idEvt"));
+//                e1.setLieu(rs.getString("lieu"));
+//                e1.setDateDebut(rs.getDate("dateDebut"));
+//                e1.setDateFin(rs.getDate("dateFin"));
+//                e1.setType(rs.getString("type"));
+//                e1.setTitre(rs.getString("titre"));
+//                e1.setDescription(rs.getString("description"));
+//                e1.setNbPlace(rs.getInt("nb_place"));
+//                e1.setImageEvt(rs.getString("image_evt"));
+//                
+//                
+//                 
+//                ImageView im= new ImageView();
+//                Image image= new Image("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
+//                im.setImage(image);
+//                
+//                Text n1 = new Text("lieu:");
+//                n1.setFont(Font.font("Comic Sans MS", 19) );
+//                n1.setFill(Color.web("#0076a3"));
+//                TextField lieu =new TextField(""+e1.getLieu());
+//                lieu.setFont(Font.font("Comic Sans MS", 17));
+//                
+//                
+//                
+//                
+//                Text n2 = new Text("date debut");
+//                n2.setFont(Font.font("Comic Sans MS", 19) );
+//                n2.setFill(Color.web("#0076a3"));
+//                TextField dated =new TextField(""+e1.getDateDebut());
+//                dated.setFont(Font.font("Comic Sans MS", 17));
+//                
+//                    Text n3 = new Text("date fin");
+//                n3.setFont(Font.font("Comic Sans MS", 19) );
+//                n3.setFill(Color.web("#0076a3"));
+//                TextField datef =new TextField(""+e1.getDateFin());
+//                datef.setFont(Font.font("Comic Sans MS", 17));
+//                
+//                
+//                
+//                
+//                
+//                Text n4 = new Text("Type:");
+//                n4.setFont(Font.font("Comic Sans MS", 19) );
+//                n4.setFill(Color.web("#0076a3"));
+//                TextField type =new TextField(""+e1.getType());
+//                type.setFont(Font.font("Comic Sans MS", 17));
+//                
+//                
+//                
+//                
+//                Text n5 = new Text("Titre:");
+//                n4.setFont(Font.font("Comic Sans MS", 19) );
+//                n4.setFill(Color.web("#0076a3"));
+//                TextField titre =new TextField(""+e1.getTitre());
+//                titre.setFont(Font.font("Comic Sans MS", 17));
+//                
+//                Text n6 = new Text("description:");
+//                n6.setFont(Font.font("Comic Sans MS", 19) );
+//                n6.setFill(Color.web("#0076a3"));
+//                TextField description =new TextField(""+e1.getDescription());
+//                description.setFont(Font.font("Comic Sans MS", 17));
+//                
+//                 Text n7 = new Text("nb plce:");
+//                n7.setFont(Font.font("Comic Sans MS", 19) );
+//                n7.setFill(Color.web("#0076a3"));
+//                TextField nb =new TextField(""+e1.getNbPlace());
+//                nb.setFont(Font.font("Comic Sans MS", 17));
+//                
+//                
+//                
+//                /*ChoiceBox<String> catg = new ChoiceBox ();
+//                catg.setTooltip(new Tooltip("Choisir la catégorie"));
+//                
+//                List<String> list = new ArrayList();
+//                list.add("Chien");
+//                list.add("Chevaux");
+//                list.add("Autre");
+//             ObservableList<String> ob = FXCollections.observableArrayList();
+//        ob.addAll(list);
+//        catg.setItems(ob);
+//        catg.getSelectionModel().select(m1.getCategorieDressage());
+//        String z;
+//        int r = 0;
+//        z = catg.getValue();
+//        if ("Chien".equals(z)) {
+//            r = 1;
+//        } else if ("Chevaux".equals(z)) {
+//            r = 2;
+//        } else if ("Autre".equals(z)) {
+//            r = 3;
+//        }*/
+//        Label chooseFile = new Label();
+//        chooseFile.setText(e1.getImageEvt());
+//        Image imagePhoto = new Image("zanimaux/ImageUtile/photo.png",26,26,false,false);
+//        
+//        Button pho = new Button();
+//        pho.setBackground(Background.EMPTY);
+//        pho.setGraphic(new ImageView(imagePhoto));
+//        pho.setId(String.valueOf(e1.getIdEvt()));
+//        pho.setOnAction((ActionEvent event) -> {
+//            FileChooser fileChooser = new FileChooser();
+//            
+//            //Set extension filter
+//            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+//            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+//            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+//            
+//            //Show open file dialog
+//            File file = fileChooser.showOpenDialog(null);
+//            chooseFile.setText(file.getName());
+//            filePath = file.getAbsolutePath();
+//            try {
+//                BufferedImage bufferedImage = ImageIO.read(file);
+//                Image images = SwingFXUtils.toFXImage(bufferedImage, null);
+//                im.setImage(images);
+//                im.setFitHeight(120);
+//                im.setFitWidth(150);
+//                
+//            } catch (IOException ex) {
+//                System.err.println(ex);
+//            }
+//                });
+//        
+//        
+//        
+//        
+//        Image imageCheck = new Image("zanimaux/ImageUtile/check.png",26,26,false,false);
+//          Image imageBack = new Image("zanimaux/ImageUtile/left.png",26,26,false,false);
+//          
+//          
+//          Button ret = new Button();
+//        ret.setBackground(Background.EMPTY);
+//        ret.setGraphic(new ImageView(imageBack));
+//        ret.setOnAction(new EventHandler<ActionEvent>(){
+//             @Override 
+//            public void handle(ActionEvent event) {
+//                 try {
+//                     consulterEvent(event);
+//                 } catch (SQLException ex) {
+//                     Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+//                 }
+//            }
+//        });
+//        
+//        Button val = new Button();
+//        val.setBackground(Background.EMPTY);
+//            val.setGraphic(new ImageView(imageCheck));
+//        val.setId(String.valueOf(e1.getIdEvt()));
+//            val.setOnAction(new EventHandler<ActionEvent>() {  
+//            @Override 
+//            public void handle(ActionEvent event) {
+//               
+//                try {
+//                    EvenementService se= new EvenementService();
+//                    
+//                   /* String z;
+//                    String r="Autre";
+//                    z = catg.getValue();
+//                    if ("Chien".equals(z)) {
+//                        r = "Chien";
+//                    } else if ("Chevaux".equals(z)) {
+//                        r = "Chevaux";
+//                    } else if ("Autre".equals(z)) {
+//                        r = "Autre";
+//                    }*/
+//                    User user=Session.getLoggedInUser();
+//                    String cin=user.getCin();
+//                    String e1 =((Node)event.getSource()).getId();
+//                    Evenement e=new Evenement(e1,lieu.getText(),dated.getText(),datef.getText(),type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),chooseFile.getText(),cin);
+//                    javafx.scene.control.Alert alert = new  javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);
+//                    alert.setHeaderText("voulez-vous vraiment modifié ce parc ?");
+//                    alert.showAndWait();
+//
+//     if (alert.getResult() == ButtonType.YES) {
+//                    se.modifierEvenement(e);
+//                    System.out.println("evenet Modifié");
+//                    consulterEvent(event);
+//                } }catch (SQLException ex) {
+//                    Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
+//            HBox t = new HBox (pho);
+//            HBox bt = new HBox (ret,val);
+//            bt.setSpacing(100);
+//            
+//                      VBox vbParc = new VBox(); 
+//          vbParc.setPadding(new Insets(-60,0,30,30));
+//          vbParc.setSpacing(10);
+//          vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
+//         
+//          vbParc.setPrefSize(250, 200);
+//          vbParc.getChildren().add(im);
+//          vbParc.getChildren().add(n1);
+//          vbParc.getChildren().add(lieu);
+//          vbParc.getChildren().add(n2);
+//          vbParc.getChildren().add(dated);
+//          vbParc.getChildren().add(n3);
+//          vbParc.getChildren().add(datef);
+//          vbParc.getChildren().add(n4);
+//          vbParc.getChildren().add(type);
+//              vbParc.getChildren().add(n5);
+//          vbParc.getChildren().add(titre);
+//              vbParc.getChildren().add(n6);
+//          vbParc.getChildren().add(description);
+//           vbParc.getChildren().add(n7);
+//          vbParc.getChildren().add(nb);
+//          vbParc.getChildren().add(t);
+//          vbParc.getChildren().add(bt);
+//          
+//          i++;
+//          
+//          if(i%3!=1)
+//          {
+//            hb.getChildren().add(vbParc) ;
+//          }
+//          else
+//          {
+//            hb = new HBox();
+//            hb.setPadding(new Insets(0,0,0,0));
+//            hb.setSpacing(10);
+//            hb.getChildren().add(vbParc) ;
+//            vb.getChildren().add(hb); 
+//           }
+//                 
+//      }
+//        sp.setContent(vb);
+//         anchorEvent.getChildren().setAll(sp);
            
     }
    

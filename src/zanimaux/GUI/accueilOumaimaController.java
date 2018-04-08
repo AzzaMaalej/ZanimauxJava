@@ -111,7 +111,11 @@ public class accueilOumaimaController implements Initializable {
             Logger.getLogger(magasinController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Panier p = pan.recherchePanier(u.getCin());
-        sommePanier.setText(String.valueOf(p.getSomme()));
+        if (p==null)
+        {
+        sommePanier.setText("0 DT");}
+        else{
+        sommePanier.setText(String.valueOf(p.getSomme())+" DT");}
         // TODO
     }    
 

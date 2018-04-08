@@ -92,7 +92,12 @@ public class magasinController implements Initializable {
             Logger.getLogger(magasinController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Panier p = pan.recherchePanier(u.getCin());
-        sommePanier.setText(String.valueOf(p.getSomme()));
+        if (p==null)
+        {
+        sommePanier.setText("0 DT");}
+        else{
+        sommePanier.setText(String.valueOf(p.getSomme())+" DT");}
+        // TODO
         ResultSet r =m.rechercheMagasin();
         Magasin m1=new Magasin();
         
@@ -228,7 +233,7 @@ public class magasinController implements Initializable {
             int i=0;
             Produit m1=new Produit();
             ScrollPane sp = new ScrollPane();
-            sp.setPrefSize(500, 500);
+            sp.setPrefSize(900, 650);
             sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
             sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
             VBox vb = new VBox();
@@ -334,6 +339,16 @@ public class magasinController implements Initializable {
 
     @FXML
     private void afficherMagasin(ActionEvent event) {
+                     try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("NOS MAGSINS");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
  

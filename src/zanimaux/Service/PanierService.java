@@ -49,14 +49,15 @@ public class PanierService {
     
     }
     
-    public boolean modifContenuPanier(String cin, ContenuPanier cp)
+    public boolean modifContenuPanier(int idProduit, ContenuPanier cp)
     {
-        String requete="UPDATE ContenuPanier SET quantite=?, commande=?, dateCommande=? where `cin`="+cin;
+        String requete="UPDATE ContenuPanier SET quantite=?, commande=?, dateCommande=? where `idProduit`="+idProduit;
         try {
             PreparedStatement pst =con.prepareStatement(requete);
+            System.out.println(cp.getQuantite());
             pst.setInt(1,cp.getQuantite());
             pst.setInt(2,cp.getCommande());
-            pst.setDate(3,cp.getDateCommande());            
+           pst.setDate(3,cp.getDateCommande());            
             pst.executeUpdate();
             System.out.println("modification contenu panier reussite");
         } catch (SQLException ex) {
@@ -103,6 +104,7 @@ public class PanierService {
                  listForm.setCommande(rs.getInt("commande"));
                  listForm.setIdContenuPanier(rs.getInt("idContenuPanier"));
                  listForm.setQuantite(rs.getInt("quantite"));
+                 listForm.setIdProduit(rs.getInt("idProduit"));
             }while(rs.next());
              
         }} catch (SQLException ex) {
@@ -139,6 +141,7 @@ public class PanierService {
         }
         ContenuPanier cp= this.rechercheProduitContenuPanier(u.getCin(), p);
        //on teste si le client n'a pas encore ajouter le produit X au panier, donc on insere
+        System.out.println("ZZZZZZZZ"+p.getIdProduit());
 
         if(cp==null)
         {
@@ -161,8 +164,14 @@ public class PanierService {
         else
         {
             cp.setQuantite(cp.getQuantite()+1);
-            this.modifContenuPanier(u.getCin(), cp);
+            System.out.println(cp.getIdProduit());
+            
+            this.modifContenuPanier(cp.getIdProduit(), cp);
         }
+        ProduitService prodSer = new ProduitService();
+        p.setQuantite(p.getQuantite()-1);
+        prodSer.ModifProduit(p, p.getIdProduit());
+        
     }
          public List<ContenuPanier> rechercheContenuPanier(String cin)
    {
@@ -204,6 +213,19 @@ public class PanierService {
             st = con.createStatement(); 
             st.executeUpdate(requete);
       System.out.println("produit supprimé");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+}
+          public void SupprimerProduitPanier(int id)
+    {
+        String requete="DELETE FROM ContenuPanier WHERE idContenuPanier='"+id+"' ";     
+        Statement st;
+        try {
+            st = con.createStatement(); 
+            st.executeUpdate(requete);
+      System.out.println("Contenu Panier supprimé");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

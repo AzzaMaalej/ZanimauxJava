@@ -196,4 +196,17 @@ public class PanierService {
         return listContenuPanier;
     
     }
+          public void SupprimerProduitContenuPanier(int id)
+    {
+        String requete="DELETE FROM Produit WHERE idProduit='"+id+"' ";     
+        Statement st;
+        try {
+            st = con.createStatement(); 
+            st.executeUpdate(requete);
+      System.out.println("produit supprimé");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+}
 }

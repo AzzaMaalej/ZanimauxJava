@@ -17,11 +17,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -85,6 +88,11 @@ public class AffichePanierController implements Initializable {
             List<ContenuPanier> cp = p.rechercheContenuPanier(u.getCin());
             for(int i =0;i<cp.size();i++)
             {
+                Image image = new Image("zanimaux/Image/waste.png",30,30,false,false);
+                Button supprimer = new Button("",new ImageView(image));
+                supprimer.setId(String.valueOf(cp.get(i).getIdProduit()));
+                supprimer.setOnAction(e->supprimerProduitPanier(e));
+                supprimer.setStyle("-fx-background-color:Transparent");
                 Button plus = new Button();
                 Button minus = new Button();
                 plus.setText("+");
@@ -95,7 +103,7 @@ public class AffichePanierController implements Initializable {
                 Label prix = new Label();
                 Label total = new Label();
                 TextField qt = new TextField();
-                Button sup = new Button();
+               
                 qt.setMaxSize(30, 10);
                 qt.setAlignment(Pos.CENTER);
                 hbQuantite.getChildren().add(minus);
@@ -109,11 +117,13 @@ public class AffichePanierController implements Initializable {
                 vbQuantite.getChildren().add(hbQuantite);
                 vbTotal.getChildren().add(total);
                 vbProduit.getChildren().add(libelle);
+                vbBoutton.getChildren().add(supprimer);
             }
             vbPrix.setSpacing(50);
             vbProduit.setSpacing(50);
             vbQuantite.setSpacing(30);
             vbTotal.setSpacing(50);
+            vbBoutton.setSpacing(30);
             vbPanier.setSpacing(50);
             anchorEvent.getChildren().setAll(vbPanier);
             anchorEvent.setMaxSize(300,300);
@@ -179,6 +189,16 @@ public class AffichePanierController implements Initializable {
 
     @FXML
     private void hidePaneProfil(MouseEvent event) {
+    }
+
+    private void supprimerProduitPanier(ActionEvent e) throws SQLException {
+        User u = Session.getLoggedInUser();
+        int a = Integer.parseInt(((Node)e.getSource()).getId());
+        PanierService ps = new PanierService();
+        ProduitService prodServ= new ProduitService();
+        Produit p = prodServ.rechercheProduitMagasin(a);
+        ContenuPanier cp = ps.rechercheProduitContenuPanier(u.getCin(), p);
+        
     }
     
 }

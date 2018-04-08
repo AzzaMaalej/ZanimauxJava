@@ -55,6 +55,24 @@ public class Evenement {
     public Evenement() {
     }
 
+<<<<<<< HEAD
+   
+
+    public Evenement(String lieu, Date dateDebut, Date dateFin, String type, String titre, String description,int nbPlace,String imageEvt,String cinUser) {
+        
+        this.lieu = lieu;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
+        this.nbPlace=nbPlace;
+        this.imageEvt = imageEvt;
+        this.cinUser = cinUser;
+    }
+
+=======
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
     
 
  

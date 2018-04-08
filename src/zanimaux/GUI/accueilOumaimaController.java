@@ -77,6 +77,12 @@ public class accueilOumaimaController implements Initializable {
     private Button buttonRefuge;
     @FXML
     private Button annonceBtn;
+    @FXML
+    private AnchorPane anchorGeneralEvent;
+    private Button addEventBtn;
+    private Button listEvent;
+    @FXML
+    private AnchorPane bigAnchor;
 
     @FXML
     void handleButtonAction(ActionEvent event) throws SQLException {
@@ -101,18 +107,20 @@ public class accueilOumaimaController implements Initializable {
     }    
 
     @FXML
-    private void onClickEvenementAction(ActionEvent event) throws SQLException {
-        try {
+    public void onClickEvenementAction(ActionEvent event) throws SQLException {
+       try {
         Stage stage=(Stage) button.getScene().getWindow(); 
         stage.setTitle("Ajouter Evenement");
-        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("eventGeneral.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         } catch (IOException ex) {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
+      
     }
+    
 
     @FXML
     private void showPane(MouseEvent event) {
@@ -136,7 +144,7 @@ public class accueilOumaimaController implements Initializable {
                  myWindow.setTitle("Login");
                  myWindow.show();
              } catch (IOException ex) {
-                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
              }
     }
      @FXML
@@ -183,5 +191,8 @@ public class accueilOumaimaController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+
     
-}
+    }
+    
+

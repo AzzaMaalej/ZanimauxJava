@@ -142,14 +142,14 @@
             </Button>
          </children>
       </AnchorPane>
-       <Pane fx:id="pane" focusTraversable="true" layoutX="534.0" layoutY="55.0" prefHeight="98.0" prefWidth="179.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">
+       <Pane fx:id="pane" focusTraversable="true" layoutX="605.0" layoutY="41.0" prefHeight="95.0" prefWidth="187.0" style="-fx-background-color: #0000;" visible="false">
          <children>
-            <Button fx:id="btn11" layoutX="48.0" layoutY="52.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #D15710; -fx-background-radius: 100; -fx-text-fill: white;" text="Se déconnecter" textFill="#1c4a26">
+            <Button fx:id="btn11" layoutX="48.0" layoutY="52.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="38.0" prefWidth="139.0" style="-fx-background-color: #D15710; -fx-background-radius: 100; -fx-text-fill: white;" text="Se déconnecter" textFill="#1c4a26">
                <font>
                   <Font name="Comic Sans MS" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btn1" layoutX="50.0" mnemonicParsing="false" onAction="#profil" prefHeight="38.0" prefWidth="126.0" style="-fx-background-color: #1023D1BE; -fx-background-radius: 100; -fx-text-fill: white;" text="Voir profil" textFill="#1c4a26">
+            <Button fx:id="btn1" layoutX="50.0" mnemonicParsing="false" onAction="#profil" prefHeight="38.0" prefWidth="139.0" style="-fx-background-color: #1023D1BE; -fx-background-radius: 100; -fx-text-fill: white;" text="Voir profil" textFill="#1c4a26">
                <font>
                   <Font name="Comic Sans MS" size="15.0" />
                </font>

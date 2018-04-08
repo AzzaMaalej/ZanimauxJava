@@ -13,18 +13,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+<<<<<<< HEAD
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+=======
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,24 +32,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -58,6 +52,7 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import zanimaux.Service.AnimalService;
 import zanimaux.Service.EvenementService;
+<<<<<<< HEAD
 import zanimaux.Service.ParcService;
 import zanimaux.Service.ParticipationService;
 import zanimaux.Service.RefugeService;
@@ -65,6 +60,11 @@ import zanimaux.entities.Animal;
 import zanimaux.entities.Evenement;
 import zanimaux.entities.Parc;
 import zanimaux.entities.Participation;
+=======
+import zanimaux.Service.RefugeService;
+import zanimaux.entities.Animal;
+import zanimaux.entities.Evenement;
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
 import zanimaux.entities.Refuge;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -112,6 +112,7 @@ public class AfficheEventController implements Initializable {
     private ImageView iv;
     @FXML
     private Button buttonModifierEvent;
+<<<<<<< HEAD
     public String filePath;
     public int a;
     @FXML
@@ -140,6 +141,8 @@ public class AfficheEventController implements Initializable {
     public int nbpMax;
     @FXML
     private Label plein;
+=======
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
 
     /**
      * Initializes the controller class.
@@ -453,6 +456,7 @@ public class AfficheEventController implements Initializable {
     private void uploadImage(ActionEvent event) {
         BtnChoixImage.setText(handle());
     }
+<<<<<<< HEAD
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -472,5 +476,12 @@ public class AfficheEventController implements Initializable {
     
  
    
+=======
+    
+
+    
+    
+    
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
     
 }

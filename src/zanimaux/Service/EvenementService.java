@@ -183,6 +183,7 @@ public class EvenementService {
              }catch (SQLException ex) {
                  System.out.println(" erreur");
         }
+<<<<<<< HEAD
         return rs ;
     
     }
@@ -217,4 +218,11 @@ public class EvenementService {
             return false;
     }
         
+=======
+        return listForm;
+    
+    }*/
+    
+
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
 }

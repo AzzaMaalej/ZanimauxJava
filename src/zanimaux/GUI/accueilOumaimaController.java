@@ -126,6 +126,7 @@ public class accueilOumaimaController implements Initializable {
     private void showPane(MouseEvent event) {
          pane.setVisible(true);
     }
+     @FXML
     private void hidePane(MouseEvent event) {
          pane.setVisible(false);
 

@@ -55,6 +55,7 @@ public class Evenement {
     public Evenement() {
     }
 
+<<<<<<< HEAD
    
 
     public Evenement(String lieu, Date dateDebut, Date dateFin, String type, String titre, String description,int nbPlace,String imageEvt,String cinUser) {
@@ -70,6 +71,8 @@ public class Evenement {
         this.cinUser = cinUser;
     }
 
+=======
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
     
 
  

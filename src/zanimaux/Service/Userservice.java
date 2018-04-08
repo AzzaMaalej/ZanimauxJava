@@ -157,23 +157,21 @@ public class Userservice {
             int count = 0;
             while(rs.next()){
                 count ++;
-                user.setCin(rs.getString(1));
-                user.setUsername(rs.getString(2));
-                user.setUsername_canonical(rs.getString(3));
-                user.setEmail(rs.getString(4));
-                user.setEmail_canonical(rs.getString(5));
-                user.setEnabled(rs.getInt(6));
-                user.setPassword(rs.getString(8));
-                user.setRoles(rs.getString(12));
-                user.setNom(rs.getString(13));
-                user.setPrenom(rs.getString(14));
-                
-                
-                user.setTelephone(rs.getInt(15));
-                
-                user.setAdresse(rs.getString(16));
-                user.setVille(rs.getString(17));
-                user.setCodePostale(rs.getInt(18));
+                user.setCin(cin);
+                 user.setUsername(rs.getString("username"));
+                 user.setUsername_canonical(rs.getString("username_canonical"));
+                 user.setEmail(rs.getString("email"));
+                 user.setEmail_canonical(rs.getString("email_canonical"));
+                 user.setEnabled(rs.getInt("enabled"));
+                 user.setPassword(rs.getString("password"));
+                 user.setRoles(rs.getString("roles"));
+                 
+                 user.setNom(rs.getString("nom"));
+                 user.setPrenom(rs.getString("prenom"));
+                 user.setTelephone(rs.getInt("telephone"));
+                 user.setAdresse(rs.getString("adresse"));
+                 user.setVille(rs.getString("ville"));
+                 user.setCodePostale(rs.getInt("codePostale"));
                 
                 
                 

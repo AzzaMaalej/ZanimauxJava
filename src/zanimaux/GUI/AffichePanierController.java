@@ -281,6 +281,7 @@ public class AffichePanierController implements Initializable {
                 p= ps.recherchePanier(u.getCin());
                 p.setSommeCommande(p.getSommeCommande()+p.getSomme());
                 p.setSomme(0);
+                ps.modifPanier(u.getCin(), p);
                 for (int i =0;i<c.size();i++)
                 {
                     c.get(i).setCommande(1);

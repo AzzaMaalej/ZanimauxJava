@@ -179,10 +179,12 @@ public class LoginController implements Initializable {
                  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
 
 
+
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
                     Stage stage = (Stage) cin.getScene().getWindow();
+                    secondStage.setMaximized(true);
                     // do what you have to do
                     stage.hide();
                     secondStage.show();

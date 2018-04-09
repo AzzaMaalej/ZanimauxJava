@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -155,6 +156,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
+            <TextField fx:id="recherche" layoutX="17.0" layoutY="10.0" onKeyPressed="#Deconnexion" prefHeight="27.0" prefWidth="138.0" promptText="Recherche" />
          </children>
       </AnchorPane>
       <Pane fx:id="pane" layoutX="524.0" layoutY="56.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">

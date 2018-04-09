@@ -62,6 +62,10 @@ public class AccueilPetSitterController implements Initializable {
     private Button parc;
     @FXML
     private AnchorPane anchorEvent;
+    @FXML
+    private Button acc;
+    @FXML
+    private Button pet;
 
     /**
      * Initializes the controller class.
@@ -117,6 +121,20 @@ public class AccueilPetSitterController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+    
+    @FXML
+    private void promenadeAction(ActionEvent event) throws SQLException {
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Ajouter Promenade");
+        Parent root = FXMLLoader.load(getClass().getResource("AjoutPromenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    } 
 
 
     @FXML

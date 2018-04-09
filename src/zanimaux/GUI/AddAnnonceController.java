@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -29,6 +30,8 @@ import zanimaux.Service.AnnonceService;
 import zanimaux.Service.EvenementService;
 import zanimaux.entities.Annonce;
 import zanimaux.entities.Evenement;
+import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  * FXML Controller class
@@ -37,8 +40,6 @@ import zanimaux.entities.Evenement;
  */
 public class AddAnnonceController implements Initializable {
 
-    @FXML
-    private AnchorPane AnchorPaneEvent;
     @FXML
     private TextField typeA;
     @FXML
@@ -51,6 +52,8 @@ public class AddAnnonceController implements Initializable {
     private Button buttonAnnCreate;
     @FXML
     private ImageView iv;
+    @FXML
+    private AnchorPane AnchorPaneAnnonce;
 
     /**
      * Initializes the controller class.
@@ -69,7 +72,7 @@ public class AddAnnonceController implements Initializable {
 
         //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
-        String filePath = file.getAbsolutePath();
+        String filePath = file.getName();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -88,12 +91,14 @@ public class AddAnnonceController implements Initializable {
     }
 
     @FXML
-    private void CreateEvent(ActionEvent event) { 
+    private void CreateAnnonce(ActionEvent event) throws SQLException { 
+          User usr = Session.getLoggedInUser();
         AnnonceService sa= new AnnonceService();
+        
            
      
             
-          Annonce a=new Annonce(typeA.getText(),titreA.getText(),descriptionA.getText(),BtnChoixImageA.getText());
+          Annonce a=new Annonce(usr.getCin(),typeA.getText(),titreA.getText(),descriptionA.getText(),BtnChoixImageA.getText());
            
           
            sa.ajouterAnnonce(a);

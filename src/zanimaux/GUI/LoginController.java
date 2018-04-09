@@ -160,25 +160,21 @@ public class LoginController implements Initializable {
                 {
                      try{
                     Session.setLoggedInUser(result);
-<<<<<<< HEAD
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
-                  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
+                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
-=======
-                    // TODO: Proceed to other page
-                    
+               // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheAnnonce.fxml"));
+                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
+             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheAnnonce.fxml"));
 
 
-                 // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
-
-                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
+                   //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
                   //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
 
                   //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
                    // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
->>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
 
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();

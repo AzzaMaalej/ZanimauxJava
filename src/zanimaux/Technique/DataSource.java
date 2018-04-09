@@ -23,7 +23,11 @@ public class DataSource {
     public String login="root";
     public String password="";
 <<<<<<< HEAD
+<<<<<<< HEAD
     public String url="jdbc:mysql://localhost:3306/basez";
+=======
+    public String url="jdbc:mysql://localhost:3306/zanimauxfinal";
+>>>>>>> 3ab26d62042dd7453a0b18d3a80a3f4052cde4df
 =======
     public String url="jdbc:mysql://localhost:3306/zanimauxfinal";
 >>>>>>> 3ab26d62042dd7453a0b18d3a80a3f4052cde4df

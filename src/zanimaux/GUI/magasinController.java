@@ -80,8 +80,8 @@ public class magasinController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          User u= Session.getLoggedInUser();
-          userName.setText(u.getUsername());
+        User u= Session.getLoggedInUser();
+        userName.setText(u.getUsername());
      
         PanierService pan= null;
         MagasinService m=null;

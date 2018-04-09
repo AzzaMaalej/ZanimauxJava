@@ -173,7 +173,8 @@ public class PanierService {
         prodSer.ModifProduit(p, p.getIdProduit());
         
     }
-         public List<ContenuPanier> rechercheContenuPanier(String cin)
+
+    public List<ContenuPanier> rechercheContenuPanier(String cin)
    {
         List<ContenuPanier> listContenuPanier = new ArrayList<>();
         try {
@@ -231,4 +232,5 @@ public class PanierService {
             System.err.println(ex.getMessage());
         }
 }
+
 }

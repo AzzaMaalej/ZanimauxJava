@@ -98,9 +98,31 @@ public class RefugeClientController implements Initializable {
          ScrollPane sp = new ScrollPane();
     
           sp.setPrefSize(900, 650);
-          
+          sp.setPadding(new Insets(0,0,100,0));
+          Button plusProche = new Button();
+          plusProche.setText("Refuge plus proche" );
+          plusProche.setOnAction(i->{
+                    try {
+                        RefugePlusProche(i);
+                       
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+          Label lab=new Label();
+          lab.setText("Vous pouvez voir le refuge le plus proche de votre position sur carte:    ");
+           lab.setFont(Font.font("Comic Sans MS", 15) );
+           ImageView imm= new ImageView();
+                Image icon= new Image("zanimaux/Image/cat-2.png") ;
+                imm.setImage(icon);
+          HBox Hpremier = new HBox();
+          VBox Vpremier=new VBox();
+         Hpremier.getChildren().add(lab);
+          Hpremier.getChildren().add(imm);
+          Hpremier.getChildren().add(plusProche);
 
         VBox vb = new VBox();
+        vb.getChildren().add(Hpremier);
         HBox hb =null;
         vb.setPadding(new Insets(100, 30, 0, 30));
         vb.setSpacing(100);
@@ -157,6 +179,7 @@ public class RefugeClientController implements Initializable {
                 });
                 
                 VBox vbMagasin = new VBox();
+                
                 HBox hbbouton = new HBox();
                 hbbouton.setSpacing(5);
                 hbbouton.getChildren().add(b);
@@ -180,6 +203,7 @@ public class RefugeClientController implements Initializable {
                     hb.setPadding(new Insets(0,0,0,0));
                     hb.setSpacing(50);
                     hb.getChildren().add(vbMagasin) ;
+                    
                     vb.getChildren().add(hb);
                 }
                 
@@ -187,8 +211,9 @@ public class RefugeClientController implements Initializable {
             Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-           
+        
         sp.setContent(vb);
+       
          anchorEvent.getChildren().setAll(sp);
           anchorEvent.getChildren().add(pane);
         
@@ -236,7 +261,26 @@ public class RefugeClientController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
-
+    void RefugePlusProche (ActionEvent e) throws SQLException {
+          try { String a =((Node)e.getSource()).getId();
+                    Refuge ref= new Refuge();
+                RefugeService rs= new RefugeService();
+                ref=rs.RechercherRefugeByImm(a);
+                adr=ref.getAdresseRefuge()+" "+ref.getGouvernementRefuge();
+                nomref=ref.getNomRefuge();
+                    // redirection ver maps
+                    
+        Stage stage=(Stage) btn1.getScene().getWindow(); 
+        stage.setTitle("Refuge plus proche");
+        Parent root = FXMLLoader.load(getClass().getResource("RefugePlusProche.fxml"));
+        Stage secondStage = new Stage();
+                    secondStage.setScene(new Scene(root));
+                    stage.hide();
+                    secondStage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
     void consulterRefuge(ActionEvent e) throws SQLException {
     Userservice su=new Userservice();
         ResultSet rs =null;

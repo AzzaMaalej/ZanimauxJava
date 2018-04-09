@@ -165,6 +165,8 @@ public class QuizController implements Initializable {
     private Button annonceBtn;
     @FXML
     private Button parc;
+    @FXML
+    private Button Petsitter;
     
     
 
@@ -192,6 +194,7 @@ public class QuizController implements Initializable {
        }
     }
     
+    //redirection bouton parc
     @FXML
     private void AfficherParc(ActionEvent event) {
         try {
@@ -205,7 +208,33 @@ public class QuizController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+    
+    //redirection bouton petsitter
+    @FXML
+    private void AfficherPromenade(ActionEvent event) {
+        
+        try {
+            User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String pet="a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Gestion des promenades");
+        if(role.equals(pet)){
+        Parent root = FXMLLoader.load(getClass().getResource("Promenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
 
+    
     @FXML
     private void AfficherRefugeAction(ActionEvent event) {
         try {

@@ -219,6 +219,7 @@ public class PromenadeController implements Initializable {
         
         
     }  
+    //Supprimer promenade
     @FXML
     private void onClickEvenementAction(ActionEvent event) throws SQLException {
        
@@ -238,7 +239,7 @@ public class PromenadeController implements Initializable {
     private void retourAcc(ActionEvent event) {
         
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilPetSitter.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage secondStage = new Stage();
             secondStage.setScene(new Scene(root));

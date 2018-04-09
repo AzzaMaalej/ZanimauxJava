@@ -143,7 +143,7 @@ public class AjoutPromenadeController implements Initializable {
             reinit.setGraphic(new ImageView(Ref));
     }    
     
-    
+    //Action pour récuper la photo et son emplacement
      public String handle(){
         FileChooser fileChooser = new FileChooser();
 
@@ -205,6 +205,8 @@ public class AjoutPromenadeController implements Initializable {
 
         }
          
+         
+         //Valider l'ajout
          @FXML
     private void valider(ActionEvent event) throws SQLException, IOException  {
         PromenadeService a= new PromenadeService();
@@ -242,6 +244,7 @@ public class AjoutPromenadeController implements Initializable {
 
     }}
     
+    //Redirection vers la page promenade
     @FXML
     private void retourner(ActionEvent event) {
         
@@ -282,6 +285,8 @@ public class AjoutPromenadeController implements Initializable {
             os.close();
         }
     }
+     
+     //Redirection vers la page promenade aprés validation
     private void redirect() throws IOException {
         
         
@@ -301,7 +306,7 @@ public class AjoutPromenadeController implements Initializable {
     private void retourAcc(ActionEvent event) {
         
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilPerSitter.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage secondStage = new Stage();
             secondStage.setScene(new Scene(root));
@@ -315,6 +320,7 @@ public class AjoutPromenadeController implements Initializable {
 
     }
     
+    //Bouton rafraîchir page
     @FXML
     private void reinit(ActionEvent event) {
         
@@ -333,6 +339,7 @@ public class AjoutPromenadeController implements Initializable {
 
     }
     
+    //deconnexion
     @FXML
     private void Deconnexion(ActionEvent event) {
         Session.setLoggedInUser(null);

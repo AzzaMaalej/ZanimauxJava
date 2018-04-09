@@ -41,8 +41,10 @@ import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 import zanimaux.Service.AvisService;
 import zanimaux.Service.ParcService;
+import zanimaux.Service.PromenadeService;
 import zanimaux.entities.Avis;
 import zanimaux.entities.Parc;
+import zanimaux.entities.Promenade;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
 
@@ -51,7 +53,7 @@ import zanimaux.util.Session;
  *
  * @author BelhassenLimam
  */
-public class ListeParcController implements Initializable {
+public class ListePromenadeController implements Initializable {
 
     @FXML
     private Button button;
@@ -73,8 +75,6 @@ public class ListeParcController implements Initializable {
     private Button logOut;
     @FXML
     private Button acc;
-    @FXML
-    private Button petsitter;
 
     /**
      * Initializes the controller class.
@@ -84,17 +84,17 @@ public class ListeParcController implements Initializable {
         User u= Session.getLoggedInUser();
         userName.setText(u.getUsername());
         
-        ParcService m=null;
+        PromenadeService m=null;
         try {
-            m = new ParcService();
+            m = new PromenadeService();
         } catch (SQLException ex) {
             Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
         }
         User user=Session.getLoggedInUser();
         String cin=user.getCin();
-        ResultSet r =m.AfficherParc();
-        Parc m1=new Parc();
-        r= m.AfficherParc();
+        ResultSet r =m.AfficherPromenade();
+        Promenade m1=new Promenade();
+        r= m.AfficherPromenade();
         ScrollPane sp = new ScrollPane();
         sp.setPrefSize(900, 650);
         //         sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
@@ -108,56 +108,64 @@ try{
     while(r.next())
     {
         m1.setId(r.getString("id"));
-        m1.setNomParc(r.getString("nomParc"));
-        m1.setCategorieDressage(r.getString("CategorieDressage"));
-        m1.setAdresseParc(r.getString("adresseParc"));
-        m1.setVilleParc(r.getString("villeParc"));
-        m1.setCodePostaleParc(r.getInt("codePostaleParc"));
-        m1.setPhotoParc(r.getString("photoParc"));
-        m1.setCinDresseur(r.getString("cinDresseur"));
-        ImageView im= new ImageView();
-        Image image= new Image("zanimaux/ImageUtile/"+m1.getPhotoParc(),150,120,false,false) ;
-        im.setImage(image);
-        Text t1 =new Text(m1.getNomParc());
-        t1.setFont(Font.font("Verdana", 16));
-        Text t3 = new Text("Dressage de : ");
-        t3.setFont(Font.font("Verdana", 15));
-        t3.setFill(Color.web("#0076a3"));
-        Text t2 = new Text(m1.getCategorieDressage());
-        t2.setFont(Font.font("Verdana", 14));
-        Text t4 = new Text("Adresse : ");
-        t4.setFont(Font.font("Verdana", 15));
-        t4.setFill(Color.web("#0076a3"));
-        Text t =new Text(m1.getAdresseParc()+" "+m1.getVilleParc()+", "+m1.getCodePostaleParc());
-        t.setFont(Font.font("Verdana", 14) );
+          m1.setNomPromenade(r.getString("nomPromenade"));
+          m1.setTypePromenade(r.getString("typePromenade"));
+          m1.setLieuPromenade(r.getString("lieuPromenade"));
+          m1.setDescriptionPromenade(r.getString("descriptionPromenade"));
+          m1.setDatedebutPromenade(r.getDate("datedebutPromenade"));
+          m1.setDatefinPromenade(r.getDate("datefinPromenade"));
+          m1.setPhotoPromenade(r.getString("photoPromenade"));
+          m1.setCinPetsitter(r.getString("cinPetsitter"));
+       ImageView im= new ImageView();
+          Image image= new Image("zanimaux/ImageUtile/"+m1.getPhotoPromenade(),150,120,false,false) ;
+          im.setImage(image);
+          Text t1 =new Text(m1.getNomPromenade());
+          t1.setFont(Font.font("Verdana", 16));
+          Text t3 = new Text("Type : ");
+          t3.setFont(Font.font("Verdana", 15));
+          t3.setFill(Color.web("#0076a3"));
+          Text t2 = new Text(m1.getTypePromenade());
+          t2.setFont(Font.font("Verdana", 14));
+          Text t4 = new Text("Lieu : ");
+          t4.setFont(Font.font("Verdana", 15));
+          t4.setFill(Color.web("#0076a3"));
+          Text t =new Text(m1.getLieuPromenade());
+          t.setFont(Font.font("Verdana", 14) );
+          Text t5 = new Text("Durée : ");
+          t5.setFont(Font.font("Verdana", 15));
+          t5.setFill(Color.web("#0076a3"));
+          Text t6 =new Text("Du"+m1.getDatedebutPromenade()+"Au"+m1.getDatefinPromenade());
+          t6.setFont(Font.font("Verdana", 14) );
+          
         
         AvisService av = new AvisService();
         Avis av1= new Avis();
         
         boolean r1 = av.VerifierAvis(m1.getId(), cin);
-        if (m1.getCinDresseur().equals(cin)){
+        if (m1.getCinPetsitter().equals(cin)){
         
             
            
-            VBox vbParc = new VBox();
-            vbParc.setPadding(new Insets(-60,0,30,30));
-            vbParc.setSpacing(20);
-            vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
-            vbParc.setPrefSize(200, 170);
-            vbParc.getChildren().add(im);
-            vbParc.getChildren().add(t1);
-            vbParc.getChildren().add(t3);
-            vbParc.getChildren().add(t2);
-            vbParc.getChildren().add(t4);
-            vbParc.getChildren().add(t);
-           
+            VBox vbParc = new VBox(); 
+          vbParc.setPadding(new Insets(-60,0,30,30));
+          vbParc.setSpacing(20);
+          vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
+          vbParc.setPrefSize(200, 150);
+          vbParc.getChildren().add(im);
+          vbParc.getChildren().add(t1);
+          vbParc.getChildren().add(t3);
+          vbParc.getChildren().add(t2);
+          vbParc.getChildren().add(t4);
+          vbParc.getChildren().add(t);
+          vbParc.getChildren().add(t5);
+          vbParc.getChildren().add(t6);
           
                     
                
             
             
             i++;
-            System.out.println(m1.getId()+" "+m1.getPhotoParc());
+            System.out.println(m1.getId()+" "+m1.getPhotoPromenade());
             
             if(i%3!=1)
             {
@@ -192,6 +200,8 @@ try{
             vbParc.getChildren().add(t2);
             vbParc.getChildren().add(t4);
             vbParc.getChildren().add(t);
+            vbParc.getChildren().add(t5);
+            vbParc.getChildren().add(t6);
             vbParc.getChildren().add(rating);
             rating.setId(String.valueOf(m1.getId()));
            rating.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -207,7 +217,7 @@ try{
                         av2.ajouterAvis(a);
                         System.out.println("Avis Ajouté");
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ListeParc.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ListePromenade.fxml"));
                             Parent root = (Parent) fxmlLoader.load();
                             Stage secondStage = new Stage();
                             secondStage.setScene(new Scene(root));
@@ -216,11 +226,11 @@ try{
                             stage.hide();
                             secondStage.show();
                         } catch (IOException ex) {
-                            Logger.getLogger(ListeParcController.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(ListePromenadeController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                           
                     } catch (SQLException ex) {
-            Logger.getLogger(ListeParcController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListePromenadeController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
            }
@@ -230,7 +240,7 @@ try{
             
             
             i++;
-            System.out.println(m1.getId()+" "+m1.getPhotoParc());
+            System.out.println(m1.getId()+" "+m1.getPhotoPromenade());
             
             if(i%3!=1)
             {
@@ -279,6 +289,8 @@ try{
             vbParc.getChildren().add(t2);
             vbParc.getChildren().add(t4);
             vbParc.getChildren().add(t);
+            vbParc.getChildren().add(t5);
+            vbParc.getChildren().add(t6);
             vbParc.getChildren().add(ra);
             vbParc.getChildren().add(rate);
             
@@ -286,7 +298,7 @@ try{
             
             
             i++;
-            System.out.println(m1.getId()+" "+m1.getPhotoParc());
+            System.out.println(m1.getId()+" "+m1.getPhotoPromenade());
             
             if(i%3!=1)
             {
@@ -319,7 +331,7 @@ anchorEvent.getChildren().setAll(sp);
         
     }     
     
-    //redirection page magasin
+    
     @FXML
     void handleButtonAction(ActionEvent event) throws SQLException {
 
@@ -337,7 +349,7 @@ anchorEvent.getChildren().setAll(sp);
     }
 
     
-//redirection page addEvent
+
      @FXML
     private void onClickEvenementAction(ActionEvent event) throws SQLException {
         try {
@@ -352,25 +364,25 @@ anchorEvent.getChildren().setAll(sp);
        }
     }
     
-    
-    //redirection bouton parc
      @FXML
     private void parcAction(ActionEvent event) throws SQLException {
         try {
-            User user=Session.getLoggedInUser();
+      User user=Session.getLoggedInUser();
         String role=user.getRoles();
             String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
         Stage stage=(Stage) button.getScene().getWindow(); 
-        stage.setTitle("Accueil");
         if(role.equals(dres)){
+        stage.setTitle("Accueil");
         Parent root = FXMLLoader.load(getClass().getResource("AccueilDresseur.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();}else{
-            Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+            stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();}
+        stage.show();
+        }
         } catch (IOException ex) {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -384,30 +396,21 @@ anchorEvent.getChildren().setAll(sp);
     @FXML
     private void connexionAction(ActionEvent event) {
     }
-    
-    //redirection bouton petsitter
-    @FXML
-    private void AfficherPromenade(ActionEvent event) {
+    private void reinit(ActionEvent event) {
         
         try {
-            User user=Session.getLoggedInUser();
-        String role=user.getRoles();
-            String pet="a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";
-        Stage stage=(Stage) button.getScene().getWindow(); 
-        stage.setTitle("Gestion des promenades");
-        if(role.equals(pet)){
-        Parent root = FXMLLoader.load(getClass().getResource("Promenade.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();}else{
-            Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        }
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) btn1.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
         } catch (IOException ex) {
-           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
   
 

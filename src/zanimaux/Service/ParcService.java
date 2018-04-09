@@ -204,4 +204,55 @@ public class ParcService {
             return true;
         }
     }
+    
+    
+    
+    
+    
+    
+ public int CountParcByCateg(String c) throws SQLException {  
+     
+     int count=0;
+    String requete="SELECT count(*) from parc where CategorieDressage='"+c+"'";
+    Statement st;
+    st = con.createStatement();
+try {
+              st = con.createStatement(); 
+              ResultSet rs = st.executeQuery(requete);
+              while (rs.next()){
+            count = rs.getInt("count(*)");
+              }
+            } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            
+        }
+        return count;
+        
+
+      
+ }
+ public int CountParc() throws SQLException {  
+     
+     int count=0;
+    String requete="SELECT count(*) from parc ";
+    Statement st;
+    st = con.createStatement();
+try {
+              st = con.createStatement(); 
+              ResultSet rs = st.executeQuery(requete);
+              while (rs.next()){
+            count = rs.getInt("count(*)");
+              }
+            } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            
+        }
+        return count;
+        
+
+      
+ }
 }
+
+
+

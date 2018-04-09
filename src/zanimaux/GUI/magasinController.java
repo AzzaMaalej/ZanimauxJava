@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,12 +18,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -36,7 +40,9 @@ import javafx.stage.Stage;
 import zanimaux.Service.MagasinService;
 import zanimaux.Service.PanierService;
 import zanimaux.Service.ProduitService;
+import zanimaux.entities.ContenuPanier;
 import zanimaux.entities.Magasin;
+import zanimaux.entities.Panier;
 import zanimaux.entities.Produit;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -54,7 +60,6 @@ public class magasinController implements Initializable {
     private Button evenement;
     @FXML
     private Button userName;
-    private Pane pane;
     @FXML
     private Button btn11;
     @FXML
@@ -65,27 +70,41 @@ public class magasinController implements Initializable {
     private Button buttonRefuge;
     @FXML
     private Pane paneProfil;
+    @FXML
+    private Label sommePanier;
+  
+    private ScrollPane sp = new ScrollPane();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          User u= Session.getLoggedInUser();
+        User u= Session.getLoggedInUser();
         userName.setText(u.getUsername());
+     
+        PanierService pan= null;
         MagasinService m=null;
         try {
+            pan= new PanierService();
             m = new MagasinService();
         } catch (SQLException ex) {
             Logger.getLogger(magasinController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Panier p = pan.recherchePanier(u.getCin());
+        if (p==null)
+        {
+        sommePanier.setText("0 DT");}
+        else{
+        sommePanier.setText(String.valueOf(p.getSomme())+" DT");}
+        // TODO
         ResultSet r =m.rechercheMagasin();
         Magasin m1=new Magasin();
-        ScrollPane sp = new ScrollPane();
+        
         sp.setPadding(new Insets(30, 30, 30, 30));
         sp.setPrefSize(900, 650);
-//         sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-//         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+//      sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+//      sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
         VBox vb = new VBox();
         HBox hb =null;
         vb.setPadding(new Insets(100, 30, 30, 30));
@@ -94,9 +113,7 @@ public class magasinController implements Initializable {
          try{
       while(r.next())
       {
-          
           m1.setIdMagasin(r.getInt("idMagasin"));
-         
           m1.setNumRC(r.getString("numRC"));
           m1.setNomMagasin(r.getString("nomMagasin"));
           m1.setAdresseMagasin(r.getString("adresseMagasin"));
@@ -105,7 +122,6 @@ public class magasinController implements Initializable {
           m1.setVilleMagasin(r.getNString("villeMagasin"));
           m1.setCinProprietaireMagasin(r.getString("cinProprietaireMagasin"));
           m1.setBestSellerMagasin(r.getInt("bestSellerMagasin")); 
-          
           ImageView im= new ImageView();
           Image image= new Image("zanimaux/ImageUtile/"+m1.getPhotoMagasin(),150,120,false,false) ;
           im.setImage(image);
@@ -146,7 +162,9 @@ public class magasinController implements Initializable {
             hb.setPadding(new Insets(0,0,0,0));
             hb.setSpacing(50);
             hb.getChildren().add(vbMagasin) ;
-            vb.getChildren().add(hb); 
+            
+            vb.getChildren().add(hb);
+            
            }
                  
       }
@@ -154,20 +172,26 @@ public class magasinController implements Initializable {
         sp.setContent(vb);
                
         
-        anchorEvent.getChildren().setAll(sp);
+        anchorEvent.getChildren().add(sp);
+        anchorEvent.getChildren().add(paneProfil);
         
     }    
 
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-    }
 
     @FXML
     private void onClickEvenementAction(ActionEvent event) {
+             try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Evénement");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
-    private void showPane(MouseEvent event) {
-    }
      @FXML
      void AfficherRefugeAction(ActionEvent event) throws SQLException {
 
@@ -209,7 +233,7 @@ public class magasinController implements Initializable {
             int i=0;
             Produit m1=new Produit();
             ScrollPane sp = new ScrollPane();
-            sp.setPrefSize(500, 500);
+            sp.setPrefSize(900, 650);
             sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
             sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
             VBox vb = new VBox();
@@ -269,6 +293,7 @@ public class magasinController implements Initializable {
             hb.setSpacing(50);
             hb.getChildren().add(vbProduit) ;
             vb.getChildren().add(hb); 
+            vb.getChildren().add(paneProfil);
            }
                  
       }
@@ -284,20 +309,46 @@ public class magasinController implements Initializable {
         PanierService p = new PanierService();
         p.ajouterProduitPanier(prod);
     }
-
-    private void hidePane(MouseEvent event) {
+    
+    @FXML
+    private void showPaneProfil(MouseEvent event) 
+    {       
+            paneProfil.setVisible(true);
     }
 
     @FXML
-    private void showPaneProfil(MouseEvent event) {
-                paneProfil.setVisible(true);
-
+    private void hidePaneProfil(MouseEvent event) 
+    {
+            paneProfil.setVisible(false);
     }
 
     @FXML
-    private void hidePaneProfil(MouseEvent event) {
-                paneProfil.setVisible(false);
+    private void affichePanierAction(ActionEvent event) throws SQLException 
+    {
+             try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Mon Panier");
+        Parent root = FXMLLoader.load(getClass().getResource("AffichePanier.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
 
+    @FXML
+    private void afficherMagasin(ActionEvent event) {
+                     try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("NOS MAGSINS");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
  

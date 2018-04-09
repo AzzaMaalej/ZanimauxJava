@@ -15,17 +15,24 @@ public class Avis {
     private String id;
     private String idParc;
     private double avis;
-    private String cinDresseur;
+    private String cinUser;
 
     public Avis() {
     }
 
-    public Avis(String id, String idParc, double avis, String cinDresseur) {
+    public Avis(String id, String idParc, double avis, String cinUser) {
         this.id = id;
         this.idParc = idParc;
         this.avis = avis;
-        this.cinDresseur = cinDresseur;
+        this.cinUser = cinUser;
     }
+
+    public Avis(String idParc, double avis, String cinUser) {
+        this.idParc = idParc;
+        this.avis = avis;
+        this.cinUser = cinUser;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -33,7 +40,7 @@ public class Avis {
         hash = 89 * hash + Objects.hashCode(this.id);
         hash = 89 * hash + Objects.hashCode(this.idParc);
         hash = 89 * hash + (int) (Double.doubleToLongBits(this.avis) ^ (Double.doubleToLongBits(this.avis) >>> 32));
-        hash = 89 * hash + Objects.hashCode(this.cinDresseur);
+        hash = 89 * hash + Objects.hashCode(this.cinUser);
         return hash;
     }
 
@@ -58,7 +65,7 @@ public class Avis {
         if (!Objects.equals(this.idParc, other.idParc)) {
             return false;
         }
-        if (!Objects.equals(this.cinDresseur, other.cinDresseur)) {
+        if (!Objects.equals(this.cinUser, other.cinUser)) {
             return false;
         }
         return true;
@@ -88,17 +95,17 @@ public class Avis {
         this.avis = avis;
     }
 
-    public String getCinDresseur() {
-        return cinDresseur;
+    public String getCinUser() {
+        return cinUser;
     }
 
-    public void setCinDresseur(String cinDresseur) {
-        this.cinDresseur = cinDresseur;
+    public void setCinUser(String cinUser) {
+        this.cinUser = cinUser;
     }
 
     @Override
     public String toString() {
-        return "Avis{" + "id=" + id + ", idParc=" + idParc + ", avis=" + avis + ", cinDresseur=" + cinDresseur + '}';
+        return "Avis{" + "id=" + id + ", idParc=" + idParc + ", avis=" + avis + ", cinUser=" + cinUser + '}';
     }
 
     

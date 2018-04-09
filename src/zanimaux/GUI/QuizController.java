@@ -163,6 +163,8 @@ public class QuizController implements Initializable {
     private Label lb1;
     @FXML
     private Button annonceBtn;
+    @FXML
+    private Button parc;
     
     
 
@@ -182,6 +184,20 @@ public class QuizController implements Initializable {
         Stage stage=(Stage) button.getScene().getWindow(); 
         stage.setTitle("NOS MAGASINS");
         Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    @FXML
+    private void AfficherParc(ActionEvent event) {
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Liste des parcs");
+        Parent root = FXMLLoader.load(getClass().getResource("ListeParc.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

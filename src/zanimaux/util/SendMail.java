@@ -3,16 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zanimaux.Email;
+package zanimaux.util;
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Session;
 import javax.mail.Message;
 import javax.mail.Transport;
 import javax.mail.Authenticator;
+import javax.mail.BodyPart;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.internet.InternetAddress;
 import javax.mail.PasswordAuthentication;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +27,7 @@ import javax.swing.JOptionPane;
  * @author macbookpro
  */
 public class SendMail {
-     public static void send(String to, String sub,String msg, final String user, final String pass) 
+     public static void send(String to, String sub,String msg,String dest, final String user, final String pass) 
     {
         Properties props = new Properties();
 
@@ -46,14 +53,26 @@ public class SendMail {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(sub);
             message.setText(msg);
+            Multipart multipart = new MimeMultipart();
 
+            // creation partie principale du message
+            BodyPart messageBodyPart = new MimeBodyPart();
+            
+            // creation et ajout de la piece jointe
+            messageBodyPart = new MimeBodyPart();
+            DataSource source = new FileDataSource(dest);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName("facture.pdf");
+            multipart.addBodyPart(messageBodyPart);
+
+            // ajout des éléments au mail
+            message.setContent(multipart);
             Transport.send(message);
             
-            JOptionPane.showMessageDialog(null,"Email sended!");
+            
             
         } catch (MessagingException e) 
         {
-            JOptionPane.showMessageDialog(null,"Something happened!");
             
             throw new RuntimeException(e);
         }

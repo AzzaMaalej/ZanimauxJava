@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/macbookpro/NetBeansProjects/Zanimaux/src/zanimaux/style/menuButton.css</file>
-            <file>file:/Users/macbookpro/NetBeansProjects/Zanimaux/src/zanimaux/LoginMain.java</file>
-            <file>file:/Users/macbookpro/NetBeansProjects/Zanimaux/src/zanimaux/Zanimaux.java</file>
-            <file>file:/Users/macbookpro/NetBeansProjects/Zanimaux/src/zanimaux/InscriptionMain.java</file>
-            <file>file:/Users/macbookpro/NetBeansProjects/Zanimaux/src/zanimaux/AccueilController.java</file>
-            <file>file:/Users/macbookpro/NetBeansProjects/Zanimaux/src/zanimaux/LoginController.java</file>
+            <file>file:/Users/macbookpro/Documents/GitHub/ZanimauxJava/src/zanimaux/GUI/AffichePanierController.java</file>
+            <file>file:/Users/macbookpro/Documents/GitHub/ZanimauxJava/src/zanimaux/Service/PanierService.java</file>
+            <file>file:/Users/macbookpro/Documents/GitHub/ZanimauxJava/src/zanimaux/GUI/AddEventController.java</file>
         </group>
     </open-files>
 </project-private>

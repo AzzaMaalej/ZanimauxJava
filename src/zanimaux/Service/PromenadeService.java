@@ -183,20 +183,22 @@ public class PromenadeService {
     public boolean ModifierPromenade(Promenade r)
     {
         int nbr_ligne;
+        
         try{
             
-            String requete="UPDATE parc set id=?, nomPromenade=?, typePromenade=?, lieuPromenade=?, descriptionPromenade=?, datedebutPromenade=?,datefinPromenade=?, photoPromenade=? WHERE id='"+r.getId()+"'";
+            String requete="UPDATE promenade set id=?, nompromenade=?, typePromenade=?, lieuPromenade=?, descriptionPromenade=?, datedebutPromenade=?, datefinPromenade=?, photoPromenade=? WHERE id='"+r.getId()+"'";
             PreparedStatement pst = con.prepareStatement(requete);
-            pst.setString(1, r.getNomPromenade());
-            pst.setString(2, r.getTypePromenade());
-            pst.setString(3, r.getLieuPromenade());
-            pst.setString(4, r.getDescriptionPromenade());
-            pst.setDate(5, (Date) r.getDatedebutPromenade());
-            pst.setDate(6, (Date) r.getDatefinPromenade());
-            pst.setString(7, r.getPhotoPromenade());
-            
-            
-            
+            java.util.Date dateDeb = new Date(r.getDatedebutPromenade().getTime());
+            java.util.Date dateFin = new Date(r.getDatefinPromenade().getTime());
+            pst.setString(1, r.getId());
+            pst.setString(2, r.getNomPromenade());
+            pst.setString(3, r.getTypePromenade());
+            pst.setString(4, r.getLieuPromenade());
+            pst.setString(5, r.getDescriptionPromenade());
+            pst.setDate(6, (Date) dateDeb);
+            pst.setDate(7, (Date) dateFin);
+            pst.setString(8, r.getPhotoPromenade());
+          
             nbr_ligne=pst.executeUpdate();
         }
         catch (SQLException ex) {

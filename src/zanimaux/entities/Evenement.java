@@ -55,10 +55,24 @@ public class Evenement {
     public Evenement() {
     }
 
-    public Evenement(String e1, String text, String text0, String text1, String text2, String text3, String text4, int parseInt, String text5, String cin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+<<<<<<< HEAD
+   
+
+    public Evenement(String lieu, Date dateDebut, Date dateFin, String type, String titre, String description,int nbPlace,String imageEvt,String cinUser) {
+        
+        this.lieu = lieu;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.type = type;
+        this.titre = titre;
+        this.description = description;
+        this.nbPlace=nbPlace;
+        this.imageEvt = imageEvt;
+        this.cinUser = cinUser;
     }
 
+=======
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
     
 
  

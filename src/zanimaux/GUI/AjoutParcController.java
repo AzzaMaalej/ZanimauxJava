@@ -107,12 +107,16 @@ public class AjoutParcController implements Initializable {
     private Button acc;
     @FXML
     private Button reinit;
+    @FXML
+    private Button logOut;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        User u= Session.getLoggedInUser();
+        userName.setText(u.getUsername());
         // TODO
         List<String> list = new ArrayList();
         list.add("Chien");
@@ -321,6 +325,22 @@ public class AjoutParcController implements Initializable {
             Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    @FXML
+    private void Deconnexion(ActionEvent event) {
+        Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) logOut.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
     }
    
     }

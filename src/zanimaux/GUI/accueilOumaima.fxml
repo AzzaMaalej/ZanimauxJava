@@ -9,10 +9,11 @@
 <?import javafx.scene.text.Font?>
 
 <<<<<<< HEAD
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.accueilOumaimaController">
+<AnchorPane id="AnchorPane" fx:id="bigAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="592.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.accueilOumaimaController">
 =======
+
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.accueilOumaimaController">
->>>>>>> 378241334dc6f768e5b383689e21063bcfacced7
+>>>>>>> a8f6f2541548020a1d5dc8a2987883cd2302c88d
    <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -154,6 +155,6 @@
             </Button>
          </children>
       </Pane>
-      <AnchorPane layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <AnchorPane fx:id="anchorGeneralEvent" layoutX="265.0" layoutY="76.0" prefHeight="556.0" prefWidth="799.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0" />
    </children>
 </AnchorPane>

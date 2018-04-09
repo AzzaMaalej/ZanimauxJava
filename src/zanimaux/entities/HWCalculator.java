@@ -56,6 +56,17 @@ public class HWCalculator {
     public void setNeutred(int neutred) {
         this.neutred = neutred;
     }
+
+    public HWCalculator(String nomanimal, float poidanimal, int typeanimal, int niveauactivite, int neutred) {
+        this.nomanimal = nomanimal;
+        this.poidanimal = poidanimal;
+        this.typeanimal = typeanimal;
+        this.niveauactivite = niveauactivite;
+        this.neutred = neutred;
+    }
+
+    public HWCalculator() {
+    }
     
     
 }

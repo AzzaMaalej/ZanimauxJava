@@ -6,11 +6,18 @@
 
 package zanimaux.GUI;
 
+import com.calendarfx.model.Calendar;
+import com.calendarfx.model.CalendarSource;
+import com.calendarfx.view.CalendarView;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,17 +72,68 @@ public class VetDashboardController implements Initializable {
 
     @FXML
     private void GestDispo(ActionEvent event) {
-         try {
-         Stage stage=(Stage) btnprofil.getScene().getWindow(); 
-        stage.setTitle("Profil");
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        } catch (IOException ex) {
-           Logger.getLogger(RefugeDashboardController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+//         try {
+//             
+//         Stage stage=(Stage) btnprofil.getScene().getWindow(); 
+//        stage.setTitle("Profil");
+//        Parent root = FXMLLoader.load(getClass().getResource("Calendar.fxml"));
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//        } catch (IOException ex) {
+//           Logger.getLogger(RefugeDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+//       }
+          System.out.println("ok1");
+        CalendarView calendarView = new CalendarView(); 
+System.out.println("ok2");
+                Calendar VetCalendar = new Calendar("VetCalendar"); 
+              
+System.out.println("ok3");
+               
+                CalendarSource myCalendarSource = new CalendarSource("My Calendars"); 
+                myCalendarSource.getCalendars().addAll(VetCalendar);
+System.out.println("ok4");
+                calendarView.getCalendarSources().addAll(myCalendarSource); 
+                calendarView.setRequestedTime(LocalTime.now());
+
+                Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
+                        @Override
+                        public void run() {
+                                while (true) {
+                                        Platform.runLater(() -> {
+                                                calendarView.setToday(LocalDate.now());
+                                                calendarView.setTime(LocalTime.now());
+                                        });
+
+                                        try {
+                                                // update every 10 seconds
+                                                sleep(10000);
+                                        } catch (InterruptedException e) {
+                                                e.printStackTrace();
+                                        }
+
+                                }
+                        };
+                };
+                System.out.println("ok6");
+
+                updateTimeThread.setPriority(Thread.MIN_PRIORITY);
+                updateTimeThread.setDaemon(true);
+                updateTimeThread.start();
+                Stage stage=(Stage) btnprofil.getScene().getWindow(); 
+
+                Scene scene = new Scene(calendarView);
+                stage.setTitle("Calendar");
+                stage.setScene(scene);
+                stage.setWidth(1300);
+                stage.setHeight(1000);
+                stage.centerOnScreen();
+                stage.show();
+                System.out.println("ok7");
+    
     }
+
+   
 
     @FXML
     private void VoirProfil(ActionEvent event) {

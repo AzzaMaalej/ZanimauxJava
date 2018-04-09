@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
        <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -43,7 +43,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+            <Button fx:id="annonceBtn" layoutY="525.0" mnemonicParsing="false" onAction="#goToAnn" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -102,6 +102,16 @@
                   </Label>
                </children>
             </AnchorPane>
+            <Button fx:id="parc" layoutX="10.0" layoutY="548.0" mnemonicParsing="false" onAction="#AfficherParc" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Parc" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="44.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/dressage.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="246.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -328,17 +338,17 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <CheckBox fx:id="autre_chien1" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="autre_chien1" layoutX="234.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_chien1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="autre_chien2" layoutX="316.0" layoutY="207.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="autre_chien2" layoutX="316.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_chien2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="autre_chien3" layoutX="395.0" layoutY="207.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="autre_chien3" layoutX="395.0" layoutY="207.0" mnemonicParsing="false" onAction="#autre_chien3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
@@ -373,82 +383,87 @@
                   <Font name="Comic Sans MS" size="14.0" />
                </font>
             </Label>
-            <CheckBox fx:id="tolerer_chat1" layoutX="234.0" layoutY="260.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="tolerer_chat1" layoutX="234.0" layoutY="260.0" mnemonicParsing="false" onAction="#tolerer_chat1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chien_affectueux1" layoutX="234.0" layoutY="316.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="chien_affectueux1" layoutX="234.0" layoutY="316.0" mnemonicParsing="false" onAction="#chien_affectueux1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="calme1" layoutX="234.0" layoutY="369.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="calme1" layoutX="234.0" layoutY="369.0" mnemonicParsing="false" onAction="#calme1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chien_intelligent1" layoutX="234.0" layoutY="425.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="chien_intelligent1" layoutX="234.0" layoutY="425.0" mnemonicParsing="false" onAction="#chien_intelligent1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="poils_chien1" layoutX="234.0" layoutY="474.0" mnemonicParsing="false" text="1">
+            <CheckBox fx:id="poils_chien1" layoutX="234.0" layoutY="474.0" mnemonicParsing="false" onAction="#poils_chien1Action" text="1">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="tolerer_chat2" layoutX="316.0" layoutY="260.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="tolerer_chat2" layoutX="316.0" layoutY="260.0" mnemonicParsing="false" onAction="#tolerer_chat2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chien_affectueux2" layoutX="316.0" layoutY="316.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="chien_affectueux2" layoutX="316.0" layoutY="316.0" mnemonicParsing="false" onAction="#chien_affectueux2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="calme2" layoutX="316.0" layoutY="369.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="calme2" layoutX="316.0" layoutY="369.0" mnemonicParsing="false" onAction="#calme2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chien_intelligent2" layoutX="316.0" layoutY="425.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="chien_intelligent2" layoutX="316.0" layoutY="425.0" mnemonicParsing="false" onAction="#chien_intelligent2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="poils_chien2" layoutX="316.0" layoutY="474.0" mnemonicParsing="false" text="2">
+            <CheckBox fx:id="poils_chien2" layoutX="316.0" layoutY="474.0" mnemonicParsing="false" onAction="#poils_chien2Action" text="2">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="tolerer_chat3" layoutX="395.0" layoutY="260.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="tolerer_chat3" layoutX="395.0" layoutY="260.0" mnemonicParsing="false" onAction="#tolerer_chat3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chien_affectueux3" layoutX="395.0" layoutY="316.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="chien_affectueux3" layoutX="395.0" layoutY="316.0" mnemonicParsing="false" onAction="#chien_affectueux3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="calme3" layoutX="395.0" layoutY="369.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="calme3" layoutX="395.0" layoutY="369.0" mnemonicParsing="false" onAction="#calme3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chien_intelligent3" layoutX="395.0" layoutY="425.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="chien_intelligent3" layoutX="395.0" layoutY="425.0" mnemonicParsing="false" onAction="#chien_intelligent3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="poils_chien3" layoutX="395.0" layoutY="474.0" mnemonicParsing="false" text="3">
+            <CheckBox fx:id="poils_chien3" layoutX="395.0" layoutY="474.0" mnemonicParsing="false" onAction="#poils_chien3Action" text="3">
                <font>
                   <Font size="14.0" />
                </font>
             </CheckBox>
-            <Button fx:id="btnresultatchien" layoutX="292.0" layoutY="522.0" mnemonicParsing="false" text="Voir resultat" />
+            <Button fx:id="btnresultatchien" layoutX="292.0" layoutY="522.0" mnemonicParsing="false" onAction="#btnresultatchienAction" text="Voir resultat" />
+            <Label fx:id="lb1" layoutX="137.0" layoutY="180.0" prefHeight="28.0" prefWidth="242.0" textFill="RED">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="pane_resultat" layoutX="351.0" layoutY="82.0" prefHeight="513.0" prefWidth="389.0" style="-fx-border-radius: 0 90 5 90; -fx-border-color: #128FAD; -fx-border-width: 2;" visible="false">

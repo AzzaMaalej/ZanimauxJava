@@ -31,7 +31,7 @@ public class ChienService {
     public ChienService() throws SQLException {
        ste = con.createStatement();
     }
-    public int AfficherIdChienRace(int a,int b,int c,int d,int e,int f) throws SQLException{
+    public int AfficherIdChienRace(String a,String b,String c,String d,String e,String f) throws SQLException{
         Questionnaire_chien chien=new Questionnaire_chien();
         String requete = "SELECT race FROM questionnaire_chien WHERE tolererChien="+a+" AND calme="+b+" AND affectueux="+c+" AND chutePoils="+d+" AND intelligent="+e+" AND tolererChat="+f;
         ResultSet rs = ste.executeQuery(requete);

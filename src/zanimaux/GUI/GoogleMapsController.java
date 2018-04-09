@@ -124,41 +124,7 @@ public class GoogleMapsController implements Initializable,MapComponentInitializ
 }
 
    
-//   private void addressTextFieldAction(ActionEvent event) {
-//         MarkerOptions markerOptions = new MarkerOptions();
-//          geocodingService.geocode(address.get(), (GeocodingResult[] results, GeocoderStatus status) -> {
-//            
-//            LatLong latLong = null;
-//            
-//            if( status == GeocoderStatus.ZERO_RESULTS) {
-//                Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
-//                alert.show();
-//                return;
-//            } else if( results.length > 1 ) {
-//                Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, showing the first one.");
-//                alert.show();
-//                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
-//            } else {
-//                latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
-//           
-//            }
-//            map.setCenter(latLong);
-//                 //Add a marker to the map
-//                 markerOptions.position( latLong )
-//                .visible(Boolean.TRUE)
-//                .title("My Marker");
-//
-//    Marker marker = new Marker( markerOptions );
-//
-//    map.addMarker(marker);
-//   
-//            
-//            
-//            
-//                });
-//
-//    
-//    }
+
 
     @FXML
     private void Retour(ActionEvent event) {

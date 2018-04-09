@@ -24,7 +24,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import zanimaux.Service.CabinetDao;
 import zanimaux.Service.Userservice;
+import zanimaux.entities.Cabinet;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
 
@@ -89,15 +91,27 @@ public class LoginController implements Initializable {
                      try{
                     Session.setLoggedInUser(result);
                     // TODO: Proceed to other page
-                    
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));
+                    CabinetDao c= new CabinetDao();
+                    Cabinet cab= c.getByVet(result.getCin());
+                    if (cab==null){
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutArticle.fxml"));
+                     Parent root = (Parent) fxmlLoader.load();
+                    Stage secondStage = new Stage();
+                    secondStage.setScene(new Scene(root));
+                    Stage stage = (Stage) cin.getScene().getWindow();
+                    // do what you have to do
+                    stage.hide();
+                    secondStage.show();}
+                    else { 
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VetDashboard.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
                     Stage stage = (Stage) cin.getScene().getWindow();
                     // do what you have to do
                     stage.hide();
-                    secondStage.show();
+                    secondStage.show();}
+                   
                      } catch (IOException ex) {
                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                         }}
@@ -160,6 +174,7 @@ public class LoginController implements Initializable {
                 {
                      try{
                     Session.setLoggedInUser(result);
+<<<<<<< HEAD
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
@@ -171,10 +186,26 @@ public class LoginController implements Initializable {
 
 
                    //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
+=======
+                    // TODO: Proceed to other page
+
+                  //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
+                 // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
+
+//                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
                   //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
 
                   //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
                    // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
+<<<<<<< HEAD
+=======
+
+                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
+                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
+                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
+                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
 
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();

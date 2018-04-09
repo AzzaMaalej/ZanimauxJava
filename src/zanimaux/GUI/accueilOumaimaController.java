@@ -49,8 +49,10 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import zanimaux.GUI.accueilOumaimaController;
 import zanimaux.Service.MagasinService;
+import zanimaux.Service.PanierService;
 import zanimaux.Service.ProduitService;
 import zanimaux.entities.Magasin;
+import zanimaux.entities.Panier;
 import zanimaux.entities.Produit;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -64,8 +66,6 @@ public class accueilOumaimaController implements Initializable {
     @FXML
     private Button button;
     @FXML
-    private Button evenement;
-    @FXML
     private Button userName;
     @FXML
     private Pane pane;
@@ -76,13 +76,13 @@ public class accueilOumaimaController implements Initializable {
     @FXML
     private Button buttonRefuge;
     @FXML
+    private Label sommePanier;
+
+    @FXML
     private Button annonceBtn;
     @FXML
-    private AnchorPane anchorGeneralEvent;
-    private Button addEventBtn;
-    private Button listEvent;
-    @FXML
-    private AnchorPane bigAnchor;
+    private Button evenement;
+
 
     @FXML
     void handleButtonAction(ActionEvent event) throws SQLException {
@@ -103,30 +103,41 @@ public class accueilOumaimaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         User u= Session.getLoggedInUser();
         userName.setText(u.getUsername());
+        
+        PanierService pan= null;
+        try {
+            pan= new PanierService();
+        } catch (SQLException ex) {
+            Logger.getLogger(magasinController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Panier p = pan.recherchePanier(u.getCin());
+        if (p==null)
+        {
+        sommePanier.setText("0 DT");}
+        else{
+        sommePanier.setText(String.valueOf(p.getSomme())+" DT");}
         // TODO
     }    
 
     @FXML
-    public void onClickEvenementAction(ActionEvent event) throws SQLException {
-       try {
+    private void onClickEvenementAction(ActionEvent event) throws SQLException {
+        try {
         Stage stage=(Stage) button.getScene().getWindow(); 
         stage.setTitle("Ajouter Evenement");
-        Parent root = FXMLLoader.load(getClass().getResource("eventGeneral.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         } catch (IOException ex) {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
-      
     }
-    
 
     @FXML
     private void showPane(MouseEvent event) {
          pane.setVisible(true);
     }
-     @FXML
+    @FXML
     private void hidePane(MouseEvent event) {
          pane.setVisible(false);
 
@@ -144,10 +155,10 @@ public class accueilOumaimaController implements Initializable {
                  myWindow.setTitle("Login");
                  myWindow.show();
              } catch (IOException ex) {
-                 Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
              }
     }
-     @FXML
+    @FXML
      void AfficherRefugeAction(ActionEvent event) throws SQLException {
 
         try {
@@ -179,6 +190,21 @@ public class accueilOumaimaController implements Initializable {
     }
 
     @FXML
+    private void affichePanierAction(ActionEvent event) 
+    {
+        
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Mon Panier");
+        Parent root = FXMLLoader.load(getClass().getResource("AffichePanier.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }}
+
+    @FXML
     private void goToAnn(ActionEvent event) {
         try {
         Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
@@ -191,8 +217,5 @@ public class accueilOumaimaController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
-
     
-    }
-    
-
+}

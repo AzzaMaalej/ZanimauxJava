@@ -8,8 +8,12 @@ package zanimaux.GUI;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +28,9 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,6 +55,8 @@ import zanimaux.util.Session;
  */
 public class AjoutArticleController implements Initializable {
     @FXML
+    private Label lb;
+    @FXML
     private TextField input_titre;
     @FXML
     private TextArea input_description;
@@ -58,7 +64,6 @@ public class AjoutArticleController implements Initializable {
     private ImageView iv;
     @FXML
     private TextField picturepath;
-     @FXML Label lb;
     @FXML
     private TableView table_list_article;
     @FXML
@@ -69,7 +74,16 @@ public class AjoutArticleController implements Initializable {
     private TableColumn column_desc;
     @FXML
     private TableColumn column_url;
+    @FXML
+    private ChoiceBox choice;
+    
+   
+    public String fiilePath;
+    private static final int BUFFER_SIZE = 4096;
 
+
+
+    /**
     /**
      * Initializes the controller class.
      */
@@ -98,6 +112,7 @@ public class AjoutArticleController implements Initializable {
             
             
             table_list_article.setItems(data);
+            choice.setItems(FXCollections.observableArrayList("Photo", "Video"));
             
             /*************Modification*************/
             //modifier titre
@@ -154,8 +169,7 @@ public class AjoutArticleController implements Initializable {
             Logger.getLogger(AjoutArticleController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-
-    @FXML
+  @FXML
     private void ajouterArticle(ActionEvent event) throws SQLException {
          if(input_titre.getText().equals("") ||  input_description.getText().equals("") || picturepath.getText().equals("") ){
             lb.setText("Fill in the blanks");
@@ -165,6 +179,16 @@ public class AjoutArticleController implements Initializable {
                ase.ajouterArticle(input_titre.getText(), input_description.getText(), picturepath.getText());
                System.out.println("Ajout réussi");
                resetTableData();
+               System.out.println("clicked on1");
+        
+//               Notifications.create()
+//                .title("Upload complete")
+//                .text("Saved").position(Pos.TOP_RIGHT)
+//                .showWarning();
+//        
+//                
+                
+                
              
     }}
     
@@ -198,12 +222,62 @@ public class AjoutArticleController implements Initializable {
 
         return filePath;
     }
+      public String handle2() throws MalformedURLException, IOException {
+           Stage stage = new Stage();
+        FileChooser fil = new FileChooser();
+        fil.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("MP4", "*.mp4"));
+        File selectedFile = fil.showOpenDialog(stage);
 
+        String p = selectedFile.getPath();
+        String ftpUrl = "ftp://%s:%s@%s/%s;type=i";
+        String host = Session.getIp();
+        String user = "Mariam";
+        
+        String uploadPath = "file:///C:/Users/Mariam/Desktop/";
+
+        ftpUrl = String.format(ftpUrl, user, host, uploadPath);
+        System.out.println("Upload URL: " + ftpUrl);
+
+       
+            URL url = new URL(ftpUrl);
+            URLConnection conn = url.openConnection();
+            OutputStream outputStream = conn.getOutputStream();
+            FileInputStream inputStream = new FileInputStream(p);
+
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int bytesRead = -1;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+
+            inputStream.close();
+            outputStream.close();
+
+            System.out.println("File uploaded");
+          
+         return url.toString();
+      
+      }
     @FXML
-    private void uploadpic(MouseEvent event) {
-
-        picturepath.setText(handle());
-
+    private void uploadpic(MouseEvent event) throws IOException {
+        String type;
+            System.out.println("c bon0");
+    if(choice.getSelectionModel().getSelectedItem() == null){
+           type="";
+        }else{
+        picturepath.setText("");
+            type= (String) choice.getSelectionModel().getSelectedItem();
+        }
+        System.out.println("c bon");
+    if (type.equalsIgnoreCase("photo")){
+     picturepath.setText(handle());}
+    else if (type.equalsIgnoreCase("video")){
+     picturepath.setText(handle2());}
+    else{};
+        
+       
+        
+            
     }
 
     @FXML
@@ -222,8 +296,7 @@ public class AjoutArticleController implements Initializable {
                  Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
              }
     }
-
-    @FXML
+   @FXML
     private void supprimerArticle(ActionEvent event) throws SQLException {
         Articles a = (Articles) table_list_article.getSelectionModel().getSelectedItem();
         if(a == null){
@@ -237,5 +310,5 @@ public class AjoutArticleController implements Initializable {
            
         }
     }
-    
+
 }

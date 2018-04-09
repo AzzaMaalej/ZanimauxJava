@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" prefHeight="844.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.HWresultController">
+   <children>
+      <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="button" layoutX="1.0" layoutY="257.0" mnemonicParsing="false" onAction="#MagasinButtonAction" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="1.0" layoutY="326.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Pet-Sitter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="310.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonRefuge" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" onAction="#AfficherRefugeAction" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="evenement" layoutX="1.0" layoutY="457.0" mnemonicParsing="false" onAction="#onClickEvenementAction" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
+               <image>
+                  <Image url="@../Image/home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
+               <image>
+                  <Image url="@../Image/valise.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0">
+               <image>
+                  <Image url="@../Image/storeIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="440.0">
+               <image>
+                  <Image url="@../Image/event.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="39.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="500.0">
+               <image>
+                  <Image url="@../Image/annonce.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="38.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="380.0">
+               <image>
+                  <Image url="@../Image/shelter.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="40.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="320.0">
+               <image>
+                  <Image url="@../Image/petsitter.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutX="89.0" layoutY="11.0" opacity="0.53" text="ANIMAUX" textFill="#138fab9e" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="11.0">
+                     <font>
+                        <Font name="Baskerville" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="63.0" layoutY="-8.0" opacity="0.82" prefHeight="48.0" prefWidth="33.0" text="Z" textFill="#138fab">
+                     <font>
+                        <Font name="Baskerville" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="246.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="304.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="5.0" />
+            <Button layoutX="255.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="5.0" />
+            <ImageView fitHeight="28.0" fitWidth="38.0" layoutX="495.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="2.0">
+               <image>
+                  <Image url="@../Image/account.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="userName" layoutX="316.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#showPane" prefHeight="44.0" prefWidth="146.0" style="-fx-background-color: transparent;" textFill="WHITE" AnchorPane.rightAnchor="32.0">
+               <font>
+                  <Font name="Baskerville" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/fleche.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="298.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/panier.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="330.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/favoris.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="pane" focusTraversable="true" layoutX="534.0" layoutY="55.0" prefHeight="166.0" prefWidth="179.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Button fx:id="btn11" layoutX="19.0" layoutY="115.0" mnemonicParsing="false" onAction="#connexionAction" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #D15710; -fx-background-radius: 100; -fx-text-fill: white;" text="Se déconnecter" textFill="#1c4a26">
+               <font>
+                  <Font name="Comic Sans MS" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn1" layoutX="19.0" layoutY="75.0" mnemonicParsing="false" onAction="#profil" prefHeight="32.0" prefWidth="140.0" style="-fx-background-color: #1023D1BE; -fx-background-radius: 100; -fx-text-fill: white;" text="Voir profil" textFill="#1c4a26">
+               <font>
+                  <Font name="Comic Sans MS" size="15.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="play11" fitHeight="32.0" fitWidth="31.0" onMouseClicked="#play">
+               <image>
+                  <Image url="@../ImageUtile/play.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="265.0" layoutY="53.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <AnchorPane fx:id="apdeb" layoutX="95.0" layoutY="66.0" prefHeight="507.0" prefWidth="496.0" visible="false">
+               <children>
+                  <Label fx:id="lb471" layoutX="5.0" layoutY="390.0" prefHeight="40.0" prefWidth="486.0" text="471 des parents des animaux de compagnie ont trouvé cet outil utile." textFill="#128fad" />
+                  <Pane fx:id="pane1" layoutX="-5.0" layoutY="162.0" prefHeight="211.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="48.0" prefHeight="40.0" prefWidth="486.0" text="Nous avons besoin de cette information pour &#10;pouvoir évaluer votre animal de compagnie." textFill="WHITE" />
+                        <Label layoutX="14.0" layoutY="14.0" text="Premières choses d'abord" textFill="WHITE" />
+                        <TextField fx:id="nom" layoutX="8.0" layoutY="90.0" prefHeight="25.0" prefWidth="172.0" promptText="Entrer le nom de votre animal" />
+                        <TextField fx:id="poid" layoutX="14.0" layoutY="165.0" prefHeight="25.0" prefWidth="126.0" promptText="Entrer son poids" />
+                        <ChoiceBox fx:id="type" layoutX="40.0" layoutY="128.0" prefHeight="25.0" prefWidth="110.0" />
+                        <ChoiceBox fx:id="st" layoutX="248.0" layoutY="128.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="nivact" layoutX="303.0" layoutY="90.0" prefHeight="25.0" prefWidth="110.0" />
+                        <Button fx:id="valider" layoutX="248.0" layoutY="166.0" mnemonicParsing="false" onAction="#valider1" text="Valider" />
+                        <Label layoutX="150.0" layoutY="168.0" text="lbs" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="8.0" layoutY="132.0" text="Type " textFill="WHITE" />
+                        <Label layoutX="204.0" layoutY="94.0" text="Niveau d'activité" textFill="WHITE" />
+                        <Label layoutX="180.0" layoutY="132.0" text="Stérilisé?" textFill="WHITE" />
+                        <Label fx:id="lb" layoutX="323.0" layoutY="169.0" visible="false" />
+                     </children>
+                  </Pane>
+                  <Label fx:id="lbcal" layoutX="21.0" layoutY="94.0" text="Calculateur Santé Poids de l'animal" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Comic Sans MS" size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imacc" fitHeight="128.0" fitWidth="507.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ImageUtile/dog-whisper.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apqst" prefHeight="794.0" prefWidth="686.0" visible="false">
+               <children>
+                  <ImageView fitHeight="794.0" fitWidth="686.0">
+                     <image>
+                        <Image url="@../ImageUtile/weight.png" />
+                     </image>
+                  </ImageView>
+                  <Pane fx:id="pvid11" layoutX="57.0" layoutY="518.0" prefHeight="96.0" prefWidth="146.0" />
+                  <Pane fx:id="pane211" layoutX="66.0" layoutY="595.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
+                     <children>
+                        <Label fx:id="lb111" layoutX="323.0" layoutY="169.0" visible="false" />
+                        <CheckBox fx:id="abdoChoice1" layoutX="109.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutY="61.0" prefHeight="40.0" prefWidth="103.0" text="  Abdominoplastie&#10; prononcée" textFill="WHITE" />
+                        <CheckBox fx:id="abdoChoice2" layoutX="248.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="134.0" layoutY="65.0" text=" Abdominoplastie&#10; proportionnelle" textFill="WHITE" />
+                        <Label layoutX="283.0" layoutY="65.0" text="Abdominoplastie absente" textFill="WHITE" />
+                        <CheckBox fx:id="abdoChoice3" layoutX="425.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="87.0" layoutY="32.0" prefHeight="10.0" prefWidth="486.0" text="3. Jetez un coup d'oeil du côté" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="stop11" fitHeight="32.0" fitWidth="31.0" layoutX="426.0" layoutY="10.0" onMouseClicked="#stop">
+                           <image>
+                              <Image url="@../ImageUtile/stop.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="play12" fitHeight="32.0" fitWidth="31.0" layoutX="387.0" layoutY="10.0" onMouseClicked="#play">
+                           <image>
+                              <Image url="@../ImageUtile/play.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pvid" layoutX="66.0" layoutY="64.0" prefHeight="96.0" prefWidth="146.0" />
+                  <Pane fx:id="pane2" layoutX="66.0" layoutY="140.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
+                     <children>
+                        <Label fx:id="lb1" layoutX="323.0" layoutY="169.0" visible="false" />
+                        <CheckBox fx:id="coteChoice1" layoutX="142.0" layoutY="71.0" mnemonicParsing="false" onAction="#cote1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="14.0" layoutY="72.0" text="Ils sont trés importantes" textFill="WHITE" />
+                        <CheckBox fx:id="coteChoice2" layoutX="257.0" layoutY="71.0" mnemonicParsing="false" onAction="#cote2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="177.0" layoutY="73.0" text="Ils sont justes" textFill="WHITE" />
+                        <Label layoutX="282.0" layoutY="73.0" text="Ils ne sont pas détectables" textFill="WHITE" />
+                        <CheckBox fx:id="coteChoice3" layoutX="428.0" layoutY="72.0" mnemonicParsing="false" onAction="#cote3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="87.0" layoutY="32.0" prefHeight="40.0" prefWidth="486.0" text="1. À quel point ces côtes sont-elles «profondes»?" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="play" fitHeight="32.0" fitWidth="31.0" layoutX="383.0" layoutY="13.0" onMouseClicked="#play">
+                           <image>
+                              <Image url="@../ImageUtile/play.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="stop" fitHeight="32.0" fitWidth="31.0" layoutX="425.0" layoutY="13.0" onMouseClicked="#stop">
+                           <image>
+                              <Image url="@../ImageUtile/stop.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pvid1" layoutX="57.0" layoutY="292.0" prefHeight="96.0" prefWidth="146.0" />
+                  <Pane fx:id="pane21" layoutX="57.0" layoutY="360.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
+                     <children>
+                        <Label fx:id="lb11" layoutX="323.0" layoutY="169.0" visible="false" />
+                        <CheckBox fx:id="poidChoice1" layoutX="180.0" layoutY="75.0" mnemonicParsing="false" onAction="#poid1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="10.0" layoutY="76.0" text="Forme de sablier proéminent" textFill="WHITE" />
+                        <CheckBox fx:id="poidChoice2" layoutX="340.0" layoutY="73.0" mnemonicParsing="false" onAction="#poid2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="219.0" layoutY="75.0" text="  Bien proportionné" textFill="WHITE" />
+                        <Label layoutX="365.0" layoutY="74.0" text=" Non visible" textFill="WHITE" />
+                        <CheckBox fx:id="poidChoice3" layoutX="428.0" layoutY="72.0" mnemonicParsing="false" onAction="#poid3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="87.0" layoutY="32.0" prefHeight="40.0" prefWidth="486.0" text="2. Evaluer sa taille:" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="Result" layoutX="527.0" layoutY="45.0" mnemonicParsing="false" onAction="#Result" text="Result" />
+                        <ImageView fx:id="play1" fitHeight="32.0" fitWidth="31.0" layoutX="390.0" layoutY="16.0" onMouseClicked="#play">
+                           <image>
+                              <Image url="@../ImageUtile/play.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="stop1" fitHeight="32.0" fitWidth="31.0" layoutX="428.0" layoutY="16.0" onMouseClicked="#stop">
+                           <image>
+                              <Image url="@../ImageUtile/stop.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Label fx:id="lbqst" layoutX="591.0" layoutY="435.0" visible="false" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apres" layoutX="83.0" layoutY="8.0" prefHeight="575.0" prefWidth="535.0" visible="false">
+               <children>
+                  <ImageView fitHeight="638.0" fitWidth="558.0">
+                     <image>
+                        <Image url="@../ImageUtile/30515651_2002298780032852_5741937233947000832_n.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="evaluation" layoutX="342.0" layoutY="36.0" prefHeight="33.0" prefWidth="200.0" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS" size="23.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="photoanimal" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="scale" fitHeight="44.0" fitWidth="150.0" layoutX="14.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="scale2" fitHeight="96.0" fitWidth="355.0" layoutX="164.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextArea fx:id="text1" layoutX="14.0" layoutY="214.0" opacity="0.7" prefHeight="341.0" prefWidth="508.0" text="Votre pet est trop maigre  mais ne vous inquiétez pas on est là pour vous aider !&#10;En se basant sur nos études, le score des conditions de son corps est inferieur à 5,&#10;c'est à dire qu il a atteint approximativement 20% de l'insuffisance pondérale d'obésité et&#10;son poids idéal est entre 11.5 et 12.5 pounds, mais on vous conseille de consulter votre vétérinaire pour la simple confirmation,&#10;basée sur un ensemble d'examination du niveau des activités de votre&#10;Être trop maigre peut être un signe de maladie, ou peut-être il&#10;ne mange pas assez de calories pour son niveau d'activités.&#10;Ces maladies qui provoquent la perte du poids peuvent être causer  par des problèmes gastro-intestinales comme&#10;les parasites ou les difficultés d'absorption des nutritions, diabète et des types de cancer.&#10;Voici un article pour avoir plus d'informations sur les causes de la perte du poids&#10;Et ici vous pouvez lire des conseils spécifiques que nos experts on donné à d'autres&#10;parents d'animaux qui ont des problèmes de poids.&#10;&#10;Prend le  à un vétérinaire le plus tôt possible pour connaître et contrôler son état.&#10;Cherche un bon régime alimentaire qui coïncide avec son âge et avec son niveau d'activité.&#10;&#10;" visible="false">
+                     <font>
+                        <Font name="Comic Sans MS" size="13.0" />
+                     </font></TextArea>
+                  <TextArea fx:id="text2" layoutX="11.0" layoutY="304.0" opacity="0.67" prefHeight="299.0" prefWidth="536.0" text="Félicitations ! Votre pet fait partie des 46% des animaux non obèses.&#10;Le score des conditions de son corps est 5,&#10;c'est à dire que le poids de votre pet est idéal puisqu'il est entre 23.8 à 26.3 pounds,&#10;mais on vous conseille de consulter votre vétérinaire pour la simple confirmation, &#10;basée sur un ensemble d'examination du niveau des activités.&#10;&#10;Prenez attention de lui et son poids restera bien stabilisé. &#10;Voici quelques conseils à suivre pour son bien être&#10;Rappel: &#10;un nombre régulier des exercices 2- 3 fois par jour sera parfait &#10;pour maintenir un corps idéal &#10;et n'oublier pas&#10;de bien mesurer les portions de ses aliments pour qu'il ne gagne pas du poids.&#10;&#10;" visible="false">
+                     <font>
+                        <Font name="Comic Sans MS" size="13.0" />
+                     </font></TextArea>
+                  <TextArea fx:id="text3" layoutX="14.0" layoutY="297.0" opacity="0.63" prefHeight="341.0" prefWidth="508.0" text="Ne vous inquiétez pas on est bien ici pour vous aider !&#10;Basé sur nos études, le score des conditions du corps de votre pet  &#10;est superieur à 5,&#10;c'est à dire qu’il a atteint approximativement 11% d'obésité et son poids idéal&#10;est entre 42.5 et 46.3 pounds, mais on vous conseille &#10;de consulter votre vétérinaire pour la simple confirmation,&#10;Être obèse met votre pet devant beaucoup de problèmes tel que &#10;les problèmes respiratoires.&#10;Voici quelques conseils à suivre pour son bien être:&#10;Essayer de diminuer les portions de 10% par semaine jusqu'à ce que vous atteindrez 4le nombres de calories souhaités..&#10;Soyez attentif les aliments peuvent être trop caloriques. &#10;Et utiliser les carottes et les haricots verts avec modération.&#10;Pour plus d'idée concernant le poids de votre peten ligne seront disponible ici&#10;" visible="false">
+                     <font>
+                        <Font name="Comic Sans MS" size="13.0" />
+                     </font></TextArea>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

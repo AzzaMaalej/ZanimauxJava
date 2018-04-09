@@ -191,6 +191,7 @@ try{
             vbParc.getChildren().add(t4);
             vbParc.getChildren().add(t);
             vbParc.getChildren().add(rating);
+            rating.setId(String.valueOf(m1.getId()));
            rating.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -198,13 +199,13 @@ try{
                         AvisService av2 = new AvisService();
                         User user1 = Session.getLoggedInUser();
                         String cin1 = user1.getCin();
-                        String e1 = m1.getId();
+                        String e1 =((Node)event.getSource()).getId();
                         
                         Avis a = new Avis(e1, rating.getRating(), cin1);
                         av2.ajouterAvis(a);
-                        System.out.println("Avis Modifié");
+                        System.out.println("Avis Ajouté");
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ListeParc.fxml"));
                             Parent root = (Parent) fxmlLoader.load();
                             Stage secondStage = new Stage();
                             secondStage.setScene(new Scene(root));
@@ -249,6 +250,7 @@ try{
             ResultSet r2=av.AfficherAvis(m1.getId(), cin);
             while(r2.next()){
                 av1.setAvis(r2.getDouble("avis"));
+                int av2 = (int)av1.getAvis();
                 
             }
             
@@ -257,7 +259,7 @@ try{
            ra.setFill(Color.web("#0076a3"));
            HBox ras = new HBox(ra);
            ras.setAlignment(Pos.CENTER);
-            Text rat = new Text(Double.toString(av1.getAvis()));
+            Text rat = new Text(Integer.toString((int)av1.getAvis()));
             rat.setFont(Font.font("Verdana", 14));
             ImageView rats= new ImageView();
             Image imageStar= new Image("zanimaux/ImageUtile/star.png",26,26,false,false) ;
@@ -351,12 +353,20 @@ anchorEvent.getChildren().setAll(sp);
      @FXML
     private void parcAction(ActionEvent event) throws SQLException {
         try {
+            User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
         Stage stage=(Stage) button.getScene().getWindow(); 
         stage.setTitle("Accueil");
+        if(role.equals(dres)){
         Parent root = FXMLLoader.load(getClass().getResource("AccueilDresseur.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.show();}else{
+            Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}
         } catch (IOException ex) {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }

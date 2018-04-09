@@ -8,7 +8,11 @@ package zanimaux.GUI;
 import com.jfoenix.controls.JFXTextField;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -134,7 +138,10 @@ public class GestionRefugesController implements Initializable {
     private TableView table_list_refuge;
     @FXML
     private Button btn_goBack;
-   
+   public String filePath;
+    @FXML
+    private Button btnPhoto;
+    
 
     /**
      * Initializes the controller class.
@@ -528,7 +535,8 @@ public class GestionRefugesController implements Initializable {
  
 
     @FXML
-    private void ajouterRefuge(ActionEvent event) throws SQLException {
+    private void ajouterRefuge(ActionEvent event) throws SQLException, IOException {
+        copyFileUsingStream(new File(filePath), new File ("src/ImageUtile"+picturepath.getText()));
         String z;
         int r = 0;
         z = choiceBox_chat.getValue();
@@ -574,7 +582,7 @@ public class GestionRefugesController implements Initializable {
         table_list_refuge.setItems(data);
     }
 
-     public String handle() {
+      public String handle(){
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
@@ -584,7 +592,8 @@ public class GestionRefugesController implements Initializable {
 
         //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
-        String filePath = file.getAbsolutePath();
+        picturepath.setText(file.getName());
+        filePath = file.getAbsolutePath();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -596,9 +605,32 @@ public class GestionRefugesController implements Initializable {
 
         return filePath;
     }
-    @FXML
-    private void uploadpic(MouseEvent event) {
-          picturepath.setText(handle());
+     @FXML
+    private void uploadpic(ActionEvent event) {
+        Text text=new Text(); 
+        text.setText(handle());
+    }
+      private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        if(!dest.exists())
+            dest.createNewFile();
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        } finally{
+            if(is!=null)
+            is.close();
+            if(os!=null)
+            os.close();
+        }
     }
 
 
@@ -647,5 +679,8 @@ public class GestionRefugesController implements Initializable {
                  Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
              }
     }
+
+   
+    
    
 }

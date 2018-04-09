@@ -61,7 +61,7 @@ public Statement ste;
             ResultSet rs = ste.executeQuery(requete);
 
              while(rs.next()){
-                 listForm.setRefuge(rs.getString("refuge"));
+                 listForm.setRefuge(i);
                  listForm.setIdAnimal(rs.getInt("idAnimal"));
                  listForm.setType(rs.getString("type"));
                  listForm.setEtat(rs.getString("etat"));

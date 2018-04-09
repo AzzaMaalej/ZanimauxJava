@@ -82,7 +82,7 @@ public class AddEventController implements Initializable {
 
         //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
-        String filePath = file.getAbsolutePath();
+        String filePath = file.getName();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -118,7 +118,7 @@ public class AddEventController implements Initializable {
           
            se.ajouterEvenement(e);
          System.out.println("evenement ajouté");
-        
+                 
        }
  
           

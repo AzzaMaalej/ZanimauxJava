@@ -104,6 +104,11 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="logOut" layoutX="127.0" layoutY="7.0" mnemonicParsing="false" onAction="#Deconnexion" prefHeight="33.0" prefWidth="248.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Deconnexion" textFill="WHITE" AnchorPane.rightAnchor="170.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorEvent" layoutX="277.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="251.0" AnchorPane.topAnchor="50.0" />

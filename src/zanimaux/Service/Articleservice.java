@@ -133,16 +133,5 @@ public class Articleservice {
         }
     }
    
-   public String getNum (Articles a) throws SQLException{
-            String num = "54000673" ;
-            String req = "SELECT telephone FROM fos_user where cin= ?";
-            PreparedStatement ste = DataSource.getInstance().getCon().prepareStatement(req);
-            //ste.setInt(1, p.getId_user());
-              ResultSet result = ste.executeQuery();
-               while (result.next()) {
-                   num = result.getString("telephone");
-                   return num;
-               }
-               return num ;
-    }
+  
 }

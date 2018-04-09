@@ -78,7 +78,8 @@ public class RefugeClientController implements Initializable {
     private Button btnMagasin;
     @FXML
     private Button btnevenement;
-   
+    public static String adr;
+    public static String nomref;
     /**
      * Initializes the controller class.
      */
@@ -131,6 +132,10 @@ public class RefugeClientController implements Initializable {
                 Text t =new Text(m1.getAdresseRefuge()+" "+m1.getGouvernementRefuge()+", "+m1.getCodePostaleRefuge());
                 t.setFont(Font.font("Comic Sans MS", 15) );
                 Button b = new Button();
+                Button bb = new Button();
+                bb.setText("Voir sur carte");
+                
+                
                 b.setText("consulter refuge");
                 b.setId(String.valueOf(m1.getImmatriculation()));
                 b.setOnAction(e->{
@@ -141,7 +146,21 @@ public class RefugeClientController implements Initializable {
                         Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
+                bb.setId(String.valueOf(m1.getImmatriculation()));
+                bb.setOnAction(j->{
+                    try {
+                        VoirSurCarte(j);
+                       
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+                
                 VBox vbMagasin = new VBox();
+                HBox hbbouton = new HBox();
+                hbbouton.setSpacing(5);
+                hbbouton.getChildren().add(b);
+                hbbouton.getChildren().add(bb);
                 vbMagasin.setPadding(new Insets(-60,0,30,30));
                 vbMagasin.setSpacing(50);
                 vbMagasin.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
@@ -149,7 +168,7 @@ public class RefugeClientController implements Initializable {
                 vbMagasin.getChildren().add(im);
                 vbMagasin.getChildren().add(t1);
                 vbMagasin.getChildren().add(t);
-                vbMagasin.getChildren().add(b);
+                vbMagasin.getChildren().add(hbbouton);
                 System.out.println(m1.getPhotoRefuge());
                 if(i%3!=1)
                 {
@@ -171,6 +190,7 @@ public class RefugeClientController implements Initializable {
            
         sp.setContent(vb);
          anchorEvent.getChildren().setAll(sp);
+          anchorEvent.getChildren().add(pane);
         
     }   
     void ajouterCommentaire(ActionEvent e,String a,String b) throws SQLException{
@@ -195,6 +215,26 @@ public class RefugeClientController implements Initializable {
         co.setDate(Date.valueOf(LocalDate.now()));
         co.setRefuge(refuge);
         cs.ModifierComm(co);
+    }
+    void VoirSurCarte(ActionEvent e) throws SQLException {
+         try { String a =((Node)e.getSource()).getId();
+                    Refuge ref= new Refuge();
+                RefugeService rs= new RefugeService();
+                ref=rs.RechercherRefugeByImm(a);
+                adr=ref.getAdresseRefuge()+" "+ref.getGouvernementRefuge();
+                nomref=ref.getNomRefuge();
+                    // redirection ver maps
+                    
+        Stage stage=(Stage) btn1.getScene().getWindow(); 
+        stage.setTitle("GoogleMaps");
+        Parent root = FXMLLoader.load(getClass().getResource("GoogleMaps.fxml"));
+        Stage secondStage = new Stage();
+                    secondStage.setScene(new Scene(root));
+                    stage.hide();
+                    secondStage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     void consulterRefuge(ActionEvent e) throws SQLException {

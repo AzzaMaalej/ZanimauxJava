@@ -63,12 +63,14 @@ public class EvenementService {
      
      public boolean modifierEvenement(int id,Evenement e)
     { 
-    String requete="UPDATE evenement SET lieu=?, dateDebut=?, dateFin=?, type=? , titre=? , description=?,imageEvt=?, nbPlace=? where idEvt='"+id+"'";
+    String requete="UPDATE evenement SET lieu=?, dateDebut=?, dateFin=?, type=? , titre=? , description=?,image_evt=?, nb_place=? where idEvt='"+id+"'";
         try {
+           java.util.Date dateDeb = new Date(e.getDateDebut().getTime());
+           java.util.Date dateFin = new Date(e.getDateFin().getTime());
             PreparedStatement pst =con.prepareStatement(requete);
             pst.setString(1,e.getLieu());
-            pst.setDate(2, (Date) e.getDateDebut());
-            pst.setDate(3, (Date) e.getDateFin());
+            pst.setDate(2, (Date) dateDeb);
+            pst.setDate(3, (Date) dateFin);
             pst.setString(4,e.getType());
             pst.setString(5,e.getTitre()); 
             pst.setString(6,e.getDescription());
@@ -169,59 +171,54 @@ public class EvenementService {
         }
         return ev;
     }
-    
-    
-     /*public Magasin rechercheEvenement(int i)
+       
+        public ResultSet AfficherEventById(int id)
     { 
-
-        Magasin listForm = new Magasin();
+        ResultSet rs=null;
         try {  
-            String requete = "SELECT * FROM Magasin WHERE `idMagasin`="+i;
-
-           
-            ResultSet rs = ste.executeQuery(requete);
-
-             while(rs.next()){
-                 listForm.setNumRC(rs.getString("numRC"));
-                 listForm.setNomMagasin(rs.getString("nomMagasin"));
-                 listForm.setAdresseMagasin(rs.getString("adresseMagasin"));
-                 listForm.setCodePostaleMagasin(rs.getInt("codePostaleMagasin"));
-                 listForm.setPhotoMagasin(rs.getString("photoMagasin"));
-                 listForm.setVilleMagasin(rs.getString("villeMagasin"));
-                 listForm.setCinProprietaireMagasin(rs.getString("cinProprietaireMagasin"));
-                 listForm.setBestSellerMagasin(rs.getInt("bestSellerMagasin"));              
-            }
-             
-        } catch (SQLException ex) {
-            Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+            String requete = "SELECT * FROM evenement WHERE idEvt='"+id+"' " ;
+            
+            rs = ste.executeQuery(requete);
+            
+             }catch (SQLException ex) {
+                 System.out.println(" erreur");
         }
-        return listForm;
+
+        return rs ;
     
-    }*/
-    
-    
-     public boolean modifierEvenement(Evenement e)
-    {
-     String requete="UPDATE evenement SET lieu=?, dateDebut=?, dateFin=?, type=? , titre=? , description=?,imageEvt=?, nbPlace=? where idEvt='"+e.getIdEvt()+"'";
+    }
+        
+         public boolean updateNbParticipants(int id)
+    { 
+    String requete="UPDATE evenement SET  nbParticipants=nbParticipants+1 where idEvt='"+id+"'";
         try {
+          
             PreparedStatement pst =con.prepareStatement(requete);
-            pst.setString(1,e.getLieu());
-            pst.setDate(2, (Date) e.getDateDebut());
-            pst.setDate(3, (Date) e.getDateFin());
-            pst.setString(4,e.getType());
-            pst.setString(5,e.getTitre()); 
-            pst.setString(6,e.getDescription());
-            pst.setString(7,e.getImageEvt());
-            pst.setInt(8,e.getNbPlace());
+          
              pst.executeUpdate();
             System.out.println("modifié avec succés");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        
-        
+        }
+            return false;
     }
-        return false;
-    
+         
+         public boolean updateNbParticipantsAfterAnnulation(int id)
+    { 
+    String requete="UPDATE evenement SET  nbParticipants=nbParticipants-1 where idEvt='"+id+"'";
+        try {
+          
+            PreparedStatement pst =con.prepareStatement(requete);
+          
+             pst.executeUpdate();
+            System.out.println("modifié avec succés");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+            return false;
+    }
+        
 
-}
-}
+        //return listForm;
+    
+    }

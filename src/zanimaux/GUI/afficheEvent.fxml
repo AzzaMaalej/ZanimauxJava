@@ -200,6 +200,25 @@
                   <ImageView fx:id="iv" fitHeight="169.0" fitWidth="108.0" layoutX="478.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="anchorDetailsEvent" layoutX="14.0" layoutY="133.0" prefHeight="332.0" prefWidth="583.0">
+               <children>
+                  <ImageView fx:id="imageDetails" fitHeight="124.0" fitWidth="185.0" layoutX="199.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="dateDebutEvent" layoutX="13.0" layoutY="34.0" prefHeight="25.0" prefWidth="94.0" text="Label" />
+                  <Label fx:id="dateFinEvent" layoutX="13.0" layoutY="76.0" prefHeight="25.0" prefWidth="94.0" text="Label" />
+                  <Label fx:id="lieuEvent" layoutX="21.0" layoutY="189.0" prefHeight="25.0" prefWidth="78.0" text="Label" />
+                  <Label fx:id="typeEvent" layoutX="21.0" layoutY="237.0" text="Label" />
+                  <Label fx:id="titreEvent" layoutX="21.0" layoutY="273.0" text="Label" />
+                  <Label fx:id="descriptionEvent" layoutX="319.0" layoutY="193.0" text="Label" />
+                  <Label fx:id="nbPlaceEvent" layoutX="319.0" layoutY="265.0" text="Label" />
+                  <Button fx:id="btnParticiper" layoutX="300.0" layoutY="290.0" mnemonicParsing="false" onAction="#participer" text="Participer" />
+                  <Button fx:id="btnAnnuler" layoutX="493.0" layoutY="290.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+                  <Label fx:id="plein" layoutX="405.0" layoutY="283.0" text="Plein!!" textFill="RED" visible="false">
+                     <font>
+                        <Font name="Comic Sans MS" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children></AnchorPane>
    </children>
 </AnchorPane>

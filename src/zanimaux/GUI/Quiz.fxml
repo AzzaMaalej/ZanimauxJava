@@ -9,7 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
+=======
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
+>>>>>>> 0a827d94478bce24f3833910c25bde6a211defaa
        <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,7 +27,12 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
+
+
+
+
             <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
+
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -490,6 +499,16 @@
             </Label>
          </children>
       </Pane>
+      <ImageView fitHeight="52.0" fitWidth="489.0" layoutX="276.0" layoutY="76.0">
+         <image>
+            <Image url="@../ImageUtile/dog-whisper.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="314.0" layoutY="102.0" onMouseClicked="#goToCalcul" prefHeight="25.0" prefWidth="361.0" text="Calculer le poids idéal de votre Pet !!!" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
    </children>
 
 </AnchorPane>

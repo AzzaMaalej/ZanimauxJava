@@ -14,10 +14,15 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -25,6 +30,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import zanimaux.Service.AnnonceService;
 import zanimaux.Service.EvenementService;
@@ -89,6 +95,20 @@ public class AddAnnonceController implements Initializable {
     private void chooseAction(ActionEvent event) {
         BtnChoixImageA.setText(handle());
     }
+    
+        private void goToAffiche() {
+        try {
+        Stage stage=(Stage) buttonAnnCreate.getScene().getWindow(); 
+        stage.setTitle("affiche");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
+    }
 
     @FXML
     private void CreateAnnonce(ActionEvent event) throws SQLException { 
@@ -103,6 +123,7 @@ public class AddAnnonceController implements Initializable {
           
            sa.ajouterAnnonce(a);
          System.out.println("annonce ajouté");
+         goToAffiche();
     }
     
 }

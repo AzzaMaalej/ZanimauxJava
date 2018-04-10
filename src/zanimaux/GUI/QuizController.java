@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package zanimaux.GUI;
 
 import java.io.IOException;
@@ -36,16 +37,19 @@ import zanimaux.util.Session;
 /**
  * FXML Controller class
  *
- * @author Azza
+ * @author Mariam
  */
 public class QuizController implements Initializable {
-
     @FXML
     private Button button;
     @FXML
     private Button buttonRefuge;
     @FXML
     private Button evenement;
+    @FXML
+    private Button annonceBtn;
+    @FXML
+    private Button parc;
     @FXML
     private Button userName;
     @FXML
@@ -64,18 +68,6 @@ public class QuizController implements Initializable {
     private CheckBox autre_animal_2;
     @FXML
     private CheckBox autre_animal_3;
-    @FXML
-    private Button btnresultatchat;
-    @FXML
-    private Pane pane_questionnaire_chien;
-    @FXML
-    private Pane pane_resultat;
-    @FXML
-    private ImageView imageanimal;
-    @FXML
-    private Label race_resultat;
-    @FXML
-    private Label description;
     @FXML
     private CheckBox dynamique1;
     @FXML
@@ -106,6 +98,12 @@ public class QuizController implements Initializable {
     private CheckBox intelligent3;
     @FXML
     private CheckBox accept3;
+    @FXML
+    private Button btnresultatchat;
+    @FXML
+    private Label lb;
+    @FXML
+    private Pane pane_questionnaire_chien;
     @FXML
     private CheckBox autre_chien1;
     @FXML
@@ -144,6 +142,17 @@ public class QuizController implements Initializable {
     private CheckBox poils_chien3;
     @FXML
     private Button btnresultatchien;
+    @FXML
+    private Label lb1;
+    @FXML
+    private Pane pane_resultat;
+    @FXML
+    private ImageView imageanimal;
+    @FXML
+    private Label race_resultat;
+    @FXML
+    private Label description;
+
     String autre_animal;
     String chatdynamique;
     String chataffectueux;
@@ -156,18 +165,11 @@ public class QuizController implements Initializable {
     String chienchute;
     String chienintelligent;
     String calme;
-     
-    @FXML
-    private Label lb;
-    @FXML
-    private Label lb1;
-    @FXML
-    private Button annonceBtn;
-    @FXML
-    private Button parc;
+
+
     @FXML
     private Button Petsitter;
-    
+
     
 
     /**
@@ -254,7 +256,7 @@ public class QuizController implements Initializable {
          try {
         Stage stage=(Stage) button.getScene().getWindow(); 
         stage.setTitle("Ajouter Evenement");
-        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -679,7 +681,7 @@ public class QuizController implements Initializable {
          try {
         Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
         stage.setTitle("Deposez votre annonce");
-        Parent root = FXMLLoader.load(getClass().getResource("addAnnonce.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -687,5 +689,35 @@ public class QuizController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+    @FXML
+    private void goToVet(ActionEvent event) {
+        
+          try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Vétérinaire");
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
     
+    @FXML
+    private void goToCalcul(MouseEvent event) {
+            try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Calcul Poids");
+        Parent root = FXMLLoader.load(getClass().getResource("HWresult.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+   
 }

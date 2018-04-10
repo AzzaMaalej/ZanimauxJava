@@ -141,7 +141,7 @@
             </ImageView>
             <Button fx:id="userName" layoutX="348.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#showPane" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="userName" textFill="WHITE" AnchorPane.rightAnchor="24.0">
                <font>
-                  <Font name="Baskerville" size="20.0" />
+                  <Font name="Baskerville" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
@@ -156,7 +156,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <TextField fx:id="recherche" layoutX="17.0" layoutY="10.0" onKeyPressed="#Deconnexion" prefHeight="27.0" prefWidth="138.0" promptText="Recherche" />
+            <TextField fx:id="recherche" layoutX="17.0" layoutY="10.0" onKeyPressed="#Deconnexion" prefHeight="27.0" prefWidth="138.0" promptText="Recherche" AnchorPane.leftAnchor="50.0" />
          </children>
       </AnchorPane>
       <Pane fx:id="pane" layoutX="524.0" layoutY="56.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">

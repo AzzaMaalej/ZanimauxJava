@@ -10,7 +10,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -194,7 +198,7 @@ public class AffichePanierController implements Initializable {
     private void afficherMagasin(ActionEvent event) {
              try {
         Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
-        stage.setTitle("NOS Magasin");
+        stage.setTitle("NOS MAGASINS");
         Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -283,12 +287,12 @@ public class AffichePanierController implements Initializable {
                 c= ps.rechercheContenuPanier(u.getCin());
                 p= ps.recherchePanier(u.getCin());
                 p.setSommeCommande(p.getSommeCommande()+p.getSomme());
-                System.out.println(p.getSommeCommande());
                 p.setSomme(0);
                 ps.modifPanier(u.getCin(), p);
                 for (int i =0;i<c.size();i++)
                 {
                     c.get(i).setCommande(1);
+                    c.get(i).setDateCommande(java.sql.Date.valueOf(LocalDate.now()));
                     ps.modifContenuPanier(c.get(i).getIdProduit(), c.get(i));
                 }
                 String to = u.getEmail();
@@ -310,7 +314,7 @@ public class AffichePanierController implements Initializable {
                         try {
         Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
         stage.setTitle("MON PANIER");
-        Parent root = FXMLLoader.load(getClass().getResource("AffichePanier.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherCommande.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

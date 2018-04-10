@@ -94,7 +94,7 @@ public class LoginController implements Initializable {
                     CabinetDao c= new CabinetDao();
                     Cabinet cab= c.getByVet(result.getCin());
                     if (cab==null){
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutArticle.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutCabinet.fxml"));
                      Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
@@ -175,10 +175,7 @@ public class LoginController implements Initializable {
                      try{
                     Session.setLoggedInUser(result);
 
-                       
                  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
-
-
 
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
@@ -216,7 +213,7 @@ public class LoginController implements Initializable {
                     Session.setLoggedInUser(result);
                     // TODO: Proceed to other page
                     
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilPetSitter.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));

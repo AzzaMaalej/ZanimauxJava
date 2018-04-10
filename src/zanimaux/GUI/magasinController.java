@@ -179,7 +179,6 @@ public class magasinController implements Initializable {
                
         
         anchorEvent.getChildren().add(sp);
-        System.out.println(anchorEvent.getWidth());
         anchorEvent.getChildren().add(paneProfil);
         
     }    

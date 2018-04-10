@@ -105,6 +105,7 @@ public class PanierService {
                  listForm.setIdContenuPanier(rs.getInt("idContenuPanier"));
                  listForm.setQuantite(rs.getInt("quantite"));
                  listForm.setIdProduit(rs.getInt("idProduit"));
+                 listForm.setDateCommande(rs.getDate("dateCommande"));
             }while(rs.next());
              
         }} catch (SQLException ex) {
@@ -213,12 +214,25 @@ public class PanierService {
       
           public void SupprimerProduitPanier(int id)
     {
-        String requete="DELETE FROM ContenuPanier WHERE idContenuPanier='"+id+"' ";     
+        String requete="DELETE FROM ContenuPanier WHERE idContenuPanier='"+id+"'AND commande=0 ";     
         Statement st;
         try {
             st = con.createStatement(); 
             st.executeUpdate(requete);
       System.out.println("Contenu Panier supprimé");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+}
+             public void annulerCommande(String cin)
+    {
+        String requete="DELETE FROM ContenuPanier WHERE cin='"+cin+"'AND commande=1 ";     
+        Statement st;
+        try {
+            st = con.createStatement(); 
+            st.executeUpdate(requete);
+      System.out.println("Commande annulé");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -243,6 +257,7 @@ public class PanierService {
                  listForm.setCommande(rs.getInt("commande"));
                  listForm.setIdContenuPanier(rs.getInt("idContenuPanier"));
                  listForm.setQuantite(rs.getInt("quantite"));
+                 listForm.setDateCommande(rs.getDate("dateCommande"));
                  listContenuPanier.add(listForm);
 
             }while(rs.next());

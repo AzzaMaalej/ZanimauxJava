@@ -5,6 +5,10 @@
  */
 package zanimaux.GUI;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.types.FacebookType;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,6 +43,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -57,17 +64,12 @@ import zanimaux.entities.Animal;
 import zanimaux.entities.Evenement;
 import zanimaux.entities.Parc;
 import zanimaux.entities.Participation;
-<<<<<<< HEAD
-
 import zanimaux.Service.RefugeService;
 import zanimaux.entities.Animal;
 import zanimaux.entities.Evenement;
-
-=======
 import zanimaux.Service.RefugeService;
 import zanimaux.entities.Animal;
 import zanimaux.entities.Evenement;
->>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
 import zanimaux.entities.Refuge;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -78,9 +80,7 @@ import zanimaux.util.Session;
  * @author Maroua
  */
 public class AfficheEventController implements Initializable {
-
-    @FXML
-    private Button button;
+    
     @FXML
     private Button userName;
     @FXML
@@ -115,10 +115,7 @@ public class AfficheEventController implements Initializable {
     private ImageView iv;
     @FXML
     private Button buttonModifierEvent;
-<<<<<<< HEAD
-
-=======
->>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
+    
     public String filePath;
     public int a;
     @FXML
@@ -147,32 +144,75 @@ public class AfficheEventController implements Initializable {
     public int nbpMax;
     @FXML
     private Label plein;
-<<<<<<< HEAD
-    int nbPages =0;
+    int nbPages = 0;
     
-    Pagination pagination=new Pagination();
-        ArrayList<Evenement> listeEvt ;
-=======
->>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
-
+    Pagination pagination = new Pagination();
+    ArrayList<Evenement> listeEvt;
+    @FXML
+    private Button backBtn;
+    @FXML
+    private Button btnAnnonce;
+    @FXML
+    private Button btnMagasin;
+    @FXML
+    private Button btnVet;
+    @FXML
+    private Button btnPetSitter;
+    @FXML
+    private Button btnRefuges;
+    @FXML
+    private Button btnAccueil;
+    @FXML
+    private TextField rechercheBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-      
         afficher();
-       
         
-    } 
-        // TODO
+        
+        User usr= Session.getLoggedInUser();
+        
+        userName.setText(usr.getUsername());
+        
+        rechercheBtn.setOnKeyPressed(new EventHandler<KeyEvent>() {
+ 
+   
+                @Override
+         public void handle(KeyEvent event) 
+                {
+                if(event.getCode().equals(KeyCode.ENTER)) {
+ 
+// do something
+                        EvenementService es=null;
+ 
+                    try {
+  
+                es = new EvenementService();
+ 
+                    } 
+            catch (SQLException ex) {Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+  
+                    User user=Session.getLoggedInUser();
+ 
+                String cin=user.getCin();
+                                    Evenement e1=new Evenement();
+ 
+                                ResultSet r =es.RechercheEvent(rechercheBtn.getText());
+                                 afficher();}}});}
+                     
+        
+    
+    // TODO
+
     public ScrollPane consulterEvent(int pageIndex) {
         System.out.println(pageIndex);
-    
+        
         User usr = Session.getLoggedInUser();
-       /* EvenementService es = null;
+        /* EvenementService es = null;
         try {
             es = new EvenementService();
         } catch (SQLException ex) {
@@ -182,288 +222,285 @@ public class AfficheEventController implements Initializable {
         Evenement e1=new Evenement();
         ResultSet r= es.rechercheEvent();*/
         
-         ScrollPane sp = new ScrollPane();
-    
-         sp.setPrefSize(900, 650);
+        ScrollPane sp = new ScrollPane();
+        Button createEvent = new Button();
+        createEvent.setText("Créer Evenement");
+        createEvent.setStyle("-fx-background-color:transparent;-fx-text-fill:#138fab;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:#138fab;");
+        
+        sp.setPrefSize(900, 650);
         //sp.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
 //         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
         VBox vb = new VBox();
-        HBox hb =null;
+        HBox hb = null;
         
         vb.setPadding(new Insets(100, 30, 0, 30));
         vb.setSpacing(70);
-        int i=0;
-       
-            for(int j=pageIndex*2;j<listeEvt.size();j++){
-                i++;
-                if(j<=(pageIndex*2+(2-1))){
-                    
-                    
+        int i = 0;
+        
+        for (int j = pageIndex * 2; j < listeEvt.size(); j++) {
+            i++;
+            if (j <= (pageIndex * 2 + (2 - 1))) {
                 
-               Evenement e1 = new Evenement();
-               e1= listeEvt.get(j);
-                ImageView im= new ImageView();
-                Image image= new Image("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
+                Evenement e1 = new Evenement();
+                e1 = listeEvt.get(j);
+                ImageView im = new ImageView();
+                Image image = new Image("zanimaux/ImageUtile/" + e1.getImageEvt(), 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
                 im.setImage(image);
-                Text t1 =new Text(e1.getTitre());
-                t1.setFont(Font.font("Verdana", 10) );
-                Text t =new Text(e1.getLieu());
-                t.setFont(Font.font("Verdana", 15) );
-                
+                Text t1 = new Text(e1.getTitre());
+                t1.setFont(Font.font("Verdana", 10));
+                Text t = new Text(e1.getLieu());
+                t.setFont(Font.font("Verdana", 15));
+                ImageView im1 = new ImageView();
+                Image image2 = new Image("zanimaux/Image/supprimer.png", 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
+                im1.setImage(image2);
                 Button consulter = new Button();
+                // consulter.setStyle("-fx-background-image:im1");
+                consulter.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
                 Button modifier = new Button();
-               modifier.setId(String.valueOf(e1.getIdEvt()));
-               
-                modifier.setOnAction(x->{
+                modifier.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
+                modifier.setId(String.valueOf(e1.getIdEvt()));
+                
+                modifier.setOnAction(x -> {
                     try {
                         goToModif(x);
                     } catch (SQLException ex) {
                         Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-});
+                });
                 Button supprimer = new Button();
+                supprimer.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
                 supprimer.setId(String.valueOf(e1.getIdEvt()));
-                 supprimer.setOnAction(x->{
+                supprimer.setOnAction(x -> {
                     try {
                         supprimerEvent(x);
                     } catch (SQLException ex) {
                         Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-});
-               
-                HBox BtnBox=new HBox(consulter,modifier,supprimer);
+                });
+                
+                HBox BtnBox = new HBox(consulter, modifier, supprimer);
                 BtnBox.setSpacing(50);
                 consulter.setText("consulter evenement");
-                 modifier.setText("modifier");
-                 modifier.setVisible(false);
-                 supprimer.setText("Supprimer");
-                 supprimer.setVisible(false);
-                 System.out.println(usr.getCin());
-                 System.out.println(e1.getCinUser());
-                 
-                 
-                 
-                 if(usr.getCin().equals (e1.getCinUser())){
-                     modifier.setVisible(true);
-                      supprimer.setVisible(true);
-                     
-                 }
-                 
+                modifier.setText("modifier");
+                modifier.setVisible(false);
+                supprimer.setText("Supprimer");
+                supprimer.setVisible(false);
+                System.out.println(usr.getCin());
+                System.out.println(e1.getCinUser());
+                
+                if (usr.getCin().equals(e1.getCinUser())) {
+                    modifier.setVisible(true);
+                    supprimer.setVisible(true);
+                    
+                }
+                
                 consulter.setId(String.valueOf(e1.getIdEvt()));
-                consulter.setOnAction(s->{
+                consulter.setOnAction(s -> {
                     try {
                         consulterDetailsEvent(s);
                     } catch (SQLException ex) {
                         Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                     
+                    
                 });
-   
+                
                 VBox vbEvent = new VBox();
-                vbEvent.setPadding(new Insets(-60,0,30,30));
+                vbEvent.setPadding(new Insets(-60, 0, 30, 30));
                 vbEvent.setSpacing(50);
-               
-               // vbEvent.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
-               // vbEvent.setPrefSize(200, 150);
+
+                // vbEvent.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
+                // vbEvent.setPrefSize(200, 150);
                 vbEvent.getChildren().add(im);
                 vbEvent.getChildren().add(t1);
                 vbEvent.getChildren().add(t);
                 vbEvent.getChildren().add(BtnBox);
-                          
-
-                System.out.println(e1.getImageEvt());
-                    Button f=new Button();
-                    f.setText("Facebook");
-                      Button p=new Button();
-                    p.setText("Twitter");
-                      Button g=new Button();
-                    g.setText("Gmail");
-                  VBox  vp=new VBox(f,p,g);
-                  vp.setSpacing(60);
-                  
-                    hb = new HBox();
-                    hb.setPadding(new Insets(0,0,0,0));
-                    hb.setPrefSize(500, 200);
-                    hb.setMaxSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
-                    hb.setMinSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
-                   
-                    hb.setSpacing(50);
-                   
-                   if (i%2!=0){
-                       hb.setStyle("-fx-background-color:#0161DF;-fx-background-radius:20px;");
-                       
-                   }
-                   else{
-                      hb.setStyle("-fx-background-color:#4D62E6;-fx-background-radius:20px;"); 
-                   }
-                    hb.getChildren().add(vbEvent) ;
-                    hb.getChildren().add(vp) ;
-                    vb.getChildren().add(hb);
                 
-            }}
+                System.out.println(e1.getImageEvt());
+                Button f = new Button();
+                f.setText("Facebook");
+                f.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        
+               String token = "EAACEdEose0cBANN2aCXRkTDZAy5ApG4KWuMQKOrGx4i7EopjsgiAd3c4KqUZBXzUbWQKKfdbuqIC79Tr0RBt6vbm9ZBrjmpuUYl0OlSqIZBp8tq7ZAu4ZAohjogF3WVZBcfucjxhBfOxRlOspIb9dbMsW25oDxRv6aSQZBWEEDQZAq4a87NR5cTfcog2n59rLy1dKiXP3goQzt2m8JVZBoraYOWDhb5R6v00MZD";
+               FacebookClient fb = new DefaultFacebookClient(token);
+                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", "Event"));
+                            
+                    }
+                });
+                Button p = new Button();
+                p.setText("Twitter");
+                Button g = new Button();
+                g.setText("Gmail");
+                VBox vp = new VBox(f, p, g);
+                vp.setSpacing(60);
+                
+                hb = new HBox();
+                hb.setPadding(new Insets(0, 0, 0, 0));
+                hb.setPrefSize(500, 200);
+                hb.setMaxSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
+                hb.setMinSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
+                
+                hb.setSpacing(50);
+                
+                if (i % 2 != 0) {
+                    hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;");
+                    
+                } else {
+                    hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;");                    
+                }
+                hb.getChildren().add(vbEvent);
+                hb.getChildren().add(vp);
+                vb.getChildren().add(hb);
+                
+            }
+        }
         
-
-           
         sp.setContent(vb);
         // anchorEvent.getChildren().setAll(sp);
         
-        return sp;   
+        return sp;        
     }
     
-    
-    void remplir()throws SQLException{
-        EvenementService es= new EvenementService();
-        ResultSet r= es.rechercheEvent();
-        listeEvt= new ArrayList<Evenement>();
-        while(r.next()){ 
-                    Evenement e1=new Evenement();
-
+    void remplir() throws SQLException {
+        EvenementService es = new EvenementService();
+        ResultSet r = es.rechercheEvent();
+        listeEvt = new ArrayList<Evenement>();
+        while (r.next()) {            
+            Evenement e1 = new Evenement();
+            
             e1.setIdEvt(r.getInt("idEvt"));
             e1.setCinUser(r.getString("cin"));
-                e1.setLieu(r.getString("lieu"));
-                e1.setDateDebut(r.getDate("dateDebut"));
-                e1.setDateFin(r.getDate("dateFin"));
-                e1.setType(r.getString("type"));
-                e1.setTitre(r.getString("titre"));
-                e1.setDescription(r.getString("description"));
-                e1.setNbPlace(r.getInt("nb_place"));
-                e1.setImageEvt(r.getString("image_evt"));
-               
+            e1.setLieu(r.getString("lieu"));
+            e1.setDateDebut(r.getDate("dateDebut"));
+            e1.setDateFin(r.getDate("dateFin"));
+            e1.setType(r.getString("type"));
+            e1.setTitre(r.getString("titre"));
+            e1.setDescription(r.getString("description"));
+            e1.setNbPlace(r.getInt("nb_place"));
+            e1.setImageEvt(r.getString("image_evt"));
+            
             listeEvt.add(e1);
             
+        }
+        int nb = listeEvt.size();
+        if ((nb % 2) == 0) {
+            nbPages = nb / 2;            
+        } else {
+            nbPages = ((nb / 2) + 1);            
             
-        }
-       int nb=listeEvt.size();
-        if ((nb%2)==0){
-            nbPages=nb/2; 
-        }
-        else{
-        nbPages=((nb/2)+1); 
-  
         }
     }
     
-    void afficher(){
-          try {
+    void afficher() {
+        try {
             remplir();
         } catch (SQLException ex) {
             Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-      
         pagination.setPageCount(nbPages);
-        pagination.setPageFactory((Integer indexPage)->consulterEvent(indexPage));
+        pagination.setPageFactory((Integer indexPage) -> consulterEvent(indexPage));
         AnchorPane.setTopAnchor(pagination, 10.0);
         AnchorPane.setLeftAnchor(pagination, 10.0);
         AnchorPane.setRightAnchor(pagination, 10.0);
         AnchorPane.setBottomAnchor(pagination, 10.0);
         anchorEvent.getChildren().add(pagination);
         
-        
     }
     
-    void consulterDetailsEvent(ActionEvent e) throws SQLException{
-            a=Integer.parseInt(((Node) e.getSource()).getId());
-          EvenementService es = new EvenementService();
-          Evenement e1 = new Evenement();
-          e1=es.rechercheEvent(a);
-          anchorEvent.getChildren().setAll(anchorDetailsEvent);
-          anchorDetailsEvent.setVisible(true);
-          lieuEvent.setText(e1.getLieu());
-         dateDebutEvent.setText(e1.getDateDebut().toString());
-         dateFinEvent.setText(e1.getDateFin().toString());
-          typeEvent.setText(e1.getType());
-          titreEvent.setText(e1.getTitre());
-          descriptionEvent.setText(e1.getDescription());
-          nbPlaceEvent.setText(Integer.toString(e1.getNbPlace()));
-       Image image= new Image("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
-         imageDetails.setImage(image);
-         
-         nbp=e1.getNbParticipants();
-         nbpMax=e1.getNbPlace();
-         
-         ParticipationService ps=new ParticipationService();
-        boolean verif=ps.exist(a);
-        System.out.println(verif);
-         btnParticiper.setVisible(false);
-         btnAnnuler.setVisible(false);
-          plein.setVisible(false);
+    void consulterDetailsEvent(ActionEvent e) throws SQLException {
+        a = Integer.parseInt(((Node) e.getSource()).getId());
+        EvenementService es = new EvenementService();
+        Evenement e1 = new Evenement();
+        e1 = es.rechercheEvent(a);
+        anchorEvent.getChildren().setAll(anchorDetailsEvent);
+        anchorDetailsEvent.setVisible(true);
+        lieuEvent.setText(e1.getLieu());
+        dateDebutEvent.setText(e1.getDateDebut().toString());
+        dateFinEvent.setText(e1.getDateFin().toString());
+        typeEvent.setText(e1.getType());
+        titreEvent.setText(e1.getTitre());
+        descriptionEvent.setText(e1.getDescription());
+        nbPlaceEvent.setText(Integer.toString(e1.getNbPlace()));
+        Image image = new Image("zanimaux/ImageUtile/" + e1.getImageEvt(), 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
+        imageDetails.setImage(image);
         
-        if(nbp==nbpMax){
+        nbp = e1.getNbParticipants();
+        nbpMax = e1.getNbPlace();
+        
+        ParticipationService ps = new ParticipationService();
+        boolean verif = ps.exist(a);
+        System.out.println(verif);
+        btnParticiper.setVisible(false);
+        btnAnnuler.setVisible(false);
+        plein.setVisible(false);
+        
+        if (nbp == nbpMax) {
             plein.setVisible(true);
-            if(verif==true){
+            if (verif == true) {
                 btnAnnuler.setVisible(true);
             }
             
-        }
-        
-        else if(verif==true){
+        } else if (verif == true) {
             btnAnnuler.setVisible(true);
             
-        }
-        else if( verif==false){
-        btnParticiper.setVisible(true);
-
+        } else if (verif == false) {
+            btnParticiper.setVisible(true);
             
         }
         
     }
-   
+    
     @FXML
-    void participer()throws SQLException{
-                User usr = Session.getLoggedInUser();
-                
-
+    void participer() throws SQLException {
+        User usr = Session.getLoggedInUser();
         
-        ParticipationService ps=new ParticipationService();
-        EvenementService es=new EvenementService();
-        Participation p =new Participation(a,usr.getCin());
-      
-       ps.ajouterParticipation(p);
-       es.updateNbParticipants(a);
-       //consulterEvent();
-       afficher();
-  
+        ParticipationService ps = new ParticipationService();
+        EvenementService es = new EvenementService();
+        Participation p = new Participation(a, usr.getCin());
+        
+        ps.ajouterParticipation(p);
+        es.updateNbParticipants(a);
+        //consulterEvent();
+        afficher();
+        
     }
     
-        
     @FXML
-    void annuler()throws SQLException{
-    User usr = Session.getLoggedInUser();
-                       
-        ParticipationService ps=new ParticipationService();
-        EvenementService es=new EvenementService();
-       
-      ps.supprimerParticipation(a);
-       es.updateNbParticipantsAfterAnnulation(a);
-       //consulterEvent();
-       afficher();
-  
+    void annuler() throws SQLException {
+        User usr = Session.getLoggedInUser();
+        
+        ParticipationService ps = new ParticipationService();
+        EvenementService es = new EvenementService();
+        
+        ps.supprimerParticipation(a);
+        es.updateNbParticipantsAfterAnnulation(a);
+        //consulterEvent();
+        afficher();
+        
     }
-    
-    
     
     void goToModif(ActionEvent e) throws SQLException {
-          a=Integer.parseInt(((Node) e.getSource()).getId());
-          EvenementService es = new EvenementService();
-          Evenement e1 = new Evenement();
-          e1=es.rechercheEvent(a);
-          anchorEvent.getChildren().setAll(AnchorPaneEvent);
-          AnchorPaneEvent.setVisible(true);
-          lieu.setText(e1.getLieu());
-         dateDebut.setValue(LocalDate.parse(e1.getDateDebut().toString()));
-         dateFin.setValue(LocalDate.parse(e1.getDateFin().toString()));
-         System.out.println(e1.getDateDebut().toString());
-          type.setText(e1.getType());
-          titre.setText(e1.getTitre());
-          description.setText(e1.getDescription());
-          nbPlace.setText(Integer.toString(e1.getNbPlace()));
-          BtnChoixImage.setText(e1.getImageEvt());
-          
-          
+        a = Integer.parseInt(((Node) e.getSource()).getId());
+        EvenementService es = new EvenementService();
+        Evenement e1 = new Evenement();
+        e1 = es.rechercheEvent(a);
+        anchorEvent.getChildren().setAll(AnchorPaneEvent);
+        AnchorPaneEvent.setVisible(true);
+        lieu.setText(e1.getLieu());
+        dateDebut.setValue(LocalDate.parse(e1.getDateDebut().toString()));
+        dateFin.setValue(LocalDate.parse(e1.getDateFin().toString()));
+        System.out.println(e1.getDateDebut().toString());
+        type.setText(e1.getType());
+        titre.setText(e1.getTitre());
+        description.setText(e1.getDescription());
+        nbPlace.setText(Integer.toString(e1.getNbPlace()));
+        BtnChoixImage.setText(e1.getImageEvt());
+        
     }
     
-     public String handle() {
+    public String handle() {
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
@@ -478,328 +515,178 @@ public class AfficheEventController implements Initializable {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
             iv.setImage(image);
-
+            
         } catch (IOException ex) {
             System.err.println(ex);
         }
-
+        
         return filePath;
     }
-     @FXML
-    void modifier(ActionEvent e ) throws SQLException,IOException{
-         
-         User usr = Session.getLoggedInUser();
-           
-          System.out.println(a);
-          EvenementService es = new EvenementService();
-              LocalDate d = dateDebut.getValue();
-         Date dated = Date.from(d.atStartOfDay(ZoneId.systemDefault()).toInstant());
-         
-             LocalDate d2 = dateFin.getValue();
-         Date datef = Date.from(d2.atStartOfDay(ZoneId.systemDefault()).toInstant());
-       
-        Evenement e1=new Evenement(usr.getCin(),lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());
-             
+
+    @FXML
+    void modifier(ActionEvent e) throws SQLException, IOException {
+        
+        User usr = Session.getLoggedInUser();
+        
+        System.out.println(a);
+        EvenementService es = new EvenementService();
+        LocalDate d = dateDebut.getValue();
+        Date dated = Date.from(d.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
+        LocalDate d2 = dateFin.getValue();
+        Date datef = Date.from(d2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
+        Evenement e1 = new Evenement(usr.getCin(), lieu.getText(), dated, datef, type.getText(), titre.getText(), description.getText(), Integer.parseInt(nbPlace.getText()), BtnChoixImage.getText());
+        
         es.modifierEvenement(a, e1);
-         //consulterEvent();
-         afficher();
-               
+        //consulterEvent();
+        afficher();
+        
+    }
+    
+    void supprimerEvent(ActionEvent e) throws SQLException {
+        a = Integer.parseInt(((Node) e.getSource()).getId());
+        
+        EvenementService es = new EvenementService();
+        es.supprimerEvenement(a);
+        //consulterEvent();
+        afficher();
+        
     }
 
-    void  supprimerEvent(ActionEvent e) throws SQLException{
-         a=Integer.parseInt(((Node) e.getSource()).getId());
-         
-          EvenementService es = new EvenementService();
-         es.supprimerEvenement(a);
-         //consulterEvent();
-         afficher();
-         
-       
-    }
     @FXML
     private void uploadImage(ActionEvent event) {
         BtnChoixImage.setText(handle());
     }
-<<<<<<< HEAD
-=======
     
-   void editEvent(ActionEvent e) throws SQLException {
-//    
-//       
-//        
-//           EvenementService es= new EvenementService();
-//          
-//            int a=Integer.parseInt(((Node) e.getSource()).getId());            
-//           ResultSet rs=  es.rechercheEvent(a) ;
-//            if (rs==null){
-//               
-//            }
-//            int i=0;
-//            Evenement e1=new Evenement();
-//            ScrollPane sp = new ScrollPane();
-//            sp.setPrefSize(900, 650);
-//            sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-//            sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-//            VBox vb = new VBox();
-//            HBox hb =null;
-//            vb.setPadding(new Insets(100, 30, 0, 30));
-//            vb.setSpacing(100);
-//            
-//             while(rs.next())
-//            {
-//                e1.setIdEvt(rs.getInt("idEvt"));
-//                e1.setLieu(rs.getString("lieu"));
-//                e1.setDateDebut(rs.getDate("dateDebut"));
-//                e1.setDateFin(rs.getDate("dateFin"));
-//                e1.setType(rs.getString("type"));
-//                e1.setTitre(rs.getString("titre"));
-//                e1.setDescription(rs.getString("description"));
-//                e1.setNbPlace(rs.getInt("nb_place"));
-//                e1.setImageEvt(rs.getString("image_evt"));
-//                
-//                
-//                 
-//                ImageView im= new ImageView();
-//                Image image= new Image("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
-//                im.setImage(image);
-//                
-//                Text n1 = new Text("lieu:");
-//                n1.setFont(Font.font("Comic Sans MS", 19) );
-//                n1.setFill(Color.web("#0076a3"));
-//                TextField lieu =new TextField(""+e1.getLieu());
-//                lieu.setFont(Font.font("Comic Sans MS", 17));
-//                
-//                
-//                
-//                
-//                Text n2 = new Text("date debut");
-//                n2.setFont(Font.font("Comic Sans MS", 19) );
-//                n2.setFill(Color.web("#0076a3"));
-//                TextField dated =new TextField(""+e1.getDateDebut());
-//                dated.setFont(Font.font("Comic Sans MS", 17));
-//                
-//                    Text n3 = new Text("date fin");
-//                n3.setFont(Font.font("Comic Sans MS", 19) );
-//                n3.setFill(Color.web("#0076a3"));
-//                TextField datef =new TextField(""+e1.getDateFin());
-//                datef.setFont(Font.font("Comic Sans MS", 17));
-//                
-//                
-//                
-//                
-//                
-//                Text n4 = new Text("Type:");
-//                n4.setFont(Font.font("Comic Sans MS", 19) );
-//                n4.setFill(Color.web("#0076a3"));
-//                TextField type =new TextField(""+e1.getType());
-//                type.setFont(Font.font("Comic Sans MS", 17));
-//                
-//                
-//                
-//                
-//                Text n5 = new Text("Titre:");
-//                n4.setFont(Font.font("Comic Sans MS", 19) );
-//                n4.setFill(Color.web("#0076a3"));
-//                TextField titre =new TextField(""+e1.getTitre());
-//                titre.setFont(Font.font("Comic Sans MS", 17));
-//                
-//                Text n6 = new Text("description:");
-//                n6.setFont(Font.font("Comic Sans MS", 19) );
-//                n6.setFill(Color.web("#0076a3"));
-//                TextField description =new TextField(""+e1.getDescription());
-//                description.setFont(Font.font("Comic Sans MS", 17));
-//                
-//                 Text n7 = new Text("nb plce:");
-//                n7.setFont(Font.font("Comic Sans MS", 19) );
-//                n7.setFill(Color.web("#0076a3"));
-//                TextField nb =new TextField(""+e1.getNbPlace());
-//                nb.setFont(Font.font("Comic Sans MS", 17));
-//                
-//                
-//                
-//                /*ChoiceBox<String> catg = new ChoiceBox ();
-//                catg.setTooltip(new Tooltip("Choisir la catégorie"));
-//                
-//                List<String> list = new ArrayList();
-//                list.add("Chien");
-//                list.add("Chevaux");
-//                list.add("Autre");
-//             ObservableList<String> ob = FXCollections.observableArrayList();
-//        ob.addAll(list);
-//        catg.setItems(ob);
-//        catg.getSelectionModel().select(m1.getCategorieDressage());
-//        String z;
-//        int r = 0;
-//        z = catg.getValue();
-//        if ("Chien".equals(z)) {
-//            r = 1;
-//        } else if ("Chevaux".equals(z)) {
-//            r = 2;
-//        } else if ("Autre".equals(z)) {
-//            r = 3;
-//        }*/
-//        Label chooseFile = new Label();
-//        chooseFile.setText(e1.getImageEvt());
-//        Image imagePhoto = new Image("zanimaux/ImageUtile/photo.png",26,26,false,false);
-//        
-//        Button pho = new Button();
-//        pho.setBackground(Background.EMPTY);
-//        pho.setGraphic(new ImageView(imagePhoto));
-//        pho.setId(String.valueOf(e1.getIdEvt()));
-//        pho.setOnAction((ActionEvent event) -> {
-//            FileChooser fileChooser = new FileChooser();
-//            
-//            //Set extension filter
-//            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-//            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-//            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-//            
-//            //Show open file dialog
-//            File file = fileChooser.showOpenDialog(null);
-//            chooseFile.setText(file.getName());
-//            filePath = file.getAbsolutePath();
-//            try {
-//                BufferedImage bufferedImage = ImageIO.read(file);
-//                Image images = SwingFXUtils.toFXImage(bufferedImage, null);
-//                im.setImage(images);
-//                im.setFitHeight(120);
-//                im.setFitWidth(150);
-//                
-//            } catch (IOException ex) {
-//                System.err.println(ex);
-//            }
-//                });
-//        
-//        
-//        
-//        
-//        Image imageCheck = new Image("zanimaux/ImageUtile/check.png",26,26,false,false);
-//          Image imageBack = new Image("zanimaux/ImageUtile/left.png",26,26,false,false);
-//          
-//          
-//          Button ret = new Button();
-//        ret.setBackground(Background.EMPTY);
-//        ret.setGraphic(new ImageView(imageBack));
-//        ret.setOnAction(new EventHandler<ActionEvent>(){
-//             @Override 
-//            public void handle(ActionEvent event) {
-//                 try {
-//                     consulterEvent(event);
-//                 } catch (SQLException ex) {
-//                     Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
-//                 }
-//            }
-//        });
-//        
-//        Button val = new Button();
-//        val.setBackground(Background.EMPTY);
-//            val.setGraphic(new ImageView(imageCheck));
-//        val.setId(String.valueOf(e1.getIdEvt()));
-//            val.setOnAction(new EventHandler<ActionEvent>() {  
-//            @Override 
-//            public void handle(ActionEvent event) {
-//               
-//                try {
-//                    EvenementService se= new EvenementService();
-//                    
-//                   /* String z;
-//                    String r="Autre";
-//                    z = catg.getValue();
-//                    if ("Chien".equals(z)) {
-//                        r = "Chien";
-//                    } else if ("Chevaux".equals(z)) {
-//                        r = "Chevaux";
-//                    } else if ("Autre".equals(z)) {
-//                        r = "Autre";
-//                    }*/
-//                    User user=Session.getLoggedInUser();
-//                    String cin=user.getCin();
-//                    String e1 =((Node)event.getSource()).getId();
-//                    Evenement e=new Evenement(e1,lieu.getText(),dated.getText(),datef.getText(),type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),chooseFile.getText(),cin);
-//                    javafx.scene.control.Alert alert = new  javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION, "", ButtonType.YES, ButtonType.NO);
-//                    alert.setHeaderText("voulez-vous vraiment modifié ce parc ?");
-//                    alert.showAndWait();
-//
-//     if (alert.getResult() == ButtonType.YES) {
-//                    se.modifierEvenement(e);
-//                    System.out.println("evenet Modifié");
-//                    consulterEvent(event);
-//                } }catch (SQLException ex) {
-//                    Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        });
-//            HBox t = new HBox (pho);
-//            HBox bt = new HBox (ret,val);
-//            bt.setSpacing(100);
-//            
-//                      VBox vbParc = new VBox(); 
-//          vbParc.setPadding(new Insets(-60,0,30,30));
-//          vbParc.setSpacing(10);
-//          vbParc.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
-//         
-//          vbParc.setPrefSize(250, 200);
-//          vbParc.getChildren().add(im);
-//          vbParc.getChildren().add(n1);
-//          vbParc.getChildren().add(lieu);
-//          vbParc.getChildren().add(n2);
-//          vbParc.getChildren().add(dated);
-//          vbParc.getChildren().add(n3);
-//          vbParc.getChildren().add(datef);
-//          vbParc.getChildren().add(n4);
-//          vbParc.getChildren().add(type);
-//              vbParc.getChildren().add(n5);
-//          vbParc.getChildren().add(titre);
-//              vbParc.getChildren().add(n6);
-//          vbParc.getChildren().add(description);
-//           vbParc.getChildren().add(n7);
-//          vbParc.getChildren().add(nb);
-//          vbParc.getChildren().add(t);
-//          vbParc.getChildren().add(bt);
-//          
-//          i++;
-//          
-//          if(i%3!=1)
-//          {
-//            hb.getChildren().add(vbParc) ;
-//          }
-//          else
-//          {
-//            hb = new HBox();
-//            hb.setPadding(new Insets(0,0,0,0));
-//            hb.setSpacing(10);
-//            hb.getChildren().add(vbParc) ;
-//            vb.getChildren().add(hb); 
-//           }
-//                 
-//      }
-//        sp.setContent(vb);
-//         anchorEvent.getChildren().setAll(sp);
->>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
-
-   }
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void retour(ActionEvent event) {
+        try {
+            Stage stage = (Stage) backBtn.getScene().getWindow();            
+            stage.setTitle("affiche");
+            Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
+    
     @FXML
-    private void onClickEvenementAction(ActionEvent event) {
+    private void goToAnnonce(ActionEvent event) {
+        
+        try {
+            Stage stage = (Stage) btnAnnonce.getScene().getWindow();            
+            stage.setTitle("annonce");
+            Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
+    
     @FXML
     private void showPane(MouseEvent event) {
-
     }
-
+    
     @FXML
     private void connexionAction(ActionEvent event) {
     }
     
-<<<<<<< HEAD
- 
-   
+    @FXML
+    private void goToMagasin(ActionEvent event) {
+        try {
+            Stage stage = (Stage) btnMagasin.getScene().getWindow();            
+            stage.setTitle("magasin");
+            Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    @FXML
+    private void goToVet(ActionEvent event) {
+        try {
+            Stage stage = (Stage) btnVet.getScene().getWindow();            
+            stage.setTitle("vet");
+            Parent root = FXMLLoader.load(getClass().getResource("AffichageCabinets.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML
+    private void goToPetSitter(ActionEvent event) {
+        try {
+            Stage stage = (Stage) btnPetSitter.getScene().getWindow();            
+            stage.setTitle("petSitter");
+            Parent root = FXMLLoader.load(getClass().getResource("AccueilPetSitter.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML
+    private void goToRefuge(ActionEvent event) {
+        try {
+            Stage stage = (Stage) btnRefuges.getScene().getWindow();            
+            stage.setTitle("refuge");
+            Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    @FXML
+    private void goToEvent(ActionEvent event) {
+        try {
+            Stage stage = (Stage) btnEvenement.getScene().getWindow();            
+            stage.setTitle("evenement");
+            Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML
+    private void goToAccueil(ActionEvent event) {
+        try {
+            Stage stage = (Stage) btnAccueil.getScene().getWindow();            
+            stage.setTitle("accueil");
+            Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     
-=======
->>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
+
+
+
+    
+    
+    
 }

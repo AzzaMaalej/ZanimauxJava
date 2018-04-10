@@ -5,10 +5,16 @@
  */
 package zanimaux.GUI;
 
+import com.itextpdf.text.DocumentException;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -33,13 +39,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import zanimaux.Email.SendMail;
+import zanimaux.util.SendMail;
 import zanimaux.Service.PanierService;
 import zanimaux.Service.ProduitService;
 import zanimaux.entities.ContenuPanier;
 import zanimaux.entities.Panier;
 import zanimaux.entities.Produit;
 import zanimaux.entities.User;
+import zanimaux.util.CreatePDF;
 import zanimaux.util.Session;
 
 /**
@@ -79,7 +86,7 @@ public class AffichePanierController implements Initializable {
     private VBox vbTotal;
     @FXML
     private VBox vbBoutton;
-
+    public static  String DEST = "result/table/simple_table6.pdf";
     /**
      * Initializes the controller class.
      */
@@ -191,7 +198,7 @@ public class AffichePanierController implements Initializable {
     private void afficherMagasin(ActionEvent event) {
              try {
         Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
-        stage.setTitle("NOS Magasin");
+        stage.setTitle("NOS MAGASINS");
         Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -285,15 +292,35 @@ public class AffichePanierController implements Initializable {
                 for (int i =0;i<c.size();i++)
                 {
                     c.get(i).setCommande(1);
+                    c.get(i).setDateCommande(java.sql.Date.valueOf(LocalDate.now()));
                     ps.modifContenuPanier(c.get(i).getIdProduit(), c.get(i));
                 }
                 String to = u.getEmail();
-                String subject = "Votre Commande";
-                String message =  "aaaaa";
+                String subject = "Votre Commande Zanimaux";
+                String message =  "Bonjour "+u.getPrenom()+" Vous trouverez ci-joint votre facture";
                 String user = "zanimo.esprit@gmail.com";
                 String pass = "esprit2018";
+                File file = new File(DEST);
+                file.getParentFile().mkdirs();
+        try {
+            new CreatePDF().createPdf(DEST);
+        } catch (IOException ex) {
+            Logger.getLogger(AffichePanierController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(AffichePanierController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-                SendMail.send(to,subject, message, user, pass);
+                SendMail.send(to,subject, message,DEST, user, pass);
+                        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("MON PANIER");
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherCommande.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
 }

@@ -6,15 +6,22 @@
 
 package zanimaux.GUI;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -35,8 +42,10 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import zanimaux.entities.HWCalculator;
+import zanimaux.util.Session;
 import zanimaux.util.Validation;
 
 /**
@@ -188,33 +197,216 @@ public class HWresultController implements Initializable {
 //       lbcal.setVisible(true);
 //       imacc.setVisible(true);
         apdeb.setVisible(true);
+          Media media;
+       
+        media=new Media("file:///C:/Users/Mariam/Documents/GitHub/ZanimauxJava/src/zanimaux/videos/video1.mp4");
+        player= new MediaPlayer(media);
+        MediaView mv = new MediaView();
+        mv.setMediaPlayer(player);
+
+        mv.setFitHeight(96);
+        mv.setFitWidth(146);
+        mv.setLayoutX(57);
+        mv.setLayoutY(24);
+        pvid.getChildren().add(mv);
+
+        VBox vbox = new VBox();
+        vbox.setVisible(false);
+        pvid.getChildren().add(vbox);
+        pvid.setPrefSize(146, 96);
+        pvid.setLayoutX(57);
+        pvid.setLayoutY(24);
+        Slider slider = new Slider();
+        vbox.getChildren().add(slider);
+        final HBox hbox = new HBox();
+
+        vbox.getChildren().add(hbox);
+        final int bands = player.getAudioSpectrumNumBands();
+        final Rectangle[] rects = new Rectangle[bands];
+        for (int i = 0; i < rects.length; i++) {
+            rects[i] = new Rectangle();
+            rects[i].setFill(Color.GREENYELLOW);
+            hbox.getChildren().add(rects[i]);
+
+        }
+
+//        player.play();
+        player.setOnReady(new Runnable() {
+
+            @Override
+            public void run() {
+                int w = player.getMedia().getWidth();
+                int h = player.getMedia().getHeight();
+                System.out.println(h);
+                 System.out.println(w);
+                
+
+                hbox.setMinWidth(146);
+                int bandwidth = 146 / rects.length;
+                for (Rectangle r : rects) {
+                    r.setWidth(bandwidth);
+                    r.setHeight(2);
+                }
+               // pvid.setMinHeight(25);
+                //pvid.setMinWidth(25);
+//                mv.setFitHeight(h);
+//                mv.setFitWidth(w);
+                vbox.setMinSize(146,25);
+                vbox.setTranslateY(h - 12);
+                slider.setMin(0.0);
+                slider.setValue(0.0);
+                slider.setMax(player.getTotalDuration().toSeconds());
+
+            }
+        });
+        player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Duration> observablevalue, Duration duration, Duration current) {
+                slider.setValue(current.toSeconds());
+            }
+        });
+        slider.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                player.seek(Duration.seconds(slider.getValue()));
+            }
+        });
+        player.setAudioSpectrumListener(new AudioSpectrumListener() {
+
+            @Override
+            public void spectrumDataUpdate(double v, double vl, float[] mags, float[] floats1) {
+                for (int i = 0; i < rects.length; i++) {
+                    double h = mags[i] + 60;
+                    if (h > 2) {
+                        rects[i].setHeight(h);
+                    }
+                }
+            }
+        });
         // TODO
     }
 
     @FXML
     private void MagasinButtonAction(ActionEvent event) {
+          try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("NOS MAGSINS");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     @FXML
     private void AfficherRefugeAction(ActionEvent event) {
+            
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS Refuges");
+        Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     @FXML
     private void onClickEvenementAction(ActionEvent event) {
+         try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Evénement");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+     @FXML
+    private void affichePanierAction(ActionEvent event) {
+        
+             try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Mon Panier");
+        Parent root = FXMLLoader.load(getClass().getResource("AffichePanier.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     @FXML
     private void showPane(MouseEvent event) {
+         pane.setVisible(true);
     }
 
     @FXML
     private void connexionAction(ActionEvent event) {
+         Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) btn11.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    }
+
+   @FXML
+    private void profil(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btn1.getScene().getWindow(); 
+        stage.setTitle("Profil");
+        Parent root = FXMLLoader.load(getClass().getResource("ProfilManager.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     @FXML
-    private void profil(ActionEvent event) {
+    private void goToAnn(ActionEvent event) {
+         try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Deposez votre annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("addAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    } 
+    @FXML
+    private void goTovet(ActionEvent event) {
+        
+          try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Vétérinaire");
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
-   
     
    
 
@@ -252,8 +444,10 @@ public class HWresultController implements Initializable {
         if (nom.getText() == "") {
             lb.setText("vous devez remplir tous les lignes");
         }
-        Validation.texNum(poid, lb, "Erreur");
-
+          Boolean saisie=true;
+        if(!Validation.texNum(poid, lb, "Erreur")){
+    saisie=false;}
+if (saisie){
 ////        HWCalculator Hwentity = new HWCalculator();
         Hwentity.setNomanimal(nom.getText());
         Hwentity.setNeutred(stérilisé);
@@ -266,88 +460,10 @@ public class HWresultController implements Initializable {
 //        imacc.setVisible(false);
         apdeb.setVisible(false);
                 
-        apqst.setVisible(true);
+        apqst.setVisible(true);}
         
-        
 
-         Media media;
-        media = new Media("file:///C:/video1.mp4");
-        player= new MediaPlayer(media);
-        MediaView mv = new MediaView();
-        mv.setMediaPlayer(player);
-
-        
-        pvid.getChildren().add(mv);
-
-        VBox vbox = new VBox();
-        vbox.setVisible(false);
-        pvid.getChildren().add(vbox);
-        Slider slider = new Slider();
-        vbox.getChildren().add(slider);
-        final HBox hbox = new HBox();
-
-        vbox.getChildren().add(hbox);
-        final int bands = player.getAudioSpectrumNumBands();
-        final Rectangle[] rects = new Rectangle[bands];
-        for (int i = 0; i < rects.length; i++) {
-            rects[i] = new Rectangle();
-            rects[i].setFill(Color.GREENYELLOW);
-            hbox.getChildren().add(rects[i]);
-
-        }
-
-//        player.play();
-        player.setOnReady(new Runnable() {
-
-            @Override
-            public void run() {
-                int w = player.getMedia().getWidth();
-                int h = player.getMedia().getHeight();
-
-                hbox.setMinWidth(w);
-                int bandwidth = w / rects.length;
-                for (Rectangle r : rects) {
-                    r.setWidth(bandwidth);
-                    r.setHeight(2);
-                }
-                pvid.setMinHeight(h);
-                pvid.setMinHeight(h);
-//                mv.setFitHeight(h);
-//                mv.setFitWidth(w);
-                vbox.setMinSize(w, 25);
-                vbox.setTranslateY(h - 25);
-                slider.setMin(0.0);
-                slider.setValue(0.0);
-                slider.setMax(player.getTotalDuration().toSeconds());
-
-            }
-        });
-        player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Duration> observablevalue, Duration duration, Duration current) {
-                slider.setValue(current.toSeconds());
-            }
-        });
-        slider.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-                player.seek(Duration.seconds(slider.getValue()));
-            }
-        });
-        player.setAudioSpectrumListener(new AudioSpectrumListener() {
-
-            @Override
-            public void spectrumDataUpdate(double v, double vl, float[] mags, float[] floats1) {
-                for (int i = 0; i < rects.length; i++) {
-                    double h = mags[i] + 60;
-                    if (h > 2) {
-                        rects[i].setHeight(h);
-                    }
-                }
-            }
-        });
+       
     }
     @FXML
     private void play(MouseEvent event) {
@@ -551,6 +667,7 @@ public class HWresultController implements Initializable {
 
     @FXML
     private void hidePane(MouseEvent event) {
+          pane.setVisible(false);
     }
     
 

@@ -15,6 +15,10 @@ import zanimaux.entities.User;
 public class Articles {
     private int id;
     private String description;
+
+    public void setId(int id) {
+        this.id = id;
+    }
     private String titre;
     private String cin;
 

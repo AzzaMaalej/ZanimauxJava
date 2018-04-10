@@ -7,7 +7,11 @@ package zanimaux.GUI;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,6 +42,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
@@ -141,7 +146,7 @@ public class DashboardMagasinController implements Initializable {
     private TableColumn column_idMagasinM;
     @FXML
     private TextField nbProduitMagasin;
-
+    public String filePath;
     /**
      * Initializes the controller class.
      */
@@ -300,7 +305,7 @@ public class DashboardMagasinController implements Initializable {
             lb.setVisible(true);
         }
         else
-        {
+        {      
                Produit p= new Produit();
                p.setLibelle(libelle.getText());
                p.setDescription(desc.getText());
@@ -384,7 +389,7 @@ public class DashboardMagasinController implements Initializable {
 
         //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
-        String filePath = file.getAbsolutePath();
+        filePath = file.getName();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -396,6 +401,28 @@ public class DashboardMagasinController implements Initializable {
 
         return filePath;
         }
+        private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        if(!dest.exists())
+            dest.createNewFile();
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        } finally{
+            if(is!=null)
+            is.close();
+            if(os!=null)
+            os.close();
+        }
+    }
 
     @FXML
     private void afficherMagasin(ActionEvent event) {
@@ -609,18 +636,18 @@ public class DashboardMagasinController implements Initializable {
 
     @FXML
     private void uploadpicMagasin(MouseEvent event) {
-                 picturepathMagasin.setText(handle());
+       picturepathMagasin.setText(handle());
 
     }
 
     @FXML
-    private void ajouterMagasin(ActionEvent event) throws SQLException {
+    private void ajouterMagasin(ActionEvent event) throws SQLException, IOException {
              if((nomMagasin.getText().equals(""))||(numRC.getText().equals(""))|| (adresseMagsin.getText().equals(""))|| (villeMagasin.getText().equals(""))|| (cdpstMagasin.getText().equals("")) || (picturepathMagasin.getText().equals("")) ){
             lb.setText("champ vide");
             lb.setVisible(true);
         }
         else
-        {
+        {       copyFileUsingStream(new File(filePath), new File ("src/ImageUtile"+picturepathMagasin.getText()));
                Magasin m= new Magasin();
                m.setNomMagasin(nomMagasin.getText());
                m.setNumRC(numRC.getText());
@@ -660,6 +687,20 @@ public class DashboardMagasinController implements Initializable {
         listMagasin = ms.Magasinier(a.getCin());
         ObservableList<Magasin> data = FXCollections.observableArrayList(listMagasin); 
         table_list_magasin.setItems(data);    
+    }
+
+    @FXML
+    private void consulterClient(MouseEvent event) {
+        try {
+        Stage stage=(Stage) desc.getScene().getWindow(); 
+        stage.setTitle("ACCUEIL");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
 }

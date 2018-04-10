@@ -7,7 +7,11 @@ package zanimaux.GUI;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,6 +41,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
@@ -113,6 +118,7 @@ public class GestionAnimauxController implements Initializable {
     private Label lbetat;
     @FXML
     private Label lbphoto;
+    public String filePath;
 
     /**
      * Initializes the controller class.
@@ -121,9 +127,9 @@ public class GestionAnimauxController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             ObservableList<String> Immatriculation = FXCollections.observableArrayList();
-            RefugeService ms;
             
-            ms = new RefugeService();
+            
+            RefugeService ms = new RefugeService();
             List<String> listetat = new ArrayList();
             listetat.add("à adopter");
             ObservableList<String> ob = FXCollections.observableArrayList();
@@ -341,7 +347,7 @@ public class GestionAnimauxController implements Initializable {
     private void ajouterAnimal(ActionEvent event) throws SQLException, IOException {
 
             if(this.controleSaisie())
-         {
+         {   copyFileUsingStream(new File(filePath), new File ("src/ImageUtile"+picturepath.getText()));
                AnimalService ase= new AnimalService();
                Animal listForm=new Animal();
                
@@ -364,7 +370,7 @@ public class GestionAnimauxController implements Initializable {
         listRefuge = ms.AfficherRefugeByCin(a.getCin());
         List<Animal> listAnimal = new ArrayList<>();
         AnimalService ps = new AnimalService();
-        List<Animal> list;
+        List<Animal> list =new ArrayList<>();
             for(int i =0; i<listRefuge.size();i++){
                 list=ps.ListerAnimalRefuge(listRefuge.get(i).getImmatriculation());
                 listAnimal.addAll(list);
@@ -382,8 +388,9 @@ public class GestionAnimauxController implements Initializable {
         fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
         //Show open file dialog
-        File file = fileChooser.showOpenDialog(null);
-        String filePath = file.getAbsolutePath();
+         File file = fileChooser.showOpenDialog(null);
+        picturepath.setText(file.getName());
+        filePath = file.getAbsolutePath();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -397,8 +404,30 @@ public class GestionAnimauxController implements Initializable {
     }
     @FXML
     private void uploadpic(ActionEvent event) {
-        
-          picturepath.setText(handle());
+         Text text=new Text(); 
+        text.setText(handle());
+    }
+    private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        if(!dest.exists())
+            dest.createNewFile();
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        } finally{
+            if(is!=null)
+            is.close();
+            if(os!=null)
+            os.close();
+        }
     }
 
     @FXML

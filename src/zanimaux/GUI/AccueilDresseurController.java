@@ -168,6 +168,22 @@ public class AccueilDresseurController implements Initializable {
        }
 
     }
+    
+    @FXML
+    void RedirectPromAction(ActionEvent event) throws SQLException {
+
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Liste des promenades");
+        Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+    }
 
     
 

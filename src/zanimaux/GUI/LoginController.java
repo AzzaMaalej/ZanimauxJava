@@ -94,7 +94,7 @@ public class LoginController implements Initializable {
                     CabinetDao c= new CabinetDao();
                     Cabinet cab= c.getByVet(result.getCin());
                     if (cab==null){
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutArticle.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ajoutCabinet.fxml"));
                      Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
@@ -175,42 +175,42 @@ public class LoginController implements Initializable {
                      try{
                     Session.setLoggedInUser(result);
 <<<<<<< HEAD
-                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
-                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
-                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
-                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
-                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
-               // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheAnnonce.fxml"));
-                //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
-             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheAnnonce.fxml"));
-
-
-                   //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
-=======
+<<<<<<< HEAD
                     // TODO: Proceed to other page
 
-                  //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
                  // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
-
-//                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
->>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
-                  //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
-
-                  //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
-                   // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
-<<<<<<< HEAD
 =======
 
+                       
+                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
+>>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
+
+
+<<<<<<< HEAD
+                  //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
+                   // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
+
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VetFront.fxml"));
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
-                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
->>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
+                // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
+
+=======
+>>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
+=======
+
+                       
+                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
+
+
+>>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
 
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
                     Stage stage = (Stage) cin.getScene().getWindow();
+                    secondStage.setMaximized(true);
                     // do what you have to do
                     stage.hide();
                     secondStage.show();
@@ -242,7 +242,7 @@ public class LoginController implements Initializable {
                     Session.setLoggedInUser(result);
                     // TODO: Proceed to other page
                     
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilPetSitter.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));

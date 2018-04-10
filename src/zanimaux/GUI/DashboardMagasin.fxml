@@ -92,12 +92,12 @@
             <TableColumn fx:id="column_url" prefWidth="148.4576416015625" text="Url vers la piece jointe" />
          </columns>
       </TableView>
-      <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="836.0" layoutY="11.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0">
+      <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="859.0" layoutY="10.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="10.0">
          <image>
-            <Image url="@../Image/logout.png" />
+            <Image url="@../ImageUtile/sortie.png" />
          </image>
       </ImageView>
-      <Label layoutX="864.0" layoutY="12.0" onMouseClicked="#logOut" prefHeight="17.0" prefWidth="46.0" text="LogOut" textFill="#fffafa" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Label layoutX="892.0" layoutY="10.0" onMouseClicked="#logOut" prefHeight="17.0" prefWidth="46.0" text="LogOut" textFill="#fffafa" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="10.0" />
       <Button layoutX="562.0" layoutY="11.0" mnemonicParsing="false" onAction="#afficherProduit" prefHeight="20.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Mes produits" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -160,5 +160,11 @@
          </columns>
       </TableView>
       <Button fx:id="btnsuppressionMagasin" layoutX="744.0" layoutY="437.0" mnemonicParsing="false" onAction="#supprimerMag" prefHeight="26.0" prefWidth="190.0" text="Supprimer Magasin" />
+      <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="859.0" layoutY="38.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/home.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="887.0" layoutY="29.0" onMouseClicked="#consulterClient" prefHeight="50.0" prefWidth="110.0" text="Naviguer en tant que client" textAlignment="CENTER" textFill="#fffafa" wrapText="true" />
    </children>
 </AnchorPane>

@@ -12,7 +12,7 @@
     <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+            <Button fx:id="accueilBTN" layoutY="128.0" mnemonicParsing="false" onAction="#Accueil" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -32,7 +32,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="buttonRF" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
+            <Button fx:id="buttonRF" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" onAction="#afficherLesRefuges" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>

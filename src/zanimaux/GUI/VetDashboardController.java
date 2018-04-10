@@ -12,6 +12,7 @@ import com.calendarfx.view.CalendarView;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
@@ -28,6 +29,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import zanimaux.Service.CalendarService;
+import zanimaux.entities.User;
 import zanimaux.util.Session;
 
 /**
@@ -46,12 +49,14 @@ public class VetDashboardController implements Initializable {
     private Button btnClient;
     @FXML
     private Label LogOut;
-
+ User u= Session.getLoggedInUser();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         
+        //userName.setText(u.getUsername());
         // TODO
     }    
 
@@ -71,7 +76,7 @@ public class VetDashboardController implements Initializable {
     }
 
     @FXML
-    private void GestDispo(ActionEvent event) {
+    private void GestDispo(ActionEvent event) throws SQLException {
 //         try {
 //             
 //         Stage stage=(Stage) btnprofil.getScene().getWindow(); 
@@ -84,25 +89,28 @@ public class VetDashboardController implements Initializable {
 //           Logger.getLogger(RefugeDashboardController.class.getName()).log(Level.SEVERE, null, ex);
 //       }
           System.out.println("ok1");
-        CalendarView calendarView = new CalendarView(); 
-System.out.println("ok2");
-                Calendar VetCalendar = new Calendar("VetCalendar"); 
-              
-System.out.println("ok3");
-               
-                CalendarSource myCalendarSource = new CalendarSource("My Calendars"); 
-                myCalendarSource.getCalendars().addAll(VetCalendar);
-System.out.println("ok4");
-                calendarView.getCalendarSources().addAll(myCalendarSource); 
-                calendarView.setRequestedTime(LocalTime.now());
+//        CalendarView calendarView = new CalendarView(); 
+//System.out.println("ok2");
+//                Calendar VetCalendar = new Calendar("VetCalendar"); 
+//              
+//System.out.println("ok3");
+//               
+//                CalendarSource myCalendarSource = new CalendarSource("My Calendars"); 
+//                myCalendarSource.getCalendars().addAll(VetCalendar);
+//System.out.println("ok4");
+//        
+//                calendarView.getCalendars().addAll(VetCalendar);
+          CalendarService service = new CalendarService();
+          CalendarView cv = service.ajouterCal(u);
+               cv.setRequestedTime(LocalTime.now());
 
                 Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
                         @Override
                         public void run() {
                                 while (true) {
                                         Platform.runLater(() -> {
-                                                calendarView.setToday(LocalDate.now());
-                                                calendarView.setTime(LocalTime.now());
+                                                cv.setToday(LocalDate.now());
+                                                cv.setTime(LocalTime.now());
                                         });
 
                                         try {
@@ -122,7 +130,7 @@ System.out.println("ok4");
                 updateTimeThread.start();
                 Stage stage=(Stage) btnprofil.getScene().getWindow(); 
 
-                Scene scene = new Scene(calendarView);
+                Scene scene = new Scene(cv);
                 stage.setTitle("Calendar");
                 stage.setScene(scene);
                 stage.setWidth(1300);
@@ -155,7 +163,7 @@ System.out.println("ok4");
            try {
         Stage stage=(Stage) btnClient.getScene().getWindow(); 
         stage.setTitle("Les refuges");
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

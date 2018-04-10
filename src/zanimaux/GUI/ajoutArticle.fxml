@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -31,6 +30,7 @@
       </Button>
       <Pane layoutX="39.0" layoutY="52.0" prefHeight="392.0" prefWidth="353.0" style="-fx-background-color: rgba(17,149,175,0.3);">
          <children>
+            <ImageView fx:id="iv" fitHeight="141.0" fitWidth="111.0" layoutX="223.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
             <Label id="lb" fx:id="lb" layoutX="230.0" layoutY="296.0" prefHeight="17.0" prefWidth="111.0" visible="false" />
             <Label layoutX="14.0" layoutY="24.0" text="Titre" textFill="#f5f0f0">
                <font>
@@ -45,9 +45,23 @@
             </Label>
             <TextArea id="desc" fx:id="input_description" layoutX="14.0" layoutY="83.0" prefHeight="288.0" prefWidth="200.0" />
             <Button id="bt" layoutX="219.0" layoutY="22.0" mnemonicParsing="false" onAction="#ajouterArticle" text="Publier votre article" />
-            <TextField id="picturepath" fx:id="picturepath" layoutX="239.0" layoutY="213.0" prefHeight="25.0" prefWidth="81.0" visible="false" />
-            <ChoiceBox fx:id="choice" layoutX="239.0" layoutY="62.0" prefHeight="25.0" prefWidth="81.0" />
-            <Button layoutX="251.0" layoutY="105.0" mnemonicParsing="false" onAction="#uploadpic" text="Upload" />
+            <TextField id="picturepath" fx:id="picturepath" layoutX="238.0" layoutY="352.0" prefHeight="25.0" prefWidth="81.0" visible="false" />
+            <Button layoutX="251.0" layoutY="62.0" mnemonicParsing="false" onAction="#uploadpic" text="Upload" />
+            <Label fx:id="lbdesc" layoutX="225.0" layoutY="346.0" textFill="#b82a0d">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbtitre" layoutX="224.0" layoutY="287.0" textFill="#b82a0d">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbphoto" layoutX="224.0" layoutY="121.0" textFill="#b82a0d">
+               <font>
+                  <Font name="Comic Sans MS" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <TableView fx:id="table_list_article" editable="true" layoutX="431.0" layoutY="103.0" prefHeight="247.0" prefWidth="326.0">
@@ -65,5 +79,13 @@
       </ImageView>
       <Label layoutX="643.0" layoutY="16.0" onMouseClicked="#logOut" text="LogOut" />
       <Button layoutX="509.0" layoutY="376.0" mnemonicParsing="false" onAction="#supprimerArticle" prefHeight="26.0" prefWidth="190.0" text="Supprimer Article" />
+      <Button fx:id="btn_goBack" layoutX="683.0" layoutY="413.0" mnemonicParsing="false" onAction="#GoBack" prefHeight="31.0" prefWidth="93.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Retour">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

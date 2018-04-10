@@ -79,8 +79,8 @@ public class PanierService {
 
              do{
                  listForm.setCin(cin);
-                 listForm.setSomme(rs.getFloat("somme"));
-                 //listForm.setSomme(rs.getFloat("sommeCommande"));
+                 listForm.setSomme(rs.getDouble("somme"));
+                 listForm.setSommeCommande(rs.getDouble("sommeCommande"));
             }while(rs.next());
              
         }} catch (SQLException ex) {
@@ -105,6 +105,7 @@ public class PanierService {
                  listForm.setIdContenuPanier(rs.getInt("idContenuPanier"));
                  listForm.setQuantite(rs.getInt("quantite"));
                  listForm.setIdProduit(rs.getInt("idProduit"));
+                 listForm.setDateCommande(rs.getDate("dateCommande"));
             }while(rs.next());
              
         }} catch (SQLException ex) {
@@ -113,6 +114,8 @@ public class PanierService {
         return listForm;
         
     }
+    
+    //----------------------------------Ajout Panier--------------------------------------------//
     public void ajouterProduitPanier(Produit p) throws SQLException
     {
         User u = Session.getLoggedInUser();
@@ -136,12 +139,13 @@ public class PanierService {
        //si le client a deja ajouter un produit au panier, donc on maj juste la somme de ses achats
         else
         {
+            System.out.println(panier.getSomme());
             panier.setSomme(panier.getSomme()+p.getPrix());
             this.modifPanier(u.getCin(), panier);
         }
         ContenuPanier cp= this.rechercheProduitContenuPanier(u.getCin(), p);
        //on teste si le client n'a pas encore ajouter le produit X au panier, donc on insere
-        System.out.println("ZZZZZZZZ"+p.getIdProduit());
+        
 
         if(cp==null)
         {
@@ -173,6 +177,7 @@ public class PanierService {
         prodSer.ModifProduit(p, p.getIdProduit());
         
     }
+    //----------------------------------Ajout Panier---------------------------------------------//
 
     public List<ContenuPanier> rechercheContenuPanier(String cin)
    {
@@ -206,22 +211,10 @@ public class PanierService {
         return listContenuPanier;
     
     }
-          public void SupprimerProduitContenuPanier(int id)
-    {
-        String requete="DELETE FROM Produit WHERE idProduit='"+id+"' ";     
-        Statement st;
-        try {
-            st = con.createStatement(); 
-            st.executeUpdate(requete);
-      System.out.println("produit supprimé");
-
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-}
+      
           public void SupprimerProduitPanier(int id)
     {
-        String requete="DELETE FROM ContenuPanier WHERE idContenuPanier='"+id+"' ";     
+        String requete="DELETE FROM ContenuPanier WHERE idContenuPanier='"+id+"'AND commande=0 ";     
         Statement st;
         try {
             st = con.createStatement(); 
@@ -232,5 +225,51 @@ public class PanierService {
             System.err.println(ex.getMessage());
         }
 }
+             public void annulerCommande(String cin)
+    {
+        String requete="DELETE FROM ContenuPanier WHERE cin='"+cin+"'AND commande=1 ";     
+        Statement st;
+        try {
+            st = con.createStatement(); 
+            st.executeUpdate(requete);
+      System.out.println("Commande annulé");
 
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+}
+    public List<ContenuPanier> rechercheCommande(String cin)
+   {
+        List<ContenuPanier> listContenuPanier = new ArrayList<>();
+        try {
+            String requete = "SELECT * FROM ContenuPanier WHERE `cin`="+cin+" AND `commande`=1";
+            ResultSet rs = ste.executeQuery(requete);
+            ContenuPanier listForm;
+            if (rs.next() == false) 
+            listForm = null;
+          
+            else { 
+            do{
+                 listForm = new ContenuPanier();
+
+                 listForm.setCin(cin);
+                 listForm.setIdProduit(rs.getInt("idProduit"));
+                 listForm.setCommande(rs.getInt("commande"));
+                 listForm.setIdContenuPanier(rs.getInt("idContenuPanier"));
+                 listForm.setQuantite(rs.getInt("quantite"));
+                 listForm.setDateCommande(rs.getDate("dateCommande"));
+                 listContenuPanier.add(listForm);
+
+            }while(rs.next());
+                              
+            }   
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PanierService.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return listContenuPanier;
+    
+    }
 }

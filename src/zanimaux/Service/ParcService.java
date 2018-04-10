@@ -252,6 +252,19 @@ try {
 
       
  }
+ public ResultSet RechercheParc(String i)
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM parc WHERE CategorieDressage LIKE'"+'%'+i+'%'+"'OR nomParc LIKE'"+'%'+i+'%'+"'" ;
+            
+            rs = ste.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherParc()");
+        }
+        return rs ;
+    
+    }
 }
 
 

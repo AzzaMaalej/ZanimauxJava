@@ -61,6 +61,7 @@ public class GoogleMapsController implements Initializable,MapComponentInitializ
     public void initialize(URL url, ResourceBundle rb) {
         
         addressTextField.setText(RefugeClientController.adr);
+        System.out.println(RefugeClientController.adr+" fel google maps");
          addressTextField.setVisible(false);
           address.bind(addressTextField.textProperty());
          mapView.addMapInializedListener(this);
@@ -86,7 +87,7 @@ public class GoogleMapsController implements Initializable,MapComponentInitializ
         map = mapView.createMap(mapOptions);
         //Geocoder
         MarkerOptions markerOptions = new MarkerOptions();
-          geocodingService.geocode(address.get(), (GeocodingResult[] results, GeocoderStatus status) -> {
+          geocodingService.geocode(RefugeClientController.adr, (GeocodingResult[] results, GeocoderStatus status) -> {
             
             LatLong latLong = null;
             
@@ -102,15 +103,15 @@ public class GoogleMapsController implements Initializable,MapComponentInitializ
                 latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
            
             }
-            map.setCenter(latLong);
+                 map.setCenter(latLong);
                  //Add a marker to the map
                  markerOptions.position( latLong )
                 .visible(Boolean.TRUE)
                 .title(RefugeClientController.nomref);
 
-    Marker marker = new Marker( markerOptions );
+                 Marker marker = new Marker( markerOptions );
 
-    map.addMarker(marker);
+                 map.addMarker(marker);
    
             
             
@@ -129,7 +130,7 @@ public class GoogleMapsController implements Initializable,MapComponentInitializ
     @FXML
     private void Retour(ActionEvent event) {
         try{Stage stage=(Stage) retour.getScene().getWindow(); 
-        stage.setTitle("GoogleMaps");
+        stage.setTitle("Les refuges");
         Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
         Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));

@@ -34,7 +34,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -44,13 +43,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import javax.imageio.ImageIO;
 import zanimaux.Service.AnimalService;
 import zanimaux.Service.RefugeService;
 import zanimaux.entities.Animal;
-import zanimaux.entities.Produit;
 import zanimaux.entities.Refuge;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -125,32 +122,31 @@ public class GestionAnimauxController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            ObservableList<String> Immatriculation = FXCollections.observableArrayList();
-            
-            
-            RefugeService ms = new RefugeService();
-            List<String> listetat = new ArrayList();
+         ObservableList<String> ids = FXCollections.observableArrayList();
+        List<String> listetat = new ArrayList();
             listetat.add("à adopter");
             ObservableList<String> ob = FXCollections.observableArrayList();
             ob.addAll(listetat);
             choice_etat.setItems(ob);
-            System.out.println("azzza");
+        
+        try {
+    
+            RefugeService ms = new RefugeService();
             User a = Session.getLoggedInUser();
-            System.out.println(a.getCin());
             List<Refuge> listRefuge= new ArrayList<>();
-            listRefuge = ms.AfficherRefugeByCin(a.getCin());
+            listRefuge = ms.ListerRefugeByCin(a.getCin());
             List<Animal> listAnimal = new ArrayList<>();
             AnimalService sp = new AnimalService();
             List<Animal> list = new ArrayList<>();
             for(int i =0; i<listRefuge.size();i++){
                 list=sp.ListerAnimalRefuge(listRefuge.get(i).getImmatriculation());
                 listAnimal.addAll(list);
-                Immatriculation.add(listRefuge.get(i).getImmatriculation());
+                ids.add( listRefuge.get(i).getImmatriculation());
             }
-            choice_refuge.setItems(Immatriculation);
+            choice_refuge.setItems(ids);
             ObservableList<Animal> data = FXCollections.observableArrayList(listAnimal); 
-             column_id.setCellValueFactory(
+            
+            column_id.setCellValueFactory(
                     new PropertyValueFactory<Animal,Integer>("idAnimal")
             );
             column_nom.setCellValueFactory(
@@ -168,13 +164,15 @@ public class GestionAnimauxController implements Initializable {
             column_etat.setCellValueFactory(
                     new PropertyValueFactory<Animal,String>("etat")
             );
-             column_refuge.setCellValueFactory(
+            column_refuge.setCellValueFactory(
                     new PropertyValueFactory<Animal,String>("refuge")
-            );           
-             column_photo.setCellValueFactory(
+            );
+            column_photo.setCellValueFactory(
                     new PropertyValueFactory<Animal,String>("photoanimal")
-            );              
+            );
+                         
             table_list_animal.setItems(data);
+            
            
             //modifier nom animal
             column_nom.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -294,17 +292,7 @@ public class GestionAnimauxController implements Initializable {
             lbetat.setText("");
              saisie = true;
         }
-//        String zz;
-//        zz=choice_refuge.getValue();
-//        if( zz.equals("")){
-//          lb.setText("* vous devez choisir un refuge");
-//           lb.setVisible(true);
-//          saisie = false;
-//      } else {
-//                     lb.setText("");
-//                      saisie = true;
-// 
-//        }
+
 
         if (!Validation.textalphabet(input_nom_animal, lbnom, "* le nom doit contenir que des lettre")) {
             saisie = false;
@@ -347,9 +335,10 @@ public class GestionAnimauxController implements Initializable {
     private void ajouterAnimal(ActionEvent event) throws SQLException, IOException {
 
             if(this.controleSaisie())
-         {   copyFileUsingStream(new File(filePath), new File ("src/ImageUtile"+picturepath.getText()));
+         {   
                AnimalService ase= new AnimalService();
                Animal listForm=new Animal();
+               
                
                  listForm.setNomAnimal(input_nom_animal.getText());
                  listForm.setRefuge(choice_refuge.getValue());
@@ -364,13 +353,13 @@ public class GestionAnimauxController implements Initializable {
     }
     }
            public void resetTableData() throws SQLException
-    {   RefugeService ms = new RefugeService();
+    {  RefugeService ms = new RefugeService();
         User a = Session.getLoggedInUser();
-        List<Refuge> listRefuge;
-        listRefuge = ms.AfficherRefugeByCin(a.getCin());
+        List<Refuge> listRefuge= new ArrayList<>();
+        listRefuge = ms.ListerRefugeByCin(a.getCin());
         List<Animal> listAnimal = new ArrayList<>();
         AnimalService ps = new AnimalService();
-        List<Animal> list =new ArrayList<>();
+        List<Animal> list = new ArrayList<>();
             for(int i =0; i<listRefuge.size();i++){
                 list=ps.ListerAnimalRefuge(listRefuge.get(i).getImmatriculation());
                 listAnimal.addAll(list);
@@ -388,9 +377,8 @@ public class GestionAnimauxController implements Initializable {
         fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
         //Show open file dialog
-         File file = fileChooser.showOpenDialog(null);
-        picturepath.setText(file.getName());
-        filePath = file.getAbsolutePath();
+        File file = fileChooser.showOpenDialog(null);
+        String filePath = file.getName();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -404,32 +392,10 @@ public class GestionAnimauxController implements Initializable {
     }
     @FXML
     private void uploadpic(ActionEvent event) {
-         Text text=new Text(); 
-        text.setText(handle());
+         
+        picturepath.setText(handle());
     }
-    private static void copyFileUsingStream(File source, File dest) throws IOException {
-        InputStream is = null;
-        OutputStream os = null;
-        if(!dest.exists())
-            dest.createNewFile();
-        try {
-            is = new FileInputStream(source);
-            os = new FileOutputStream(dest);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
-            }
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        } finally{
-            if(is!=null)
-            is.close();
-            if(os!=null)
-            os.close();
-        }
-    }
-
+   
     @FXML
     private void logOut(MouseEvent event) {
          Session.setLoggedInUser(null);

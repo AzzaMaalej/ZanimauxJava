@@ -52,8 +52,8 @@ public Statement ste;
        
     }
     public List<Animal> ListerAnimalRefuge(String i){
-         List<Animal> listAnimal = new ArrayList<>();
-        Animal listForm= new Animal();
+         List<Animal> listAnimal = new ArrayList();
+       
         try {  
             String requete = "SELECT * FROM animal WHERE refuge='"+i+"'";
 
@@ -61,6 +61,7 @@ public Statement ste;
             ResultSet rs = ste.executeQuery(requete);
 
              while(rs.next()){
+                  Animal listForm= new Animal();
                  listForm.setRefuge(i);
                  listForm.setIdAnimal(rs.getInt("idAnimal"));
                  listForm.setType(rs.getString("type"));
@@ -124,7 +125,6 @@ public Statement ste;
 }
      public boolean ajouterAnimal(Animal r) throws SQLException{
        String requete = "INSERT INTO animal (refuge, type, etat, nomAnimal, photoanimal, age,  race) VALUES (?,?,?,?,?,?,?) ";
-        
        try {
            
             PreparedStatement pst =con.prepareStatement(requete);

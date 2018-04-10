@@ -87,6 +87,17 @@ public Statement ste;
         return rs ;
     
     }
+    public String NomRefugeByAddress(String i) throws SQLException{
+        Refuge Refuge = new Refuge();
+        
+            String requete = "SELECT nomRefuge FROM refuge WHERE adresseRefuge='"+i+"'";
+           ResultSet rs = ste.executeQuery(requete);
+           while(rs.next()){
+            Refuge.setNomRefuge(rs.getString("nomRefuge"));
+         }
+        
+        return Refuge.getNomRefuge();
+    }
     
     public Refuge RechercherRefugeByImm(String i)
     { 

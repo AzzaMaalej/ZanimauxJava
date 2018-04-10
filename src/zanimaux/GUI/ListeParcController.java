@@ -73,6 +73,8 @@ public class ListeParcController implements Initializable {
     private Button logOut;
     @FXML
     private Button acc;
+    @FXML
+    private Button petsitter;
 
     /**
      * Initializes the controller class.
@@ -317,7 +319,7 @@ anchorEvent.getChildren().setAll(sp);
         
     }     
     
-    
+    //redirection page magasin
     @FXML
     void handleButtonAction(ActionEvent event) throws SQLException {
 
@@ -335,7 +337,7 @@ anchorEvent.getChildren().setAll(sp);
     }
 
     
-
+//redirection page addEvent
      @FXML
     private void onClickEvenementAction(ActionEvent event) throws SQLException {
         try {
@@ -350,6 +352,8 @@ anchorEvent.getChildren().setAll(sp);
        }
     }
     
+    
+    //redirection bouton parc
      @FXML
     private void parcAction(ActionEvent event) throws SQLException {
         try {
@@ -380,21 +384,30 @@ anchorEvent.getChildren().setAll(sp);
     @FXML
     private void connexionAction(ActionEvent event) {
     }
-    private void reinit(ActionEvent event) {
+    
+    //redirection bouton petsitter
+    @FXML
+    private void AfficherPromenade(ActionEvent event) {
         
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AccueilDresseur.fxml"));
-            Parent root = (Parent) fxmlLoader.load();
-            Stage secondStage = new Stage();
-            secondStage.setScene(new Scene(root));
-            Stage stage = (Stage) btn1.getScene().getWindow();
-            // do what you have to do
-            stage.hide();
-            secondStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutCabinetController.class.getName()).log(Level.SEVERE, null, ex);
+            User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String pet="a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Gestion des promenades");
+        if(role.equals(pet)){
+        Parent root = FXMLLoader.load(getClass().getResource("Promenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         }
-
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
   
 

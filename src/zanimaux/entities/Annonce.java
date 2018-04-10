@@ -13,13 +13,13 @@ import java.util.Objects;
  */
 public class Annonce {
     private int idAnnonce;
-    private User cinUser;
+    private String cinUser;
     private String type;
     private String titre;
     private String description;
     private String pieceJointe;
 
-    public Annonce(int idAnnonce, User cinUser, String type, String titre, String description, String pieceJointe) {
+    public Annonce(int idAnnonce, String cinUser, String type, String titre, String description, String pieceJointe) {
         this.idAnnonce = idAnnonce;
         this.cinUser = cinUser;
         this.type = type;
@@ -28,11 +28,15 @@ public class Annonce {
         this.pieceJointe = pieceJointe;
     }
 
-    public Annonce(String type, String titre, String description, String pieceJointe) {
+    public Annonce(String cinUser,String type, String titre, String description, String pieceJointe) {
+        this.cinUser = cinUser;
         this.type = type;
         this.titre = titre;
         this.description = description;
         this.pieceJointe = pieceJointe;
+    }
+
+    public Annonce() {
     }
 
    
@@ -44,13 +48,15 @@ public class Annonce {
         this.idAnnonce = idAnnonce;
     }
 
-    public User getCinUser() {
+    public String getCinUser() {
         return cinUser;
     }
 
-    public void setCinUser(User cinUser) {
+    public void setCinUser(String cinUser) {
         this.cinUser = cinUser;
     }
+
+  
 
     public String getType() {
         return type;

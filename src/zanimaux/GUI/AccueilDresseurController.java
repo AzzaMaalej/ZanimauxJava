@@ -114,17 +114,14 @@ public class AccueilDresseurController implements Initializable {
                     
                     ObservableList<PieChart.Data> pieChartData =
                             FXCollections.observableArrayList(
+                                    new PieChart.Data("Total", m.CountParc()),
                                     new PieChart.Data("Chien", m.CountParcByCateg("Chien")),
                                     new PieChart.Data("Chevaux", m.CountParcByCateg("Chevaux")),
-                                            new PieChart.Data("Autre", m.CountParcByCateg("Autre")));
+                                    new PieChart.Data("Autre", m.CountParcByCateg("Autre")));
                     
                     
                     chart.getData().addAll(pieChartData);
-                    try {
-                        nombre.setText(String.valueOf(m.CountParc()));
-                    } catch (SQLException ex) {
-                        Logger.getLogger(AccueilDresseurController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    
                     
                     final Label caption = new Label("");
                     caption.setTextFill(Color.DARKORANGE);
@@ -143,8 +140,22 @@ public class AccueilDresseurController implements Initializable {
                                     container.hide();
                                 }
                                 
-                                caption.setText(String.valueOf(data.getPieValue()) + "%");
+                                caption.setText(String.valueOf((int)data.getPieValue()));
                                 container.show(stage, e.getScreenX(), e.getScreenY());
+                                });
+                    });
+                    chart.getData().forEach((data) ->
+                    {
+                        data.getNode().
+                                
+                                addEventHandler(MouseEvent.MOUSE_EXITED, e ->
+                                {  Stage stage=(Stage) button.getScene().getWindow();
+                                if (container.isHideOnEscape())
+                                {
+                                    container.hide();
+                                }
+                                
+                           
                                 });
                     });
                 } catch (SQLException ex) {

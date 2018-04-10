@@ -78,11 +78,11 @@ public class Articleservice {
             
             while(rs.next()){
                 Articles article = new Articles();
-               
+                article.setId(rs.getInt("id"));
                 article.setCin(cin);
-                article.setTitre(rs.getString(3));
-                article.setDescription(rs.getString(4));
-                article.setPiecejointe(rs.getString(5));
+                article.setTitre(rs.getString("titre"));
+                article.setDescription(rs.getString("description"));
+                article.setPiecejointe(rs.getString("piecejointe"));
                
                 listArticles.add(article);
                 
@@ -95,14 +95,20 @@ public class Articleservice {
         return listArticles;
     }
       
-    public void supprimerArticle (int id) throws SQLException
+    public void supprimerArticle (int id) 
     {
         
        
-            String requete = "DELETE FROM article WHERE id='"+id+"'";
-            PreparedStatement pst = con.prepareStatement(requete);
+            String requete = "DELETE FROM article WHERE id="+id;
+            Statement st;
+          try {
+              st = con.createStatement();
+              st.executeUpdate(requete);
+          } catch (SQLException ex) {
+              Logger.getLogger(Articleservice.class.getName()).log(Level.SEVERE, null, ex);
+          }
            
-              pst.executeUpdate(requete);
+              
               System.out.println("article supprimé");
 
            
@@ -112,12 +118,12 @@ public class Articleservice {
     {
         int nbr_ligne;
         try{
-            String requete="UPDATE article set titre=?,description=?,piecejointe=?,cin=?";
+            String requete="UPDATE article set titre=?,description=?,piecejointe=? WHERE id='"+article.getId()+"'";
             PreparedStatement pst = con.prepareStatement(requete);
             pst.setString(1,article.getTitre());
             pst.setString(2,article.getDescription());
             pst.setString(3,article.getPiecejointe());
-            pst.setString(4,article.getCin());
+           
             
             
             nbr_ligne=pst.executeUpdate();
@@ -144,5 +150,18 @@ public class Articleservice {
                    return num;
                }
                return num ;
+    }
+    public ResultSet RechercherArticleByVet(String i)
+    {
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM article WHERE cin='"+i+"'";
+            rs = ste.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur RechercherArticleByVet()");
+        }
+        return rs ;
+
+       
     }
 }

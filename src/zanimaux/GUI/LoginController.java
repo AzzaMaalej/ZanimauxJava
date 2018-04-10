@@ -175,12 +175,7 @@ public class LoginController implements Initializable {
                      try{
                     Session.setLoggedInUser(result);
 
-         
-
-
-                       
                  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
-
 
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();

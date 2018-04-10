@@ -102,9 +102,8 @@ public class ListePromenadeController implements Initializable {
         }
         User user=Session.getLoggedInUser();
         String cin=user.getCin();
-        ResultSet r =m.RecherchePromenade(recherche.getText());
         Promenade m1=new Promenade();
-        r= m.AfficherPromenade();
+        ResultSet r =m.RecherchePromenade(recherche.getText());
         ScrollPane sp = new ScrollPane();
         sp.setPrefSize(900, 650);
         //         sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);

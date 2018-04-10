@@ -115,7 +115,8 @@ public class PromenadeService {
     { 
         ResultSet rs=null;
         try {  
-            String requete = "SELECT * FROM promenade WHERE `nomPromenade`="+i+"OR `typePromenade`="+i ;
+            String requete = "SELECT * FROM promenade WHERE typePromenade LIKE'"+'%'+i+'%'+"'OR lieuPromenade LIKE'"+'%'+i+'%'+"'" ;
+            
             rs = ste.executeQuery(requete);
              }catch (SQLException ex) {
                  System.out.println(" erreur AfficherPromenade()");

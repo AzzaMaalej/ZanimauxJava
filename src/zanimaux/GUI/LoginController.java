@@ -175,6 +175,7 @@ public class LoginController implements Initializable {
                      try{
                     Session.setLoggedInUser(result);
 <<<<<<< HEAD
+<<<<<<< HEAD
                     // TODO: Proceed to other page
 
                  // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
@@ -196,6 +197,13 @@ public class LoginController implements Initializable {
                 // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
 
 =======
+>>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
+=======
+
+                       
+                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
+
+
 >>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
 
                     Parent root = (Parent) fxmlLoader.load();

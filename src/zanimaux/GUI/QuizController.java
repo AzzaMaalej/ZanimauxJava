@@ -179,6 +179,9 @@ public class QuizController implements Initializable {
     private Button parc;
     @FXML
     private Button Petsitter;
+<<<<<<< HEAD
+>>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
+=======
 >>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
     
     

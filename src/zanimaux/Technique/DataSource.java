@@ -21,22 +21,13 @@ public class DataSource {
     private static DataSource data;
     private Connection con;
     public String login="root";
-<<<<<<< HEAD
-    public String password="root";
-    public String url="jdbc:mysql://localhost:8889/Zanimaux";
-=======
-    public String password="";
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public String url="jdbc:mysql://localhost:3306/basez";
-=======
-    public String url="jdbc:mysql://localhost:3306/zanimauxfinal";
->>>>>>> 3ab26d62042dd7453a0b18d3a80a3f4052cde4df
-=======
-    public String url="jdbc:mysql://localhost:3306/zanimauxfinal";
->>>>>>> 3ab26d62042dd7453a0b18d3a80a3f4052cde4df
->>>>>>> b5c3bbac142ab8ebf4c5d5e06f60a4ec457ba4ba
+
     
+
+    public String password="";
+
+    public String url="jdbc:mysql://localhost:3306/basez";
+
     private DataSource(){
        
         try {

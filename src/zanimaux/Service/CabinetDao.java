@@ -143,5 +143,19 @@ public Cabinet getByVet(String cin)
             return false;
     }
 
+  public ResultSet AfficherTousCabinets()
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM cabinet";
+           
+             PreparedStatement pst =cnx.prepareStatement(requete);
+              rs = pst.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherTousCabinets()");
+        }
+        return rs ;
+    
+    }
 
 }

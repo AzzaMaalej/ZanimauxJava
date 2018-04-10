@@ -225,7 +225,7 @@ public class QuizController implements Initializable {
          try {
         Stage stage=(Stage) button.getScene().getWindow(); 
         stage.setTitle("Ajouter Evenement");
-        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -650,7 +650,7 @@ public class QuizController implements Initializable {
          try {
         Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
         stage.setTitle("Deposez votre annonce");
-        Parent root = FXMLLoader.load(getClass().getResource("addAnnonce.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

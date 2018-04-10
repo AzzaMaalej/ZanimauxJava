@@ -18,9 +18,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
@@ -37,6 +40,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import zanimaux.Service.AnnonceFavorisService;
 import zanimaux.Service.AnnonceService;
 import zanimaux.Service.EvenementService;
@@ -53,8 +57,6 @@ import zanimaux.util.Session;
  */
 public class AfficheAnnonceController implements Initializable {
 
-    @FXML
-    private Button button;
     @FXML
     private Button btnEvenement;
     @FXML
@@ -105,6 +107,20 @@ public class AfficheAnnonceController implements Initializable {
     private Button annFav;
     @FXML
     private ImageView annFavo;
+    @FXML
+    private Button btnBackAnn;
+    @FXML
+    private Button btnAnnonce;
+    @FXML
+    private Button btnMagasin;
+    @FXML
+    private Button btnVet;
+    @FXML
+    private Button btnPetSitter;
+    @FXML
+    private Button btnRefuge;
+    @FXML
+    private Button btnAccueil;
 
 
     /**
@@ -112,8 +128,13 @@ public class AfficheAnnonceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        User usr = Session.getLoggedInUser();
+         userName.setText(usr.getUsername());
        afficher();
-    }    
+    }
+
+
+    
  ScrollPane consulterAnnonce(int pageIndex) {
     
         User usr = Session.getLoggedInUser();
@@ -151,7 +172,9 @@ public class AfficheAnnonceController implements Initializable {
                 t.setFont(Font.font("Verdana", 15) );
                 
                 Button consulter = new Button();
+                consulter.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white");
                 Button modifier = new Button();
+                modifier.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white");
                              modifier.setId(String.valueOf(a1.getIdAnnonce()));
                
                 modifier.setOnAction(x->{
@@ -162,6 +185,7 @@ public class AfficheAnnonceController implements Initializable {
                     }
 });
                 Button supprimer = new Button();
+                supprimer.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
                 supprimer.setId(String.valueOf(a1.getIdAnnonce()));
                  supprimer.setOnAction(x->{
                     try {
@@ -224,11 +248,11 @@ public class AfficheAnnonceController implements Initializable {
                     hb.setSpacing(50);
                    
                    if (i%2!=0){
-                       hb.setStyle("-fx-background-color:#0161DF;-fx-background-radius:20px;");
+                       hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;");
                        
                    }
                    else{
-                      hb.setStyle("-fx-background-color:#4D62E6;-fx-background-radius:20px;"); 
+                      hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;"); 
                    }
                     hb.getChildren().add(vbEvent) ;
                     hb.getChildren().add(vp) ;
@@ -280,8 +304,6 @@ public class AfficheAnnonceController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-      
         pagination.setPageCount(nbPages);
         pagination.setPageFactory((Integer indexPage)->consulterAnnonce(indexPage));
         AnchorPane.setTopAnchor(pagination, 10.0);
@@ -385,9 +407,9 @@ public class AfficheAnnonceController implements Initializable {
         
         AnnonceFavoris af =new AnnonceFavoris(a,usr.getCin());
       
-       afs.ajouterFavoris(af);       
-       afficher();
-       
+       afs.ajouterFavoris(af);  
+       likeBtn.setVisible(false);
+       dislikeBtn.setVisible(true);
       
   }
   
@@ -401,11 +423,46 @@ public class AfficheAnnonceController implements Initializable {
         AnnonceFavoris af =new AnnonceFavoris(a,usr.getCin());
       
        afs.supprimerFavoris(a);
+       dislikeBtn.setVisible(false);
+        likeBtn.setVisible(true);
        
-       afficher();
        
       
   }
+    
+    
+    
+     /*void remplirFavoris()throws SQLException{
+         //a=Integer.parseInt(((Node) e.getSource()).getId());
+          User usr = Session.getLoggedInUser();
+        AnnonceFavorisService afs= new AnnonceFavorisService();
+        Annonce a1=new Annonce();
+        a1= afs.mesAnnonceFavoris(usr.getCin());
+        listeAnn= new ArrayList<Annonce>();
+        while(r.next()){ 
+        // Annonce a1=new Annonce();
+
+            a1.setIdAnnonce(r.getInt("idAnnonce"));
+            a1.setCinUser(r.getString("cin"));            
+                a1.setType(r.getString("type"));
+                a1.setTitre(r.getString("titre"));
+                a1.setDescription(r.getString("description"));
+                
+                a1.setPieceJointe(r.getString("photoAnimal"));
+               
+            listeAnn.add(a1);
+            
+            
+        }
+       int nb=listeAnn.size();
+        if ((nb%2)==0){
+            nbPages=nb/2; 
+        }
+        else{
+        nbPages=((nb/2)+1); 
+  
+        }
+    }*/
     
     @FXML
    void afficherFavoris() throws SQLException{
@@ -413,9 +470,120 @@ public class AfficheAnnonceController implements Initializable {
          AnnonceFavorisService afs=new AnnonceFavorisService();
           AnnonceFavoris af =new AnnonceFavoris(a,usr.getCin());
           afs.mesAnnonceFavoris(usr.getCin());
-          remplir();
-       
+          remplir();        
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnBackAnn.getScene().getWindow(); 
+        stage.setTitle("affiche");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
         
+    }
+
+    @FXML
+    private void goToEvent(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnEvenement.getScene().getWindow(); 
+        stage.setTitle("evenement");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToAnnonce(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnAnnonce.getScene().getWindow(); 
+        stage.setTitle("annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToMagasin(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnMagasin.getScene().getWindow(); 
+        stage.setTitle("magasin");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToVet(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnVet.getScene().getWindow(); 
+        stage.setTitle("vet");
+        Parent root = FXMLLoader.load(getClass().getResource("AffichageCabinets.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToPetSitter(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnPetSitter.getScene().getWindow(); 
+        stage.setTitle("petSitter");
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilPetSitter.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToRefuge(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnRefuge.getScene().getWindow(); 
+        stage.setTitle("refuge");
+        Parent root = FXMLLoader.load(getClass().getResource("GestionRefuges.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToAccueil(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnAccueil.getScene().getWindow(); 
+        stage.setTitle("accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
 

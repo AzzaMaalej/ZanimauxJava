@@ -219,18 +219,28 @@ public class EvenementService {
     }
          
          
-       
+public ResultSet RechercheEvent(String motcle){
+ResultSet rs=null;
+ try {
+String requete = "SELECT * FROM evenement WHERE titre LIKE'"+'%'+motcle+'%'+"'OR type LIKE'"+'%'+motcle+'%'+"'" ;
+ rs = ste.executeQuery(requete);
+ }catch (SQLException ex) {
+ System.out.println(" erreur");
+ }
+
+return rs ;
+}
+   
+
+  
+
 
         
-<<<<<<< HEAD
     
     }
     
 
 
-=======
-
-        //return listForm;
+        
     
-    }
->>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
+

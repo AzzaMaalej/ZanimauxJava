@@ -177,8 +177,6 @@ public class AfficheEventController implements Initializable {
         
         userName.setText(usr.getUsername());
         
-
-        
         rechercheBtn.setOnKeyPressed(new EventHandler<KeyEvent>() {
  
    

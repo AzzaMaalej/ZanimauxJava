@@ -174,13 +174,18 @@ public class LoginController implements Initializable {
                 {
                      try{
                     Session.setLoggedInUser(result);
+<<<<<<< HEAD
                     // TODO: Proceed to other page
 
                  // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
+=======
 
-//                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accueilOumaima.fxml"));
-                  //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("afficheEvent.fxml"));
+                       
+                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
+>>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
 
+
+<<<<<<< HEAD
                   //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
                    // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
 
@@ -190,11 +195,14 @@ public class LoginController implements Initializable {
                 //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProfilManager.fxml"));          
                 // FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("magasin.fxml"));
 
+=======
+>>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
 
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
                     Stage stage = (Stage) cin.getScene().getWindow();
+                    secondStage.setMaximized(true);
                     // do what you have to do
                     stage.hide();
                     secondStage.show();

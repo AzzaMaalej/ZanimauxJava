@@ -74,6 +74,10 @@ public class magasinController implements Initializable {
     private Label sommePanier;
   
     private ScrollPane sp = new ScrollPane();
+    @FXML
+    private AnchorPane sidePane;
+    @FXML
+    private AnchorPane bigAnchor;
 
     /**
      * Initializes the controller class.
@@ -102,9 +106,11 @@ public class magasinController implements Initializable {
         Magasin m1=new Magasin();
         
         sp.setPadding(new Insets(30, 30, 30, 30));
-        sp.setPrefSize(900, 650);
-//      sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-//      sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+        
+       
+        sp.setPrefSize(Control.USE_COMPUTED_SIZE, 650);
+        sp.setMaxSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+        sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
         VBox vb = new VBox();
         HBox hb =null;
         vb.setPadding(new Insets(100, 30, 30, 30));
@@ -173,6 +179,7 @@ public class magasinController implements Initializable {
                
         
         anchorEvent.getChildren().add(sp);
+        System.out.println(anchorEvent.getWidth());
         anchorEvent.getChildren().add(paneProfil);
         
     }    

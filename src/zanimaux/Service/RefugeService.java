@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import zanimaux.Technique.DataSource;
-import zanimaux.entities.Articles;
 import zanimaux.entities.Refuge;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -86,6 +85,29 @@ public Statement ste;
         }
         return rs ;
     
+    }
+    public ResultSet AfficherRefugeByGouvernement(String i)
+    { 
+        ResultSet rs=null;
+        try {  
+            String requete = "SELECT * FROM refuge WHERE gouvernementRefuge='"+i+"'";
+            rs = ste.executeQuery(requete);
+             }catch (SQLException ex) {
+                 System.out.println(" erreur AfficherRefugeByGouvernement()");
+        }
+        return rs ;
+    
+    }
+    public String NomRefugeByAddress(String i) throws SQLException{
+        Refuge Refuge = new Refuge();
+        
+            String requete = "SELECT nomRefuge FROM refuge WHERE adresseRefuge='"+i+"'";
+           ResultSet rs = ste.executeQuery(requete);
+           while(rs.next()){
+            Refuge.setNomRefuge(rs.getString("nomRefuge"));
+         }
+        
+        return Refuge.getNomRefuge();
     }
     
     public Refuge RechercherRefugeByImm(String i)
@@ -159,7 +181,7 @@ public Statement ste;
                  listRefuges.add(listForm);
             }
              }catch (SQLException ex) {
-                 System.out.println(" erreur AfficherRefugeByCin()");
+                 System.out.println("erreur AfficherRefugeByCin()");
         }
         return listRefuges ;
     }

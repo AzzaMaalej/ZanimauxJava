@@ -416,7 +416,7 @@ public class ProfilManagerController implements Initializable {
                 }
        else{
              try {
-                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
                  Stage myWindow = (Stage) btnRetour.getScene().getWindow();
                  Scene sc = new Scene(root);
                  myWindow.setScene(sc);

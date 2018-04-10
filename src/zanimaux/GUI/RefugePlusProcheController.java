@@ -8,7 +8,10 @@ package zanimaux.GUI;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.Animation;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.InfoWindow;
+import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MapOptions;
 import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
@@ -23,6 +26,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
@@ -58,16 +63,23 @@ public class RefugePlusProcheController implements Initializable ,MapComponentIn
     private GoogleMap map;
     private StringProperty address = new SimpleStringProperty();
     ArrayList<LatLong> markers = new ArrayList(); 
+   
+   
+
+    ArrayList<String> listAdresses=new ArrayList();
     private static LatLong latLonfProche;
+    private static String re;
+    
     /**
      * Initializes the controller class.
      */
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
          addressTextField.setVisible(false);
          mapView.addMapInializedListener(this);
-        System.out.println(markers.size());
+       
         // TODO
     }    
 
@@ -106,10 +118,12 @@ public class RefugePlusProcheController implements Initializable ,MapComponentIn
             map = mapView.createMap(mapOptions);
             //Geocoder
              int i = 0;
-           
+          
             RefugeService rs= new RefugeService();
+            RefugeService rs2= new RefugeService();
             Refuge refuge=new Refuge();
             ResultSet r =rs.AfficherTousRefuge();
+              
             while(r.next()){
                
                 i++;
@@ -119,10 +133,13 @@ public class RefugePlusProcheController implements Initializable ,MapComponentIn
                 refuge.setCodePostaleRefuge(r.getInt("codePostaleRefuge"));
                 refuge.setGouvernementRefuge(r.getString("gouvernementRefuge"));
             MarkerOptions markerOptions = new MarkerOptions();
+            MarkerOptions markerOptionsUser = new MarkerOptions();
+           listAdresses.add(refuge.getAdresseRefuge());
+             
             geocodingService.geocode(refuge.getAdresseRefuge()+" "+refuge.getGouvernementRefuge(), (GeocodingResult[] results, GeocoderStatus status) -> {
                 
                 LatLong latLong = null;
-                
+               
                 if( status == GeocoderStatus.ZERO_RESULTS) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
                     alert.show();
@@ -135,54 +152,92 @@ public class RefugePlusProcheController implements Initializable ,MapComponentIn
                     latLong = new LatLong(results[0].getGeometry().getLocation().getLatitude(), results[0].getGeometry().getLocation().getLongitude());
                     
                 }
+                 
+                 markers.add(latLong);
+                 
+
+                
                 //get Lat et Long de user
                  User user=Session.getLoggedInUser();
-            geocodingService2.geocode(user.getAdresse()+" "+user.getVille(), (GeocodingResult[] results2, GeocoderStatus status2) -> {
+                 geocodingService2.geocode(user.getAdresse()+" "+user.getVille(), (GeocodingResult[] results2, GeocoderStatus status2) -> {
                 
-                LatLong latLong2 = null;
                 
-                if( status2 == GeocoderStatus.ZERO_RESULTS) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
-                    alert.show();
-                    return;
-                } else if( results2.length > 1 ) {
-                    Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, showing the first one.");
-                    alert.show();
-                    latLong2 = new LatLong(results2[0].getGeometry().getLocation().getLatitude(), results2[0].getGeometry().getLocation().getLongitude());
-                } else {
-                    latLong2 = new LatLong(results2[0].getGeometry().getLocation().getLatitude(), results2[0].getGeometry().getLocation().getLongitude());
+                                      
+                  
+                        LatLong latLong2 = null;
+                        
+                        if( status2 == GeocoderStatus.ZERO_RESULTS) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR, "No matching address found");
+                            alert.show();
+                            return;
+                        } else if( results2.length > 1 ) {
+                            Alert alert = new Alert(Alert.AlertType.WARNING, "Multiple results found, showing the first one.");
+                            alert.show();
+                            latLong2 = new LatLong(results2[0].getGeometry().getLocation().getLatitude(), results2[0].getGeometry().getLocation().getLongitude());
+                        } else {
+                            latLong2 = new LatLong(results2[0].getGeometry().getLocation().getLatitude(), results2[0].getGeometry().getLocation().getLongitude());
+                            
+                        }
+                        
+                        LatLong latLonfProche = find_closest_marker(latLong2.getLatitude(),latLong2.getLongitude());
+                        System.out.println(latLonfProche.toString());
+                        int k =markers.indexOf(latLonfProche);
+                        //Add the refuge marker to the map
+                        map.setCenter(latLonfProche);
+                        
+                        markerOptions.position( latLonfProche )
+                                .visible(Boolean.TRUE)
+                                .title("le plus proche refuge")
+                                ;
+                        
+                        Marker marker = new Marker( markerOptions );
+                        
+                        map.addMarker(marker);
+                        //nom de refuge le plus proche
+                          try {
+                        String adr = listAdresses.get(k);
+                        
                     
-                }
-                    LatLong latLonfProche = find_closest_marker(latLong2.getLatitude(),latLong2.getLongitude());  }); 
-                if(latLong!=latLonfProche){
-                 markers.add(latLong);
-                map.setCenter(latLong);
-                //Add a marker to the map
-                markerOptions.position( latLong )
-                        .visible(Boolean.TRUE)
-                        .title(refuge.getNomRefuge())
-                        ;
-                
-                Marker marker = new Marker( markerOptions );
-               
-                map.addMarker(marker);              
-                
-                }else{
-                          map.setCenter(latLonfProche);
-                //Add a marker to the map
-                MarkerOptions markerOptions2 = new MarkerOptions();
-                markerOptions2.position( latLonfProche )
-                        .visible(Boolean.TRUE)
-                        .title("Refuge plus proche")
-                        .icon("Zanimaux/zanimaux.Image/patte.png")
-                        ;
-                
-                Marker marker2 = new Marker( markerOptions2 );
-               
-                map.addMarker(marker2);
-                }
+                         re = rs.NomRefugeByAddress(adr);
+                        
+                        
+                        
+                        //distance en Kilometre
+                        double distance = distance(latLong2.getLatitude(),latLong2.getLongitude(), latLonfProche.getLatitude(),latLonfProche.getLongitude());
+                        InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+                        infoWindowOptions.content("<h2>Nom Refuge:"+re+"</h2>"
+                                + "<b>Distance</b> entre vous et le refuge:<br> <b>"
+                                + distance+"</b> kilomètres" );
+                        
+                        InfoWindow RefugeInfoWindow = new InfoWindow(infoWindowOptions);
+                        RefugeInfoWindow.open(map, marker);
+                        //add marker and info window to the user place
+                        
+                        markerOptionsUser.position( latLong2 )
+                                .visible(Boolean.TRUE)
+                                .title("Votre position "+user.getPrenom()+" "+user.getNom())
+                                .animation(Animation.BOUNCE)      ;
+                        
+                        Marker markeruser = new Marker( markerOptionsUser );
+                        markeruser.setAnimation(Animation.BOUNCE);
+                        
+                        map.addMarker(markeruser);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(RefugePlusProcheController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                   
+                    
+                 
+        
+        
             }); 
-           
+                 
+                
+          
+                 
+                
+            }); 
+            
               
           
             
@@ -193,6 +248,7 @@ public class RefugePlusProcheController implements Initializable ,MapComponentIn
         }
         
     }
+    
     
     public LatLong find_closest_marker(double lat1,double lon1 ) {    
     double pi = Math.PI;
@@ -226,7 +282,25 @@ public class RefugePlusProcheController implements Initializable ,MapComponentIn
 
     // (debug) The closest marker is:
         System.out.println(markers.get(closest));
+        
         return(markers.get(closest));
 }
+    public double distance(double lat1, double lng1,double lat2,double lng2) {
+        double radlat1 = Math.PI * lat1 / 180;
+        double radlat2 = Math.PI * lat2 / 180;
+        double radlon1 = Math.PI * lng1 / 180;
+        double radlon2 = Math.PI * lng2 / 180;
+        double theta = lng1 - lng2;
+        double radtheta = Math.PI * theta / 180;
+        double dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist);
+        dist = dist * 180 / Math.PI;
+        dist = dist * 60 * 1.1515;
+
+        //Get in in kilometers
+        dist = dist * 1.609344;
+
+        return dist;
+    }
 
 }

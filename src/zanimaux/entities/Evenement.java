@@ -41,6 +41,10 @@ public class Evenement {
         this.nbPlace = nbPlace;
     }
 
+<<<<<<< HEAD
+    public Evenement(String cinUser, String lieu, Date dateDebut, Date dateFin, String type, String titre, String description ,int nbPlace, String imageEvt) {
+        this.cinUser = cinUser;
+=======
     public Evenement(String lieu, Date dateDebut, Date dateFin, String type, String titre, String description, int nbPlace,String imageEvt) {
         this.lieu = lieu;
         this.dateDebut = dateDebut;
@@ -60,6 +64,7 @@ public class Evenement {
 
     public Evenement(String lieu, Date dateDebut, Date dateFin, String type, String titre, String description,int nbPlace,String imageEvt,String cinUser) {
         
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
         this.lieu = lieu;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -68,10 +73,22 @@ public class Evenement {
         this.description = description;
         this.nbPlace=nbPlace;
         this.imageEvt = imageEvt;
-        this.cinUser = cinUser;
     }
+<<<<<<< HEAD
+    
+    
+    
+    
+
+   
+
+    public Evenement() {
+    }
+   
+=======
 
     
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
 
     public int getIdEvt() {
         return idEvt;

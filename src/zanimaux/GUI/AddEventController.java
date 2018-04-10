@@ -33,6 +33,7 @@ import zanimaux.Service.EvenementService;
 import zanimaux.Service.Userservice;
 import zanimaux.entities.Evenement;
 import zanimaux.entities.User;
+import zanimaux.util.Session;
 
 /**
  * FXML Controller class
@@ -103,7 +104,7 @@ public class AddEventController implements Initializable {
 
     @FXML
     private void CreateEvent(ActionEvent event)throws SQLException, IOException  {
-        
+        User usr = Session.getLoggedInUser();
         EvenementService se= new EvenementService();
             LocalDate d = dateDebut.getValue();
          Date dated = Date.from(d.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -113,7 +114,7 @@ public class AddEventController implements Initializable {
        
      
             
-          Evenement e=new Evenement(lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());
+          Evenement e=new Evenement(usr.getCin(),lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());
            
           
            se.ajouterEvenement(e);

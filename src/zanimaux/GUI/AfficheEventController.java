@@ -32,6 +32,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -56,9 +57,17 @@ import zanimaux.entities.Animal;
 import zanimaux.entities.Evenement;
 import zanimaux.entities.Parc;
 import zanimaux.entities.Participation;
+<<<<<<< HEAD
+
 import zanimaux.Service.RefugeService;
 import zanimaux.entities.Animal;
 import zanimaux.entities.Evenement;
+
+=======
+import zanimaux.Service.RefugeService;
+import zanimaux.entities.Animal;
+import zanimaux.entities.Evenement;
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
 import zanimaux.entities.Refuge;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -106,6 +115,10 @@ public class AfficheEventController implements Initializable {
     private ImageView iv;
     @FXML
     private Button buttonModifierEvent;
+<<<<<<< HEAD
+
+=======
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
     public String filePath;
     public int a;
     @FXML
@@ -134,6 +147,13 @@ public class AfficheEventController implements Initializable {
     public int nbpMax;
     @FXML
     private Label plein;
+<<<<<<< HEAD
+    int nbPages =0;
+    
+    Pagination pagination=new Pagination();
+        ArrayList<Evenement> listeEvt ;
+=======
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
 
 
     /**
@@ -141,18 +161,18 @@ public class AfficheEventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            consulterEvent();
-        } catch (SQLException ex) {
-            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+      
+        afficher();
+       
         
     } 
         // TODO
-    void consulterEvent() throws SQLException {
+    public ScrollPane consulterEvent(int pageIndex) {
+        System.out.println(pageIndex);
     
         User usr = Session.getLoggedInUser();
-        EvenementService es = null;
+       /* EvenementService es = null;
         try {
             es = new EvenementService();
         } catch (SQLException ex) {
@@ -160,11 +180,11 @@ public class AfficheEventController implements Initializable {
         }
     
         Evenement e1=new Evenement();
-        ResultSet r= es.rechercheEvent();
+        ResultSet r= es.rechercheEvent();*/
         
          ScrollPane sp = new ScrollPane();
     
-          sp.setPrefSize(900, 650);
+         sp.setPrefSize(900, 650);
         //sp.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
 //         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
         VBox vb = new VBox();
@@ -173,20 +193,15 @@ public class AfficheEventController implements Initializable {
         vb.setPadding(new Insets(100, 30, 0, 30));
         vb.setSpacing(70);
         int i=0;
-        try {
-            while(r.next()){
+       
+            for(int j=pageIndex*2;j<listeEvt.size();j++){
                 i++;
-                Label lbl = new Label();
-                e1.setIdEvt(r.getInt("idEvt"));
-                e1.setLieu(r.getString("lieu"));
-                e1.setDateDebut(r.getDate("dateDebut"));
-                e1.setDateFin(r.getDate("dateFin"));
-                e1.setType(r.getString("type"));
-                e1.setTitre(r.getString("titre"));
-                e1.setDescription(r.getString("description"));
-                e1.setNbPlace(r.getInt("nb_place"));
-                e1.setImageEvt(r.getString("image_evt"));
-               
+                if(j<=(pageIndex*2+(2-1))){
+                    
+                    
+                
+               Evenement e1 = new Evenement();
+               e1= listeEvt.get(j);
                 ImageView im= new ImageView();
                 Image image= new Image("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
                 im.setImage(image);
@@ -197,7 +212,7 @@ public class AfficheEventController implements Initializable {
                 
                 Button consulter = new Button();
                 Button modifier = new Button();
-                             modifier.setId(String.valueOf(e1.getIdEvt()));
+               modifier.setId(String.valueOf(e1.getIdEvt()));
                
                 modifier.setOnAction(x->{
                     try {
@@ -224,8 +239,11 @@ public class AfficheEventController implements Initializable {
                  supprimer.setText("Supprimer");
                  supprimer.setVisible(false);
                  System.out.println(usr.getCin());
-                 System.out.println(r.getString("cin"));
-                 if(usr.getCin().equals (r.getString("cin"))){
+                 System.out.println(e1.getCinUser());
+                 
+                 
+                 
+                 if(usr.getCin().equals (e1.getCinUser())){
                      modifier.setVisible(true);
                       supprimer.setVisible(true);
                      
@@ -282,16 +300,66 @@ public class AfficheEventController implements Initializable {
                     hb.getChildren().add(vp) ;
                     vb.getChildren().add(hb);
                 
-                       } } catch (SQLException ex) {
-            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }}
         
 
            
         sp.setContent(vb);
-         anchorEvent.getChildren().setAll(sp);
+        // anchorEvent.getChildren().setAll(sp);
         
-           
+        return sp;   
+    }
+    
+    
+    void remplir()throws SQLException{
+        EvenementService es= new EvenementService();
+        ResultSet r= es.rechercheEvent();
+        listeEvt= new ArrayList<Evenement>();
+        while(r.next()){ 
+                    Evenement e1=new Evenement();
+
+            e1.setIdEvt(r.getInt("idEvt"));
+            e1.setCinUser(r.getString("cin"));
+                e1.setLieu(r.getString("lieu"));
+                e1.setDateDebut(r.getDate("dateDebut"));
+                e1.setDateFin(r.getDate("dateFin"));
+                e1.setType(r.getString("type"));
+                e1.setTitre(r.getString("titre"));
+                e1.setDescription(r.getString("description"));
+                e1.setNbPlace(r.getInt("nb_place"));
+                e1.setImageEvt(r.getString("image_evt"));
+               
+            listeEvt.add(e1);
+            
+            
+        }
+       int nb=listeEvt.size();
+        if ((nb%2)==0){
+            nbPages=nb/2; 
+        }
+        else{
+        nbPages=((nb/2)+1); 
+  
+        }
+    }
+    
+    void afficher(){
+          try {
+            remplir();
+        } catch (SQLException ex) {
+            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      
+        pagination.setPageCount(nbPages);
+        pagination.setPageFactory((Integer indexPage)->consulterEvent(indexPage));
+        AnchorPane.setTopAnchor(pagination, 10.0);
+        AnchorPane.setLeftAnchor(pagination, 10.0);
+        AnchorPane.setRightAnchor(pagination, 10.0);
+        AnchorPane.setBottomAnchor(pagination, 10.0);
+        anchorEvent.getChildren().add(pagination);
+        
+        
     }
     
     void consulterDetailsEvent(ActionEvent e) throws SQLException{
@@ -353,7 +421,8 @@ public class AfficheEventController implements Initializable {
       
        ps.ajouterParticipation(p);
        es.updateNbParticipants(a);
-       consulterEvent();
+       //consulterEvent();
+       afficher();
   
     }
     
@@ -367,7 +436,8 @@ public class AfficheEventController implements Initializable {
        
       ps.supprimerParticipation(a);
        es.updateNbParticipantsAfterAnnulation(a);
-       consulterEvent();
+       //consulterEvent();
+       afficher();
   
     }
     
@@ -418,7 +488,7 @@ public class AfficheEventController implements Initializable {
      @FXML
     void modifier(ActionEvent e ) throws SQLException,IOException{
          
-         
+         User usr = Session.getLoggedInUser();
            
           System.out.println(a);
           EvenementService es = new EvenementService();
@@ -428,10 +498,11 @@ public class AfficheEventController implements Initializable {
              LocalDate d2 = dateFin.getValue();
          Date datef = Date.from(d2.atStartOfDay(ZoneId.systemDefault()).toInstant());
        
-        Evenement e1=new Evenement(lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());
+        Evenement e1=new Evenement(usr.getCin(),lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());
              
-         es.modifierEvenement(a, e1);
-         consulterEvent();
+        es.modifierEvenement(a, e1);
+         //consulterEvent();
+         afficher();
                
     }
 
@@ -440,7 +511,8 @@ public class AfficheEventController implements Initializable {
          
           EvenementService es = new EvenementService();
          es.supprimerEvenement(a);
-         consulterEvent();
+         //consulterEvent();
+         afficher();
          
        
     }
@@ -448,6 +520,8 @@ public class AfficheEventController implements Initializable {
     private void uploadImage(ActionEvent event) {
         BtnChoixImage.setText(handle());
     }
+<<<<<<< HEAD
+=======
     
    void editEvent(ActionEvent e) throws SQLException {
 //    
@@ -701,6 +775,7 @@ public class AfficheEventController implements Initializable {
 //      }
 //        sp.setContent(vb);
 //         anchorEvent.getChildren().setAll(sp);
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
 
    }
     @FXML
@@ -720,4 +795,11 @@ public class AfficheEventController implements Initializable {
     private void connexionAction(ActionEvent event) {
     }
     
+<<<<<<< HEAD
+ 
+   
+
+    
+=======
+>>>>>>> a8f1c266bc59f9549703b1752ccc80e15088f268
 }

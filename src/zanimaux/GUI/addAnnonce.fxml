@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="zanimaux.GUI.AddAnnonceController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AddAnnonceController">
    <children>
-      <AnchorPane id="AnchorEvt" fx:id="AnchorPaneEvent" prefHeight="587.0" prefWidth="600.0" style="-fx-background-color: #B8C6C4;">
+      <AnchorPane id="AnchorEvt" fx:id="AnchorPaneAnnonce" prefHeight="587.0" prefWidth="600.0" style="-fx-background-color: #B8C6C4;">
          <children>
             <TextField fx:id="typeA" alignment="TOP_CENTER" layoutX="181.0" layoutY="37.0" prefHeight="32.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Type">
                <font>
@@ -28,7 +27,7 @@
                </font>
             </TextArea>
             <Button id="BtnChoixImage" fx:id="BtnChoixImageA" layoutX="181.0" layoutY="409.0" mnemonicParsing="false" onAction="#chooseAction" prefHeight="29.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 2px 2px 2px 2px;" text="Image.." />
-            <Button fx:id="buttonAnnCreate" layoutX="252.0" layoutY="548.0" mnemonicParsing="false" onAction="#CreateEvent" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: green;" text="Creer" />
+            <Button fx:id="buttonAnnCreate" layoutX="252.0" layoutY="548.0" mnemonicParsing="false" onAction="#CreateAnnonce" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: green;" text="Creer" />
             <ImageView fx:id="iv" fitHeight="169.0" fitWidth="108.0" layoutX="478.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>

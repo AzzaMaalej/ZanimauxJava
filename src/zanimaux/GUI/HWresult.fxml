@@ -26,7 +26,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
+            <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" onAction="#goTovet" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -46,7 +46,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+            <Button layoutY="525.0" mnemonicParsing="false" onAction="#goToAnn" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -128,7 +128,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="298.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="298.0" layoutY="13.0" onMouseClicked="#affichePanierAction" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Image/panier.png" />
                </image>
@@ -197,54 +197,14 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apqst" prefHeight="794.0" prefWidth="686.0" visible="false">
+            <AnchorPane fx:id="apqst" prefHeight="794.0" prefWidth="686.0">
                <children>
                   <ImageView fitHeight="794.0" fitWidth="686.0">
                      <image>
                         <Image url="@../ImageUtile/weight.png" />
                      </image>
                   </ImageView>
-                  <Pane fx:id="pvid11" layoutX="57.0" layoutY="518.0" prefHeight="96.0" prefWidth="146.0" />
-                  <Pane fx:id="pane211" layoutX="66.0" layoutY="595.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
-                     <children>
-                        <Label fx:id="lb111" layoutX="323.0" layoutY="169.0" visible="false" />
-                        <CheckBox fx:id="abdoChoice1" layoutX="109.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </CheckBox>
-                        <Label layoutY="61.0" prefHeight="40.0" prefWidth="103.0" text="  Abdominoplastie&#10; prononcée" textFill="WHITE" />
-                        <CheckBox fx:id="abdoChoice2" layoutX="248.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo2">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </CheckBox>
-                        <Label layoutX="134.0" layoutY="65.0" text=" Abdominoplastie&#10; proportionnelle" textFill="WHITE" />
-                        <Label layoutX="283.0" layoutY="65.0" text="Abdominoplastie absente" textFill="WHITE" />
-                        <CheckBox fx:id="abdoChoice3" layoutX="425.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo3">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </CheckBox>
-                        <Label layoutX="87.0" layoutY="32.0" prefHeight="10.0" prefWidth="486.0" text="3. Jetez un coup d'oeil du côté" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="stop11" fitHeight="32.0" fitWidth="31.0" layoutX="426.0" layoutY="10.0" onMouseClicked="#stop">
-                           <image>
-                              <Image url="@../ImageUtile/stop.jpg" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="play12" fitHeight="32.0" fitWidth="31.0" layoutX="387.0" layoutY="10.0" onMouseClicked="#play">
-                           <image>
-                              <Image url="@../ImageUtile/play.jpg" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="pvid" layoutX="66.0" layoutY="64.0" prefHeight="96.0" prefWidth="146.0" />
-                  <Pane fx:id="pane2" layoutX="66.0" layoutY="140.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
+                  <Pane fx:id="pane2" layoutX="66.0" layoutY="105.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
                      <children>
                         <Label fx:id="lb1" layoutX="323.0" layoutY="169.0" visible="false" />
                         <CheckBox fx:id="coteChoice1" layoutX="142.0" layoutY="71.0" mnemonicParsing="false" onAction="#cote1">
@@ -282,8 +242,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane fx:id="pvid1" layoutX="57.0" layoutY="292.0" prefHeight="96.0" prefWidth="146.0" />
-                  <Pane fx:id="pane21" layoutX="57.0" layoutY="360.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
+                  <Pane fx:id="pane21" layoutX="66.0" layoutY="313.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
                      <children>
                         <Label fx:id="lb11" layoutX="323.0" layoutY="169.0" visible="false" />
                         <CheckBox fx:id="poidChoice1" layoutX="180.0" layoutY="75.0" mnemonicParsing="false" onAction="#poid1">
@@ -323,6 +282,47 @@
                      </children>
                   </Pane>
                   <Label fx:id="lbqst" layoutX="591.0" layoutY="435.0" visible="false" />
+                  <Pane fx:id="pvid" layoutX="57.0" layoutY="24.0" prefHeight="96.0" prefWidth="146.0" />
+                  <Pane fx:id="pvid1" layoutX="66.0" layoutY="255.0" prefHeight="96.0" prefWidth="146.0" />
+                  <Pane fx:id="pvid11" layoutX="76.0" layoutY="459.0" prefHeight="96.0" prefWidth="146.0" />
+                  <Pane fx:id="pane211" layoutX="66.0" layoutY="520.0" prefHeight="122.0" prefWidth="496.0" style="-fx-background-color: #900c3f; -fx-border-radius: 30px; -fx-background-radius: 30px; -fx-border-width: 3;">
+                     <children>
+                        <Label fx:id="lb111" layoutX="323.0" layoutY="169.0" visible="false" />
+                        <CheckBox fx:id="abdoChoice1" layoutX="109.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutY="61.0" prefHeight="40.0" prefWidth="103.0" text="  Abdominoplastie&#10; prononcée" textFill="WHITE" />
+                        <CheckBox fx:id="abdoChoice2" layoutX="248.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="134.0" layoutY="65.0" text=" Abdominoplastie&#10; proportionnelle" textFill="WHITE" />
+                        <Label layoutX="283.0" layoutY="65.0" text="Abdominoplastie absente" textFill="WHITE" />
+                        <CheckBox fx:id="abdoChoice3" layoutX="425.0" layoutY="63.0" mnemonicParsing="false" onAction="#abdo3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Label layoutX="73.0" layoutY="33.0" prefHeight="19.0" prefWidth="404.0" text="3. Jetez un coup d'oeil du côté" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="stop11" fitHeight="32.0" fitWidth="31.0" layoutX="426.0" layoutY="10.0" onMouseClicked="#stop">
+                           <image>
+                              <Image url="@../ImageUtile/stop.jpg" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="play12" fitHeight="32.0" fitWidth="31.0" layoutX="387.0" layoutY="10.0" onMouseClicked="#play">
+                           <image>
+                              <Image url="@../ImageUtile/play.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="apres" layoutX="83.0" layoutY="8.0" prefHeight="575.0" prefWidth="535.0" visible="false">

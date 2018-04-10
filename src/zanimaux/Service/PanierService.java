@@ -79,8 +79,8 @@ public class PanierService {
 
              do{
                  listForm.setCin(cin);
-                 listForm.setSomme(rs.getFloat("somme"));
-                 listForm.setSomme(rs.getFloat("sommeCommande"));
+                 listForm.setSomme(rs.getDouble("somme"));
+                 listForm.setSommeCommande(rs.getDouble("sommeCommande"));
             }while(rs.next());
              
         }} catch (SQLException ex) {
@@ -138,6 +138,7 @@ public class PanierService {
        //si le client a deja ajouter un produit au panier, donc on maj juste la somme de ses achats
         else
         {
+            System.out.println(panier.getSomme());
             panier.setSomme(panier.getSomme()+p.getPrix());
             this.modifPanier(u.getCin(), panier);
         }

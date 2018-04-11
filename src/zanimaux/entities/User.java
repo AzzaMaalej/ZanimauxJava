@@ -21,7 +21,7 @@ public class User {
     private String password;
     private String nom ;
     private String prenom ;
-    private int telephone;
+    private String telephone;
     private String adresse;
     private String ville;
     private int codePostale;
@@ -35,7 +35,15 @@ public class User {
         this.roles = roles;
     }
 
-    public User(String cin, String username, String email, String password, String roles, String nom, String prenom, int telephone, String adresse, String ville, int codePostale) {
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public User(String cin, String username, String email, String password, String roles, String nom, String prenom, String telephone, String adresse, String ville, int codePostale) {
         this.cin = cin;
         this.username = username;
         this.username_canonical = username;
@@ -129,11 +137,9 @@ public class User {
         this.prenom = prenom;
     }
 
-    public int getTelephone() {
-        return telephone;
-    }
+   
 
-    public User(String cin, String username, String email, String password, String nom, String prenom, int telephone, String adresse, String ville, int codePostale, String roles) {
+    public User(String cin, String username, String email, String password, String nom, String prenom, String telephone, String adresse, String ville, int codePostale, String roles) {
         this.cin = cin;
         this.username = username;
         this.email = email;
@@ -147,9 +153,6 @@ public class User {
         this.roles = roles;
     }
 
-    public void setTelephone(int telephone) {
-        this.telephone = telephone;
-    }
 
     @Override
     public int hashCode() {

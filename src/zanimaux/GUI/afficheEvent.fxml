@@ -150,12 +150,16 @@
                   </ImageView>
                </graphic>
             </Button>
+<<<<<<< HEAD
+            <TextField fx:id="rechercheBtn" layoutX="47.0" layoutY="10.0" promptText="Recherche ..." />
+=======
             <TextField fx:id="rechercheBtn" layoutX="14.0" layoutY="10.0" onKeyPressed="#rechercher" promptText="Recherche ..." />
             <Button fx:id="addEventBtn" layoutX="207.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToAddEvent" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Créer Evenement">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
             </Button>
+>>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
          </children>
       </AnchorPane>
       <Pane fx:id="pane" layoutX="544.0" layoutY="76.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">
@@ -244,8 +248,13 @@
                      <font>
                         <Font name="Comic Sans MS Bold" size="13.0" />
                      </font></Label>
+<<<<<<< HEAD
+                  <Button fx:id="btnParticiper" layoutX="408.0" layoutY="399.0" mnemonicParsing="false" onAction="#participer" style="-fx-background-color: transparent;" text="Participer" />
+                  <Button fx:id="btnAnnuler" layoutX="510.0" layoutY="399.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+=======
                   <Button fx:id="btnParticiper" layoutX="408.0" layoutY="399.0" mnemonicParsing="false" onAction="#participer" style="-fx-background-color: green; -fx-background-radius: 50;" text="Participer" />
                   <Button fx:id="btnAnnuler" layoutX="510.0" layoutY="399.0" mnemonicParsing="false" onAction="#annuler" style="-fx-background-color: red; -fx-background-radius: 50;" text="Annuler" />
+>>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
                   <Label fx:id="plein" layoutX="405.0" layoutY="283.0" text="Plein!!" textFill="RED" visible="false">
                      <font>
                         <Font name="Comic Sans MS" size="27.0" />

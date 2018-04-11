@@ -103,7 +103,7 @@ public class Userservice {
         pre.setString(8, g.getRoles());
         pre.setString(9, g.getNom());
         pre.setString(10, g.getPrenom());
-        pre.setInt(11, g.getTelephone());
+        pre.setString(11, g.getTelephone());
         pre.setString(12, g.getAdresse());
         pre.setString(13, g.getVille());
         
@@ -168,7 +168,7 @@ public class Userservice {
                  
                  user.setNom(rs.getString("nom"));
                  user.setPrenom(rs.getString("prenom"));
-                 user.setTelephone(rs.getInt("telephone"));
+                 user.setTelephone(rs.getString("telephone"));
                  user.setAdresse(rs.getString("adresse"));
                  user.setVille(rs.getString("ville"));
                  user.setCodePostale(rs.getInt("codePostale"));
@@ -228,7 +228,7 @@ public class Userservice {
                  
                  listForm.setNom(rs.getString("nom"));
                  listForm.setPrenom(rs.getString("prenom"));
-                 listForm.setTelephone(rs.getInt("telephone"));
+                 listForm.setTelephone(rs.getString("telephone"));
                  listForm.setAdresse(rs.getString("adresse"));
                  listForm.setVille(rs.getString("ville"));
                  listForm.setCodePostale(rs.getInt("codePostale"));
@@ -268,7 +268,7 @@ public class Userservice {
                 user.setPrenom(rs.getString(14));
                 
                 
-                user.setTelephone(rs.getInt(15));
+                user.setTelephone(rs.getString(15));
                 
                 user.setAdresse(rs.getString(16));
                 user.setVille(rs.getString(17));
@@ -299,7 +299,7 @@ public class Userservice {
             
             pst.setString(2,u.getNom());
             pst.setString(3,u.getPrenom()); 
-            pst.setInt(4,u.getTelephone());
+            pst.setString(4,u.getTelephone());
             pst.setString(5,u.getAdresse()); 
             pst.setString(6,u.getVille()); 
             pst.setInt(7,u.getCodePostale());

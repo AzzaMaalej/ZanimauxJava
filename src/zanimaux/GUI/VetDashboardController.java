@@ -6,8 +6,6 @@
 
 package zanimaux.GUI;
 
-import com.calendarfx.model.Calendar;
-import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
@@ -48,8 +46,11 @@ public class VetDashboardController implements Initializable {
     @FXML
     private Button btnClient;
     @FXML
+    private Button btnClient1;
+    @FXML
     private Label LogOut;
- User u= Session.getLoggedInUser();
+
+    User u= Session.getLoggedInUser();
     /**
      * Initializes the controller class.
      */
@@ -187,5 +188,22 @@ public class VetDashboardController implements Initializable {
                  Logger.getLogger(RefugeDashboardController.class.getName()).log(Level.SEVERE, null, ex);
              }
     }
+    
+
+    @FXML
+    private void Rendezvs(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnClient.getScene().getWindow(); 
+        stage.setTitle("Demandes");
+        Parent root = FXMLLoader.load(getClass().getResource("ApprouverRdv.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(RefugeDashboardController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    
     
 }

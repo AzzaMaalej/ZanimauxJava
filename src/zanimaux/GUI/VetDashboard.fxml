@@ -50,6 +50,14 @@
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
             </Button>
+            <Button fx:id="btnClient1" layoutX="80.0" layoutY="285.0" mnemonicParsing="false" onAction="#Rendezvs" prefHeight="20.0" prefWidth="180.0" style="-fx-background-color: #090a0c; -fx-background-radius: 5,4,3,5; -fx-background-insets: 0,1,2,0; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: white; -fx-padding: 10 20 10 20;" text="Rendez Vs">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <ImageView fitHeight="20.0" fitWidth="19.0" layoutX="615.0" layoutY="15.0" onMouseClicked="#Deconnexion" pickOnBounds="true" preserveRatio="true">

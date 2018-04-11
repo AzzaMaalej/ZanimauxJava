@@ -121,10 +121,13 @@ public class AfficheAnnonceController implements Initializable {
     private Button btnRefuge;
     @FXML
     private Button btnAccueil;
+<<<<<<< HEAD
+=======
     @FXML
     private Button addAnnBtn;
     @FXML
     private Button parc;
+>>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
 
 
     /**
@@ -429,6 +432,49 @@ public class AfficheAnnonceController implements Initializable {
       
   }
     
+<<<<<<< HEAD
+    
+    
+     /*void remplirFavoris()throws SQLException{
+         //a=Integer.parseInt(((Node) e.getSource()).getId());
+          User usr = Session.getLoggedInUser();
+        AnnonceFavorisService afs= new AnnonceFavorisService();
+        Annonce a1=new Annonce();
+        a1= afs.mesAnnonceFavoris(usr.getCin());
+        listeAnn= new ArrayList<Annonce>();
+        while(r.next()){ 
+        // Annonce a1=new Annonce();
+
+            a1.setIdAnnonce(r.getInt("idAnnonce"));
+            a1.setCinUser(r.getString("cin"));            
+                a1.setType(r.getString("type"));
+                a1.setTitre(r.getString("titre"));
+                a1.setDescription(r.getString("description"));
+                
+                a1.setPieceJointe(r.getString("photoAnimal"));
+               
+            listeAnn.add(a1);
+            
+            
+        }
+       int nb=listeAnn.size();
+        if ((nb%2)==0){
+            nbPages=nb/2; 
+        }
+        else{
+        nbPages=((nb/2)+1); 
+  
+        }
+    }*/
+    
+    @FXML
+   void afficherFavoris() throws SQLException{
+        User usr = Session.getLoggedInUser();
+         AnnonceFavorisService afs=new AnnonceFavorisService();
+          AnnonceFavoris af =new AnnonceFavoris(a,usr.getCin());
+          afs.mesAnnonceFavoris(usr.getCin());
+          remplir();        
+=======
     void remplirFav()throws SQLException{
         User usr = Session.getLoggedInUser();
         AnnonceFavorisService afs= new AnnonceFavorisService();
@@ -475,6 +521,7 @@ public class AfficheAnnonceController implements Initializable {
         anchorEvent.getChildren().add(pagination);
         
         
+>>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
     }
 
     @FXML
@@ -489,6 +536,8 @@ public class AfficheAnnonceController implements Initializable {
         } catch (IOException ex) {
            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
        }
+<<<<<<< HEAD
+=======
         
     }
 
@@ -606,11 +655,110 @@ public class AfficheAnnonceController implements Initializable {
 
     @FXML
     private void AfficherParc(ActionEvent event) {
+>>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
         
          try {
         Stage stage=(Stage) parc.getScene().getWindow(); 
         stage.setTitle("Annonce");
         Parent root = FXMLLoader.load(getClass().getResource("ListeParc.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToEvent(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnEvenement.getScene().getWindow(); 
+        stage.setTitle("evenement");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToAnnonce(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnAnnonce.getScene().getWindow(); 
+        stage.setTitle("annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToMagasin(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnMagasin.getScene().getWindow(); 
+        stage.setTitle("magasin");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToVet(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnVet.getScene().getWindow(); 
+        stage.setTitle("vet");
+        Parent root = FXMLLoader.load(getClass().getResource("AffichageCabinets.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToPetSitter(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnPetSitter.getScene().getWindow(); 
+        stage.setTitle("petSitter");
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilPetSitter.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToRefuge(ActionEvent event) {
+        try {
+        Stage stage=(Stage) btnRefuge.getScene().getWindow(); 
+        stage.setTitle("refuge");
+        Parent root = FXMLLoader.load(getClass().getResource("GestionRefuges.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToAccueil(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnAccueil.getScene().getWindow(); 
+        stage.setTitle("accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

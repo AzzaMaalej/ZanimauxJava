@@ -89,6 +89,12 @@ public class AccueilDresseurController implements Initializable {
     private Button editp;
     @FXML
     private Button listp;
+    @FXML
+    private Button vet;
+    @FXML
+    private Button refuge;
+    @FXML
+    private Button annonce;
 
     /**
      * Initializes the controller class.
@@ -164,6 +170,7 @@ public class AccueilDresseurController implements Initializable {
     }
     
     
+   //redirection page magasin
     @FXML
     void handleButtonAction(ActionEvent event) throws SQLException {
 
@@ -179,6 +186,69 @@ public class AccueilDresseurController implements Initializable {
        }
 
     }
+
+    
+//redirection page afficheEvent
+     @FXML
+    private void onClickEvenementAction(ActionEvent event) throws SQLException {
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Afficher Evenement");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+ //redirection page VetAffiche   
+ @FXML
+    private void vetAffiche(ActionEvent event) {
+         try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Vet");
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    
+    //redirection page annonce
+    @FXML
+    private void Annonce(ActionEvent event) {
+         try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Annonces");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    //redirection page refugeClient
+    @FXML
+    private void AfficherRefugeAction(ActionEvent event) {
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("NOS Refuges");
+        Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
     
     @FXML
     void RedirectPromAction(ActionEvent event) throws SQLException {
@@ -196,21 +266,7 @@ public class AccueilDresseurController implements Initializable {
 
     }
 
-    
-
-     @FXML
-    private void onClickEvenementAction(ActionEvent event) throws SQLException {
-        try {
-        Stage stage=(Stage) button.getScene().getWindow(); 
-        stage.setTitle("Ajouter Evenement");
-        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        } catch (IOException ex) {
-           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }
+ 
     
      @FXML
     private void parcAction(ActionEvent event) throws SQLException {

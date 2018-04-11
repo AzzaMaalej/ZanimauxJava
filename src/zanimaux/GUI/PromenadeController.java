@@ -31,6 +31,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -57,6 +58,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import zanimaux.Service.AvisService;
 import zanimaux.Service.PromenadeService;
 import zanimaux.entities.Promenade;
 import zanimaux.entities.User;
@@ -148,8 +150,18 @@ public class PromenadeController implements Initializable {
           Text t5 = new Text("Durée : ");
           t5.setFont(Font.font("Verdana", 15));
           t5.setFill(Color.web("#0076a3"));
-          Text t6 =new Text("Du"+m1.getDatedebutPromenade()+"Au"+m1.getDatefinPromenade());
+          Text t6 =new Text("Du"+m1.getDatedebutPromenade()+" Au "+m1.getDatefinPromenade());
           t6.setFont(Font.font("Verdana", 14) );
+          Text t7 = new Text("Moyenne : ");
+          AvisService av = new AvisService();
+          t7.setFont(Font.font("Verdana", 15));
+          t7.setFill(Color.web("#0076a3"));
+          Text t8 = new Text(Double.toString(av.moyenne(m1.getId())));
+          ImageView rats= new ImageView();
+            Image imageStar= new Image("zanimaux/ImageUtile/star.png",26,26,false,false) ;
+            rats.setImage(imageStar);
+            HBox rate = new HBox(t8,rats);
+            rate.setAlignment(Pos.CENTER);
           
           Image imageDecline = new Image("zanimaux/ImageUtile/delete.png",26,26,false,false);
           Image imageModif = new Image("zanimaux/ImageUtile/pencil.png",26,26,false,false);
@@ -177,7 +189,7 @@ public class PromenadeController implements Initializable {
                 });
          
          HBox h = new HBox(b, b1);
-         h.setSpacing(50);
+         h.setSpacing(110);
           VBox vbParc = new VBox(); 
           vbParc.setPadding(new Insets(-60,0,30,30));
           vbParc.setSpacing(20);
@@ -191,6 +203,8 @@ public class PromenadeController implements Initializable {
           vbParc.getChildren().add(t);
           vbParc.getChildren().add(t5);
           vbParc.getChildren().add(t6);
+          vbParc.getChildren().add(t7);
+          vbParc.getChildren().add(rate);
           vbParc.getChildren().add(h);
          
 

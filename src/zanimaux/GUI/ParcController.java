@@ -28,6 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -52,7 +53,9 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import zanimaux.Service.AvisService;
 import zanimaux.Service.ParcService;
+import zanimaux.entities.Avis;
 import zanimaux.entities.Parc;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -91,7 +94,7 @@ public class ParcController implements Initializable {
     public void initialize(URL url, ResourceBundle rb)  {
         User u= Session.getLoggedInUser();
         userName.setText(u.getUsername());
-        
+       
         ParcService m=null;
         try {
             m = new ParcService();
@@ -139,7 +142,16 @@ public class ParcController implements Initializable {
           t4.setFill(Color.web("#0076a3"));
           Text t =new Text(m1.getAdresseParc()+" "+m1.getVilleParc()+", "+m1.getCodePostaleParc());
           t.setFont(Font.font("Verdana", 14) );
-          
+          AvisService av = new AvisService();
+          Text t5 = new Text("Moyenne du parc : ");
+          t5.setFont(Font.font("Verdana", 15));
+          t5.setFill(Color.web("#0076a3"));
+          Text t6 = new Text(Double.toString(av.moyenne(m1.getId())));
+          ImageView rats= new ImageView();
+            Image imageStar= new Image("zanimaux/ImageUtile/star.png",26,26,false,false) ;
+            rats.setImage(imageStar);
+            HBox rate = new HBox(t6,rats);
+            rate.setAlignment(Pos.CENTER);
           Image imageDecline = new Image("zanimaux/ImageUtile/delete.png",26,26,false,false);
           Image imageModif = new Image("zanimaux/ImageUtile/pencil.png",26,26,false,false);
             Button b = new Button();
@@ -178,7 +190,10 @@ public class ParcController implements Initializable {
           vbParc.getChildren().add(t2);
           vbParc.getChildren().add(t4);
           vbParc.getChildren().add(t);
+          vbParc.getChildren().add(t5);
+          vbParc.getChildren().add(rate);
           vbParc.getChildren().add(h);
+          
          
 
           

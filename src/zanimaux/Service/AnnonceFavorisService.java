@@ -89,28 +89,20 @@ public class AnnonceFavorisService {
         }
      }
      
-      public Annonce mesAnnonceFavoris(String cin)
+     public ResultSet mesAnnonceFavoris(String cin)
     { 
-
-        Annonce listeAnnonce = new Annonce();
+        ResultSet rs=null;
         try {  
             String requete = "SELECT * FROM annonce WHERE `idAnnonce`in (SELECT idA from annonce_favoris where cin= '"+cin+"')";
 
            
-            ResultSet rs = ste.executeQuery(requete);
+             rs = ste.executeQuery(requete);
 
-             while(rs.next()){
-                 listeAnnonce.setType(rs.getString("type"));
-                 listeAnnonce.setTitre(rs.getString("titre"));
-                 listeAnnonce.setDescription(rs.getString("description"));
-                 
-                 listeAnnonce.setPieceJointe(rs.getString("photoAnimal"));
-            }
              
         } catch (SQLException ex) {
             Logger.getLogger(AnnonceFavorisService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listeAnnonce;
+        return rs;
     
     }
     

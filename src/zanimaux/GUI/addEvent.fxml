@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -13,7 +14,7 @@
    <children>
       <AnchorPane id="AnchorEvt" fx:id="AnchorPaneEvent" prefHeight="587.0" prefWidth="600.0" style="-fx-background-color: #B8C6C4;">
          <children>
-            <TextField fx:id="lieu" alignment="TOP_CENTER" layoutX="181.0" layoutY="37.0" prefHeight="32.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Lieu">
+            <TextField fx:id="lieu" alignment="TOP_CENTER" layoutX="181.0" layoutY="37.0" prefHeight="32.0" prefWidth="268.0" promptText="Lieu" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
@@ -22,23 +23,23 @@
             <DatePicker fx:id="dateFin" layoutX="181.0" layoutY="173.0" prefHeight="25.0" prefWidth="268.0" />
             <Label layoutX="162.0" layoutY="84.0" text="Date de Début  :" />
             <Label layoutX="162.0" layoutY="146.0" text="Date de Fin" />
-            <TextField fx:id="type" alignment="TOP_CENTER" layoutX="181.0" layoutY="218.0" prefHeight="32.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Type">
+            <TextField fx:id="type" alignment="TOP_CENTER" layoutX="181.0" layoutY="218.0" prefHeight="32.0" prefWidth="268.0" promptText="Type" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
             </TextField>
-            <TextField fx:id="titre" alignment="TOP_CENTER" layoutX="181.0" layoutY="278.0" prefHeight="32.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="Titre">
+            <TextField fx:id="titre" alignment="TOP_CENTER" layoutX="181.0" layoutY="278.0" prefHeight="32.0" prefWidth="268.0" promptText="Titre" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
             </TextField>
-            <TextArea fx:id="description" layoutX="181.0" layoutY="359.0" prefHeight="64.0" prefWidth="268.0" style="-fx-background-color: transparent;" text="Description">
+            <TextArea fx:id="description" layoutX="181.0" layoutY="359.0" prefHeight="64.0" prefWidth="268.0" promptText="Description" style="-fx-background-color: transparent;">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
             </TextArea>
             <Button id="BtnChoixImage" fx:id="BtnChoixImage" layoutX="189.0" layoutY="492.0" mnemonicParsing="false" onAction="#chooseAction" prefHeight="29.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 2px 2px 2px 2px;" text="Image.." />
-            <TextField fx:id="nbPlace" alignment="TOP_CENTER" layoutX="189.0" layoutY="443.0" prefHeight="32.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;" text="0">
+            <TextField fx:id="nbPlace" alignment="TOP_CENTER" layoutX="189.0" layoutY="443.0" prefHeight="32.0" prefWidth="268.0" promptText="0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: white;">
                <font>
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
@@ -46,6 +47,15 @@
             <Label layoutX="162.0" layoutY="432.0" text="Nombre de place  :" />
             <Button fx:id="buttonEventCreate" layoutX="252.0" layoutY="548.0" mnemonicParsing="false" onAction="#CreateEvent" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: green;" text="Creer" />
             <ImageView fx:id="iv" fitHeight="169.0" fitWidth="108.0" layoutX="478.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnBackevnt" layoutX="27.0" layoutY="18.0" mnemonicParsing="false" onAction="#retour" prefHeight="25.0" prefWidth="35.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fx:id="iv1" fitHeight="32.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </children>

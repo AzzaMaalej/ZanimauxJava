@@ -15,37 +15,37 @@
    <children>
       <AnchorPane layoutX="-5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="716.0" prefWidth="276.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;">
          <children>
-            <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+            <Button fx:id="btnAccueil" layoutY="128.0" mnemonicParsing="false" onAction="#goToAccueil" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="button" layoutX="1.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+            <Button fx:id="btnMagasin" layoutX="1.0" layoutY="257.0" mnemonicParsing="false" onAction="#goToMagasin" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
+            <Button fx:id="btnVet" layoutX="2.0" layoutY="192.0" mnemonicParsing="false" onAction="#goToVet" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="1.0" layoutY="326.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Pet-Sitter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="310.0">
+            <Button fx:id="btnPetSitter" layoutX="1.0" layoutY="326.0" mnemonicParsing="false" onAction="#goToPetSitter" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Pet-Sitter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="310.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="3.0" layoutY="391.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
+            <Button fx:id="btnRefuges" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" onAction="#goToRefuge" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnEvenement" layoutX="1.0" layoutY="457.0" mnemonicParsing="false" onAction="#onClickEvenementAction" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
+            <Button fx:id="btnEvenement" layoutX="1.0" layoutY="457.0" mnemonicParsing="false" onAction="#goToEvent" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="#e3f9fe" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+            <Button fx:id="btnAnnonce" layoutY="525.0" mnemonicParsing="false" onAction="#goToAnnonce" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="#e3f9fe" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -143,6 +143,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <TextField fx:id="rechercheBtn" layoutX="47.0" layoutY="10.0" promptText="Recherche ..." />
          </children>
       </AnchorPane>
       <Pane fx:id="pane" layoutX="544.0" layoutY="76.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">
@@ -200,21 +201,81 @@
                   <ImageView fx:id="iv" fitHeight="169.0" fitWidth="108.0" layoutX="478.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anchorDetailsEvent" layoutX="14.0" layoutY="133.0" prefHeight="332.0" prefWidth="583.0" visible="false">
+            <AnchorPane fx:id="anchorDetailsEvent" layoutX="14.0" layoutY="133.0" prefHeight="438.0" prefWidth="610.0" style="-fx-background-color: #128FAD; -fx-background-radius: 50;" visible="false">
                <children>
-                  <ImageView fx:id="imageDetails" fitHeight="124.0" fitWidth="185.0" layoutX="199.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="dateDebutEvent" layoutX="13.0" layoutY="34.0" prefHeight="25.0" prefWidth="94.0" text="Label" />
-                  <Label fx:id="dateFinEvent" layoutX="13.0" layoutY="76.0" prefHeight="25.0" prefWidth="94.0" text="Label" />
-                  <Label fx:id="lieuEvent" layoutX="21.0" layoutY="189.0" prefHeight="25.0" prefWidth="78.0" text="Label" />
-                  <Label fx:id="typeEvent" layoutX="21.0" layoutY="237.0" text="Label" />
-                  <Label fx:id="titreEvent" layoutX="21.0" layoutY="273.0" text="Label" />
-                  <Label fx:id="descriptionEvent" layoutX="319.0" layoutY="193.0" text="Label" />
-                  <Label fx:id="nbPlaceEvent" layoutX="319.0" layoutY="265.0" text="Label" />
-                  <Button fx:id="btnParticiper" layoutX="300.0" layoutY="290.0" mnemonicParsing="false" onAction="#participer" text="Participer" />
-                  <Button fx:id="btnAnnuler" layoutX="493.0" layoutY="290.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+                  <ImageView fx:id="imageDetails" fitHeight="124.0" fitWidth="185.0" layoutX="208.0" layoutY="-48.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="dateDebutEvent" layoutX="143.0" layoutY="154.0" prefHeight="25.0" prefWidth="94.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="dateFinEvent" layoutX="143.0" layoutY="190.0" prefHeight="25.0" prefWidth="94.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="lieuEvent" layoutX="142.0" layoutY="221.0" prefHeight="25.0" prefWidth="78.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="typeEvent" layoutX="144.0" layoutY="263.0" prefHeight="19.0" prefWidth="58.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="titreEvent" layoutX="64.0" layoutY="76.0" text="Label" textFill="#00d0ff">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="27.0" />
+                     </font></Label>
+                  <Label fx:id="descriptionEvent" layoutX="144.0" layoutY="306.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="nbPlaceEvent" layoutX="144.0" layoutY="346.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font></Label>
+                  <Button fx:id="btnParticiper" layoutX="408.0" layoutY="399.0" mnemonicParsing="false" onAction="#participer" style="-fx-background-color: transparent;" text="Participer" />
+                  <Button fx:id="btnAnnuler" layoutX="510.0" layoutY="399.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
                   <Label fx:id="plein" layoutX="405.0" layoutY="283.0" text="Plein!!" textFill="RED" visible="false">
                      <font>
                         <Font name="Comic Sans MS" size="27.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="backBtn" layoutX="34.0" layoutY="26.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="10.0" layoutY="154.0" prefHeight="25.0" prefWidth="108.0" text="Date de début:" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="190.0" prefHeight="25.0" prefWidth="108.0" text="Date de fin:" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="221.0" prefHeight="25.0" prefWidth="108.0" text="Lieu:" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="11.0" layoutY="260.0" prefHeight="25.0" prefWidth="108.0" text="Type : " textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="13.0" layoutY="303.0" prefHeight="25.0" prefWidth="87.0" text="Description :" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="343.0" prefHeight="25.0" prefWidth="126.0" text="Nombre de places:" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="13.0" />
                      </font>
                   </Label>
                </children>

@@ -9,7 +9,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
+
        <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,7 +26,14 @@
                </font>
             </Button>
 
+<<<<<<< HEAD
             <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" onAction="#goToVet" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
+=======
+
+
+
+            <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
+>>>>>>> d9a0411040f17c4b6b261c8f8cd0e58cce562cdf
 
                <font>
                   <Font name="Baskerville" size="20.0" />
@@ -475,7 +484,6 @@
                   <Image url="@../Image/animaux.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="95.0" layoutY="26.0" prefHeight="132.0" prefWidth="200.0" style="-fx-background-color: #0000; -fx-border-color: #128FAD; -fx-border-width: 3;" />
             <Label layoutX="48.0" layoutY="175.0" text="Race:" textFill="#128fad">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />

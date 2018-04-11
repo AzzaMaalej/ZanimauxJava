@@ -78,6 +78,12 @@ public class magasinController implements Initializable {
     private AnchorPane sidePane;
     @FXML
     private AnchorPane bigAnchor;
+    @FXML
+    private Button Petsitter;
+    @FXML
+    private Button annonceBtn;
+    @FXML
+    private Button parc;
 
     /**
      * Initializes the controller class.
@@ -131,11 +137,17 @@ public class magasinController implements Initializable {
           ImageView im= new ImageView();
           Image image= new Image("zanimaux/ImageUtile/"+m1.getPhotoMagasin(),150,120,false,false) ;
           im.setImage(image);
-          Text t1 =new Text(m1.getNomMagasin());
-          t1.setFont(Font.font("Verdana", 20));
-          Text t =new Text(m1.getAdresseMagasin()+" "+m1.getVilleMagasin()+", "+m1.getCodePostaleMagasin());
-          t.setFont(Font.font("Verdana", 15) );
+          Label t1 =new Label(m1.getNomMagasin());
+          t1.setFont(Font.font("TIMES NEW ROMAN", 20));
+       
+          Label t =new Label(m1.getAdresseMagasin()+" "+m1.getVilleMagasin()+", "+m1.getCodePostaleMagasin());
+          t.setFont(Font.font("TIMES NEW ROMAN", 15) );
+          t.setWrapText(true);
+          t.setStyle("-fx-alignment: CENTER;-fx-text-fill:#000058;");
+         t1.setStyle("-fx-text-fill:#000058;-fx-alignment: CENTER;");
+         
           Button b = new Button();
+          
           b.setText("consulter magasin"); 
           b.setId(String.valueOf(m1.getIdMagasin()));
           b.setOnAction(e->{
@@ -146,12 +158,15 @@ public class magasinController implements Initializable {
               }
           });
           
-          
+          b.setStyle("-fx-background-color:transparent;-fx-text-fill:#1d7e9e;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:#1d7e9e;");
+          b.setFont(Font.font("TIMES NEW ROMAN",15));
+          b.setPrefSize(200, 20);
           VBox vbMagasin = new VBox(); 
-          vbMagasin.setPadding(new Insets(-60,0,30,30));
+          vbMagasin.setPadding(new Insets(-60,0,20,20));
           vbMagasin.setSpacing(50);
           vbMagasin.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
-          vbMagasin.setPrefSize(200, 150);
+          vbMagasin.setMaxSize(200, 150);
+         
           vbMagasin.getChildren().add(im);
           vbMagasin.getChildren().add(t1);
           vbMagasin.getChildren().add(t);
@@ -179,7 +194,6 @@ public class magasinController implements Initializable {
                
         
         anchorEvent.getChildren().add(sp);
-        System.out.println(anchorEvent.getWidth());
         anchorEvent.getChildren().add(paneProfil);
         
     }    
@@ -262,13 +276,24 @@ public class magasinController implements Initializable {
                 ImageView im= new ImageView();
                 Image image= new Image("zanimaux/ImageUtile/"+m1.getPhotoProduit(),150,120,false,false) ;
                 im.setImage(image);
-                Text t1 =new Text(m1.getLibelle());
-                t1.setFont(Font.font("Verdana", 20));
-                Text t =new Text(m1.getDescription());
-                t.setFont(Font.font("Verdana", 15) );
+                Label t1 =new Label(m1.getLibelle());
+                t1.setFont(Font.font("TIMES NEW ROMAN", 20));
+                Label t =new Label(m1.getDescription());
+                Label prix = new Label("Prix: "+(String.valueOf(m1.getPrix()))+"DT");
+                prix.setFont(Font.font("TIMES NEW ROMAN", 15));
+                prix.setWrapText(true);
+                prix.setStyle("-fx-alignment: CENTER;-fx-text-fill:#000058;");
+                t.setFont(Font.font("TIMES NEW ROMAN", 12));
+                t.setWrapText(true);
+                t.setStyle("-fx-alignment: CENTER;-fx-text-fill:#000058;");
+                t1.setStyle("-fx-text-fill:#000058;-fx-alignment: CENTER;");
                 Button b = new Button();
                 b.setId(String.valueOf(m1.getIdProduit()));
                 b.setText("Ajouter au panier"); 
+                
+                b.setStyle("-fx-background-color:transparent;-fx-text-fill:#1d7e9e;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:#1d7e9e;");
+                b.setFont(Font.font("TIMES NEW ROMAN",15));
+                b.setPrefSize(200, 20);
                 b.setOnAction(l->{
                     try{
                   ajoutProduitPanier(l);
@@ -278,14 +303,15 @@ public class magasinController implements Initializable {
           });
           
                       VBox vbProduit = new VBox(); 
-          vbProduit.setPadding(new Insets(-60,0,30,30));
+          vbProduit.setPadding(new Insets(-60,0,20,20));
           vbProduit.setSpacing(50);
           vbProduit.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
          
-          vbProduit.setPrefSize(200, 150);
+          vbProduit.setMaxSize(200, 150);
           vbProduit.getChildren().add(im);
           vbProduit.getChildren().add(t1);
           vbProduit.getChildren().add(t);
+          vbProduit.getChildren().add(prix);
           vbProduit.getChildren().add(b);
           i++;
           
@@ -344,7 +370,6 @@ public class magasinController implements Initializable {
        }
     }
 
-    @FXML
     private void afficherMagasin(ActionEvent event) {
                      try {
         Stage stage=(Stage) button.getScene().getWindow(); 
@@ -357,6 +382,115 @@ public class magasinController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+
+    @FXML
+    private void MagasinButtonAction(ActionEvent event) {
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS MAGASINS");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+       //redirection bouton parc
+    @FXML
+    private void AfficherParc(ActionEvent event) {
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Liste des parcs");
+        Parent root = FXMLLoader.load(getClass().getResource("ListeParc.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    //redirection bouton petsitter
+    @FXML
+    private void AfficherPromenade(ActionEvent event) {
+        
+        try {
+            User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String pet="a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Gestion des promenades");
+        if(role.equals(pet)){
+        Parent root = FXMLLoader.load(getClass().getResource("Promenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+      @FXML
+    private void goToAnn(ActionEvent event) {
+         try {
+        Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
+        stage.setTitle("Deposez votre annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    @FXML
+    private void goToVet(ActionEvent event) {
+        
+          try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Vétérinaire");
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void afficheAccueil(ActionEvent event) {
+        try {
+      User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        if(role.equals(dres)){
+        stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilDresseur.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}
+        else{
+        stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    }
+
+  
     
  
-}
+

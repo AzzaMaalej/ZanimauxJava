@@ -93,7 +93,7 @@
             </ImageView>
             <Button fx:id="userName" layoutX="348.0" layoutY="3.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="userName" textFill="WHITE" AnchorPane.rightAnchor="24.0">
                <font>
-                  <Font name="Baskerville" size="20.0" />
+                  <Font name="Baskerville" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">

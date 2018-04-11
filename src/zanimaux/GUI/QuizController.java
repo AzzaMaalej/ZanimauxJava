@@ -168,10 +168,18 @@ public class QuizController implements Initializable {
     String chienchute;
     String chienintelligent;
     String calme;
+<<<<<<< HEAD
      
 
   
     
+=======
+
+
+    @FXML
+    private Button Petsitter;
+
+>>>>>>> d9a0411040f17c4b6b261c8f8cd0e58cce562cdf
     
 
     /**
@@ -258,7 +266,7 @@ public class QuizController implements Initializable {
          try {
         Stage stage=(Stage) button.getScene().getWindow(); 
         stage.setTitle("Ajouter Evenement");
-        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -685,7 +693,7 @@ public class QuizController implements Initializable {
          try {
         Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
         stage.setTitle("Deposez votre annonce");
-        Parent root = FXMLLoader.load(getClass().getResource("addAnnonce.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

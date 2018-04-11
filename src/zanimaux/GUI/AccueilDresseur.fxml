@@ -24,7 +24,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
+            <Button fx:id="vet" layoutX="2.0" layoutY="192.0" mnemonicParsing="false" onAction="#vetAffiche" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -34,7 +34,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="3.0" layoutY="391.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
+            <Button fx:id="refuge" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" onAction="#AfficherRefugeAction" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+            <Button fx:id="annonce" layoutY="525.0" mnemonicParsing="false" onAction="#Annonce" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -132,7 +132,7 @@
             </ImageView>
             <Button fx:id="userName" layoutX="348.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#showPane" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="userName" textFill="WHITE" AnchorPane.rightAnchor="24.0">
                <font>
-                  <Font name="Baskerville" size="20.0" />
+                  <Font name="Baskerville" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
@@ -165,7 +165,7 @@
             </Button>
          </children>
       </Pane>
-   <AnchorPane fx:id="anchorEvent" layoutX="277.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="251.0" AnchorPane.topAnchor="50.0">
+   <AnchorPane fx:id="anchorEvent" layoutX="559.0" layoutY="418.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.leftAnchor="559.0" AnchorPane.topAnchor="418.0">
          <children>
             <Text fx:id="nombret" fill="#ff3434" layoutX="27.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de parc" AnchorPane.leftAnchor="50.0">
                <font>
@@ -178,9 +178,14 @@
                </font>
             </Text>
          </children></AnchorPane>
-      <PieChart fx:id="chart" layoutX="451.0" layoutY="66.0" onMouseClicked="#mouseClick" prefHeight="316.0" prefWidth="327.0" title="Nombre de parc par catégorie" AnchorPane.rightAnchor="1.0" />
-      <Button fx:id="editp" layoutX="305.0" layoutY="429.0" mnemonicParsing="false" onAction="#parcAction" style="-fx-background-color: #128FAD #128FAD;" styleClass="test" stylesheets="@../style/menuButton.css" text="Editer et ajouter des parcs" />
-      <Button fx:id="listp" layoutX="559.0" layoutY="428.0" mnemonicParsing="false" onAction="#listerParc" style="-fx-background-color: #128FAD #128FAD;" styleClass="test" stylesheets="@../style/menuButton.css" text="Voir la liste de tous les parcs" />
+      <PieChart fx:id="chart" layoutX="357.0" layoutY="106.0" onMouseClicked="#mouseClick" prefHeight="316.0" prefWidth="327.0" AnchorPane.rightAnchor="105.0" />
+      <Button fx:id="editp" layoutX="305.0" layoutY="479.0" mnemonicParsing="false" onAction="#parcAction" style="-fx-background-color: #128FAD #128FAD;" styleClass="test" stylesheets="@../style/menuButton.css" text="Editer et ajouter des parcs" />
+      <Button fx:id="listp" layoutX="559.0" layoutY="478.0" mnemonicParsing="false" onAction="#listerParc" style="-fx-background-color: #128FAD #128FAD;" styleClass="test" stylesheets="@../style/menuButton.css" text="Voir la liste de tous les parcs" />
+      <Text fill="#128fad" layoutX="443.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de parc">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Text>
    
     </children> 
 </AnchorPane>

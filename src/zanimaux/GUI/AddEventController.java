@@ -19,7 +19,10 @@ import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
@@ -28,6 +31,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import zanimaux.Service.EvenementService;
 import zanimaux.Service.Userservice;
@@ -101,16 +105,33 @@ public class AddEventController implements Initializable {
         BtnChoixImage.setText(handle());
     
     }
+    
+   
+    private void goToAffiche() {
+        try {
+        Stage stage=(Stage) buttonEventCreate.getScene().getWindow(); 
+        stage.setTitle("affiche");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
+    }
+
 
     @FXML
     private void CreateEvent(ActionEvent event)throws SQLException, IOException  {
-        User usr = Session.getLoggedInUser();
+         User usr = Session.getLoggedInUser();
+        
         EvenementService se= new EvenementService();
             LocalDate d = dateDebut.getValue();
          Date dated = Date.from(d.atStartOfDay(ZoneId.systemDefault()).toInstant());
          
              LocalDate d2 = dateFin.getValue();
-         Date datef = Date.from(d.atStartOfDay(ZoneId.systemDefault()).toInstant());
+         Date datef = Date.from(d2.atStartOfDay(ZoneId.systemDefault()).toInstant());
        
      
             
@@ -119,8 +140,12 @@ public class AddEventController implements Initializable {
           
            se.ajouterEvenement(e);
          System.out.println("evenement ajouté");
-                 
+         goToAffiche();
+        
        }
+
+    
+    
  
           
         }

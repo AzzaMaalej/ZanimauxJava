@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,7 +23,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="6.0" layoutY="246.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="246.0">
+            <Button fx:id="vet" layoutX="6.0" layoutY="246.0" mnemonicParsing="false" onAction="#vetAffiche" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="246.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -32,7 +33,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="5.0" layoutY="425.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="425.0">
+            <Button fx:id="refuge" layoutX="5.0" layoutY="425.0" mnemonicParsing="false" onAction="#AfficherRefugeAction" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="425.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -42,7 +43,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-            <Button layoutX="5.0" layoutY="545.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="545.0">
+            <Button fx:id="annonce" layoutX="5.0" layoutY="545.0" mnemonicParsing="false" onAction="#Annonce" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="545.0">
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -140,7 +141,7 @@
             </ImageView>
             <Button fx:id="userName" layoutX="348.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#showPane" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="userName" textFill="WHITE" AnchorPane.rightAnchor="24.0">
                <font>
-                  <Font name="Baskerville" size="20.0" />
+                  <Font name="Baskerville" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
@@ -155,6 +156,7 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
+            <TextField fx:id="recherche" layoutX="52.0" layoutY="12.0" prefHeight="26.0" prefWidth="138.0" AnchorPane.leftAnchor="40.0" />
          </children>
       </AnchorPane>
       <Pane fx:id="pane" layoutX="524.0" layoutY="56.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">

@@ -91,6 +91,27 @@ public class AvisService {
         return false;
     
     }
+    
+     public double moyenne(String i){
+         double average = 0;
+        try {
+          String requete = "SELECT avis from avis where idParc=" + i;
+          Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+                double rating = 0;
+                int nbr = 0;
+                
+                while (rs.next()) {
+                    rating += Double.parseDouble(rs.getString("avis"));
+                    nbr++;
+                    average=(rating/nbr);
+                }
+               
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return average;
+    }
    
              
         

@@ -174,15 +174,20 @@ public class LoginController implements Initializable {
                 {
                      try{
                     Session.setLoggedInUser(result);
+<<<<<<< HEAD
         
                  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
 
 
+=======
+
+                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Quiz.fxml"));
+
+>>>>>>> d9a0411040f17c4b6b261c8f8cd0e58cce562cdf
                     Parent root = (Parent) fxmlLoader.load();
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
                     Stage stage = (Stage) cin.getScene().getWindow();
-                    secondStage.setMaximized(true);
                     // do what you have to do
                     stage.hide();
                     secondStage.show();

@@ -10,7 +10,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,6 +24,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -34,6 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import zanimaux.util.SendMail;
 import zanimaux.Service.PanierService;
@@ -61,8 +67,6 @@ public class AffichePanierController implements Initializable {
     @FXML
     private Button userName;
     @FXML
-    private Label sommePanier;
-    @FXML
     private Pane paneProfil;
     @FXML
     private Button btn11;
@@ -83,6 +87,12 @@ public class AffichePanierController implements Initializable {
     @FXML
     private VBox vbBoutton;
     public static  String DEST = "result/table/simple_table6.pdf";
+    @FXML
+    private Button Petsitter;
+    @FXML
+    private Button annonceBtn;
+    @FXML
+    private Button parc;
     /**
      * Initializes the controller class.
      */
@@ -92,6 +102,7 @@ public class AffichePanierController implements Initializable {
             User u = Session.getLoggedInUser();
             PanierService p = new PanierService();
             ProduitService ps = new ProduitService();
+            userName.setText(u.getUsername());
             List<ContenuPanier> cp = p.rechercheContenuPanier(u.getCin());
             for(int i =0;i<cp.size();i++)
             {
@@ -181,28 +192,34 @@ public class AffichePanierController implements Initializable {
                     Logger.getLogger(AffichePanierController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
-            vbPanier.getChildren().add(passerCommande);
+            
+            Button consulterCommande = new Button("Consulter Commande");
+            consulterCommande.setOnAction(e->{
+                
+                    consulterCommande(e);
+               
+            });
+            consulterCommande.setStyle("-fx-background-color:transparent;-fx-text-fill:#1d7e9e;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:#1d7e9e;");
+            passerCommande.setStyle("-fx-background-color:transparent;-fx-text-fill:#1d7e9e;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:#1d7e9e;");
+            consulterCommande.setFont(Font.font("TIMES NEW ROMAN",15));
+            passerCommande.setFont(Font.font("TIMES NEW ROMAN",15));
+            consulterCommande.setPrefSize(300, 20);
+            passerCommande.setPrefSize(300, 20);
+            HBox hbutton = new HBox();
+            hbutton.setSpacing(100);
+            hbutton.getChildren().add(consulterCommande);
+            hbutton.getChildren().add(passerCommande);
+            vbPanier.setPadding(new Insets(30,30,0,0));
+            vbPanier.getChildren().add(hbutton);
             anchorEvent.getChildren().setAll(vbPanier);
             anchorEvent.setMaxSize(300,300);
+            anchorEvent.getChildren().add(paneProfil);
             vbPanier.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(AffichePanierController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 
-    @FXML
-    private void afficherMagasin(ActionEvent event) {
-             try {
-        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
-        stage.setTitle("NOS Magasin");
-        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        } catch (IOException ex) {
-           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }
 
     @FXML
     private void AfficherRefugeAction(ActionEvent event) {
@@ -232,21 +249,28 @@ public class AffichePanierController implements Initializable {
        }
     }
 
-    @FXML
-    private void affichePanierAction(ActionEvent event) {
-    }
 
     @FXML
     private void showPaneProfil(MouseEvent event) {
+        paneProfil.setVisible(true);
     }
 
     @FXML
     private void connexionAction(ActionEvent event) {
+                    Session.setLoggedInUser(null);
+        Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                 Stage myWindow = (Stage) btn11.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Login");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
     }
 
-    @FXML
-    private void hidePaneProfil(MouseEvent event) {
-    }
 
     private void supprimerProduitPanier(ActionEvent e) throws SQLException {
         User u = Session.getLoggedInUser();
@@ -283,12 +307,12 @@ public class AffichePanierController implements Initializable {
                 c= ps.rechercheContenuPanier(u.getCin());
                 p= ps.recherchePanier(u.getCin());
                 p.setSommeCommande(p.getSommeCommande()+p.getSomme());
-                System.out.println(p.getSommeCommande());
                 p.setSomme(0);
                 ps.modifPanier(u.getCin(), p);
                 for (int i =0;i<c.size();i++)
-                {
+                {   
                     c.get(i).setCommande(1);
+                    c.get(i).setDateCommande(java.sql.Date.valueOf(LocalDate.now()));
                     ps.modifContenuPanier(c.get(i).getIdProduit(), c.get(i));
                 }
                 String to = u.getEmail();
@@ -307,10 +331,10 @@ public class AffichePanierController implements Initializable {
         }
 
                 SendMail.send(to,subject, message,DEST, user, pass);
-                        try {
-        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
-        stage.setTitle("MON PANIER");
-        Parent root = FXMLLoader.load(getClass().getResource("AffichePanier.fxml"));
+        try {
+       Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("MES COMMANDES");
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherCommande.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -318,5 +342,136 @@ public class AffichePanierController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+
+
+    @FXML
+    private void AfficherPromenade(ActionEvent event) {
+   
+        try {
+            User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String pet="a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Gestion des promenades");
+        if(role.equals(pet)){
+        Parent root = FXMLLoader.load(getClass().getResource("Promenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+
+    @FXML
+    private void goToAnn(ActionEvent event) {
+         try {
+        Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
+        stage.setTitle("Deposez votre annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    @FXML
+    private void goToVet(ActionEvent event) {
+        
+          try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Vétérinaire");
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void AfficherParc(ActionEvent event) {
+      try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Liste des parcs");
+        Parent root = FXMLLoader.load(getClass().getResource("ListeParc.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void MagasinButtonAction(ActionEvent event) {
+        
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS MAGASINS");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void afficherAccueil(ActionEvent event) {
+            
+       try {
+      User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        if(role.equals(dres)){
+        stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilDresseur.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+
+    @FXML
+    private void hidePane(MouseEvent event) {
+        paneProfil.setVisible(false);
+    }
+
+    private void consulterCommande(ActionEvent e) 
+    {
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("MES COMMANDES");
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherCommande.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
+    }
+
+
     
 }

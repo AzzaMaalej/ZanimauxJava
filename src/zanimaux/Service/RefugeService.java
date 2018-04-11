@@ -156,7 +156,7 @@ public Statement ste;
             System.err.println(ex.getMessage());
         }
 }
-    public List<Refuge> AfficherRefugeByCin(String c){
+    public List<Refuge> ListerRefugeByCin(String c){
          List<Refuge>  listRefuges = new ArrayList<>();
         try {  
             String requete = "SELECT * FROM refuge WHERE cin='"+c+"'";

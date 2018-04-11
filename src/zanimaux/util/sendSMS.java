@@ -17,16 +17,17 @@ import java.net.URL;
  */
 public class sendSMS {
     
-    public String sendSms(String number) {
+   
+    public String sendSms(String number,String text) {
 		try {
 			// Construct data
-			String apiKey = "apikey=" + "0cLFzhSJQ1Y-iPCqwoLACgAK5fuAcnHwwNOLlYdCJq";
-			String message = "&message=" + "vous avey un nouveau passager";
-			String sender = "&sender=" + "All For Kids";
+			String apiKey = "apikey=" + "RtLF+I72e1g-0VTdHhSXEB4Y7Ma18EKGeaKikCh41v";
+			String message = "&message=" + text;
+			String sender = "&sender=" + "Zanimo";
 			String numbers = "&numbers=" + number;
 			
 			// Send data
-			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.textlocal.in/send/?").openConnection();
+			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
 			String data = apiKey + numbers + message + sender;
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
@@ -46,5 +47,4 @@ public class sendSMS {
 			return "Error "+e;
 		}
 	}
-    
 }

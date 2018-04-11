@@ -45,6 +45,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import zanimaux.entities.HWCalculator;
+import zanimaux.entities.User;
 import zanimaux.util.Session;
 import zanimaux.util.Validation;
 
@@ -199,7 +200,7 @@ public class HWresultController implements Initializable {
         apdeb.setVisible(true);
           Media media;
        
-        media=new Media("file:///C:/Users/Mariam/Documents/GitHub/ZanimauxJava/src/zanimaux/videos/video1.mp4");
+        media=new Media("file:///C:/video1.mp4");
         player= new MediaPlayer(media);
         MediaView mv = new MediaView();
         mv.setMediaPlayer(player);
@@ -385,7 +386,7 @@ public class HWresultController implements Initializable {
          try {
         Stage stage=(Stage) button.getScene().getWindow(); 
         stage.setTitle("Deposez votre annonce");
-        Parent root = FXMLLoader.load(getClass().getResource("addAnnonce.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -669,6 +670,28 @@ if (saisie){
     private void hidePane(MouseEvent event) {
           pane.setVisible(false);
     }
-    
+    @FXML
+    private void Accueil(ActionEvent event) {
+        try {
+      User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        if(role.equals(dres)){
+        stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilDresseur.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
 
 }

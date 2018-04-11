@@ -133,7 +133,7 @@ public class ProfilManagerController implements Initializable {
          if(user != null){
             nomId.setText(user.getNom());
             prenomId.setText(user.getPrenom());
-            telId.setText(Integer.toString(user.getTelephone()));
+            telId.setText(user.getTelephone());
             emailId.setText(user.getEmail());
             adresseId.setText(user.getAdresse());
             villeId.setText(user.getVille());
@@ -184,7 +184,7 @@ public class ProfilManagerController implements Initializable {
 
         //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
-        String filePath = file.getAbsolutePath();
+        String filePath = file.getName();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -287,7 +287,7 @@ public class ProfilManagerController implements Initializable {
         user.setAdresse(adresseId.getText());
         user.setVille(villeId.getText());
         user.setCodePostale(Integer.parseInt(codePostaleId.getText()));
-        user.setTelephone(Integer.parseInt(telId.getText()));
+        user.setTelephone(telId.getText());
         user.setPassword(pwdId.getText());
        // a.changerMDP(pwdId.getText(),user.getCin());
         a.modifierUser(user);
@@ -414,6 +414,18 @@ public class ProfilManagerController implements Initializable {
                  Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
              }
                 }
+       else  if (z.equals(vet)){
+           try{
+                    root = FXMLLoader.load(getClass().getResource("VetDashboard.fxml"));
+                 Stage myWindow = (Stage) btnRetour.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Veterinaire");
+                 myWindow.show();}
+                catch (IOException ex) {
+                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+       }
        else{
              try {
                  root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));

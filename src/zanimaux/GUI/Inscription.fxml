@@ -68,5 +68,10 @@
            
          </children>
       </AnchorPane>
+       <Button layoutX="26.0" layoutY="31.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Log In" AnchorPane.bottomAnchor="362.0">
+          <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

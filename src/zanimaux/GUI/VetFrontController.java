@@ -54,8 +54,10 @@ import javafx.stage.Stage;
 import zanimaux.Service.Articleservice;
 import zanimaux.Service.CabinetDao;
 import zanimaux.Service.CalendarService;
+import zanimaux.Service.RendezvsService;
 import zanimaux.entities.Articles;
 import zanimaux.entities.Cabinet;
+import zanimaux.entities.User;
 import zanimaux.util.Session;
 
 /**
@@ -87,6 +89,7 @@ public class VetFrontController implements Initializable {
     @FXML
     private AnchorPane anchorEvent;
       private ScrollPane sp = new ScrollPane();
+      public static Cabinet cb = null;
 
 
     
@@ -132,10 +135,10 @@ public class VetFrontController implements Initializable {
                 
                 c1.setPhotovet(r.getString("photovet"));
                 
-                 Image image = new Image(new File(c1.getPhotovet()).toURI().toURL().toExternalForm(),150,120,false,false);
+               //  Image image = new Image(new File(c1.getPhotovet()).toURI().toURL().toExternalForm(),150,120,false,false);
 //                imageuser.setImage(image);
                 ImageView im= new ImageView();
-//                Image image= new Image("zanimaux/ImageUtile/"+c1.getPhotovet(),150,120,false,false) ;
+                Image image= new Image("zanimaux/ImageUtile/"+c1.getPhotovet(),150,120,false,false) ;
                 im.setImage(image);
                 Text t1 =new Text(c1.getEmailCabinet());
                 t1.setFont(Font.font("Comic Sans MS", 20) );
@@ -147,7 +150,7 @@ public class VetFrontController implements Initializable {
                 bb.setText("Voir Articles");
                 
                 
-                b.setText("Consulter Disponibilité");
+                b.setText("Prendre Rendez vs");
                 b.setId(String.valueOf(c1.getCin()));
                  bb.setId(String.valueOf(c1.getCin()));
                 bb.setOnAction(e->{
@@ -175,7 +178,7 @@ public class VetFrontController implements Initializable {
                 hbbouton.getChildren().add(bb);
                 vbcab.setPadding(new Insets(-60,0,30,30));
                 vbcab.setSpacing(50);
-               vbcab.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
+                vbcab.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
                 vbcab.setPrefSize(200, 150);
                 vbcab.getChildren().add(im);
                 vbcab.getChildren().add(t1);
@@ -197,8 +200,6 @@ public class VetFrontController implements Initializable {
                 
             } } catch (SQLException ex) {
             Logger.getLogger(RefugeClientController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(VetFrontController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
            
@@ -295,7 +296,7 @@ public class VetFrontController implements Initializable {
          try {
         Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
         stage.setTitle("Deposez votre annonce");
-        Parent root = FXMLLoader.load(getClass().getResource("addAnnonce.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -329,21 +330,23 @@ public class VetFrontController implements Initializable {
               
                 m1.setPiecejointe(r.getString("piecejointe"));
                 
-                ImageView im= new ImageView();
-                 Image image=null;
-          try {
-              image = new Image(new File(m1.getPiecejointe()).toURI().toURL().toExternalForm(),150,120,false,false);
-          } catch (MalformedURLException ex) {
-              Logger.getLogger(VetFrontController.class.getName()).log(Level.SEVERE, null, ex);
-          }
+//                ImageView im= new ImageView();
+//                 Image image=null;
+//          try {
+//              image = new Image(new File(m1.getPiecejointe()).toURI().toURL().toExternalForm(),150,120,false,false);
+//          } catch (MalformedURLException ex) {
+//              Logger.getLogger(VetFrontController.class.getName()).log(Level.SEVERE, null, ex);
+//          }
+              ImageView im= new ImageView();
+                Image image= new Image("zanimaux/ImageUtile/"+m1.getPiecejointe(),150,120,false,false) ;
                 im.setImage(image);
+             
                   Text t1 =new Text(m1.getTitre());
                     System.out.println("article ");
                 t1.setFont(Font.font("Comic Sans MS", 20));
                  t1.setStyle("Bold");
-                  TextArea input=new TextArea(m1.getDescription());
-                  input.setPrefHeight(65.0);
-                  input.setPrefWidth(235.0);
+                  Text input=new Text(m1.getDescription());
+                
               
                
                
@@ -381,62 +384,31 @@ public class VetFrontController implements Initializable {
     
        
     }
-    void VoirDispo(ActionEvent e) throws SQLException {
+    @FXML
+    public void VoirDispo(ActionEvent e) throws SQLException {
         String a =((Node)e.getSource()).getId();
-          CalendarService service = new CalendarService();
-          Calendar c = service.FindCalByVet(a);
-           Entry <String> dentistAppointment = new Entry<>("Dentist");
-     dentistAppointment.changeStartDate(LocalDate.now());
-     dentistAppointment.changeEndDate(LocalDate.of(2018, Month.APRIL, 11));
-//     c.addEntry(dentistAppointment);
-     dentistAppointment.setCalendar(c);
-          CalendarView cv = new CalendarView(); 
-          CalendarSource cs = service.getCalendarSource();
-          cs.getCalendars().add(c);
-          cv.getCalendarSources().add(cs);
-    
-     
-        
+         CabinetDao cs = new CabinetDao();
           
-               cv.setRequestedTime(LocalTime.now());
-               System.out.println("calendar ");
-
-                Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
-                        @Override
-                        public void run() {
-                                while (true) {
-                                        Platform.runLater(() -> {
-                                                cv.setToday(LocalDate.now());
-                                                cv.setTime(LocalTime.now());
-                                        });
-
-                                        try {
-                                                // update every 10 seconds
-                                                sleep(10000);
-                                        } catch (InterruptedException e) {
-                                                e.printStackTrace();
-                                        }
-
-                                }
-                        };
-                };
-                System.out.println("ok6");
-
-                updateTimeThread.setPriority(Thread.MIN_PRIORITY);
-                updateTimeThread.setDaemon(true);
-                updateTimeThread.start();
-                Stage stage=(Stage) button.getScene().getWindow(); 
-
-                Scene scene = new Scene(cv);
-                stage.setTitle("Calendar");
-                stage.setScene(scene);
-                stage.setWidth(1300);
-                stage.setHeight(1000);
-                stage.centerOnScreen();
-                stage.show();
-                System.out.println("ok7");
+          cb = cs.getByVet(a);
+          
+            System.out.println(cb);
+             Parent root;
+             try {
+                 root = FXMLLoader.load(getClass().getResource("Prendrerdv.fxml"));
+                 Stage myWindow = (Stage) button.getScene().getWindow();
+                 Scene sc = new Scene(root);
+                 myWindow.setScene(sc);
+                 myWindow.setTitle("Prenez un rdv");
+                 myWindow.show();
+             } catch (IOException ex) {
+                 Logger.getLogger(VetFrontController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+          
       
-    }
+         
+      
+    
      @FXML
     private void goTovet(ActionEvent event) {
         
@@ -452,5 +424,41 @@ public class VetFrontController implements Initializable {
        }
     }
 
+     @FXML
+    private void profil(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btn1.getScene().getWindow(); 
+        stage.setTitle("Profil");
+        Parent root = FXMLLoader.load(getClass().getResource("ProfilManager.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+@FXML
+    private void Accueil(ActionEvent event) {
+        try {
+      User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        if(role.equals(dres)){
+        stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilDresseur.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
  
 }

@@ -23,13 +23,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import zanimaux.Service.Userservice;
 import zanimaux.entities.User;
@@ -236,7 +240,7 @@ public class InscriptionController implements Initializable {
         }
      
               try {
-          User u=new User(cinId.getText(),usernameId.getText(),emailId.getText(),pwdId.getText(),r,nomId.getText(),prenomId.getText(),Integer.parseInt(telId.getText()),villeId.getText(),adresseId.getText(),Integer.parseInt(codePostaleId.getText()));
+          User u=new User(cinId.getText(),usernameId.getText(),emailId.getText(),pwdId.getText(),r,nomId.getText(),prenomId.getText(),telId.getText(),villeId.getText(),adresseId.getText(),Integer.parseInt(codePostaleId.getText()));
            
           
            a.ajouterUser(u);
@@ -248,6 +252,19 @@ public class InscriptionController implements Initializable {
           
         }
 
+    }
+    @FXML
+    private void goToLogin(ActionEvent event) throws IOException {
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage secondStage = new Stage();
+            secondStage.setScene(new Scene(root));
+            Stage stage = (Stage) btnInscrit.getScene().getWindow();
+            // do what you have to do
+            stage.hide();
+            secondStage.show();
+        
     }
     
 }

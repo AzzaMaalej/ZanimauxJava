@@ -26,7 +26,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javax.xml.bind.Marshaller.Listener;
 import zanimaux.Service.ChatService;
 import zanimaux.Service.ChienService;
 import zanimaux.Service.RaceService;
@@ -42,6 +41,8 @@ import zanimaux.util.Session;
 public class QuizController implements Initializable {
     @FXML
     private Button button;
+    @FXML
+    private Button Petsitter;
     @FXML
     private Button buttonRefuge;
     @FXML
@@ -152,6 +153,8 @@ public class QuizController implements Initializable {
     private Label race_resultat;
     @FXML
     private Label description;
+    @FXML
+    private Pane paneMariam;
 
     String autre_animal;
     String chatdynamique;
@@ -166,23 +169,8 @@ public class QuizController implements Initializable {
     String chienintelligent;
     String calme;
      
-<<<<<<< HEAD
+
   
-=======
-    @FXML
-    private Label lb;
-    @FXML
-    private Label lb1;
-    @FXML
-    private Button annonceBtn;
-    @FXML
-    private Button parc;
-    @FXML
-    private Button Petsitter;
-<<<<<<< HEAD
->>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
-=======
->>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
     
     
 
@@ -326,6 +314,7 @@ public class QuizController implements Initializable {
     private void questionnaire_chat(MouseEvent event) {
         PanePrincipale.setVisible(false);
         pane_questionnaire_chat.setVisible(true);
+         paneMariam.setVisible(false);
        
         
     }
@@ -334,6 +323,7 @@ public class QuizController implements Initializable {
     private void questionnaire_chien(MouseEvent event) {
         PanePrincipale.setVisible(false);
         pane_questionnaire_chien.setVisible(true);
+        paneMariam.setVisible(false);
     }
 
     @FXML
@@ -732,6 +722,4 @@ public class QuizController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
-
-   
 }

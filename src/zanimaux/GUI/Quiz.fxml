@@ -23,15 +23,9 @@
                   <Font name="Baskerville" size="20.0" />
                </font>
             </Button>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" onAction="#goToVet" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
-=======
-            <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
->>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
-=======
-            <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
->>>>>>> e49a3a84cb918da3947412d931a3f1738ccb1a17
+
+            <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" onAction="#goToVet" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
+
                <font>
                   <Font name="Baskerville" size="20.0" />
                </font>
@@ -499,16 +493,20 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fitHeight="52.0" fitWidth="489.0" layoutX="276.0" layoutY="76.0">
-         <image>
-            <Image url="@../ImageUtile/dog-whisper.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="314.0" layoutY="102.0" onMouseClicked="#goToCalcul" prefHeight="25.0" prefWidth="361.0" text="Calculer le poids idéal de votre Pet !!!" textFill="WHITE">
-         <font>
-            <Font name="Comic Sans MS" size="18.0" />
-         </font>
-      </Label>
+      <Pane fx:id="paneMariam" layoutX="278.0" layoutY="82.0" prefHeight="51.0" prefWidth="490.0">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="489.0">
+               <image>
+                  <Image url="@../ImageUtile/dog-whisper.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="14.0" layoutY="14.0" onMouseClicked="#goToCalcul" prefHeight="25.0" prefWidth="361.0" text="Calculer le poids idéal de votre Pet !!!" textFill="WHITE">
+               <font>
+                  <Font name="Comic Sans MS" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 
 </AnchorPane>

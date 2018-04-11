@@ -279,8 +279,8 @@ public class magasinController implements Initializable {
                 Label t1 =new Label(m1.getLibelle());
                 t1.setFont(Font.font("TIMES NEW ROMAN", 20));
                 Label t =new Label(m1.getDescription());
-                Label prix = new Label((String.valueOf(m1.getPrix())));
-                prix.setFont(Font.font("TIMES NEW ROMAN", 12));
+                Label prix = new Label("Prix: "+(String.valueOf(m1.getPrix()))+"DT");
+                prix.setFont(Font.font("TIMES NEW ROMAN", 15));
                 prix.setWrapText(true);
                 prix.setStyle("-fx-alignment: CENTER;-fx-text-fill:#000058;");
                 t.setFont(Font.font("TIMES NEW ROMAN", 12));

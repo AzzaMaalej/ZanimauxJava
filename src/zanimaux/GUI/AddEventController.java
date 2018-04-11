@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,8 +24,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,6 +43,7 @@ import zanimaux.Service.Userservice;
 import zanimaux.entities.Evenement;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
+import zanimaux.util.Validation;
 
 /**
  * FXML Controller class
@@ -68,6 +74,11 @@ public class AddEventController implements Initializable {
     private TextArea description;
     @FXML
     private TextField nbPlace;
+    private Label lbl;
+    @FXML
+    private Button btnBackevnt;
+    @FXML
+    private ImageView iv1;
 
     /**
      * Initializes the controller class.
@@ -76,7 +87,7 @@ public class AddEventController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
     public String handle(){
         FileChooser fileChooser = new FileChooser();
 
@@ -127,17 +138,55 @@ public class AddEventController implements Initializable {
          User usr = Session.getLoggedInUser();
         
         EvenementService se= new EvenementService();
-            LocalDate d = dateDebut.getValue();
+           LocalDate d = dateDebut.getValue();
          Date dated = Date.from(d.atStartOfDay(ZoneId.systemDefault()).toInstant());
-         
+  
+    
+   
              LocalDate d2 = dateFin.getValue();
          Date datef = Date.from(d2.atStartOfDay(ZoneId.systemDefault()).toInstant());
+         
+        String nbP =  nbPlace.getText().toString();
+        int i=0;
+         if (lieu.getText().isEmpty()) {
+             Alert alert = new Alert(AlertType.WARNING, "Veuillez Saisir un lieu", ButtonType.OK);
+        alert.showAndWait();
+            i++;
+        }
+      
+         Date date = new Date();
+         if(dated.compareTo(date) <= 0 ||(dated.equals("")))  
+       {
+           i++;
+       Alert alert = new Alert(AlertType.WARNING, "Date invalide: Un évenement doit être créer avant au moins d'un jour", ButtonType.OK);
+        alert.showAndWait();}
+         else if(datef.compareTo(dated) <= 0 || (datef.equals("")))  
+       { 
+           i++;
+       Alert alert = new Alert(AlertType.WARNING, "Veuillez choisir des dates cohérentes", ButtonType.OK);
+        alert.showAndWait();
+       }
        
-     
-            
-          Evenement e=new Evenement(usr.getCin(),lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());
+        if (type.getText().isEmpty()) {
+            Alert alert = new Alert(AlertType.WARNING, "Veuillez Saisir un type", ButtonType.OK);
+        alert.showAndWait();
+             i++;
+        }
+        if (titre.getText().isEmpty()) {
+            Alert alert = new Alert(AlertType.WARNING, "Veuillez Saisir un titre", ButtonType.OK);
+        alert.showAndWait();
+             i++;
+        }
+        if (description.getText().isEmpty()) {
+             Alert alert = new Alert(AlertType.WARNING, "Veuillez Saisir une description", ButtonType.OK);
+        alert.showAndWait();
+             i++;
+        }
+       
+      if(i==0)
+      { 
+       Evenement e=new Evenement(usr.getCin(),lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());
            
-          
            se.ajouterEvenement(e);
          System.out.println("evenement ajouté");
          goToAffiche();
@@ -149,4 +198,18 @@ public class AddEventController implements Initializable {
  
           
         }
-   
+
+    @FXML
+    private void retour(ActionEvent event) {
+         try {
+            Stage stage = (Stage) btnBackevnt.getScene().getWindow();            
+            stage.setTitle("affiche");
+            Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}   

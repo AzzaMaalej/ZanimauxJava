@@ -121,6 +121,10 @@ public class AfficheAnnonceController implements Initializable {
     private Button btnRefuge;
     @FXML
     private Button btnAccueil;
+    @FXML
+    private Button addAnnBtn;
+    @FXML
+    private Button parc;
 
 
     /**
@@ -230,13 +234,8 @@ public class AfficheAnnonceController implements Initializable {
                 vbEvent.getChildren().add(t);
                 vbEvent.getChildren().add(BtnBox);
           
-                    Button f=new Button();
-                    f.setText("Facebook");
-                      Button p=new Button();
-                    p.setText("Twitter");
-                      Button g=new Button();
-                    g.setText("Gmail");
-                  VBox  vp=new VBox(f,p,g);
+                   
+                  VBox  vp=new VBox();
                   vp.setSpacing(60);
                   
                     hb = new HBox();
@@ -430,17 +429,13 @@ public class AfficheAnnonceController implements Initializable {
       
   }
     
-    
-    
-     /*void remplirFavoris()throws SQLException{
-         //a=Integer.parseInt(((Node) e.getSource()).getId());
-          User usr = Session.getLoggedInUser();
+    void remplirFav()throws SQLException{
+        User usr = Session.getLoggedInUser();
         AnnonceFavorisService afs= new AnnonceFavorisService();
-        Annonce a1=new Annonce();
-        a1= afs.mesAnnonceFavoris(usr.getCin());
+        ResultSet r= afs.mesAnnonceFavoris(usr.getCin());
         listeAnn= new ArrayList<Annonce>();
         while(r.next()){ 
-        // Annonce a1=new Annonce();
+                    Annonce a1=new Annonce();
 
             a1.setIdAnnonce(r.getInt("idAnnonce"));
             a1.setCinUser(r.getString("cin"));            
@@ -462,15 +457,24 @@ public class AfficheAnnonceController implements Initializable {
         nbPages=((nb/2)+1); 
   
         }
-    }*/
-    
+    }
+
     @FXML
-   void afficherFavoris() throws SQLException{
-        User usr = Session.getLoggedInUser();
-         AnnonceFavorisService afs=new AnnonceFavorisService();
-          AnnonceFavoris af =new AnnonceFavoris(a,usr.getCin());
-          afs.mesAnnonceFavoris(usr.getCin());
-          remplir();        
+       void afficherFav(){
+          try {
+            remplirFav();
+        } catch (SQLException ex) {
+            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        pagination.setPageCount(nbPages);
+        pagination.setPageFactory((Integer indexPage)->consulterAnnonce(indexPage));
+        AnchorPane.setTopAnchor(pagination, 10.0);
+        AnchorPane.setLeftAnchor(pagination, 10.0);
+        AnchorPane.setRightAnchor(pagination, 10.0);
+        AnchorPane.setBottomAnchor(pagination, 10.0);
+        anchorEvent.getChildren().add(pagination);
+        
+        
     }
 
     @FXML
@@ -535,7 +539,7 @@ public class AfficheAnnonceController implements Initializable {
         try {
         Stage stage=(Stage) btnVet.getScene().getWindow(); 
         stage.setTitle("vet");
-        Parent root = FXMLLoader.load(getClass().getResource("AffichageCabinets.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -549,7 +553,7 @@ public class AfficheAnnonceController implements Initializable {
         try {
         Stage stage=(Stage) btnPetSitter.getScene().getWindow(); 
         stage.setTitle("petSitter");
-        Parent root = FXMLLoader.load(getClass().getResource("AccueilPetSitter.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -563,7 +567,7 @@ public class AfficheAnnonceController implements Initializable {
         try {
         Stage stage=(Stage) btnRefuge.getScene().getWindow(); 
         stage.setTitle("refuge");
-        Parent root = FXMLLoader.load(getClass().getResource("GestionRefuges.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -578,6 +582,35 @@ public class AfficheAnnonceController implements Initializable {
         Stage stage=(Stage) btnAccueil.getScene().getWindow(); 
         stage.setTitle("accueil");
         Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void goToAddAnn(ActionEvent event) {
+        try {
+        Stage stage=(Stage) addAnnBtn.getScene().getWindow(); 
+        stage.setTitle("Annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("addAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void AfficherParc(ActionEvent event) {
+        
+         try {
+        Stage stage=(Stage) parc.getScene().getWindow(); 
+        stage.setTitle("Annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("ListeParc.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

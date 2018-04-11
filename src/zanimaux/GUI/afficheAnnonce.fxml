@@ -105,6 +105,16 @@
                         </Label>
                      </children>
                   </AnchorPane>
+                  <Button fx:id="parc" layoutX="21.0" layoutY="550.0" mnemonicParsing="false" onAction="#AfficherParc" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Parc" textFill="WHITE">
+                     <font>
+                        <Font name="Baskerville" size="20.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="44.0" fitWidth="41.0" layoutX="52.0" layoutY="557.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Image/dressage.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="261.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="648.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;">
@@ -118,7 +128,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="annFav" layoutX="255.0" layoutY="10.0" mnemonicParsing="false" onAction="#afficherFavoris" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="annFav" layoutX="255.0" layoutY="10.0" mnemonicParsing="false" onAction="#afficherFav" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="5.0">
                      <graphic>
                         <ImageView fx:id="annFavo" fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -133,9 +143,6 @@
                      </image>
                   </ImageView>
                   <Button fx:id="userName" layoutX="348.0" layoutY="3.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="userName" textFill="WHITE" AnchorPane.rightAnchor="24.0">
-                     <font>
-                        <Font name="Baskerville" size="20.0" />
-                     </font>
                      <graphic>
                         <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -143,6 +150,11 @@
                            </image>
                         </ImageView>
                      </graphic>
+                  </Button>
+                  <Button fx:id="addAnnBtn" layoutX="158.0" layoutY="7.0" mnemonicParsing="false" onAction="#goToAddAnn" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Créer Annonce">
+                     <font>
+                        <Font name="Comic Sans MS" size="13.0" />
+                     </font>
                   </Button>
                </children>
             </AnchorPane>

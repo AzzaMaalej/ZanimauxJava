@@ -23,7 +23,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -60,6 +62,10 @@ public class AddAnnonceController implements Initializable {
     private ImageView iv;
     @FXML
     private AnchorPane AnchorPaneAnnonce;
+    @FXML
+    private Button btnBack;
+    @FXML
+    private ImageView iv1;
 
     /**
      * Initializes the controller class.
@@ -114,9 +120,27 @@ public class AddAnnonceController implements Initializable {
     private void CreateAnnonce(ActionEvent event) throws SQLException { 
           User usr = Session.getLoggedInUser();
         AnnonceService sa= new AnnonceService();
-        
+        int i=0;
+                
+        if (typeA.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez Saisir un type", ButtonType.OK);
+        alert.showAndWait();
+             i++;
+        }
+        if (titreA.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez Saisir un titre", ButtonType.OK);
+        alert.showAndWait();
+             i++;
+        }
+        if (descriptionA.getText().isEmpty()) {
+             Alert alert = new Alert(Alert.AlertType.WARNING, "Veuillez Saisir une description", ButtonType.OK);
+        alert.showAndWait();
+             i++;
+        }
+       
+      if(i==0)
+      {
            
-     
             
           Annonce a=new Annonce(usr.getCin(),typeA.getText(),titreA.getText(),descriptionA.getText(),BtnChoixImageA.getText());
            
@@ -125,5 +149,19 @@ public class AddAnnonceController implements Initializable {
          System.out.println("annonce ajouté");
          goToAffiche();
     }
-    
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) {
+         try {
+            Stage stage = (Stage) btnBack.getScene().getWindow();            
+            stage.setTitle("affiche");
+            Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

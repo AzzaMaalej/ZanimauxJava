@@ -9,7 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
+=======
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.QuizController">
+>>>>>>> 0a827d94478bce24f3833910c25bde6a211defaa
        <children>
       <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -478,7 +482,6 @@
                   <Image url="@../Image/animaux.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="95.0" layoutY="26.0" prefHeight="132.0" prefWidth="200.0" style="-fx-background-color: #0000; -fx-border-color: #128FAD; -fx-border-width: 3;" />
             <Label layoutX="48.0" layoutY="175.0" text="Race:" textFill="#128fad">
                <font>
                   <Font name="Comic Sans MS" size="24.0" />

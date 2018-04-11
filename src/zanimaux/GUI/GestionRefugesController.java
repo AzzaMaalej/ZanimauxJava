@@ -164,8 +164,10 @@ public class GestionRefugesController implements Initializable {
             RefugeService as = RefugeService.getInstance();
             User user=Session.getLoggedInUser();
             String cin=user.getCin();
-            listRefuges = as.AfficherRefugeByCin(cin);//TODO : SET USER FROM SESSION
-            
+            listRefuges = as.ListerRefugeByCin(cin);//TODO : SET USER FROM SESSION
+            for (int i=0;i<listRefuges.size();i++){
+                System.out.println(listRefuges.get(i).getPhotoRefuge());
+            }
             ObservableList<Refuge> data = FXCollections.observableArrayList(listRefuges);
             
             column_immatriculation.setCellValueFactory(
@@ -192,7 +194,9 @@ public class GestionRefugesController implements Initializable {
             column_gouvernement.setCellValueFactory(
                     new PropertyValueFactory<Refuge,String>("gouvernementRefuge")
             );
-            
+            column_photo.setCellValueFactory(
+                   new PropertyValueFactory<Refuge,String>("photorefuge")
+            );
             column_chat.setCellValueFactory(
                     new PropertyValueFactory<Refuge,String>("chat")
             );
@@ -205,9 +209,7 @@ public class GestionRefugesController implements Initializable {
             column_autre.setCellValueFactory(
                     new PropertyValueFactory<Refuge,String>("autre")
             );
-            column_photo.setCellValueFactory(
-                    new PropertyValueFactory<Refuge,String>("photorefuge")
-            );
+           
             
             
             table_list_refuge.setItems(data);
@@ -536,7 +538,7 @@ public class GestionRefugesController implements Initializable {
 
     @FXML
     private void ajouterRefuge(ActionEvent event) throws SQLException, IOException {
-        copyFileUsingStream(new File(filePath), new File ("src/ImageUtile"+picturepath.getText()));
+        
         String z;
         int r = 0;
         z = choiceBox_chat.getValue();
@@ -577,7 +579,7 @@ public class GestionRefugesController implements Initializable {
     {
         List<Refuge> listRefuges ;
         RefugeService as = new RefugeService();
-        listRefuges = (List<Refuge>) as.AfficherRefugeByCin(Session.getLoggedInUser().getCin());
+        listRefuges = (List<Refuge>) as.ListerRefugeByCin(Session.getLoggedInUser().getCin());
         ObservableList<Refuge> data = FXCollections.observableArrayList(listRefuges);
         table_list_refuge.setItems(data);
     }
@@ -592,8 +594,7 @@ public class GestionRefugesController implements Initializable {
 
         //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
-        picturepath.setText(file.getName());
-        filePath = file.getAbsolutePath();
+        String filePath = file.getName();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -607,31 +608,10 @@ public class GestionRefugesController implements Initializable {
     }
      @FXML
     private void uploadpic(ActionEvent event) {
-        Text text=new Text(); 
-        text.setText(handle());
+       
+        picturepath.setText(handle());
     }
-      private static void copyFileUsingStream(File source, File dest) throws IOException {
-        InputStream is = null;
-        OutputStream os = null;
-        if(!dest.exists())
-            dest.createNewFile();
-        try {
-            is = new FileInputStream(source);
-            os = new FileOutputStream(dest);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
-            }
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        } finally{
-            if(is!=null)
-            is.close();
-            if(os!=null)
-            os.close();
-        }
-    }
+   
 
 
     @FXML

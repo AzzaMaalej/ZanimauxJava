@@ -26,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -87,6 +88,12 @@ public class RefugeClientController implements Initializable {
     public static String nomref;
     @FXML
     private Button accueilBTN;
+    @FXML
+    private Button btnVet;
+    @FXML
+    private Button btnAnnonce;
+    @FXML
+    private Button parc;
     /**
      * Initializes the controller class.
      */
@@ -109,6 +116,7 @@ public class RefugeClientController implements Initializable {
             ob.addAll(listetat);
             gouv.setItems(ob);
             gouv.setOnAction(i->{
+                
                 RechercheRefuge(i,gouv.getValue());
                 });
         ResultSet r;
@@ -185,12 +193,13 @@ public class RefugeClientController implements Initializable {
                 t1.setStyle("Bold");
                 Text t =new Text(m1.getAdresseRefuge()+" "+m1.getGouvernementRefuge()+", "+m1.getCodePostaleRefuge());
                 t.setFont(Font.font("Comic Sans MS", 15) );
+                t.wrappingWidthProperty().setValue(120);
                 Button b = new Button();
                 Button bb = new Button();
-                bb.setText("Voir sur carte");
+                bb.setText("Localisation");
                 
                 
-                b.setText("consulter refuge");
+                b.setText("consulter");
                 b.setId(String.valueOf(m1.getImmatriculation()));
                 b.setOnAction(e->{
                     try {
@@ -281,6 +290,7 @@ public class RefugeClientController implements Initializable {
                 RefugeService rs= new RefugeService();
                 ref=rs.RechercherRefugeByImm(a);
                 adr=ref.getAdresseRefuge()+" "+ref.getGouvernementRefuge();
+                System.out.println(adr+" fel refuge client");
                 nomref=ref.getNomRefuge();
                     // redirection ver maps
                     
@@ -347,7 +357,7 @@ public class RefugeClientController implements Initializable {
                           erreur.setVisible(true);
                           
                         }else{
-                          erreur.setText("Votre commentaire est ajouté avec succés et sera afficher lors de votre prochaine connexion");
+                          erreur.setText("Votre commentaire est ajouté avec succés et sera afficher ultérieurement");
                           erreur.setTextFill(Paint.valueOf("#00bd13"));
                           erreur.setVisible(true);
                         ajouterCommentaire(k,inputCom.getText(),a);
@@ -371,7 +381,7 @@ public class RefugeClientController implements Initializable {
            co.setContenant(rc.getString("contenant"));
            co.setDate(rc.getDate("date"));
            co.setCin(rc.getString("cin"));
-           String format = "dd/MM/yy H:mm";
+           String format = "dd/MM/yy";
           java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
            Label lbcom= new Label();
            Text info=new Text();
@@ -438,11 +448,25 @@ public class RefugeClientController implements Initializable {
            comm.getChildren().add(inputCom);
            comm.getChildren().add(erreur);
            comm.getChildren().add(btnCom);
-           AnimalService m= new AnimalService();
+           RefugeService refser=new RefugeService();
+           Refuge ref=refser.RechercherRefugeByImm(a);
+           Label bienvenu=new Label();
+           bienvenu.setText("       Bienvenue chez "+ref.getNomRefuge());
+           bienvenu.setFont(Font.font("Comic Sans MS", 36) );
+           bienvenu.setTextFill(Paint.valueOf("#128FAD"));
+           Label cont=new Label();
+          cont.setText("Tèl: "+ref.getTelephoneRefuge()
+                  +",  @Email: "+ref.getEmailRefuge()
+                  +",  Adresse: "+ref.getAdresseRefuge()+" "+ref.getGouvernementRefuge()+","+ref.getCodePostaleRefuge());
+           cont.setFont(Font.font("Comic Sans MS", 15) );
+           cont.setTextFill(Paint.valueOf("#9d9d9d"));
           
-            
-            
-            rs=  m.RechercherAnimalByImm(a) ;
+          VBox presentation= new VBox();
+           presentation.getChildren().add(bienvenu);
+          presentation.getChildren().add(cont);
+           presentation.setSpacing(5);
+           AnimalService m= new AnimalService();
+           rs=  m.RechercherAnimalByImm(a) ;
             if (rs==null){
                
             }
@@ -457,7 +481,7 @@ public class RefugeClientController implements Initializable {
             HBox hb =null;
             vb.setPadding(new Insets(100, 30, 0, 30));
             vb.setSpacing(100);
-            
+            vb.getChildren().add(presentation);
             
              while(rs.next())
             {
@@ -535,7 +559,7 @@ public class RefugeClientController implements Initializable {
          try {
         Stage stage=(Stage) btnevenement.getScene().getWindow(); 
         stage.setTitle("Ajouter Evenement");
-        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -596,7 +620,8 @@ public class RefugeClientController implements Initializable {
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
-public void RechercheRefuge(ActionEvent event,String s){
+    
+    public void RechercheRefuge(ActionEvent event,String s){
       RefugeService m = null;
         try {
             m = new RefugeService();
@@ -613,6 +638,7 @@ public void RechercheRefuge(ActionEvent event,String s){
             ObservableList<String> ob = FXCollections.observableArrayList();
             ob.addAll(listetat);
             gouv.setItems(ob);
+            gouv.setValue(s);
             gouv.setOnAction(i->{
                 RechercheRefuge(i,gouv.getValue());
                 });
@@ -763,6 +789,48 @@ public void RechercheRefuge(ActionEvent event,String s){
         Stage stage=(Stage) accueilBTN.getScene().getWindow(); 
         stage.setTitle("Les refuges");
         Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void vetAffiche(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnevenement.getScene().getWindow(); 
+        stage.setTitle("Vet");
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void Annonce(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnevenement.getScene().getWindow(); 
+        stage.setTitle("Annonces");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void AfficherParc(ActionEvent event) {
+         try {
+        Stage stage=(Stage) btnevenement.getScene().getWindow(); 
+        stage.setTitle("Liste des Parc");
+        Parent root = FXMLLoader.load(getClass().getResource("ListeParc.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

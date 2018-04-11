@@ -21,8 +21,13 @@ public class DataSource {
     private static DataSource data;
     private Connection con;
     public String login="root";
+<<<<<<< HEAD
     public String password="";
     public String url="jdbc:mysql://localhost:3306/zanimo";
+=======
+    public String password="root";
+    public String url="jdbc:mysql://localhost:8889/Zanimaux";
+>>>>>>> d9a0411040f17c4b6b261c8f8cd0e58cce562cdf
 
 
     private DataSource(){

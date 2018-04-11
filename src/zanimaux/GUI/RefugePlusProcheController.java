@@ -216,7 +216,8 @@ public class RefugePlusProcheController implements Initializable ,MapComponentIn
                         markerOptionsUser.position( latLong2 )
                                 .visible(Boolean.TRUE)
                                 .title("Votre position "+user.getPrenom()+" "+user.getNom())
-                                .animation(Animation.BOUNCE)      ;
+                                  
+                                .icon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
                         
                         Marker markeruser = new Marker( markerOptionsUser );
                         markeruser.setAnimation(Animation.BOUNCE);

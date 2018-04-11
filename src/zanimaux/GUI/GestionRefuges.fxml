@@ -123,11 +123,11 @@
             <TableColumn fx:id="column_adresse" prefWidth="54.66676330566406" text="Adresse" />
             <TableColumn fx:id="column_gouvernement" prefWidth="44.66668701171875" text="Gouvernement" />
             <TableColumn fx:id="column_codePostale" prefWidth="45.99993896484375" text="Code postale" />
+            <TableColumn fx:id="column_photo" prefWidth="45.99993896484375" text="Photo" />
             <TableColumn fx:id="column_chat" prefWidth="33.33331298828125" text="Chat" />
             <TableColumn fx:id="column_chien" prefWidth="44.0" text="Chien" />
             <TableColumn fx:id="column_rongeur" prefWidth="58.666656494140625" text="Rongeur" />
             <TableColumn fx:id="column_autre" prefWidth="36.6666259765625" text="Autre" />
-            <TableColumn fx:id="column_photo" prefWidth="48.00006103515625" text="Photo" />
          </columns>
       </TableView>
       <Button fx:id="btnSupprimerRefuge" layoutX="210.0" layoutY="640.0" mnemonicParsing="false" onAction="#supprimerRefuge" prefHeight="26.0" prefWidth="190.0" text="Supprimer Refuge" />

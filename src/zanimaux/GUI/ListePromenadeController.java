@@ -79,6 +79,12 @@ public class ListePromenadeController implements Initializable {
     private Button acc;
     @FXML
     private TextField recherche;
+    @FXML
+    private Button vet;
+    @FXML
+    private Button refuge;
+    @FXML
+    private Button annonce;
 
     /**
      * Initializes the controller class.
@@ -196,6 +202,7 @@ try{
         }else{
            if (r1==false){
             Rating rating = new Rating (5);
+            rating.setUpdateOnHover(true);
             rating.setRating(0);
            
             VBox vbParc = new VBox();
@@ -345,6 +352,7 @@ anchorEvent.getChildren().setAll(sp);
     }     
     
     
+     //redirection page magasin
     @FXML
     void handleButtonAction(ActionEvent event) throws SQLException {
 
@@ -362,13 +370,13 @@ anchorEvent.getChildren().setAll(sp);
     }
 
     
-
+//redirection page afficheEvent
      @FXML
     private void onClickEvenementAction(ActionEvent event) throws SQLException {
         try {
         Stage stage=(Stage) button.getScene().getWindow(); 
-        stage.setTitle("Ajouter Evenement");
-        Parent root = FXMLLoader.load(getClass().getResource("addEvent.fxml"));
+        stage.setTitle("Afficher Evenement");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -376,6 +384,53 @@ anchorEvent.getChildren().setAll(sp);
            Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+    
+ //redirection page VetAffiche   
+ @FXML
+    private void vetAffiche(ActionEvent event) {
+         try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Vet");
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    
+    //redirection page annonce
+    @FXML
+    private void Annonce(ActionEvent event) {
+         try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Annonces");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+    //redirection page refugeClient
+    @FXML
+    private void AfficherRefugeAction(ActionEvent event) {
+        try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("NOS Refuges");
+        Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
     
      @FXML
     private void parcAction(ActionEvent event) throws SQLException {
@@ -548,6 +603,7 @@ try{
         }else{
            if (r1==false){
             Rating rating = new Rating (5);
+            rating.setUpdateOnHover(true);
             rating.setRating(0);
            
             VBox vbParc = new VBox();

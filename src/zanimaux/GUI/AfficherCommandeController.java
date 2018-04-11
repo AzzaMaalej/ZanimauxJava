@@ -63,8 +63,6 @@ public class AfficherCommandeController implements Initializable {
     @FXML
     private Button userName;
     @FXML
-    private Label sommePanier;
-    @FXML
     private Pane paneProfil;
     @FXML
     private Button btn11;
@@ -86,6 +84,12 @@ public class AfficherCommandeController implements Initializable {
     private TableColumn dateCommande;
     @FXML
     private TableView TableViewProduit;
+    @FXML
+    private Button Petsitter;
+    @FXML
+    private Button annonceBtn;
+    @FXML
+    private Button parc;
 
     /**
      * Initializes the controller class.
@@ -99,6 +103,7 @@ public class AfficherCommandeController implements Initializable {
             ProduitService prodSer= new ProduitService();
             User a = Session.getLoggedInUser();
             List<ContenuPanier> l= new ArrayList<>();
+            userName.setText(a.getUsername());
             List<Produit> lp = new ArrayList<>();
             l = ms.rechercheCommande(a.getCin());
             Produit p = new Produit();
@@ -128,30 +133,55 @@ public class AfficherCommandeController implements Initializable {
             );
             TableViewProduit.setItems(data2);
             TableViewCommande.setItems(data);
+            anchorEvent.getChildren().add(paneProfil);
             } catch (SQLException ex) {
             Logger.getLogger(DashboardMagasinController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }    
 
-    @FXML
-    private void afficherMagasin(ActionEvent event) {
-    }
 
     @FXML
     private void AfficherRefugeAction(ActionEvent event) {
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS REFUGES");
+        Parent root = FXMLLoader.load(getClass().getResource("RefugeClient.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 
     @FXML
     private void onClickEvenementAction(ActionEvent event) {
+     try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS EVENEMENTS");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheEvent.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+
+    @FXML
+    private void showPaneProfil(MouseEvent event) 
+    {       
+            paneProfil.setVisible(true);
     }
 
     @FXML
-    private void affichePanierAction(ActionEvent event) {
+    private void hidePaneProfil(MouseEvent event) 
+    {
+            paneProfil.setVisible(false);
     }
 
-    @FXML
-    private void showPaneProfil(MouseEvent event) {
-    }
 
     @FXML
     private void connexionAction(ActionEvent event) {
@@ -195,8 +225,113 @@ public class AfficherCommandeController implements Initializable {
             }
     }
 
-    @FXML
-    private void hidePaneProfil(MouseEvent event) {
+
+
+      @FXML
+    private void AfficherPromenade(ActionEvent event) {
+   
+        try {
+            User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String pet="a:1:{i:0;s:14:\"ROLE_PETSITTER\";}";
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Gestion des promenades");
+        if(role.equals(pet)){
+        Parent root = FXMLLoader.load(getClass().getResource("Promenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
     
+
+    @FXML
+    private void goToAnn(ActionEvent event) {
+         try {
+        Stage stage=(Stage) annonceBtn.getScene().getWindow(); 
+        stage.setTitle("Deposez votre annonce");
+        Parent root = FXMLLoader.load(getClass().getResource("afficheAnnonce.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    @FXML
+    private void goToVet(ActionEvent event) {
+        
+          try {
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        stage.setTitle("Vétérinaire");
+        Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void AfficherParc(ActionEvent event) {
+      try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("Liste des parcs");
+        Parent root = FXMLLoader.load(getClass().getResource("ListeParc.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void MagasinButtonAction(ActionEvent event) {
+        
+        try {
+        Stage stage=(Stage) buttonRefuge.getScene().getWindow(); 
+        stage.setTitle("NOS MAGASINS");
+        Parent root = FXMLLoader.load(getClass().getResource("magasin.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+
+    @FXML
+    private void afficherAccueil(ActionEvent event) {
+      try {
+      User user=Session.getLoggedInUser();
+        String role=user.getRoles();
+            String dres="a:1:{i:0;s:13:\"ROLE_DRESSEUR\";}";
+        Stage stage=(Stage) button.getScene().getWindow(); 
+        if(role.equals(dres)){
+        stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("AccueilDresseur.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();}else{
+            stage.setTitle("Accueil");
+        Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        }
+        } catch (IOException ex) {
+           Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    
+
 }

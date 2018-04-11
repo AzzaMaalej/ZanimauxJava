@@ -181,7 +181,6 @@ public class LoginController implements Initializable {
                     Stage secondStage = new Stage();
                     secondStage.setScene(new Scene(root));
                     Stage stage = (Stage) cin.getScene().getWindow();
-                    secondStage.setMaximized(true);
                     // do what you have to do
                     stage.hide();
                     secondStage.show();

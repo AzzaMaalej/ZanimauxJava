@@ -11,103 +11,116 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AffichePanierController">
-   <children>
-      <AnchorPane id="AnchorPane" onMouseClicked="#hidePaneProfil" prefHeight="632.0" prefWidth="721.0">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#hidePane" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zanimaux.GUI.AffichePanierController">
+       <children>
+      <AnchorPane layoutY="-4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane layoutX="10.0" layoutY="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="633.0" prefWidth="251.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Button layoutY="128.0" mnemonicParsing="false" onAction="#afficherAccueil" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="button" layoutX="3.0" layoutY="283.0" mnemonicParsing="false" onAction="#MagasinButtonAction" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="283.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+
+
+
+
+            <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" onAction="#goToVet" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
+
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="Petsitter" layoutX="3.0" layoutY="343.0" mnemonicParsing="false" onAction="#AfficherPromenade" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Pet-Sitter" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="343.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonRefuge" layoutX="3.0" layoutY="403.0" mnemonicParsing="false" onAction="#AfficherRefugeAction" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="403.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="evenement" layoutX="3.0" layoutY="463.0" mnemonicParsing="false" onAction="#onClickEvenementAction" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="463.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="annonceBtn" layoutX="3.0" layoutY="523.0" mnemonicParsing="false" onAction="#goToAnn" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="523.0">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
+               <image>
+                  <Image url="@../Image/home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="44.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="244.0">
+               <image>
+                  <Image url="@../Image/valise.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="43.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="293.0">
+               <image>
+                  <Image url="@../Image/storeIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="45.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="475.0">
+               <image>
+                  <Image url="@../Image/event.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="45.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="535.0">
+               <image>
+                  <Image url="@../Image/annonce.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="45.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="415.0">
+               <image>
+                  <Image url="@../Image/shelter.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="45.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="355.0">
+               <image>
+                  <Image url="@../Image/petsitter.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <Button layoutY="128.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Accueil" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+                  <Label alignment="TOP_CENTER" layoutX="89.0" layoutY="11.0" opacity="0.53" text="ANIMAUX" textFill="#138fab9e" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="11.0">
                      <font>
-                        <Font name="Baskerville" size="20.0" />
+                        <Font name="Baskerville" size="28.0" />
                      </font>
-                  </Button>
-                  <Button fx:id="button" layoutX="1.0" layoutY="257.0" mnemonicParsing="false" onAction="#afficherMagasin" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Magasin" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
-                     <font>
-                        <Font name="Baskerville" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="2.0" layoutY="192.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="191.0">
-                     <font>
-                        <Font name="Baskerville" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="1.0" layoutY="326.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="218.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Pet-Sitter" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="310.0">
-                     <font>
-                        <Font name="Baskerville" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="buttonRefuge" layoutX="3.0" layoutY="391.0" mnemonicParsing="false" onAction="#AfficherRefugeAction" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Refuge" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
-                     <font>
-                        <Font name="Baskerville" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="evenement" layoutX="1.0" layoutY="457.0" mnemonicParsing="false" onAction="#onClickEvenementAction" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Evénement" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="430.0">
-                     <font>
-                        <Font name="Baskerville" size="20.0" />
-                     </font>
-                  </Button>
-                  <Button layoutY="525.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Annonce" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
-                     <font>
-                        <Font name="Baskerville" size="20.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="462.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="140.0">
+                  </Label>
+                  <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Image/home.png" />
+                        <Image url="@../Image/logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="200.0">
-                     <image>
-                        <Image url="@../Image/valise.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0">
-                     <image>
-                        <Image url="@../Image/storeIcon.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="36.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="440.0">
-                     <image>
-                        <Image url="@../Image/event.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="39.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="500.0">
-                     <image>
-                        <Image url="@../Image/annonce.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="31.0" layoutX="38.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="380.0">
-                     <image>
-                        <Image url="@../Image/shelter.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="40.0" layoutY="329.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="320.0">
-                     <image>
-                        <Image url="@../Image/petsitter.png" />
-                     </image>
-                  </ImageView>
-                  <AnchorPane layoutX="2.0" layoutY="52.0" prefHeight="64.0" prefWidth="253.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-                     <children>
-                        <Label alignment="TOP_CENTER" layoutX="89.0" layoutY="11.0" opacity="0.53" text="ANIMAUX" textFill="#138fab9e" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="11.0">
-                           <font>
-                              <Font name="Baskerville" size="28.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="71.0" fitWidth="56.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Image/logo.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="63.0" layoutY="-8.0" opacity="0.82" prefHeight="48.0" prefWidth="33.0" text="Z" textFill="#138fab">
-                           <font>
-                              <Font name="Baskerville" size="60.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
+                  <Label layoutX="63.0" layoutY="-8.0" opacity="0.82" prefHeight="48.0" prefWidth="33.0" text="Z" textFill="#138fab">
+                     <font>
+                        <Font name="Baskerville" size="60.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
+            <Button fx:id="parc" layoutX="12.0" layoutY="181.0" mnemonicParsing="false" onAction="#AfficherParc" prefHeight="60.0" prefWidth="217.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Parc" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="46.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/dressage.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
             <AnchorPane layoutX="256.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="543.0" style="-fx-background-color: #128FAD; -fx-border-color: transparent;" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button layoutX="249.0" layoutY="6.0" mnemonicParsing="false" style="-fx-background-color: transparent;" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="6.0">
@@ -229,5 +242,3 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-   </children>
-</AnchorPane>

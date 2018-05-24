@@ -13,8 +13,11 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import zanimaux.entities.Articles;
 import zanimaux.entities.Magasin;
 import zanimaux.entities.User;
 import zanimaux.util.Session;
@@ -219,32 +222,10 @@ public class EvenementService {
     }
          
          
-<<<<<<< HEAD
-public ResultSet RechercheEvent(String motcle){
-ResultSet rs=null;
- try {
-String requete = "SELECT * FROM evenement WHERE titre LIKE'"+'%'+motcle+'%'+"'OR type LIKE'"+'%'+motcle+'%'+"'" ;
- rs = ste.executeQuery(requete);
- }catch (SQLException ex) {
- System.out.println(" erreur");
- }
-
-return rs ;
-}
-   
-
-  
-
-
-        
-    
-    }
-    
-=======
         public ResultSet RechercheEvent(String motcle){
         ResultSet rs=null;
         try {
-        String requete = "SELECT * FROM evenement WHERE titre LIKE'"+'%'+motcle+'%'+"'OR type LIKE'"+'%'+motcle+'%'+"'" ;
+        String requete = "SELECT * FROM evenement WHERE lieu LIKE'"+'%'+motcle+'%'+"'OR type LIKE'"+'%'+motcle+'%'+"'" ;
          rs = ste.executeQuery(requete);
          }catch (SQLException ex) {
         System.out.println(" erreur");
@@ -252,15 +233,69 @@ return rs ;
         
         return rs ;
 }
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
+                public ArrayList<Evenement> RechercheEvent1(String motcle){
+                   ArrayList<Evenement> l= new ArrayList<>();
+        ResultSet rs=null;
+        try {
+        String requete = "SELECT * FROM evenement WHERE lieu LIKE'"+'%'+motcle+'%'+"'OR type LIKE'"+'%'+motcle+'%'+"'" ;
+         rs = ste.executeQuery(requete);
+          Evenement listeEvent=new Evenement();
+
+         while(rs.next()){
+               listeEvent.setLieu(rs.getString("lieu"));
+                 listeEvent.setDateDebut(rs.getDate("dateDebut"));
+                 listeEvent.setDateFin(rs.getDate("dateFin"));
+                 listeEvent.setType(rs.getString("type"));
+                 listeEvent.setTitre(rs.getString("titre"));
+                 listeEvent.setDescription(rs.getString("description"));
+                 listeEvent.setNbPlace(rs.getInt("nb_place"));
+                 listeEvent.setImageEvt(rs.getString("image_evt"));
+                 l.add(listeEvent);
+         }
+        
+         }catch (SQLException ex) {
+        System.out.println(" erreur");
+        }
+        
+        return l;
+}
+                 
+         public List<Evenement> getAllEvent()
+   {
+        List<Evenement> listEvenement = new ArrayList<>();
+        try {
+            String requete = "select * from evenement ";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            
+            while(rs.next()){
+                Evenement evt = new Evenement();
+                
+               
+                evt.setLieu(rs.getString("lieu"));
+               evt.setDateDebut(rs.getDate("dateDebut"));
+               evt.setDateFin (rs.getDate("dateFin"));
+               evt.setType(rs.getString("type"));
+               evt.setTitre(rs.getString("titre"));
+               evt.setDescription(rs.getString("description"));
+               evt.setNbPlace(rs.getInt("nb_place"));
+               evt.setImageEvt(rs.getString("image_evt"));
+               
+                listEvenement.add(evt);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementService.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return listEvenement;
+    }
 
 }
     
 
-<<<<<<< HEAD
-=======
 
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
         
     
 

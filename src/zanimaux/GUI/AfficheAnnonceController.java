@@ -121,13 +121,14 @@ public class AfficheAnnonceController implements Initializable {
     private Button btnRefuge;
     @FXML
     private Button btnAccueil;
-<<<<<<< HEAD
-=======
+
     @FXML
     private Button addAnnBtn;
     @FXML
     private Button parc;
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
+    @FXML
+    private Button deconnexionBtn;
+
 
 
     /**
@@ -432,7 +433,7 @@ public class AfficheAnnonceController implements Initializable {
       
   }
     
-<<<<<<< HEAD
+
     
     
      /*void remplirFavoris()throws SQLException{
@@ -467,14 +468,13 @@ public class AfficheAnnonceController implements Initializable {
         }
     }*/
     
-    @FXML
-   void afficherFavoris() throws SQLException{
+    void afficherFavoris() throws SQLException{
         User usr = Session.getLoggedInUser();
          AnnonceFavorisService afs=new AnnonceFavorisService();
           AnnonceFavoris af =new AnnonceFavoris(a,usr.getCin());
           afs.mesAnnonceFavoris(usr.getCin());
-          remplir();        
-=======
+          remplir();     }   
+
     void remplirFav()throws SQLException{
         User usr = Session.getLoggedInUser();
         AnnonceFavorisService afs= new AnnonceFavorisService();
@@ -521,7 +521,7 @@ public class AfficheAnnonceController implements Initializable {
         anchorEvent.getChildren().add(pagination);
         
         
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
+
     }
 
     @FXML
@@ -536,8 +536,7 @@ public class AfficheAnnonceController implements Initializable {
         } catch (IOException ex) {
            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
        }
-<<<<<<< HEAD
-=======
+
         
     }
 
@@ -655,7 +654,6 @@ public class AfficheAnnonceController implements Initializable {
 
     @FXML
     private void AfficherParc(ActionEvent event) {
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
         
          try {
         Stage stage=(Stage) parc.getScene().getWindow(); 
@@ -669,7 +667,7 @@ public class AfficheAnnonceController implements Initializable {
        }
     }
 
-    @FXML
+   /* @FXML
     private void goToEvent(ActionEvent event) {
          try {
         Stage stage=(Stage) btnEvenement.getScene().getWindow(); 
@@ -759,6 +757,20 @@ public class AfficheAnnonceController implements Initializable {
         Stage stage=(Stage) btnAccueil.getScene().getWindow(); 
         stage.setTitle("accueil");
         Parent root = FXMLLoader.load(getClass().getResource("Quiz.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }*/
+
+    @FXML
+    private void deconnexion(ActionEvent event) {
+         try {
+        Stage stage=(Stage) deconnexionBtn.getScene().getWindow(); 
+        stage.setTitle("deconnexion");
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

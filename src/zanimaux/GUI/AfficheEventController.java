@@ -164,60 +164,18 @@ public class AfficheEventController implements Initializable {
     private Button btnAccueil;
     @FXML
     private TextField rechercheBtn;
-<<<<<<< HEAD
-=======
     @FXML
     private Button addEventBtn;
     @FXML
     private Button parc;
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
+    @FXML
+    private Button deconnexionBtn;
 
     /**
      * Initializes the controller class.
      */
    @Override
     public void initialize(URL url, ResourceBundle rb) {
-<<<<<<< HEAD
-        afficher();
-        
-        
-        User usr= Session.getLoggedInUser();
-        
-        userName.setText(usr.getUsername());
-        
-        rechercheBtn.setOnKeyPressed(new EventHandler<KeyEvent>() {
- 
-   
-                @Override
-         public void handle(KeyEvent event) 
-                {
-                if(event.getCode().equals(KeyCode.ENTER)) {
- 
-// do something
-                        EvenementService es=null;
- 
-                    try {
-  
-                es = new EvenementService();
- 
-                    } 
-            catch (SQLException ex) {Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-  
-                    User user=Session.getLoggedInUser();
- 
-                String cin=user.getCin();
-                                    Evenement e1=new Evenement();
- 
-                                ResultSet r =es.RechercheEvent(rechercheBtn.getText());
-                                 afficher();}}});}
-                     
-        
-    
-    // TODO
-
-    public ScrollPane consulterEvent(int pageIndex) {
-=======
        
        
        User usr= Session.getLoggedInUser();
@@ -228,190 +186,18 @@ public class AfficheEventController implements Initializable {
            User usr = Session.getLoggedInUser();
            
               
-    // TODO
-
-    //public ScrollPane consulterEvent(int pageIndex) {
-      //  User usr = Session.getLoggedInUser();
-         //ScrollPane sp = new ScrollPane();
-      //rechercheBtn.setOnKeyPressed(new EventHandler<KeyEvent>() {
- 
-   /* @Override
-    public void handle(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)) {
-             // do something
-        EvenementService es=null;
-        try {
-            es = new EvenementService();
-        } catch (SQLException ex) {
-            Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        String cin=usr.getCin();
-        Evenement e1=new Evenement();
-        ResultSet r =es.RechercheEvent(rechercheBtn.getText());        
-        sp.setPrefSize(900, 650);
-        //sp.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
-//         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
-        VBox vb = new VBox();
-        HBox hb = null;
-        
-        vb.setPadding(new Insets(100, 30, 0, 30));
-        vb.setSpacing(70);
-        int i = 0;
-        
-        for (int j = pageIndex * 2; j < listeEvt.size(); j++) {
-            i++;
-            if (j <= (pageIndex * 2 + (2 - 1))) {
-                
-               // Evenement e1 = new Evenement();
-                e1 = listeEvt.get(j);
-                ImageView im = new ImageView();
-                Image image = new Image("zanimaux/ImageUtile/" + e1.getImageEvt(), 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
-                im.setImage(image);
-                Text t1 = new Text(e1.getTitre());
-                t1.setFont(Font.font("Verdana", 10));
-                Text t = new Text(e1.getLieu());
-                t.setFont(Font.font("Verdana", 15));
-                ImageView im1 = new ImageView();
-                Image image2 = new Image("zanimaux/Image/supprimer.png", 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
-                im1.setImage(image2);
-                Button consulter = new Button();
-                // consulter.setStyle("-fx-background-image:im1");
-                consulter.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
-                Button modifier = new Button();
-                modifier.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
-                modifier.setId(String.valueOf(e1.getIdEvt()));
-                
-                modifier.setOnAction(x -> {
-                    try {
-                        goToModif(x);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                });
-                Button supprimer = new Button();
-                supprimer.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
-                supprimer.setId(String.valueOf(e1.getIdEvt()));
-                supprimer.setOnAction(x -> {
-                    try {
-                        supprimerEvent(x);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                });
-                
-                HBox BtnBox = new HBox(consulter, modifier, supprimer);
-                BtnBox.setSpacing(50);
-                consulter.setText("consulter evenement");
-                modifier.setText("modifier");
-                modifier.setVisible(false);
-                supprimer.setText("Supprimer");
-                supprimer.setVisible(false);
-                System.out.println(usr.getCin());
-                System.out.println(e1.getCinUser());
-                
-                if (usr.getCin().equals(e1.getCinUser())) {
-                    modifier.setVisible(true);
-                    supprimer.setVisible(true);
-                    
-                }
-                
-                consulter.setId(String.valueOf(e1.getIdEvt()));
-                consulter.setOnAction(s -> {
-                    try {
-                        consulterDetailsEvent(s);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-                });
-                
-                VBox vbEvent = new VBox();
-                vbEvent.setPadding(new Insets(-60, 0, 30, 30));
-                vbEvent.setSpacing(50);
-
-                // vbEvent.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
-                // vbEvent.setPrefSize(200, 150);
-                vbEvent.getChildren().add(im);
-                vbEvent.getChildren().add(t1);
-                vbEvent.getChildren().add(t);
-                vbEvent.getChildren().add(BtnBox);
-                
-                System.out.println(e1.getImageEvt());
-                Button f = new Button();
-                f.setStyle("\"-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
-                f.setText("Facebook");
-                f.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        
-                String token = "EAACEdEose0cBABToIztl8BsETQpMKddF41aIcZBxEqjREXR0TyjVuOP4GAkrvAe878STh1ZC2EZBq72qMhUgUZBQtDC75fIJVhLumNG4RlSvbLDe8m6xECiizXciZCWgnwfZB2fiZBC3x5kfQ6yjZCr3aOPK7l3DtQTIF4TmZBAIU0xcDKtbmvg6TzoPeKCrAIlzpVjmorTtHj71SmmaH1TZB2YGGq5sZAPM4dV8E2AVOO74AE11j2GJ9fcbw4kDyZCbriAZD";
-                FacebookClient fb = new DefaultFacebookClient(token);
-                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", " " ));
-                            
-                    }
-                });
-               ;
-                VBox vp = new VBox(f);
-                vp.setSpacing(60);
-                
-                hb = new HBox();
-                hb.setPadding(new Insets(0, 0, 0, 0));
-                hb.setPrefSize(500, 200);
-                hb.setMaxSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
-                hb.setMinSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
-                
-                hb.setSpacing(50);
-                
-                if (i % 2 != 0) {
-                    hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;");
-                    
-                } else {
-                    hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;");                    
-                }
-                hb.getChildren().add(vbEvent);
-                hb.getChildren().add(vp);
-                vb.getChildren().add(hb);
-                
-            }
-        }
-        
-        sp.setContent(vb);
-        // anchorEvent.getChildren().setAll(sp);
-        
-               
-    }
-        }
-    });
-    return sp;  
-   }    */
-     
+    
        
     
     
     public ScrollPane consulterEventBase(int pageIndex) {
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
         System.out.println(pageIndex);
         
         User usr = Session.getLoggedInUser();
-        /* EvenementService es = null;
-        try {
-            es = new EvenementService();
-        } catch (SQLException ex) {
-            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-        Evenement e1=new Evenement();
-        ResultSet r= es.rechercheEvent();*/
+        
         
         ScrollPane sp = new ScrollPane();
-<<<<<<< HEAD
-        Button createEvent = new Button();
-        createEvent.setText("Créer Evenement");
-        createEvent.setStyle("-fx-background-color:transparent;-fx-text-fill:#138fab;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:#138fab;");
-=======
        
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
         
         sp.setPrefSize(900, 650);
         //sp.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
@@ -433,31 +219,19 @@ public class AfficheEventController implements Initializable {
                 Image image = new Image("zanimaux/ImageUtile/" + e1.getImageEvt(), 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
                 im.setImage(image);
                 Text t1 = new Text(e1.getTitre());
-<<<<<<< HEAD
-                t1.setFont(Font.font("Verdana", 10));
-                Text t = new Text(e1.getLieu());
-                t.setFont(Font.font("Verdana", 15));
-=======
                 t1.setFont(Font.font("Comic Sans MS", 13));
                 t1.setStyle("-fx-text-fill:white;");
                 Text t = new Text(e1.getLieu());
                 t.setStyle("-fx-text-fill:white;");
                 t.setFont(Font.font("Comic Sans MS", 15));
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
                 ImageView im1 = new ImageView();
                 Image image2 = new Image("zanimaux/Image/supprimer.png", 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
                 im1.setImage(image2);
                 Button consulter = new Button();
-<<<<<<< HEAD
-                // consulter.setStyle("-fx-background-image:im1");
-                consulter.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
-                Button modifier = new Button();
-=======
                 consulter.setPrefSize(150, 20);
                 consulter.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
                 Button modifier = new Button();
                 modifier.setPrefSize(150, 20);
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
                 modifier.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
                 modifier.setId(String.valueOf(e1.getIdEvt()));
                 
@@ -469,10 +243,7 @@ public class AfficheEventController implements Initializable {
                     }
                 });
                 Button supprimer = new Button();
-<<<<<<< HEAD
-=======
                 supprimer.setPrefSize(150, 20);
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
                 supprimer.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
                 supprimer.setId(String.valueOf(e1.getIdEvt()));
                 supprimer.setOnAction(x -> {
@@ -485,11 +256,7 @@ public class AfficheEventController implements Initializable {
                 
                 HBox BtnBox = new HBox(consulter, modifier, supprimer);
                 BtnBox.setSpacing(50);
-<<<<<<< HEAD
-                consulter.setText("consulter evenement");
-=======
                 consulter.setText("consulter");
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
                 modifier.setText("modifier");
                 modifier.setVisible(false);
                 supprimer.setText("Supprimer");
@@ -525,43 +292,26 @@ public class AfficheEventController implements Initializable {
                 vbEvent.getChildren().add(BtnBox);
                 
                 System.out.println(e1.getImageEvt());
-<<<<<<< HEAD
-                Button f = new Button();
-                f.setText("Facebook");
-=======
                            
                 Button f = new Button();
                 f.setPrefWidth(400);
                f.setText("Facebook");
                f.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
                 f.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        
-<<<<<<< HEAD
-               String token = "EAACEdEose0cBANN2aCXRkTDZAy5ApG4KWuMQKOrGx4i7EopjsgiAd3c4KqUZBXzUbWQKKfdbuqIC79Tr0RBt6vbm9ZBrjmpuUYl0OlSqIZBp8tq7ZAu4ZAohjogF3WVZBcfucjxhBfOxRlOspIb9dbMsW25oDxRv6aSQZBWEEDQZAq4a87NR5cTfcog2n59rLy1dKiXP3goQzt2m8JVZBoraYOWDhb5R6v00MZD";
+                 try {
+                            EvenementService om= new EvenementService();
+                            Evenement e1 = new Evenement();
+                              String token = "EAACEdEose0cBAFGWdBE8vZCPEszbNIOJzZBVSg2UyI0DbTWXsqeQovVeCLN8yX3cZCtZCnfYRLd38WT27Gk1Vcm9hUdlvCPSpzeZAKZBgrLg9zbP0Ve1Iz0EdgLPwHgBeEH73pI1zC7NuddBNl7vpLZCXHHSlqgb1NexEQnNYxnrkbnuBqer2QU1MKHDtoInUZBRjNh3RzLYG1xMuKx1ITxWCd6KGR6RGts5YEaoZBeffSUxbXix2A64MO3jQ1EuzAgIZD";
                FacebookClient fb = new DefaultFacebookClient(token);
-                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", "Event"));
-                            
-                    }
-                });
-                Button p = new Button();
-                p.setText("Twitter");
-                Button g = new Button();
-                g.setText("Gmail");
-                VBox vp = new VBox(f, p, g);
-=======
-               String token = "EAACEdEose0cBAKoqJJ0FDC7Y7jjHS3N0ImVgxzZA9GWS5KSczZCJMxU6N204WuQD3LJG0v8fMuZA0AWWhzHkDDGkU5awY2kkBrLYYUJWDZCp2R2C2SqBSKzuhHloVW7SDCRa24fBPtPXeDeLUZCpdZAflE9lTK86lzHiDlQKroiqroQVXZCiC09tQ1NvZAFFc8hvp8EZB0DtKQVDOE6ta1zVM67AZCp1N8iOnsz6yDFMheCDzHJvJbl8OX4kX7gDOfI4cZD";
-               FacebookClient fb = new DefaultFacebookClient(token);
-                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", "Event"));
-               // FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", e1.getImageEvt() + "Event" + e1.getLieu() + " aura lieu le " + e1.getDateDebut() + " jusqu'à " + e1.getDateFin() + " " + e1.getDescription()));
-                            
-                    }
-                });
+                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", e1.getImageEvt() + "Event" + e1.getLieu() + " aura lieu le " + e1.getDateDebut() + " jusqu'à " + e1.getDateFin() + " " + e1.getDescription()));
+                    }   catch (SQLException ex) {
+                            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+                    }}});
+              
                 
                 VBox vp = new VBox(f);
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
                 vp.setSpacing(60);
                 
                 hb = new HBox();
@@ -569,15 +319,9 @@ public class AfficheEventController implements Initializable {
                 hb.setPrefSize(500, 200);
                 hb.setMaxSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
                 hb.setMinSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
-<<<<<<< HEAD
                 
                 hb.setSpacing(50);
                 
-=======
-                
-                hb.setSpacing(50);
-                
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
                 if (i % 2 != 0) {
                     hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;");
                     
@@ -596,10 +340,7 @@ public class AfficheEventController implements Initializable {
         
         return sp;        
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
     
     void remplir() throws SQLException {
         EvenementService es = new EvenementService();
@@ -639,11 +380,7 @@ public class AfficheEventController implements Initializable {
         }
         
         pagination.setPageCount(nbPages);
-<<<<<<< HEAD
-        pagination.setPageFactory((Integer indexPage) -> consulterEvent(indexPage));
-=======
         pagination.setPageFactory((Integer indexPage) -> consulterEventBase(indexPage));
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
         AnchorPane.setTopAnchor(pagination, 10.0);
         AnchorPane.setLeftAnchor(pagination, 10.0);
         AnchorPane.setRightAnchor(pagination, 10.0);
@@ -652,7 +389,7 @@ public class AfficheEventController implements Initializable {
         
     }
     
-    void consulterDetailsEvent(ActionEvent e) throws SQLException {
+     void consulterDetailsEvent(ActionEvent e) throws SQLException {
         a = Integer.parseInt(((Node) e.getSource()).getId());
         EvenementService es = new EvenementService();
         Evenement e1 = new Evenement();
@@ -859,11 +596,7 @@ public class AfficheEventController implements Initializable {
         try {
             Stage stage = (Stage) btnVet.getScene().getWindow();            
             stage.setTitle("vet");
-<<<<<<< HEAD
-            Parent root = FXMLLoader.load(getClass().getResource("AffichageCabinets.fxml"));
-=======
             Parent root = FXMLLoader.load(getClass().getResource("VetFront.fxml"));
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -877,11 +610,7 @@ public class AfficheEventController implements Initializable {
         try {
             Stage stage = (Stage) btnPetSitter.getScene().getWindow();            
             stage.setTitle("petSitter");
-<<<<<<< HEAD
-            Parent root = FXMLLoader.load(getClass().getResource("AccueilPetSitter.fxml"));
-=======
             Parent root = FXMLLoader.load(getClass().getResource("ListePromenade.fxml"));
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -934,25 +663,181 @@ public class AfficheEventController implements Initializable {
     }
 
     @FXML
-    private void rechercher(KeyEvent event) {
+    private void rechercher(KeyEvent event) throws SQLException {
+        
+         EvenementService es =null;
          if(event.getCode().equals(KeyCode.ENTER)) {
              // do something
-        EvenementService es =null;
+       
         try {
             es = new EvenementService();
         } catch (SQLException ex) {
             Logger.getLogger(ParcController.class.getName()).log(Level.SEVERE, null, ex);
         }
+         }
         User user=Session.getLoggedInUser();
         String cin=user.getCin();
-        Evenement m1=new Evenement();
-        ResultSet r =es.RechercheEvent(rechercheBtn.getText());
+        Evenement listeEvent=new Evenement();
+       
+        ArrayList<Evenement>listeEvt =es.RechercheEvent1(rechercheBtn.getText());
+        
+   
+        
+        
+          ScrollPane sp = new ScrollPane();
+        User usr = Session.getLoggedInUser();
+        
+        sp.setPrefSize(900, 650);
+        //sp.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
+//         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+        VBox vb = new VBox();
+        HBox hb = null;
+        
+        vb.setPadding(new Insets(100, 30, 0, 30));
+        vb.setSpacing(70);
+        int i = 0;
+        
+        for (int j = 0; j < listeEvt.size(); j++) {
+       
+         
+                
+                Evenement e1 = new Evenement();
+                e1 = listeEvt.get(j);
+                ImageView im = new ImageView();
+                Image image = new Image("zanimaux/ImageUtile/" + e1.getImageEvt(), 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
+                im.setImage(image);
+                Text t1 = new Text(e1.getTitre());
+                t1.setFont(Font.font("Comic Sans MS", 13));
+                t1.setStyle("-fx-text-fill:white;");
+                Text t = new Text(e1.getLieu());
+                t.setStyle("-fx-text-fill:white;");
+                t.setFont(Font.font("Comic Sans MS", 15));
+                ImageView im1 = new ImageView();
+                Image image2 = new Image("zanimaux/Image/supprimer.png", 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
+                im1.setImage(image2);
+                Button consulter = new Button();
+                consulter.setPrefSize(150, 20);
+                consulter.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
+                Button modifier = new Button();
+                modifier.setPrefSize(150, 20);
+                modifier.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
+                modifier.setId(String.valueOf(e1.getIdEvt()));
+                
+                modifier.setOnAction(x -> {
+                    try {
+                        goToModif(x);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+                Button supprimer = new Button();
+                supprimer.setPrefSize(150, 20);
+                supprimer.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
+                supprimer.setId(String.valueOf(e1.getIdEvt()));
+                supprimer.setOnAction(x -> {
+                    try {
+                        supprimerEvent(x);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+                
+                HBox BtnBox = new HBox(consulter, modifier, supprimer);
+                BtnBox.setSpacing(50);
+                consulter.setText("consulter");
+                modifier.setText("modifier");
+                modifier.setVisible(false);
+                supprimer.setText("Supprimer");
+                supprimer.setVisible(false);
+                System.out.println(usr.getCin());
+                System.out.println(e1.getCinUser());
+                
+                if (usr.getCin().equals(e1.getCinUser())) {
+                    modifier.setVisible(true);
+                    supprimer.setVisible(true);
+                    
+                }
+                
+                consulter.setId(String.valueOf(e1.getIdEvt()));
+                consulter.setOnAction(s -> {
+                    try {
+                        consulterDetailsEvent(s);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(accueilOumaimaController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                });
+                
+                VBox vbEvent = new VBox();
+                vbEvent.setPadding(new Insets(-60, 0, 30, 30));
+                vbEvent.setSpacing(50);
+
+                // vbEvent.setStyle("-fx-background-color:#E3F9FE;-fx-background-radius:20px;");
+                // vbEvent.setPrefSize(200, 150);
+                vbEvent.getChildren().add(im);
+                vbEvent.getChildren().add(t1);
+                vbEvent.getChildren().add(t);
+                vbEvent.getChildren().add(BtnBox);
+                
+                System.out.println(e1.getImageEvt());
+                           
+                Button f = new Button();
+                f.setPrefWidth(400);
+               f.setText("Facebook");
+               f.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
+                f.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        try {
+                            EvenementService o= new EvenementService();
+                            Evenement e1 = new Evenement();
+                              String token = "EAACEdEose0cBACbpuPKf7Rr0aTUjn2Fygr8pVZBAW337wq4k3zoL2wuT5bciLEcbGe4s9qb6HxUyn46D5ZCBJnL2FYcQNCzvkttm8u3zqEhL6qjBwOoQtRFFbl8V3i6rhZA9qxt1NsJXgZBf7YZBuMYxSXpmblMSVsC3vNsLYzH0na4meXVY7V6sk2UQkmDqa4KFI1vneVcB7jHEVFJ43nv9uFMcFN97ueainVSgndXgoDHQSgp6SfKols1ZAVMb4ZD";
+               FacebookClient fb = new DefaultFacebookClient(token);
+                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", e1.getImageEvt() + "Event" + e1.getLieu() + " aura lieu le " + e1.getDateDebut() + " jusqu'à " + e1.getDateFin() + " " + e1.getDescription()));
+                        } catch (SQLException ex) {
+                            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+             
+               // FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", "Event"));
+              
+                            
+                    }
+                });
+                
+                VBox vp = new VBox(f);
+                vp.setSpacing(60);
+                
+                hb = new HBox();
+                hb.setPadding(new Insets(0, 0, 0, 0));
+                hb.setPrefSize(500, 200);
+                hb.setMaxSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
+                hb.setMinSize(Control.USE_PREF_SIZE, Control.USE_COMPUTED_SIZE);
+                
+                hb.setSpacing(50);
+                
+                if (i % 2 != 0) {
+                    hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;");
+                    
+                } else {
+                    hb.setStyle("-fx-background-color:#128FAD;-fx-background-radius:20px;");                    
+                }
+                hb.getChildren().add(vbEvent);
+                hb.getChildren().add(vp);
+                vb.getChildren().add(hb);
+                
+            }
+          sp.setContent(vb);
+          anchorEvent.getChildren().setAll(sp);
+          
+        }
+        
+      
+        
+       
         
 
-    }
 
-
-    }
+   
 
     @FXML
     private void goToAddEvent(ActionEvent event) {
@@ -982,16 +867,21 @@ public class AfficheEventController implements Initializable {
        }
     }
 
-    
-    
-    
-<<<<<<< HEAD
+    @FXML
+    private void deconnexion(ActionEvent event) { try {
+        Stage stage=(Stage) deconnexionBtn.getScene().getWindow(); 
+        stage.setTitle("deconnexion");
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        } catch (IOException ex) {
+           Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
+    }
 
+    
+    
+    
 
-
-    
-    
-    
-=======
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
-}

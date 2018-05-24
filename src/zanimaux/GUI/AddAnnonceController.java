@@ -23,10 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-<<<<<<< HEAD
-=======
 import javafx.scene.control.Alert;
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
@@ -151,8 +148,7 @@ public class AddAnnonceController implements Initializable {
            sa.ajouterAnnonce(a);
          System.out.println("annonce ajouté");
          goToAffiche();
-<<<<<<< HEAD
-=======
+
     }
     }
 
@@ -168,6 +164,5 @@ public class AddAnnonceController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
         }
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
     }
 }

@@ -156,6 +156,11 @@
                         <Font name="Comic Sans MS" size="13.0" />
                      </font>
                   </Button>
+                  <Button fx:id="deconnexionBtn" layoutX="312.0" layoutY="7.0" mnemonicParsing="false" onAction="#deconnexion" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-text-fill: white;" text="Déconnexion">
+                     <font>
+                        <Font name="Comic Sans MS" size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <Pane fx:id="pane" layoutX="544.0" layoutY="76.0" prefHeight="200.0" prefWidth="265.0" style="-fx-border-color: #37502D8E; -fx-background-color: #FFFFFF;" visible="false">

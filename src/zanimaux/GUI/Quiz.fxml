@@ -26,20 +26,11 @@
                </font>
             </Button>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
             <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" onAction="#goToVet" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
-=======
-=======
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
 
 
 
-            <Button layoutX="5.0" layoutY="235.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: transparent;" text="Vétérinare" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="235.0">
-<<<<<<< HEAD
->>>>>>> d9a0411040f17c4b6b261c8f8cd0e58cce562cdf
-=======
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
+
 
                <font>
                   <Font name="Baskerville" size="20.0" />

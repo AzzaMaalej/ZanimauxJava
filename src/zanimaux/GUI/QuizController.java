@@ -168,25 +168,9 @@ public class QuizController implements Initializable {
     String chienchute;
     String chienintelligent;
     String calme;
-<<<<<<< HEAD
-<<<<<<< HEAD
-     
 
-  
-    
-=======
-=======
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
+   
 
-
-    @FXML
-    private Button Petsitter;
-
-<<<<<<< HEAD
->>>>>>> d9a0411040f17c4b6b261c8f8cd0e58cce562cdf
-=======
->>>>>>> d361910e9a9b039362e0e66344f8e815ae638cfb
-    
 
     /**
      * Initializes the controller class.

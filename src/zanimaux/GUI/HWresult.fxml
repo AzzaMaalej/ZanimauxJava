@@ -197,7 +197,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apqst" prefHeight="794.0" prefWidth="686.0">
+            <AnchorPane fx:id="apqst" prefHeight="794.0" prefWidth="686.0" visible="false">
                <children>
                   <ImageView fitHeight="794.0" fitWidth="686.0">
                      <image>

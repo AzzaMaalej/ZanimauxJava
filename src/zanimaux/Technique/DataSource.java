@@ -21,6 +21,7 @@ public class DataSource {
     private static DataSource data;
     private Connection con;
     public String login="root";
+
     public String password="";
     public String url="jdbc:mysql://localhost:3306/zanimo";
 

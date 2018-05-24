@@ -171,6 +171,7 @@ public class AfficheEventController implements Initializable {
     @FXML
     private Button deconnexionBtn;
 
+
     /**
      * Initializes the controller class.
      */
@@ -300,10 +301,12 @@ public class AfficheEventController implements Initializable {
                 f.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
+
                  try {
                             EvenementService om= new EvenementService();
                             Evenement e1 = new Evenement();
                               String token = "EAACEdEose0cBAFGWdBE8vZCPEszbNIOJzZBVSg2UyI0DbTWXsqeQovVeCLN8yX3cZCtZCnfYRLd38WT27Gk1Vcm9hUdlvCPSpzeZAKZBgrLg9zbP0Ve1Iz0EdgLPwHgBeEH73pI1zC7NuddBNl7vpLZCXHHSlqgb1NexEQnNYxnrkbnuBqer2QU1MKHDtoInUZBRjNh3RzLYG1xMuKx1ITxWCd6KGR6RGts5YEaoZBeffSUxbXix2A64MO3jQ1EuzAgIZD";
+
                FacebookClient fb = new DefaultFacebookClient(token);
                 FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", e1.getImageEvt() + "Event" + e1.getLieu() + " aura lieu le " + e1.getDateDebut() + " jusqu'à " + e1.getDateFin() + " " + e1.getDescription()));
                     }   catch (SQLException ex) {
@@ -679,13 +682,36 @@ public class AfficheEventController implements Initializable {
         String cin=user.getCin();
         Evenement listeEvent=new Evenement();
        
+
         ArrayList<Evenement>listeEvt =es.RechercheEvent1(rechercheBtn.getText());
         
    
+        ResultSet rs =es.RechercheEvent(rechercheBtn.getText());
+        
+        while(rs.next()){
+               listeEvent.setLieu(rs.getString("lieu"));
+                 listeEvent.setDateDebut(rs.getDate("dateDebut"));
+                 listeEvent.setDateFin(rs.getDate("dateFin"));
+                 listeEvent.setType(rs.getString("type"));
+                 listeEvent.setTitre(rs.getString("titre"));
+                 listeEvent.setDescription(rs.getString("description"));
+                 listeEvent.setNbPlace(rs.getInt("nb_place"));
+                 listeEvent.setImageEvt(rs.getString("image_evt"));
+                 
+                 
+                 listeEvt.add(listeEvent);
+        }
+        
+        
+        
+        
+        
+
         
         
           ScrollPane sp = new ScrollPane();
         User usr = Session.getLoggedInUser();
+
         
         sp.setPrefSize(900, 650);
         //sp.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
@@ -697,6 +723,30 @@ public class AfficheEventController implements Initializable {
         vb.setSpacing(70);
         int i = 0;
         
+        /* EvenementService es = null;
+        try {
+            es = new EvenementService();
+        } catch (SQLException ex) {
+            Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+        Evenement e1=new Evenement();
+        ResultSet r= es.rechercheEvent();*/
+        
+      
+       
+        
+        sp.setPrefSize(900, 650);
+        //sp.setMaxSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
+//         sp.setMinSize(Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);
+       // VBox vb = new VBox();
+       // HBox hb = null;
+        
+        vb.setPadding(new Insets(100, 30, 0, 30));
+        vb.setSpacing(70);
+       // int i = 0;
+        
+
         for (int j = 0; j < listeEvt.size(); j++) {
        
          
@@ -867,6 +917,7 @@ public class AfficheEventController implements Initializable {
        }
     }
 
+
     @FXML
     private void deconnexion(ActionEvent event) { try {
         Stage stage=(Stage) deconnexionBtn.getScene().getWindow(); 
@@ -883,5 +934,8 @@ public class AfficheEventController implements Initializable {
 
     
     
+        
     
+    
+
 

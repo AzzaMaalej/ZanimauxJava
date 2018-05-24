@@ -24,8 +24,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
@@ -145,7 +147,7 @@ public class AddEventController implements Initializable {
    
              LocalDate d2 = dateFin.getValue();
          Date datef = Date.from(d2.atStartOfDay(ZoneId.systemDefault()).toInstant());
-         
+
         String nbP =  nbPlace.getText().toString();
         int i=0;
          if (lieu.getText().isEmpty()) {
@@ -182,7 +184,7 @@ public class AddEventController implements Initializable {
         alert.showAndWait();
              i++;
         }
-       
+
       if(i==0)
       { 
        Evenement e=new Evenement(usr.getCin(),lieu.getText(),dated,datef,type.getText(),titre.getText(),description.getText(),Integer.parseInt(nbPlace.getText()),BtnChoixImage.getText());

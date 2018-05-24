@@ -126,8 +126,10 @@ public class AfficheAnnonceController implements Initializable {
     private Button addAnnBtn;
     @FXML
     private Button parc;
+
     @FXML
     private Button deconnexionBtn;
+
 
 
 
@@ -433,8 +435,6 @@ public class AfficheAnnonceController implements Initializable {
       
   }
     
-
-    
     
      /*void remplirFavoris()throws SQLException{
          //a=Integer.parseInt(((Node) e.getSource()).getId());
@@ -473,7 +473,9 @@ public class AfficheAnnonceController implements Initializable {
          AnnonceFavorisService afs=new AnnonceFavorisService();
           AnnonceFavoris af =new AnnonceFavoris(a,usr.getCin());
           afs.mesAnnonceFavoris(usr.getCin());
+
           remplir();     }   
+
 
     void remplirFav()throws SQLException{
         User usr = Session.getLoggedInUser();
@@ -521,7 +523,6 @@ public class AfficheAnnonceController implements Initializable {
         anchorEvent.getChildren().add(pagination);
         
         
-
     }
 
     @FXML
@@ -654,7 +655,7 @@ public class AfficheAnnonceController implements Initializable {
 
     @FXML
     private void AfficherParc(ActionEvent event) {
-        
+
          try {
         Stage stage=(Stage) parc.getScene().getWindow(); 
         stage.setTitle("Annonce");
@@ -666,6 +667,7 @@ public class AfficheAnnonceController implements Initializable {
            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
+
 
    /* @FXML
     private void goToEvent(ActionEvent event) {
@@ -780,5 +782,8 @@ public class AfficheAnnonceController implements Initializable {
     }
 
 
+   
+
+    
 }
 

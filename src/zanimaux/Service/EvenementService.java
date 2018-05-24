@@ -222,6 +222,7 @@ public class EvenementService {
     }
          
          
+
         public ResultSet RechercheEvent(String motcle){
         ResultSet rs=null;
         try {
@@ -298,4 +299,17 @@ public class EvenementService {
 
         
     
+
+
+
+
+  
+
+
+        
+    
+    
+    
+
+
 

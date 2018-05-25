@@ -86,7 +86,7 @@ public class AffichePanierController implements Initializable {
     private VBox vbTotal;
     @FXML
     private VBox vbBoutton;
-    public static  String DEST = "result/table/simple_table6.pdf";
+    public static  String DEST = "file:///C:/simple_table6.pdf";
     @FXML
     private Button Petsitter;
     @FXML

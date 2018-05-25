@@ -200,7 +200,7 @@
                         </TextArea>
                         <Button id="BtnChoixImage" fx:id="BtnChoixImageA" layoutX="181.0" layoutY="409.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="268.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 2px 2px 2px 2px;" text="Image.." />
                         <Button fx:id="buttonAnnCreate" layoutX="252.0" layoutY="548.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: green;" text="Creer" />
-                        <AnchorPane fx:id="anchorDetailsAnnonce" layoutX="42.0" layoutY="138.0" prefHeight="319.0" prefWidth="546.0" style="-fx-background-color: #128FAD; -fx-background-radius: 50;">
+                        <AnchorPane fx:id="anchorDetailsAnnonce" layoutX="42.0" layoutY="138.0" prefHeight="319.0" prefWidth="546.0" style="-fx-background-color: #128FAD; -fx-background-radius: 50;" visible="false">
                            <children>
                               <ImageView fx:id="imageDetails" fitHeight="124.0" fitWidth="185.0" layoutX="185.0" layoutY="-48.0" pickOnBounds="true" preserveRatio="true" />
                               <Label fx:id="titreAnn" layoutX="95.0" layoutY="99.0" prefHeight="35.0" prefWidth="185.0" text="Label" textFill="WHITE">

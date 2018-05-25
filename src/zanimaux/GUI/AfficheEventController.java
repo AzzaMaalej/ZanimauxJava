@@ -217,7 +217,9 @@ public class AfficheEventController implements Initializable {
                 Evenement e1 = new Evenement();
                 e1 = listeEvt.get(j);
                 ImageView im = new ImageView();
+                System.out.println("helloooooooooooooo");
                 Image image = new Image("zanimaux/ImageUtile/" + e1.getImageEvt(), 150, 120, false, false); //("zanimaux/ImageUtile/"+e1.getImageEvt(),150,120,false,false) ;
+                System.out.println("itsme");
                 im.setImage(image);
                 Text t1 = new Text(e1.getTitre());
                 t1.setFont(Font.font("Comic Sans MS", 13));
@@ -298,17 +300,35 @@ public class AfficheEventController implements Initializable {
                 f.setPrefWidth(400);
                f.setText("Facebook");
                f.setStyle("-fx-background-color:transparent;-fx-text-fill:white;-fx-border-width: 0px 0px 2px 0px;-fx-border-color:white;");
-                f.setOnAction(new EventHandler<ActionEvent>() {
+               f.setId(String.valueOf(listeEvt.get(j).getIdEvt()));
+               f.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
 
                  try {
+                     
                             EvenementService om= new EvenementService();
                             Evenement e1 = new Evenement();
-                              String token = "EAACEdEose0cBAFGWdBE8vZCPEszbNIOJzZBVSg2UyI0DbTWXsqeQovVeCLN8yX3cZCtZCnfYRLd38WT27Gk1Vcm9hUdlvCPSpzeZAKZBgrLg9zbP0Ve1Iz0EdgLPwHgBeEH73pI1zC7NuddBNl7vpLZCXHHSlqgb1NexEQnNYxnrkbnuBqer2QU1MKHDtoInUZBRjNh3RzLYG1xMuKx1ITxWCd6KGR6RGts5YEaoZBeffSUxbXix2A64MO3jQ1EuzAgIZD";
-
+                                    ResultSet rs =om.RechercheEvent(rechercheBtn.getText());
+        
+        while(rs.next()){
+               e1.setLieu(rs.getString("lieu"));
+                 e1.setDateDebut(rs.getDate("dateDebut"));
+                 e1.setDateFin(rs.getDate("dateFin"));
+                 e1.setType(rs.getString("type"));
+                 e1.setTitre(rs.getString("titre"));
+                 e1.setDescription(rs.getString("description"));
+                 e1.setNbPlace(rs.getInt("nb_place"));
+                 e1.setImageEvt(rs.getString("image_evt"));
+                 
+                 
+                 listeEvt.add(e1);
+        }
+        
+                            
+                                String token = "EAACEdEose0cBACZCg4pIKLvxcULwafzOMUp7ySDVGmwaKm4lBO6DDUqCaM8AHzZA8oLSkTFum9ZB02ZCUVNZBTogfjbUUH06pY5jzz7EP6rA3hZBbyFTJt9MivE43KkpG0gWtA3ZB5Y3BCMhUsuuJ8BPZAEcQfdMFlHoZAkLuUsWTaUxznRe63ZBl0NkUqhkPaxlDM6M0R41PqVEtHswZBXd1jhQZA5AZCsouhnBsQhOpkyub1tEibh3qkmiN4Sz1ZA1ziD9IZD";
                FacebookClient fb = new DefaultFacebookClient(token);
-                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", e1.getImageEvt() + "Event" + e1.getLieu() + " aura lieu le " + e1.getDateDebut() + " jusqu'à " + e1.getDateFin() + " " + e1.getDescription()));
+                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", e1.getImageEvt() + "Event" + e1.getLieu() + " aura lieu le " + e1.getDateDebut() + " jusqu'à " + e1.getDateFin() + " " +e1.getDescription()));
                     }   catch (SQLException ex) {
                             Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
                     }}});
@@ -840,10 +860,10 @@ public class AfficheEventController implements Initializable {
                     public void handle(ActionEvent event) {
                         try {
                             EvenementService o= new EvenementService();
-                            Evenement e1 = new Evenement();
-                              String token = "EAACEdEose0cBACbpuPKf7Rr0aTUjn2Fygr8pVZBAW337wq4k3zoL2wuT5bciLEcbGe4s9qb6HxUyn46D5ZCBJnL2FYcQNCzvkttm8u3zqEhL6qjBwOoQtRFFbl8V3i6rhZA9qxt1NsJXgZBf7YZBuMYxSXpmblMSVsC3vNsLYzH0na4meXVY7V6sk2UQkmDqa4KFI1vneVcB7jHEVFJ43nv9uFMcFN97ueainVSgndXgoDHQSgp6SfKols1ZAVMb4ZD";
+                           // Evenement e1 = new Evenement();
+                              String token = "EAACEdEose0cBACZCg4pIKLvxcULwafzOMUp7ySDVGmwaKm4lBO6DDUqCaM8AHzZA8oLSkTFum9ZB02ZCUVNZBTogfjbUUH06pY5jzz7EP6rA3hZBbyFTJt9MivE43KkpG0gWtA3ZB5Y3BCMhUsuuJ8BPZAEcQfdMFlHoZAkLuUsWTaUxznRe63ZBl0NkUqhkPaxlDM6M0R41PqVEtHswZBXd1jhQZA5AZCsouhnBsQhOpkyub1tEibh3qkmiN4Sz1ZA1ziD9IZD";
                FacebookClient fb = new DefaultFacebookClient(token);
-                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", e1.getImageEvt() + "Event" + e1.getLieu() + " aura lieu le " + e1.getDateDebut() + " jusqu'à " + e1.getDateFin() + " " + e1.getDescription()));
+                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", listeEvent.getImageEvt() + "Event" + listeEvent.getLieu() + " aura lieu le " + listeEvent.getDateDebut() + " jusqu'à " + listeEvent.getDateFin() + " " +listeEvent.getDescription()));
                         } catch (SQLException ex) {
                             Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
                         }

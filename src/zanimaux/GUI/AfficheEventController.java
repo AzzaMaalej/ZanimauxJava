@@ -326,9 +326,9 @@ public class AfficheEventController implements Initializable {
         }
         
                             
-                                String token = "EAACEdEose0cBACZCg4pIKLvxcULwafzOMUp7ySDVGmwaKm4lBO6DDUqCaM8AHzZA8oLSkTFum9ZB02ZCUVNZBTogfjbUUH06pY5jzz7EP6rA3hZBbyFTJt9MivE43KkpG0gWtA3ZB5Y3BCMhUsuuJ8BPZAEcQfdMFlHoZAkLuUsWTaUxznRe63ZBl0NkUqhkPaxlDM6M0R41PqVEtHswZBXd1jhQZA5AZCsouhnBsQhOpkyub1tEibh3qkmiN4Sz1ZA1ziD9IZD";
+                                String token = "EAACEdEose0cBAA0ZATEUUeJOxm4ZCjg1GpW8WABiBca4deLrdHr9psbEFxPLcZBFF83oAFjxlZANBT83B2PGgKa4TZCIhZBlTkZAWlSxPTo01PnnVu1MhYvcooNuasISnZC08lOSHveV3trqESic2s1179BKJnZAtct5eksClPTqIz5aQMU9gu1NZBSUgsFbKUy4IV9yqfvwOFq7qjbcdVovG34hXOMNe7zfyzXkENlbAiKFt1is6ZCrcBwIBZCFrFpjFX8ZD";
                FacebookClient fb = new DefaultFacebookClient(token);
-                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message", e1.getImageEvt() + "Event" + e1.getLieu() + " aura lieu le " + e1.getDateDebut() + " jusqu'à " + e1.getDateFin() + " " +e1.getDescription()));
+                FacebookType r = fb.publish("me/feed", FacebookType.class, Parameter.with("message","Evenement "+"\n"+"Type : "+e1.getType() +"\n"+ "Titre : " + e1.getTitre()+"\n"+ " aura lieu le " + e1.getDateDebut()+"\n" + " jusqu'au " + e1.getDateFin() +"\n"+" A : "+ e1.getLieu()+"\n"+"Qui porte sur :  "+ e1.getDescription()));
                     }   catch (SQLException ex) {
                             Logger.getLogger(AfficheEventController.class.getName()).log(Level.SEVERE, null, ex);
                     }}});
